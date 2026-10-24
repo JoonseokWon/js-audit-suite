@@ -14,10 +14,10 @@ from workspace import Workspace
 from adapters import MODULES
 from display_schema import TABLE_COLUMNS,MODULE_TABLES
 import exporter
-from desktop_display import DisplayManager,ScrollableFrame,create_scrolled_text
+from desktop_display import DisplayManager,ScrollableFrame,create_scrolled_text,create_editable_text
 from ai_desktop import AIDesktopMixin
 
-TITLE='JS 통합 회계감사 v1.8.0'
+TITLE='JS 통합 회계감사 v1.8.1'
 def resource(*parts):return RESOURCE.joinpath(*parts)
 def display_time(value):return datetime.fromisoformat(value).astimezone(timezone(timedelta(hours=9))).strftime('%Y-%m-%d %H:%M:%S KST')
 CATALOG=json.loads(resource('procedure_catalog.json').read_text(encoding='utf-8'))
@@ -91,6 +91,7 @@ class FlowFrame(ttk.Frame):
 class App(AIDesktopMixin):
     def __init__(self,root,sector_home=None):
         self.root=root;root.title(TITLE);ttk.Style(root).theme_use('clam');self.display=DisplayManager(root,scale=100);root.audit_display=self.display
+        if sys.platform=='win32':root.iconbitmap(default=str(resource('assets','js-audit.ico')))
         style=ttk.Style(root);style.configure('Primary.TButton',background='#2458a6',foreground='white');style.map('Primary.TButton',background=[('active','#194684')])
         self.ws=None;self.busy=False;self.cancel=threading.Event();self.queue=queue.Queue();self.current_pid=None;self.table_rows=[];self.page=0;self.closing=False
         self.init_ai(CATALOG)
@@ -194,7 +195,7 @@ class App(AIDesktopMixin):
                 for w in parent.winfo_children():
                     if isinstance(w,ttk.Widget):
                         previous=w.state();w.state(['disabled']);self.disabled_widgets.append((w,'ttk',previous))
-                    elif isinstance(w,(tk.Text,tk.Listbox)):
+                    elif isinstance(w,(tk.Text,tk.Listbox)) or getattr(w,'audit_native_text',False):
                         previous=w.cget('state');w.configure(state='disabled');self.disabled_widgets.append((w,'tk',previous))
                     disable(w)
             disable(self.nb);self.root.focus_set();self.sector_box.configure(state='disabled');self.sector_new.configure(state='disabled');self.sector_cancel.configure(state='normal')
@@ -252,6 +253,7 @@ class App(AIDesktopMixin):
         self.history_detail.configure(state='normal');self.history_detail.delete('1.0','end');self.history_detail.insert('1.0',value);self.history_detail.configure(state='disabled')
     def history_rows(self):
         names={'engagement':'업무 생성','source':'자료 등록','run':'검사 실행','procedure':'조서 저장·개정·검토','note':'검토의견','evidence_request':'자료요청·상태 변경','ai_draft':'AI 초안 생성','ai_apply':'AI 초안 적용','ai_content_approval':'AI 내용 최종 승인'}
+        names['sector_storage_relocation']='자료 보관 폴더 이동'
         self.history_items=list(self.ws.events) if self.ws else []
         rows=[]
         for index,event in enumerate(self.history_items,1):
@@ -504,7 +506,7 @@ class App(AIDesktopMixin):
         self.excluded=tk.BooleanVar();row.add(ttk.Checkbutton(row,text='범위 제외',variable=self.excluded))
         self.proc_text={}
         for label,key,height in [('목적·주장','purpose',2),('위험·기준 / 제외 사유','risk',2),('모집단·선정/검사 범위','scope',2),('실제 수행내용·근거·예외 조사','performed',3),('판단·결론·추가절차','conclusion',3)]:
-            ttk.Label(right,text=label).pack(anchor='w');t=create_scrolled_text(right,height=height,wrap='word');t.audit_container.pack(fill='x');self.proc_text[key]=t
+            ttk.Label(right,text=label).pack(anchor='w');t=create_editable_text(right,height=height,wrap='word');t.audit_container.pack(fill='x');self.proc_text[key]=t
         ttk.Label(right,text='연결 증거 (Ctrl로 여러 자료 선택, 실제 근거는 위 수행내용에 기록)',wraplength=650).pack(anchor='w');self.evidence_list=tk.Listbox(right,selectmode='extended',height=3,exportselection=False,font='AuditSmallFont');self.evidence_list.pack(fill='x')
         rr=ttk.Frame(right);rr.pack(fill='x');ttk.Label(rr,text='검토자').pack(anchor='w');self.reviewer=tk.StringVar();ttk.Entry(rr,textvariable=self.reviewer,width=15).pack(anchor='w');ttk.Label(rr,text='검토내용·범위').pack(anchor='w');self.review_note=tk.StringVar();ttk.Entry(rr,textvariable=self.review_note).pack(fill='x')
         rr2=FlowFrame(right);rr2.pack(fill='x',pady=5);self.review_complete_button=rr2.add(ttk.Button(rr2,text='검토기록 완료',command=lambda:self.call(lambda:self.review(True))));rr2.add(ttk.Button(rr2,text='보완 의견',command=lambda:self.call(lambda:self.review(False))))
@@ -622,6 +624,9 @@ class App(AIDesktopMixin):
         elif self.check_navigation():self.shutdown_ai();self.root.destroy()
 
 def main():
+    if '--self-test-ime' in sys.argv:
+        from verify_ime_patch import self_test
+        return self_test(Path(sys.argv[sys.argv.index('--report')+1]),Path(sys.argv[sys.argv.index('--workspace')+1]))
     if '--self-test-ai-real' in sys.argv:
         from verify_ai_actual import self_test
         return self_test(Path(sys.argv[sys.argv.index('--report')+1]),Path(sys.argv[sys.argv.index('--ai-runtime')+1]))

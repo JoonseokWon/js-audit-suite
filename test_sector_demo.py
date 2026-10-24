@@ -19,6 +19,118 @@ ROOT = Path(__file__).resolve().parent
 RESOURCES = ROOT/'sector_resources'
 
 
+class SectorRelocationTests(unittest.TestCase):
+    """A folder copy needs explicit provenance while immutable events stay intact."""
+    def setUp(self):
+        area=ROOT/'sector_verification';area.mkdir(exist_ok=True)
+        self.temp=tempfile.TemporaryDirectory(prefix='relocation-',dir=area)
+        self.addCleanup(self.temp.cleanup);self.root=Path(self.temp.name)
+        self.old=self.root/'old';self.new=self.root/'new'
+        self.first=sector_demo.open_company('JS',self.old,RESOURCES)
+
+    def copied(self):
+        shutil.copytree(self.old,self.new)
+        return Workspace(self.new/Path(self.first['folder']).relative_to(self.old))
+
+    def migrate(self):
+        return sector_demo.record_storage_relocation(self.new,self.old,actor='합성 이동 담당',reason='사용자가 요청한 프로그램 데이터 폴더 정리')
+
+    def test_copy_alone_does_not_implicitly_reassign_registered_original(self):
+        ws=self.copied()
+        with self.assertRaisesRegex(AuditError,'등록 원본 연결'):
+            sector_demo.data_folder(ws)
+        with self.assertRaises(AuditError):sector_demo.open_company('JS',self.new,RESOURCES)
+
+    def test_explicit_relocation_preserves_event_prefix_sources_and_original_store(self):
+        oldws=Workspace(self.first['folder']);before=fingerprint(self.old);original_events=list(oldws.events);sources=dict(oldws.sources)
+        ws=self.copied();previous=ws.head
+        result=self.migrate();reopened=Workspace(ws.root)
+        self.assertEqual(len(result['sessions']),1);self.assertTrue(result['sessions'][0]['recorded'])
+        self.assertEqual(reopened.events[:-1],original_events)
+        self.assertEqual(reopened.events[-1]['kind'],'sector_storage_relocation')
+        self.assertEqual(reopened.sources,sources);self.assertNotEqual(reopened.head,previous)
+        self.assertEqual(fingerprint(self.old),before)
+        self.assertEqual(sector_demo.data_folder(reopened),ws.root.parent)
+        self.assertTrue(sector_demo.open_company('JS',self.new,RESOURCES)['reused'])
+
+    def test_repeating_move_is_idempotent_and_does_not_append_another_record(self):
+        ws=self.copied();self.migrate();ws.refresh();head=ws.head;count=len(ws.events)
+        result=self.migrate();ws.refresh()
+        self.assertFalse(result['sessions'][0]['recorded']);self.assertEqual(ws.head,head);self.assertEqual(len(ws.events),count)
+
+    def test_all_historical_sessions_are_migrated_not_just_current_registry_entry(self):
+        sector_demo.open_company('JS',self.old,RESOURCES,fresh=True)
+        self.copied();result=self.migrate()
+        self.assertEqual(len(result['sessions']),2)
+        for record in result['sessions']:
+            ws=Workspace(record['workspace']);self.assertEqual(sector_demo.data_folder(ws),ws.root.parent)
+
+    def test_source_bytes_tamper_is_not_fixed_or_hidden_by_relocation(self):
+        ws=self.copied();head=ws.head
+        marker=json.loads((ws.root.parent/'session.json').read_text(encoding='utf-8'))
+        path=ws.root.parent/marker['inputs'][0]['path'];path.write_bytes(path.read_bytes()+b'changed')
+        with self.assertRaises(AuditError):self.migrate()
+        self.assertEqual(Workspace(ws.root).head,head)
+
+    def test_immutable_source_copy_tamper_blocks_without_new_event(self):
+        ws=self.copied();head=ws.head;source=next(iter(ws.sources.values()))
+        path=ws.root/source['file'];path.write_bytes(path.read_bytes()+b'changed')
+        with self.assertRaises(AuditError):self.migrate()
+        self.assertEqual(Workspace(ws.root).head,head)
+
+    def test_changed_store_identity_is_rejected_without_append(self):
+        ws=self.copied();head=ws.head;path=self.new/'store.json';store=json.loads(path.read_text(encoding='utf-8'));store['store_id']='a'*32;path.write_text(json.dumps(store),encoding='utf-8')
+        with self.assertRaises(AuditError):self.migrate()
+        self.assertEqual(Workspace(ws.root).head,head)
+
+    def test_changed_session_marker_is_rejected_without_append(self):
+        ws=self.copied();head=ws.head;path=ws.root.parent/'session.json';marker=json.loads(path.read_text(encoding='utf-8'));marker['inputs'][0]['source_id']='forged';path.write_text(json.dumps(marker),encoding='utf-8')
+        with self.assertRaises(AuditError):self.migrate()
+        self.assertEqual(Workspace(ws.root).head,head)
+
+    def test_foreign_company_uuid_role_hash_and_source_mapping_are_rejected(self):
+        import copy
+        ws=self.copied();self.migrate();ws.refresh();event=ws.events[-1]['data'];marker=json.loads((ws.root.parent/'session.json').read_text(encoding='utf-8'))
+        bad=[]
+        for key,value in [('company_code','JS_AUTO'),('workspace_id','0'*32),('session_id','0'*32),('store_id','0'*32),('from_session',None),('to_session',7)]:
+            record=copy.deepcopy(event);record[key]=value;bad.append(record)
+        for key,value in [('role','다른 역할'),('bytes',1),('sha256','0'*64),('source_id','forged'),('source_id',[]),('path','../other')]:
+            record=copy.deepcopy(event);record['sources'][0][key]=value;bad.append(record)
+        # Validate each forged record as the only proposed relocation of the
+        # original copy; never mutate the immutable fixture history for a test.
+        original=Workspace(self.first['folder'])
+        for record in bad:
+            with self.subTest(record=record),self.assertRaises(AuditError):
+                sector_demo._reading_origins(original,marker,record)
+
+    def test_same_or_nested_store_roots_are_rejected(self):
+        for target in (self.old,self.old/'nested'):
+            with self.subTest(target=target),self.assertRaises(AuditError):
+                sector_demo.record_storage_relocation(target,self.old,actor='합성',reason='이동')
+
+    def test_missing_actor_or_reason_cannot_create_record(self):
+        ws=self.copied();head=ws.head
+        for actor,reason in [('', '이동'),('합성',''),(None,'이동')]:
+            with self.subTest(actor=actor,reason=reason),self.assertRaises(AuditError):
+                sector_demo.record_storage_relocation(self.new,self.old,actor=actor,reason=reason)
+        self.assertEqual(Workspace(ws.root).head,head)
+
+    def test_second_explicit_move_chains_provenance_without_rewriting_first_record(self):
+        ws=self.copied();self.migrate();ws.refresh();first_events=list(ws.events)
+        third=self.root/'third';shutil.copytree(self.new,third)
+        result=sector_demo.record_storage_relocation(third,self.new,actor='합성 이동 담당',reason='두 번째 이동')
+        moved=Workspace(result['sessions'][0]['workspace'])
+        self.assertEqual(moved.events[:-1],first_events);self.assertEqual(sector_demo.data_folder(moved),moved.root.parent)
+
+    def test_subsidiary_raw_excel_tamper_remains_blocked_after_valid_move(self):
+        sector_demo.open_company('JS_ELEC',self.old,RESOURCES)
+        self.copied();self.migrate()
+        result=sector_demo.open_company('JS_ELEC',self.new,RESOURCES);ws=Workspace(result['folder'])
+        raw=next((ws.root.parent/'원천엑셀').rglob('*.xlsx'));raw.write_bytes(raw.read_bytes()+b'changed')
+        with self.assertRaises(AuditError):sector_demo.data_folder(ws)
+        with self.assertRaises(AuditError):sector_demo.open_company('JS_ELEC',self.new,RESOURCES)
+
+
 class SectorDemoTests(unittest.TestCase):
     def setUp(self):
         area = ROOT/'sector_verification'

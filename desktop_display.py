@@ -187,7 +187,8 @@ class DisplayManager:
     def refresh_widgets(self):
         def walk(widget):
             for child in widget.winfo_children():
-                if isinstance(child,ttk.Treeview):self.register_tree(child)
+                if getattr(child,'audit_native_text',False):child.refresh_font()
+                elif isinstance(child,ttk.Treeview):self.register_tree(child)
                 elif isinstance(child,(tk.Text,tk.Listbox)):
                     current=str(child.cget('font'))
                     if current not in (NORMAL_FONT,TEXT_FONT,SMALL_FONT,HEADING_FONT,MONO_FONT):child.configure(font=TEXT_FONT if isinstance(child,tk.Text) else NORMAL_FONT)
@@ -213,6 +214,14 @@ def create_scrolled_text(parent,**options):
     options.setdefault('font',TEXT_FONT if TEXT_FONT in tkfont.names(parent) else 'TkTextFont')
     text=ScrolledText(parent,**options);text._audit_scroll_frame=text.frame;text.audit_container=text.frame
     return text
+
+def create_editable_text(parent,**options):
+    """Use Windows' native inline IME for authored workpaper text only."""
+    if sys.platform=='win32':
+        from windows_text import WindowsText
+        options.setdefault('font',TEXT_FONT if TEXT_FONT in tkfont.names(parent) else 'TkTextFont')
+        return WindowsText(parent,**options)
+    return create_scrolled_text(parent,**options)
 
 class ScrollableFrame(ttk.Frame):
     """Scrollable form area; children are placed in .inner, with no global wheel hook."""

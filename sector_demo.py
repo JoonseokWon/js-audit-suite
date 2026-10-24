@@ -67,6 +67,9 @@ def _catalog(resource_root,verify=True):
 def list_companies(resource_root):return _catalog(resource_root,verify=False)[1]['companies']
 
 def default_storage_root():
+    from app_paths import portable_storage_root
+    portable=portable_storage_root()
+    if portable is not None:return portable
     base=os.environ.get('LOCALAPPDATA')
     if not base and os.name=='nt':
         import ctypes
@@ -167,7 +170,54 @@ def _extract_raw(ws,local,event=None):
         atomic(_safe(root,name),data)
     return [{'path':'원천엑셀/'+name,'bytes':len(data),'sha256':hashlib.sha256(data).hexdigest()} for name,data in sorted(payload.items())]
 
+def _reading_entries(marker):
+    inputs=marker.get('inputs',[]);metadata=marker.get('metadata',[])
+    if not isinstance(inputs,list) or not isinstance(metadata,list):raise AuditError('회사 열람자료 명세 오류')
+    return inputs+metadata
+
+def _reading_origins(ws,marker,pending=None):
+    """Resolve exact source provenance through append-only relocation records.
+
+    Source events retain their originally registered absolute filenames. A
+    relocation changes only the verified location of the same session copies.
+    No unregistered source, company, session, role or hash may be remapped.
+    """
+    code=ws.engagement['회사코드'];session=ws.root.parent
+    entries=_reading_entries(marker)
+    if any(not isinstance(e,dict) or not all(k in e for k in ('path','bytes','sha256','source_id')) for e in entries):raise AuditError('회사 열람자료 명세 오류')
+    if any(not isinstance(e['source_id'],str) or not isinstance(e['path'],str) for e in entries):raise AuditError('회사 열람자료 ID·경로 형식 오류')
+    expected={e['source_id']:e for e in entries}
+    if len(expected)!=len(entries):raise AuditError('회사 열람자료 ID 중복')
+    origins={sid:Path(ws.sources.get(sid,{}).get('original','')).resolve() for sid in expected}
+    records=[event['data'] for event in ws.events if event['kind']=='sector_storage_relocation']
+    if pending is not None:records.append(pending)
+    for record in records:
+        keys={'schema_version','store_id','workspace_id','company_code','session_id','from_session','to_session','actor','reason','sources'}
+        if not isinstance(record,dict) or set(record)!=keys or record.get('schema_version')!='sector-storage-relocation-1':raise AuditError('회사 자료 이동기록 형식 오류')
+        if record['store_id']!=marker.get('store_id') or record['workspace_id']!=ws.engagement['id'] or record['company_code']!=code or record['session_id']!=session.name:raise AuditError('회사 자료 이동기록 소유·업무·세션 불일치')
+        if any(not isinstance(record[key],str) or not record[key].strip() for key in ('actor','reason')):raise AuditError('회사 자료 이동기록 작성자·사유 누락')
+        if any(not isinstance(record[key],str) or not record[key] for key in ('from_session','to_session')):raise AuditError('회사 자료 이동기록 경로 형식 오류')
+        old,new=Path(record['from_session']),Path(record['to_session'])
+        if not old.is_absolute() or not new.is_absolute() or old.resolve()==new.resolve():raise AuditError('회사 자료 이동기록 절대경로 오류')
+        old=old.resolve();new=new.resolve()
+        if any(p.name!=session.name or p.parent.name!=code or p.parent.parent.name!='companies' for p in (old,new)):raise AuditError('회사 자료 이동기록 회사·세션 경로 오류')
+        mappings=record['sources']
+        if not isinstance(mappings,list) or len(mappings)!=len(expected) or any(not isinstance(r,dict) or not isinstance(r.get('source_id'),str) for r in mappings):raise AuditError('회사 자료 이동기록 원본 목록 오류')
+        by_id={r.get('source_id'):r for r in mappings}
+        if set(by_id)!=set(expected) or len(by_id)!=len(mappings):raise AuditError('회사 자료 이동기록 원본 ID 불일치')
+        for sid,entry in expected.items():
+            source=ws.sources.get(sid,{})
+            wanted={'source_id':sid,'path':entry['path'],'bytes':entry['bytes'],'sha256':entry['sha256'],'role':source.get('role')}
+            if by_id[sid]!=wanted or source.get('bytes')!=entry['bytes'] or source.get('sha256')!=entry['sha256']:raise AuditError('회사 자료 이동기록 원본 해시·크기·역할 불일치')
+            old_path=old.joinpath(*PurePosixPath(entry['path']).parts).resolve()
+            if origins[sid]!=old_path:raise AuditError('회사 자료 이동기록의 이전 등록원본 연결 오류')
+            origins[sid]=new.joinpath(*PurePosixPath(entry['path']).parts).resolve()
+    return origins
+
 def data_folder(ws):
+    return _data_folder(ws)
+
+def _data_folder(ws,pending=None):
     """Return this demo's session folder after checking originals and derived reading copies.
 
     Reading copies are never registered again as newly received evidence. Missing or
@@ -180,13 +230,14 @@ def data_folder(ws):
         raise AuditError('v1.7 회사별 연습의 원천자료 폴더가 아닙니다. 등록 원본 위치를 확인하세요.')
     if ws.root.name!='업무' or session.parent.name!=code or not re.fullmatch('[0-9a-f]{32}',session.name):raise AuditError('회사 연습 경로 불일치')
     if ws.verify_sources():raise AuditError('업무 원본 사본이 누락·변경되었습니다.')
+    origins=_reading_origins(ws,marker,pending)
     inputs=marker.get('inputs',[])
     if not isinstance(inputs,list) or tuple(r.get('module') for r in inputs)!=_modules(code):raise AuditError('회사별 열람 입력 목록 오류')
     by_module={}
     for entry in inputs:
         if not isinstance(entry,dict) or not all(k in entry for k in ('path','bytes','sha256','source_id')):raise AuditError('열람 입력 명세 오류')
         path=_safe(session,entry['path']);source=ws.sources.get(entry['source_id'],{})
-        if not entry['path'].startswith('inputs/') or source.get('role')!=entry['module'] or source.get('sha256')!=entry['sha256'] or source.get('bytes')!=entry['bytes'] or Path(source.get('original','')).resolve()!=path.resolve():raise AuditError('열람 입력과 등록 원본 연결 오류')
+        if not entry['path'].startswith('inputs/') or source.get('role')!=entry['module'] or source.get('sha256')!=entry['sha256'] or source.get('bytes')!=entry['bytes'] or origins.get(entry['source_id'])!=path.resolve():raise AuditError('열람 입력과 등록 원본 연결 오류')
         if not path.is_file() or path.stat().st_size!=entry['bytes'] or sha(path)!=entry['sha256']:raise AuditError('회사 입력 열람사본이 누락·변경되었습니다: '+path.name)
         by_module[entry['module']]=path
     actual_inputs={p.relative_to(session).as_posix() for p in (session/'inputs').rglob('*') if p.is_file()}
@@ -196,7 +247,7 @@ def data_folder(ws):
     for entry in metadata:
         if not all(k in entry for k in ('path','bytes','sha256','source_id')):raise AuditError('회사 설정 열람 명세 오류')
         path=_safe(session,entry['path']);source=ws.sources.get(entry['source_id'],{})
-        if entry['path']!='metadata/'+entry['key']+'.json' or source.get('sha256')!=entry['sha256'] or source.get('bytes')!=entry['bytes'] or Path(source.get('original','')).resolve()!=path.resolve():raise AuditError('회사 설정과 등록 원본 연결 오류')
+        if entry['path']!='metadata/'+entry['key']+'.json' or source.get('sha256')!=entry['sha256'] or source.get('bytes')!=entry['bytes'] or origins.get(entry['source_id'])!=path.resolve():raise AuditError('회사 설정과 등록 원본 연결 오류')
         if not path.is_file() or path.stat().st_size!=entry['bytes'] or sha(path)!=entry['sha256']:raise AuditError('회사 설정 열람사본 누락·변경')
     rawroot=_safe(session,'원천엑셀')
     if code=='JS':
@@ -212,6 +263,65 @@ def data_folder(ws):
         listing=[{'path':'원천엑셀/'+name,'bytes':len(data),'sha256':hashlib.sha256(data).hexdigest()} for name,data in sorted(expected.items())]
         if marker.get('raw_excel_files')!=listing:raise AuditError('원천 엑셀 열람 목록 변경')
     return session
+
+def record_storage_relocation(new_storage_root,old_storage_root,*,actor,reason):
+    """Record a byte-verified copied store's new location without rewriting history.
+
+    The caller copies the complete store first. Both stores must still exist and
+    agree, including past sessions, session markers and the original event prefix.
+    Only the new workspaces receive one append-only event. Repeating the same
+    verified move is idempotent. No calculation, approval or source event changes.
+    """
+    if not isinstance(actor,str) or not actor.strip() or not isinstance(reason,str) or not reason.strip():raise AuditError('자료 이동 기록의 작성자와 사유가 필요합니다.')
+    oldroot=Path(old_storage_root).absolute();newroot=Path(new_storage_root).absolute()
+    if oldroot.resolve()==newroot.resolve() or oldroot.resolve().is_relative_to(newroot.resolve()) or newroot.resolve().is_relative_to(oldroot.resolve()):raise AuditError('이전·새 회사자료 보관 폴더는 서로 독립돼야 합니다.')
+    for root in (oldroot,newroot):
+        for path in (root,*root.parents):
+            if path.is_symlink() or (path.exists() and _reparse(path)):raise AuditError('연결 폴더 대신 독립 보관 폴더가 필요합니다.')
+        if not _safe(root,STORE_FILE).is_file():raise AuditError('이전·새 회사자료 보관 목록이 모두 필요합니다.')
+    oldstore=_store(oldroot);newstore=_store(newroot)
+    if oldstore!=newstore:raise AuditError('이전·새 회사자료 보관 목록이 다릅니다. 전체를 먼저 보존 복사하세요.')
+    def sessions(root):
+        out={}
+        for marker_path in (root/'companies').glob('*/*/session.json'):
+            relative=marker_path.relative_to(root).as_posix();path=_safe(root,relative)
+            marker=_read(path);parts=PurePosixPath(relative).parts
+            if len(parts)!=4 or parts[1] not in COMPANIES or not re.fullmatch('[0-9a-f]{32}',parts[2]) or marker.get('state')!='ready' or marker.get('store_id')!=oldstore['store_id']:raise AuditError('전체 회사 세션의 소유·완료 상태를 확인하세요.')
+            out['/'.join(parts[:-1])]=(path.parent,marker)
+        return out
+    previous=sessions(oldroot);current=sessions(newroot)
+    if not previous or set(previous)!=set(current):raise AuditError('이전·새 회사자료의 과거 세션 목록이 다릅니다.')
+    planned=[]
+    with _lock(newroot):
+        for relative in sorted(previous):
+            old_session,old_marker=previous[relative];new_session,new_marker=current[relative]
+            if old_marker!=new_marker:raise AuditError('회사 자료 이동 중 세션 명세가 변경되었습니다.')
+            oldws=Workspace(old_session/'업무');newws=Workspace(new_session/'업무')
+            data_folder(oldws)
+            if newws.events[:len(oldws.events)]!=oldws.events:raise AuditError('새 업무에 이전 업무의 전체 이력 원문이 보존되지 않았습니다.')
+            if oldws.engagement!=newws.engagement or oldws.sources!=newws.sources:raise AuditError('이전·새 업무 또는 등록원본 명세가 다릅니다.')
+            try:
+                data_folder(newws)
+            except AuditError:
+                pending={'schema_version':'sector-storage-relocation-1','store_id':oldstore['store_id'],'workspace_id':newws.engagement['id'],
+                         'company_code':newws.engagement['회사코드'],'session_id':new_session.name,
+                         'from_session':str(old_session.resolve()),'to_session':str(new_session.resolve()),'actor':actor.strip(),'reason':reason.strip(),
+                         'sources':[{'source_id':e['source_id'],'path':e['path'],'bytes':e['bytes'],'sha256':e['sha256'],'role':newws.sources[e['source_id']]['role']} for e in _reading_entries(new_marker)]}
+                _data_folder(newws,pending)
+            else:
+                pending=None
+            planned.append((oldws,newws,pending,oldws.head,newws.head))
+        results=[]
+        for oldws,newws,pending,old_head,new_head in planned:
+            oldws.refresh();newws.refresh()
+            if oldws.head!=old_head or newws.head!=new_head:raise AuditError('자료 이동 기록 중 업무 이력이 변경되었습니다.')
+            if pending is not None:newws._append('sector_storage_relocation',pending);newws.refresh()
+            data_folder(newws)
+            results.append({'workspace':str(newws.root),'workspace_id':newws.engagement['id'],'company_code':newws.engagement['회사코드'],'recorded':pending is not None,'previous_head':new_head,'head':newws.head})
+        for oldws,_,_,old_head,_ in planned:
+            oldws.refresh()
+            if oldws.head!=old_head:raise AuditError('자료 이동 기록 중 이전 업무 이력이 변경되었습니다.')
+    return {'schema_version':'sector-storage-relocation-result-1','store_id':oldstore['store_id'],'old_storage_root':str(oldroot.resolve()),'new_storage_root':str(newroot.resolve()),'sessions':results}
 
 def _seed(ws,c,catalog,ids,plan):
     by_pid=defaultdict(list)

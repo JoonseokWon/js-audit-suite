@@ -4,7 +4,7 @@ import json, threading
 import tkinter as tk
 from tkinter import ttk, messagebox, filedialog
 from common import AuditError,digest
-from desktop_display import ScrollableFrame, create_scrolled_text
+from desktop_display import ScrollableFrame, create_scrolled_text, create_editable_text
 from ai_provider import generate_draft, DEFAULT_MODEL
 from local_ai_runtime import LocalAIRuntime
 
@@ -140,7 +140,7 @@ class AIDesktopMixin:
         body.insert('1.0',pid+' · '+state['state']+'\n'+state['provider']+' / '+state['model']+'\n\n'+'\n\n'.join(FIELD_LABELS[k]+'\n'+p[k]+'\n생성 시 근거: '+', '.join(draft['citations'][k]) for k in FIELD_LABELS));body.configure(state='disabled')
         win.actor=tk.StringVar(value=self.ai_actor())
         ttk.Label(controls,text='승인자').grid(row=0,column=0,sticky='w');ttk.Entry(controls,textvariable=win.actor,width=22).grid(row=0,column=1,sticky='w')
-        ttk.Label(controls,text='검토·수정·판단 기록').grid(row=1,column=0,sticky='nw');win.note=create_scrolled_text(controls,height=3,wrap='word');win.note.audit_container.grid(row=1,column=1,sticky='ew');controls.columnconfigure(1,weight=1)
+        ttk.Label(controls,text='검토·수정·판단 기록').grid(row=1,column=0,sticky='nw');win.note=create_editable_text(controls,height=3,wrap='word');win.note.audit_container.grid(row=1,column=1,sticky='ew');controls.columnconfigure(1,weight=1)
         win.confirmed=tk.BooleanVar(value=False);ttk.Checkbutton(controls,text='근거·예외·미수행 사항과 최종 내용을 검토했습니다.',variable=win.confirmed).grid(row=2,column=0,columnspan=2,sticky='w',pady=8)
         def approve():
             self.guard()
