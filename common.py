@@ -6,7 +6,7 @@ from io import BytesIO
 from zipfile import ZipFile,BadZipFile
 import hashlib,json,re,os,tempfile
 
-VERSION='1.7'
+VERSION='1.7.1'
 PROCEDURE_MODULES={'A02':'금융상품','A04':'매출','A12':'감가상각','A15':'리스','A07':'대손충당금','A11':'재고평가','A16':'종업원급여','A08':'미기록부채·비용이연','A09':'미기록부채·비용이연','R01':'원천증빙','F01':'재무제표·주석','W01':'계정별증빙연습'}
 PROCEDURE_MODULES.update({'G01':'GLA','I01':'FIA','H01':'현금분석'})
 class AuditError(ValueError):pass

@@ -1,6 +1,9 @@
 """Single native desktop engagement, calculation, evidence and workpaper application."""
 import runtime
 RESOURCE=runtime.configure()
+runtime.configure_tk_libraries()
+from desktop_display import enable_dpi_awareness
+runtime.DPI_STATUS=enable_dpi_awareness()
 from pathlib import Path
 import json,sys,threading,queue,traceback,shutil
 from datetime import datetime,timezone,timedelta
@@ -11,8 +14,9 @@ from workspace import Workspace
 from adapters import MODULES
 from display_schema import TABLE_COLUMNS,MODULE_TABLES
 import exporter
+from desktop_display import DisplayManager,ScrollableFrame,create_scrolled_text
 
-TITLE='JS 통합 회계감사 v1.7'
+TITLE='JS 통합 회계감사 v1.7.1'
 def resource(*parts):return RESOURCE.joinpath(*parts)
 def display_time(value):return datetime.fromisoformat(value).astimezone(timezone(timedelta(hours=9))).strftime('%Y-%m-%d %H:%M:%S KST')
 CATALOG=json.loads(resource('procedure_catalog.json').read_text(encoding='utf-8'))
@@ -42,34 +46,123 @@ def fill(t,rows,columns=None):
     if columns:
         t.configure(columns=columns)
         for c in columns:t.heading(c,text=c);t.column(c,width=170,stretch=False)
+        manager=getattr(t.winfo_toplevel(),'audit_display',None)
+        if manager:manager.register_tree(t,{c:170 for c in columns})
     cs=t['columns']
     for i,r in enumerate(rows):t.insert('', 'end',iid=str(i),values=[str(r.get(k,'')) if r.get(k) is not None else '미확인' for k in cs])
 
+class FlowFrame(ttk.Frame):
+    """Keep primary actions reachable when the window or text scale changes."""
+    def __init__(self,parent,**kw):
+        super().__init__(parent,**kw);self.items=[];self.pending=None;self.layout=None
+        self.bind('<Configure>',lambda _:self.schedule())
+        self.bind('<Destroy>',self.cleanup,add='+')
+    def add(self,widget):
+        self.items.append(widget);self.schedule();return widget
+    def schedule(self):
+        if self.pending is None:self.pending=self._root().after_idle(self.reflow)
+    def cleanup(self,event):
+        if event.widget is self and self.pending is not None:
+            try:self._root().after_cancel(self.pending)
+            except tk.TclError:pass
+            self.pending=None
+    def reflow(self):
+        self.pending=None
+        if self.winfo_width()<100:
+            self.pending=self._root().after(30,self.reflow);return
+        width=max(120,self.winfo_width()-20);x=0;y=4;row_height=0;positions=[]
+        ordinary=[w for w in self.items if not getattr(w,'flow_compact_only',False)]
+        compact=sum(w.winfo_reqwidth()+8 for w in ordinary)>width
+        visible=[w for w in self.items if (not getattr(w,'flow_secondary',False) if compact else not getattr(w,'flow_compact_only',False))]
+        for widget in self.items:
+            if widget not in visible:widget.place_forget()
+        for widget in visible:
+            if isinstance(widget,ttk.Label):widget.configure(wraplength=max(100,width-12))
+            w=min(width,widget.winfo_reqwidth());h=widget.winfo_reqheight();needed=w+8
+            if x and x+needed>width:y+=row_height+5;x=0;row_height=0
+            positions.append((widget,x+8,y,w,h));x+=needed;row_height=max(row_height,h)
+        layout=tuple((str(w),x,y,width,height) for w,x,y,width,height in positions)
+        if layout!=self.layout:
+            for w,x,y,width,height in positions:w.place(x=x,y=y,width=width,height=height)
+            self.configure(height=y+row_height+5)
+            self.layout=layout
+
 class App:
     def __init__(self,root,sector_home=None):
-        self.root=root;root.title(TITLE);root.geometry('1320x900');root.minsize(1050,750)
-        style=ttk.Style(root);style.theme_use('clam');style.configure('.',font=('맑은 고딕',10));style.configure('Treeview',rowheight=27);style.configure('Treeview.Heading',font=('맑은 고딕',10,'bold'));style.configure('TButton',padding=(9,5))
+        self.root=root;root.title(TITLE);ttk.Style(root).theme_use('clam');self.display=DisplayManager(root,scale=100);root.audit_display=self.display
+        style=ttk.Style(root);style.configure('Primary.TButton',background='#2458a6',foreground='white');style.map('Primary.TButton',background=[('active','#194684')])
         self.ws=None;self.busy=False;self.cancel=threading.Event();self.queue=queue.Queue();self.current_pid=None;self.table_rows=[];self.page=0;self.closing=False
-        bar=ttk.Frame(root,padding=10);bar.pack(fill='x')
-        for label,command in [('새 업무',self.new_dialog),('업무 열기',self.open_dialog),('계정별 증빙연습',self.case_dialog),('로우데이터',lambda:self.call(self.open_raw_data)),('자료 복사',self.copy_templates),('검토중 저장',lambda:self.export_dialog(False)),('검토완료본',lambda:self.export_dialog(True))]:ttk.Button(bar,text=label,command=command).pack(side='left',padx=3)
+        bar=FlowFrame(root,padding=(10,5));bar.pack(fill='x');self.toolbar=bar
+        self.workpaper_button=bar.add(ttk.Button(bar,text='조서초안 작성',style='Primary.TButton',command=lambda:self.call(self.open_workpaper_draft)))
+        secondary_actions=[]
+        for label,command in [('새 업무',self.new_dialog),('업무 열기',self.open_dialog),('계정별 증빙연습',self.case_dialog),('로우데이터',lambda:self.call(self.open_raw_data)),('자료 복사',self.copy_templates),('초안 Excel 내보내기',lambda:self.export_dialog(False)),('검토완료본',lambda:self.export_dialog(True))]:
+            button=bar.add(ttk.Button(bar,text=label,command=command))
+            if label=='초안 Excel 내보내기':self.draft_export_button=button
+            else:button.flow_secondary=True;secondary_actions.append((label,command))
+        zoom_frame=ttk.Frame(bar);bar.add(zoom_frame);ttk.Label(zoom_frame,text='화면 배율').pack(side='left',padx=(8,4));self.ui_zoom=tk.StringVar(value='100%')
+        self.zoom_box=ttk.Combobox(zoom_frame,textvariable=self.ui_zoom,values=['90%','100%','110%','125%','150%','175%'],state='readonly',width=6);self.zoom_box.pack(side='left');self.zoom_box.bind('<<ComboboxSelected>>',lambda _:self.call(lambda:self.set_ui_zoom(int(self.ui_zoom.get().rstrip('%')))))
+        self.more_button=bar.add(ttk.Menubutton(bar,text='기타 기능 ▾'));self.more_button.flow_compact_only=True;self.more_menu=tk.Menu(self.more_button,tearoff=False);self.more_button.configure(menu=self.more_menu)
+        for label,command in secondary_actions:self.more_menu.add_command(label=label,command=command)
         from sector_demo import list_companies,default_storage_root
         self.sector_home=Path(sector_home) if sector_home is not None else default_storage_root()
         self.active_sector=None;self.sector_options=list_companies(resource('sector_resources'))
-        line=ttk.Frame(root,padding=(14,0,14,3));line.pack(fill='x')
-        ttk.Label(line,text='모회사·자회사').pack(side='left',padx=(0,8));self.sector_name=tk.StringVar(value='회사를 선택하세요')
-        self.sector_box=ttk.Combobox(line,textvariable=self.sector_name,values=[c['name'] for c in self.sector_options],state='readonly',width=18);self.sector_box.pack(side='left')
+        line=FlowFrame(root,padding=(10,0,10,2));line.pack(fill='x');self.company_bar=line
+        line.add(ttk.Label(line,text='모회사·자회사'));self.sector_name=tk.StringVar(value='회사를 선택하세요')
+        self.sector_box=ttk.Combobox(line,textvariable=self.sector_name,values=[c['name'] for c in self.sector_options],state='readonly',width=18);line.add(self.sector_box)
         self.sector_box.bind('<<ComboboxSelected>>',lambda _:self.call(lambda:self.select_sector(self.sector_options[self.sector_box.current()]['code'])))
-        self.sector_new=ttk.Button(line,text='새 연습',command=lambda:self.call(self.new_sector));self.sector_new.pack(side='left',padx=8)
-        self.sector_cancel=ttk.Button(line,text='준비 취소',command=self.cancel.set,state='disabled');self.sector_cancel.pack(side='left',padx=(0,8))
-        self.sector_description=tk.StringVar(value='JS는 업종 없는 모회사, 4개 자회사는 업종별 별도 합성업무입니다.');ttk.Label(line,textvariable=self.sector_description).pack(side='left')
-        self.info=tk.StringVar(value='새 업무 또는 더미업무를 만들거나 기존 업무 폴더를 여세요.');ttk.Label(root,textvariable=self.info,padding=(14,4)).pack(fill='x')
+        self.sector_new=ttk.Button(line,text='새 연습',command=lambda:self.call(self.new_sector));line.add(self.sector_new)
+        self.sector_cancel=ttk.Button(line,text='준비 취소',command=self.cancel.set,state='disabled');line.add(self.sector_cancel)
+        self.sector_description=tk.StringVar(value='JS는 업종 없는 모회사, 4개 자회사는 업종별 별도 합성업무입니다.');description=line.add(ttk.Label(line,textvariable=self.sector_description));description.flow_secondary=True
+        self.info=tk.StringVar(value='회사를 선택하거나 업무를 연 뒤 조서초안 작성을 누르세요.');self.info_label=ttk.Label(root,textvariable=self.info,padding=(14,4));self.info_label.pack(fill='x')
         self.status=tk.StringVar(value='준비');ttk.Label(root,textvariable=self.status,padding=(14,3)).pack(side='bottom',fill='x')
         self.nb=ttk.Notebook(root);self.nb.pack(fill='both',expand=True,padx=10,pady=5)
         tabs={name:ttk.Frame(self.nb,padding=10) for name in ('자료·검사','원장·리드','결과 상세','검토후보','절차·조서','증거·검토의견','자료요청','작업 이력')}
-        for name,frame in tabs.items():self.nb.add(frame,text=name)
-        self.tabs=tabs;self.build_inputs(tabs['자료·검사']);self.build_lead(tabs['원장·리드']);self.build_results(tabs['결과 상세']);self.build_risks(tabs['검토후보']);self.build_procedures(tabs['절차·조서']);self.build_evidence(tabs['증거·검토의견']);self.build_requests(tabs['자료요청']);self.build_history(tabs['작업 이력'])
+        for name,frame in tabs.items():self.nb.add(frame,text='조서초안·작성' if name=='절차·조서' else name)
+        navigation=tk.Menu(self.more_menu,tearoff=False)
+        for name,frame in tabs.items():navigation.add_command(label='조서초안·작성' if name=='절차·조서' else name,command=lambda tab=frame:self.nb.select(tab))
+        self.more_menu.add_separator();self.more_menu.add_cascade(label='화면 이동',menu=navigation)
+        self.tabs=tabs;self.tab_scrolls={};contents={}
+        for name,frame in tabs.items():
+            if name=='절차·조서':contents[name]=frame
+            else:
+                scroll=ScrollableFrame(frame);scroll.pack(fill='both',expand=True);self.tab_scrolls[name]=scroll;contents[name]=scroll.inner
+        self.build_inputs(contents['자료·검사']);self.build_lead(contents['원장·리드']);self.build_results(contents['결과 상세']);self.build_risks(contents['검토후보']);self.build_procedures(contents['절차·조서']);self.build_evidence(contents['증거·검토의견']);self.build_requests(contents['자료요청']);self.build_history(contents['작업 이력'])
         self.request_saved=self.request_signature();self.review_saved=('', '')
+        self.display.refresh_widgets();self.display.fit_window(initial=True)
+        def wrap_labels(parent):
+            for widget in parent.winfo_children():
+                if isinstance(widget,ttk.Label) and widget.cget('wraplength'):
+                    parent.bind('<Configure>',lambda e,w=widget:w.configure(wraplength=max(100,e.width-16)),add='+')
+                wrap_labels(widget)
+        wrap_labels(self.nb)
+        root.bind('<<AuditDisplayChanged>>',lambda _:self.reflow_display(),add='+')
+        root.bind('<Control-plus>',lambda _:self.step_ui_zoom(1));root.bind('<Control-equal>',lambda _:self.step_ui_zoom(1));root.bind('<Control-minus>',lambda _:self.step_ui_zoom(-1));root.bind('<Control-Key-0>',lambda _:self.set_ui_zoom(100))
         root.protocol('WM_DELETE_WINDOW',self.close);root.after(80,self.poll)
+    def reflow_display(self):
+        def walk(parent):
+            for widget in parent.winfo_children():
+                if isinstance(widget,FlowFrame):widget.schedule()
+                walk(widget)
+        walk(self.root)
+        for scroll in self.tab_scrolls.values():scroll.refresh()
+        if hasattr(self,'proc_scroll'):self.proc_scroll.refresh()
+    def set_ui_zoom(self,scale):
+        self.display.apply(scale=int(scale));self.ui_zoom.set(str(int(scale))+'%');self.reflow_display()
+        self.status.set('화면 배율 '+str(int(scale))+'% · Ctrl + / - 로 조절, Ctrl + 0 기본 배율');return 'break'
+    def step_ui_zoom(self,step):
+        choices=[90,100,110,125,150,175];current=int(self.ui_zoom.get().rstrip('%'));index=choices.index(current)
+        return self.set_ui_zoom(choices[max(0,min(len(choices)-1,index+step))])
+    def open_workpaper_draft(self):
+        if not self.ws:raise AuditError('먼저 모회사·자회사를 선택하거나 업무를 여세요. 이후 계정별 조서 초안을 작성할 수 있습니다.')
+        self.guard();self.nb.select(self.tabs['절차·조서'])
+        if self.current_pid:
+            self.status.set('작성 중인 조서를 유지합니다. 저장·개정 후 초안 Excel로 내보내세요.');return self.current_pid
+        from common import PROCEDURE_MODULES
+        preferred=next((pid for pid,module in PROCEDURE_MODULES.items() if module==self.result_module.get()),'C04')
+        if preferred not in {t['id'] for t in self.tasks}:preferred='C04'
+        self.load_procedure(preferred)
+        index=next(i for i,t in enumerate(self.tasks) if t['id']==preferred);self.proc_tree.selection_set(str(index));self.proc_tree.see(str(index))
+        self.status.set('계정별 초안: 목적·범위·계산 근거를 확인하고 실제 수행·판단을 입력한 뒤 조서 저장·개정을 누르세요.');return preferred
     def sector_selection(self):
         self.sector_name.set(next((c['name'] for c in self.sector_options if c['code']==self.active_sector),'회사를 선택하세요'))
         if self.active_sector is None:self.sector_description.set('수동 업무 · 회사명·범위는 현재 업무 정보를 확인하세요.')
@@ -150,7 +243,7 @@ class App:
         ttk.Label(p,text='저장한 자료요청·조서 개정·검토 등의 로컬 이력입니다. 저장 전 입력과 실제 이메일 발송은 별개이며 이름 입력은 본인인증·전자서명이 아닙니다.',wraplength=1190).pack(anchor='w',pady=8)
         self.history_tree=tree(p,['순번','시각 KST','기록종류','대상','상태','작성·검토 입력값'],11)
         self.history_tree.bind('<<TreeviewSelect>>',lambda _:self.show_history())
-        self.history_detail=tk.Text(p,height=13,font=('맑은 고딕',10),wrap='word',state='disabled');self.history_detail.pack(fill='both',expand=True,pady=8)
+        self.history_detail=create_scrolled_text(p,height=13,wrap='word',state='disabled');self.history_detail.audit_container.pack(fill='both',expand=True,pady=8)
         self.history_items=[]
     def set_history_text(self,value):
         self.history_detail.configure(state='normal');self.history_detail.delete('1.0','end');self.history_detail.insert('1.0',value);self.history_detail.configure(state='disabled')
@@ -174,9 +267,9 @@ class App:
         ttk.Label(p,text='규칙 기반 검토 후보입니다. 우선순위는 부정 확률이 아닙니다. 원문·조건·미확인 범위를 확인하고 판단을 조서에 기록하세요.',wraplength=1150).pack(anchor='w',pady=8)
         self.risk_items=[];self.risk_tree=tree(p,['모듈','규칙ID','우선순위','사유','연결상태','조서ID'],10)
         self.risk_tree.bind('<<TreeviewSelect>>',lambda _:self.show_risk())
-        self.risk_detail=tk.Text(p,height=12,wrap='word',font=('맑은 고딕',10));self.risk_detail.pack(fill='both',expand=True,pady=8)
-        buttons=ttk.Frame(p);buttons.pack(fill='x',pady=8)
-        for label,fn in [('관련 조서 열기',self.risk_workpaper),('자료요청 초안',self.risk_request),('검토맥락 저장',self.export_context)]:ttk.Button(buttons,text=label,command=lambda f=fn:self.call(f)).pack(side='left',padx=4)
+        self.risk_detail=create_scrolled_text(p,height=12,wrap='word');self.risk_detail.audit_container.pack(fill='both',expand=True,pady=8)
+        buttons=FlowFrame(p);buttons.pack(fill='x',pady=8)
+        for label,fn in [('관련 조서 열기',self.risk_workpaper),('자료요청 초안',self.risk_request),('검토맥락 저장',self.export_context)]:buttons.add(ttk.Button(buttons,text=label,command=lambda f=fn:self.call(f)))
     def selected_risk(self):
         self.guard();s=self.risk_tree.selection()
         if not s:raise AuditError('검토 후보를 선택하세요.')
@@ -299,8 +392,8 @@ class App:
         self.status.set('입력양식·더미·원천·사용안내 복사 완료: '+str(target));return target
     def build_inputs(self,p):
         ttk.Label(p,text='현재 업무에 자료를 등록하고 검사합니다. 실제 회사/기간과 추출 조건은 원본 증거로 확인하세요.').pack(anchor='w',pady=3)
-        line=ttk.Frame(p);line.pack(fill='x',pady=7);self.module=tk.StringVar(value=MODULES[0]);self.file=tk.StringVar();ttk.Combobox(line,textvariable=self.module,values=MODULES,state='readonly',width=24).pack(side='left');self.module.trace_add('write',lambda *_:self.scope_text.set(LIMITS[self.module.get()]));ttk.Entry(line,textvariable=self.file).pack(side='left',fill='x',expand=True,padx=6)
-        ttk.Button(line,text='파일 선택',command=self.choose_input).pack(side='left');ttk.Button(line,text='등록·검사 실행',command=lambda:self.call(self.run_selected)).pack(side='left',padx=4);ttk.Button(line,text='취소',command=self.cancel.set).pack(side='left')
+        line=FlowFrame(p);line.pack(fill='x',pady=7);self.module=tk.StringVar(value=MODULES[0]);self.file=tk.StringVar();line.add(ttk.Combobox(line,textvariable=self.module,values=MODULES,state='readonly',width=24));self.module.trace_add('write',lambda *_:self.scope_text.set(LIMITS[self.module.get()]));line.add(ttk.Entry(line,textvariable=self.file,width=30))
+        for label,fn in [('파일 선택',self.choose_input),('등록·검사 실행',lambda:self.call(self.run_selected)),('취소',self.cancel.set)]:line.add(ttk.Button(line,text=label,command=fn))
         self.scope_text=tk.StringVar(value=LIMITS[MODULES[0]]);ttk.Label(p,textvariable=self.scope_text,wraplength=1150).pack(anchor='w',pady=8)
         self.run_tree=tree(p,['모듈','실행상태','차단','검토','실행시각','자료명'],8)
         ttk.Label(p,text='예외를 더블클릭하면 해당 예외의 수행·검토 조서를 작성합니다. 차단 오류는 원본을 보완해 재실행해야 합니다.').pack(anchor='w',pady=7)
@@ -354,10 +447,12 @@ class App:
         self.cross_scope_text=tk.StringVar(value='계산 결과와 TB 숫자·현재 실행 연결. 원천 선택 범위와 미확인 항목은 별도 확인하세요.')
         ttk.Label(p,textvariable=self.cross_scope_text,wraplength=1180).pack(anchor='w',pady=8);self.cross_tree=tree(p,['모듈','지표','상태','기대','실제','차이','사유'],7)
     def build_results(self,p):
-        bar=ttk.Frame(p);bar.pack(fill='x');self.result_module=tk.StringVar();self.result_table=tk.StringVar();self.search=tk.StringVar();self.result_modules=ttk.Combobox(bar,textvariable=self.result_module,state='readonly',width=24);self.result_modules.pack(side='left');self.result_modules.bind('<<ComboboxSelected>>',lambda _:self.choose_result_module())
-        self.result_tables=ttk.Combobox(bar,textvariable=self.result_table,state='readonly',width=27);self.result_tables.pack(side='left',padx=6);self.result_tables.bind('<<ComboboxSelected>>',lambda _:self.load_table());ttk.Entry(bar,textvariable=self.search,width=20).pack(side='left');ttk.Button(bar,text='검색',command=self.load_table).pack(side='left');ttk.Button(bar,text='이전',command=lambda:self.turn_page(-1)).pack(side='left');ttk.Button(bar,text='다음',command=lambda:self.turn_page(1)).pack(side='left');self.page_label=tk.StringVar();ttk.Label(bar,textvariable=self.page_label).pack(side='left',padx=6)
+        bar=FlowFrame(p);bar.pack(fill='x');self.result_module=tk.StringVar();self.result_table=tk.StringVar();self.search=tk.StringVar();self.result_modules=ttk.Combobox(bar,textvariable=self.result_module,state='readonly',width=24);bar.add(self.result_modules);self.result_modules.bind('<<ComboboxSelected>>',lambda _:self.choose_result_module())
+        self.result_tables=ttk.Combobox(bar,textvariable=self.result_table,state='readonly',width=27);bar.add(self.result_tables);self.result_tables.bind('<<ComboboxSelected>>',lambda _:self.load_table());bar.add(ttk.Entry(bar,textvariable=self.search,width=20))
+        for label,fn in [('검색',self.load_table),('이전',lambda:self.turn_page(-1)),('다음',lambda:self.turn_page(1))]:bar.add(ttk.Button(bar,text=label,command=fn))
+        self.page_label=tk.StringVar();bar.add(ttk.Label(bar,textvariable=self.page_label))
         self.result_tree=tree(p,['내용'],14);self.result_tree.bind('<<TreeviewSelect>>',self.show_row)
-        self.row_text=tk.Text(p,height=9,font=('맑은 고딕',10),wrap='word');self.row_text.pack(fill='both',expand=False,pady=7)
+        self.row_text=create_scrolled_text(p,height=9,wrap='word');self.row_text.audit_container.pack(fill='both',expand=False,pady=7)
     def choose_result_module(self):
         if not self.ws:return
         latest=self.ws.latest();r=latest.get(self.result_module.get());names=list(r['result']['tables']) if r else []
@@ -377,33 +472,45 @@ class App:
             rows=[{k:format(v,',') if isinstance(v,int) and not isinstance(v,bool) else v for k,v in row.items()} for row in rows]
         fill(self.result_tree,rows,columns)
         if self.result_table.get() in TABLE_COLUMNS:
-            for c in columns:self.result_tree.column(c,width={'리스ID':95,'채권ID':110,'거래처':145,'분류군':95,'월':100,'회차':60,'연체일수':85,'측정구분':90,'가중손실률':110}.get(c,135))
+            widths={c:{'리스ID':95,'채권ID':110,'거래처':145,'분류군':95,'월':100,'회차':60,'연체일수':85,'측정구분':90,'가중손실률':110}.get(c,135) for c in columns}
+            self.display.register_tree(self.result_tree,widths)
         self.page_label.set(f'{len(self.table_rows)}행 / {self.page+1}쪽 (전체 저장은 필터와 무관)')
     def show_row(self,_=None):
         s=self.result_tree.selection()
         if s:
             self.row_text.delete('1.0','end');self.row_text.insert('1.0',json.dumps(self.visible_rows[int(s[0])],ensure_ascii=False,indent=2))
     def build_procedures(self,p):
-        pan=ttk.Panedwindow(p,orient='horizontal');pan.pack(fill='both',expand=True);left=ttk.Frame(pan);right=ttk.Frame(pan,padding=(10,0));pan.add(left,weight=2);pan.add(right,weight=3)
+        ttk.Label(p,text='① 왼쪽에서 계정 선택 → ② 목적·범위·계산 근거 확인 → ③ 실제 수행·판단 작성 → ④ 조서 저장·개정 → ⑤ 초안 Excel 내보내기',wraplength=1400).pack(anchor='w',pady=(0,7))
+        pan=ttk.Panedwindow(p,orient='horizontal');pan.pack(fill='both',expand=True);left=ttk.Frame(pan);right_outer=ttk.Frame(pan,padding=(10,0));pan.add(left,weight=2);pan.add(right_outer,weight=3)
+        buttons=FlowFrame(right_outer);buttons.pack(side='bottom',fill='x',pady=5);self.workpaper_actions=buttons
+        self.save_workpaper_button=buttons.add(ttk.Button(buttons,text='조서 저장·개정',command=lambda:self.call(self.save_procedure)))
+        buttons.add(ttk.Button(buttons,text='검토 요청',command=lambda:self.call(self.request_review)))
+        self.workpaper_export_button=buttons.add(ttk.Button(buttons,text='초안 Excel 내보내기',command=lambda:self.export_dialog(False)))
+        self.workpaper_export_button.flow_secondary=True
+        self.proc_scroll=ScrollableFrame(right_outer);self.proc_scroll.pack(fill='both',expand=True);right=self.proc_scroll.inner
+        self.proc_paned=pan;pan.bind('<Configure>',lambda e:pan.sashpos(0,max(180,int(e.width*.38))))
         self.proc_tree=tree(left,['ID','절차','현재상태','필수'],20);self.proc_tree.column('ID',width=85);self.proc_tree.column('절차',width=240);self.proc_tree.bind('<<TreeviewSelect>>',self.on_procedure_select)
-        self.proc_heading=tk.StringVar(value='절차를 선택하세요. 48개 절차는 수동 조서 작성·검토를 지원합니다.');ttk.Label(right,textvariable=self.proc_heading,wraplength=600).pack(anchor='w',pady=3)
+        self.proc_heading=tk.StringVar(value='왼쪽에서 계정을 선택하세요. 초안 근거를 확인한 뒤 실제 수행·판단을 작성합니다.');ttk.Label(right,textvariable=self.proc_heading,wraplength=650).pack(anchor='w',pady=3)
         self.proc_vars={}
-        row=ttk.Frame(right);row.pack(fill='x')
-        for label,key,width in [('작성자','preparer',14),('실제 수행일','performed_date',12)]:ttk.Label(row,text=label).pack(side='left');v=tk.StringVar();self.proc_vars[key]=v;ttk.Entry(row,textvariable=v,width=width).pack(side='left',padx=5)
-        self.excluded=tk.BooleanVar();ttk.Checkbutton(row,text='범위 제외',variable=self.excluded).pack(side='left')
+        row=FlowFrame(right);row.pack(fill='x')
+        for label,key,width in [('작성자','preparer',14),('실제 수행일','performed_date',12)]:
+            group=ttk.Frame(row);row.add(group);ttk.Label(group,text=label).pack(anchor='w');v=tk.StringVar();self.proc_vars[key]=v;ttk.Entry(group,textvariable=v,width=width).pack(fill='x')
+        self.excluded=tk.BooleanVar();row.add(ttk.Checkbutton(row,text='범위 제외',variable=self.excluded))
         self.proc_text={}
         for label,key,height in [('목적·주장','purpose',2),('위험·기준 / 제외 사유','risk',2),('모집단·선정/검사 범위','scope',2),('실제 수행내용·근거·예외 조사','performed',3),('판단·결론·추가절차','conclusion',3)]:
-            ttk.Label(right,text=label).pack(anchor='w');t=tk.Text(right,height=height,font=('맑은 고딕',10),wrap='word');t.pack(fill='x');self.proc_text[key]=t
-        ttk.Label(right,text='연결 증거 (Ctrl로 여러 자료 선택, 실제 근거는 위 수행내용에 기록)').pack(anchor='w');self.evidence_list=tk.Listbox(right,selectmode='extended',height=3,exportselection=False,font=('맑은 고딕',9));self.evidence_list.pack(fill='x')
-        buttons=ttk.Frame(right);buttons.pack(fill='x',pady=6);ttk.Button(buttons,text='조서 저장·개정',command=lambda:self.call(self.save_procedure)).pack(side='left');ttk.Button(buttons,text='검토 요청',command=lambda:self.call(self.request_review)).pack(side='left',padx=5)
-        rr=ttk.Frame(right);rr.pack(fill='x');ttk.Label(rr,text='검토자').pack(side='left');self.reviewer=tk.StringVar();ttk.Entry(rr,textvariable=self.reviewer,width=15).pack(side='left',padx=5);ttk.Label(rr,text='검토내용·범위').pack(side='left');self.review_note=tk.StringVar();ttk.Entry(rr,textvariable=self.review_note).pack(side='left',fill='x',expand=True)
-        rr2=ttk.Frame(right);rr2.pack(fill='x',pady=5);ttk.Button(rr2,text='검토기록 완료',command=lambda:self.call(lambda:self.review(True))).pack(side='left');ttk.Button(rr2,text='보완 의견',command=lambda:self.call(lambda:self.review(False))).pack(side='left',padx=5)
+            ttk.Label(right,text=label).pack(anchor='w');t=create_scrolled_text(right,height=height,wrap='word');t.audit_container.pack(fill='x');self.proc_text[key]=t
+        ttk.Label(right,text='연결 증거 (Ctrl로 여러 자료 선택, 실제 근거는 위 수행내용에 기록)',wraplength=650).pack(anchor='w');self.evidence_list=tk.Listbox(right,selectmode='extended',height=3,exportselection=False,font='AuditSmallFont');self.evidence_list.pack(fill='x')
+        rr=ttk.Frame(right);rr.pack(fill='x');ttk.Label(rr,text='검토자').pack(anchor='w');self.reviewer=tk.StringVar();ttk.Entry(rr,textvariable=self.reviewer,width=15).pack(anchor='w');ttk.Label(rr,text='검토내용·범위').pack(anchor='w');self.review_note=tk.StringVar();ttk.Entry(rr,textvariable=self.review_note).pack(fill='x')
+        rr2=FlowFrame(right);rr2.pack(fill='x',pady=5);self.review_complete_button=rr2.add(ttk.Button(rr2,text='검토기록 완료',command=lambda:self.call(lambda:self.review(True))));rr2.add(ttk.Button(rr2,text='보완 의견',command=lambda:self.call(lambda:self.review(False))))
     def task_list(self):
         from procedures import task_definitions
         return task_definitions(self.ws,CATALOG)
     def on_procedure_select(self,_=None):
         selected=self.proc_tree.selection()
-        if selected and self.check_draft():self.load_procedure(self.tasks[int(selected[0])]['id'])
+        if not selected:return
+        pid=self.tasks[int(selected[0])]['id']
+        if pid==self.current_pid:return
+        if self.check_draft():self.load_procedure(pid)
     def load_procedure(self,pid):
         task=next(x for x in self.task_list() if x['id']==pid);p=self.ws.procedures.get(pid,task) if self.ws else task;self.current_pid=pid;self.current_title=p['title'];self.proc_heading.set(p['title']+' / '+(self.ws.procedure_state(p) if self.ws and 'basis' in p else '미착수'))
         for key,var in self.proc_vars.items():var.set(p.get(key,self.ws.engagement['작성자'] if key=='preparer' and self.ws else ''))
@@ -434,7 +541,8 @@ class App:
         if selected and self.check_draft():
             r,i=self.issue_items[int(selected[0])];self.nb.select(self.tabs['절차·조서']);self.load_procedure('X-'+r['id']+'-'+str(i))
     def build_evidence(self,p):
-        bar=ttk.Frame(p);bar.pack(fill='x',pady=4);ttk.Button(bar,text='증거 파일 등록',command=lambda:self.call(self.add_evidence)).pack(side='left');ttk.Button(bar,text='검토의견 등록',command=lambda:self.call(self.add_note)).pack(side='left',padx=6);ttk.Button(bar,text='선택 의견 해결 기록',command=lambda:self.call(self.resolve_note)).pack(side='left')
+        bar=FlowFrame(p);bar.pack(fill='x',pady=4)
+        for label,fn in [('증거 파일 등록',self.add_evidence),('검토의견 등록',self.add_note),('선택 의견 해결 기록',self.resolve_note)]:bar.add(ttk.Button(bar,text=label,command=lambda f=fn:self.call(f)))
         self.source_tree=tree(p,['자료명','유형','원본파일','사본해시','등록시각'],9);self.note_tree=tree(p,['제목','내용','작성자','해결','시각'],8)
         ttk.Label(p,text='증거는 업무 폴더에 사본으로 보존합니다. 이름 입력은 인증된 서명이 아닙니다. DB·헤드·원본 폴더를 함께 백업하세요.').pack(anchor='w',pady=7)
         ttk.Button(bar,text='독립 ID 통제값',command=lambda:self.call(self.id_control)).pack(side='left',padx=6)
@@ -507,6 +615,9 @@ class App:
         elif self.check_navigation():self.root.destroy()
 
 def main():
+    if '--self-test-v171' in sys.argv:
+        from verify_v171 import self_test
+        return self_test(Path(sys.argv[sys.argv.index('--report')+1]))
     if '--self-test-v17' in sys.argv:
         from verify_v17 import self_test
         return self_test(Path(sys.argv[sys.argv.index('--report')+1]))
