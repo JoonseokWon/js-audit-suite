@@ -1,0 +1,10 @@
+{
+  "origin": "포트폴리오_v1.1_재무제표대사_2026-10-23/audit-data-review/audit_review/financial.py",
+  "origin_kind": "사용자 프로젝트의 기존 자체 구현",
+  "original_sha256": "e82682055be8c23e758a0fdb0d046c68d6275de1940ab24e720c87f14ea1377a",
+  "original_preserved": true,
+  "changes": "financial.py 원문 그대로, vendor/common.py import 어댑터만 추가",
+  "license_status": "원본 프로젝트에 별도 LICENSE 파일이 없음. 기존 자체 구현을 동일 사용자 프로젝트 안에서 재사용하며 외부 저장소의 코드·라이선스를 새로 편입하지 않음.",
+  "authorship": "회계 요구사항·검증: 사용자. 코드·테스트·문서 구현: AI 보조.",
+  "scope": "기존 v1.1 그래프·합계·TB·주석 통제 보존. 실제 업무 원장 입력과 리드의 조정전 잔액은 financial_bridge 어댑터에서 검증."
+}

@@ -1,0 +1,258 @@
+{
+  "module": "현금분석",
+  "cases": [
+    {
+      "id": "01_정상",
+      "file": "현금_01_정상.xlsx",
+      "blocking": false,
+      "review": false,
+      "required_codes": []
+    },
+    {
+      "id": "02_반복지급후보",
+      "file": "현금_02_반복지급후보.xlsx",
+      "blocking": false,
+      "review": true,
+      "required_codes": [
+        "CASH_REPEAT_CANDIDATE",
+        "CASH_APPROVED_EXCESS"
+      ]
+    },
+    {
+      "id": "03_상대계좌집중후보",
+      "file": "현금_03_상대계좌집중후보.xlsx",
+      "blocking": false,
+      "review": true,
+      "required_codes": [
+        "CASH_CONCENTRATION"
+      ]
+    },
+    {
+      "id": "04_계좌변경직후후보",
+      "file": "현금_04_계좌변경직후후보.xlsx",
+      "blocking": false,
+      "review": true,
+      "required_codes": [
+        "CASH_ACCOUNT_CHANGE"
+      ]
+    },
+    {
+      "id": "05_정상반복유사대조",
+      "file": "현금_05_정상반복유사대조.xlsx",
+      "blocking": false,
+      "review": false,
+      "required_codes": []
+    },
+    {
+      "id": "06_합법분할지급대조",
+      "file": "현금_06_합법분할지급대조.xlsx",
+      "blocking": false,
+      "review": false,
+      "required_codes": []
+    },
+    {
+      "id": "07_여러원장합산지급",
+      "file": "현금_07_여러원장합산지급.xlsx",
+      "blocking": false,
+      "review": false,
+      "required_codes": []
+    },
+    {
+      "id": "08_부분배부잔여",
+      "file": "현금_08_부분배부잔여.xlsx",
+      "blocking": false,
+      "review": true,
+      "required_codes": [
+        "CASH_RESIDUAL"
+      ]
+    },
+    {
+      "id": "09_은행만잔여1원",
+      "file": "현금_09_은행만잔여1원.xlsx",
+      "blocking": false,
+      "review": true,
+      "required_codes": [
+        "CASH_RESIDUAL",
+        "CASH_BALANCE_DIFF"
+      ]
+    },
+    {
+      "id": "10_장부만잔여",
+      "file": "현금_10_장부만잔여.xlsx",
+      "blocking": false,
+      "review": true,
+      "required_codes": [
+        "CASH_RESIDUAL",
+        "CASH_BALANCE_DIFF"
+      ]
+    },
+    {
+      "id": "11_은행누락통제탐지",
+      "file": "현금_11_은행누락통제탐지.xlsx",
+      "blocking": true,
+      "review": true,
+      "required_codes": [
+        "CASH_CONTROL"
+      ]
+    },
+    {
+      "id": "12_부호반전",
+      "file": "현금_12_부호반전.xlsx",
+      "blocking": true,
+      "review": true,
+      "required_codes": [
+        "CASH_ALLOC_SIGN"
+      ]
+    },
+    {
+      "id": "13_중복배부",
+      "file": "현금_13_중복배부.xlsx",
+      "blocking": true,
+      "review": false,
+      "required_codes": [
+        "CASH_ALLOCATION"
+      ]
+    },
+    {
+      "id": "14_과배부",
+      "file": "현금_14_과배부.xlsx",
+      "blocking": true,
+      "review": false,
+      "required_codes": [
+        "CASH_OVERALLOC"
+      ]
+    },
+    {
+      "id": "15_은행회사혼입",
+      "file": "현금_15_은행회사혼입.xlsx",
+      "blocking": true,
+      "review": true,
+      "required_codes": [
+        "CASH_BANK_INPUT"
+      ]
+    },
+    {
+      "id": "16_은행기간밖",
+      "file": "현금_16_은행기간밖.xlsx",
+      "blocking": true,
+      "review": true,
+      "required_codes": [
+        "CASH_BANK_INPUT"
+      ]
+    },
+    {
+      "id": "17_현금원장행선택누락",
+      "file": "현금_17_현금원장행선택누락.xlsx",
+      "blocking": true,
+      "review": true,
+      "required_codes": [
+        "CASH_GL_SCOPE"
+      ]
+    },
+    {
+      "id": "18_독립행수통제오류",
+      "file": "현금_18_독립행수통제오류.xlsx",
+      "blocking": true,
+      "review": false,
+      "required_codes": [
+        "CASH_CONTROL"
+      ]
+    },
+    {
+      "id": "19_은행기말잔액오류",
+      "file": "현금_19_은행기말잔액오류.xlsx",
+      "blocking": true,
+      "review": true,
+      "required_codes": [
+        "CASH_CONTROL"
+      ]
+    },
+    {
+      "id": "20_규칙메타미제출",
+      "file": "현금_20_규칙메타미제출.xlsx",
+      "blocking": false,
+      "review": false,
+      "required_codes": []
+    },
+    {
+      "id": "21_현재원장불일치",
+      "file": "현금_21_현재원장불일치.xlsx",
+      "blocking": true,
+      "review": false,
+      "required_codes": [
+        "AN_LEDGER_DIFF"
+      ]
+    },
+    {
+      "id": "22_정상자금이체대조",
+      "file": "현금_22_정상자금이체대조.xlsx",
+      "blocking": false,
+      "review": false,
+      "required_codes": [],
+      "current_ledger": "현금_22_자금이체_현재원장.xlsx"
+    },
+    {
+      "id": "23_은행거래ID중복",
+      "file": "현금_23_은행거래ID중복.xlsx",
+      "blocking": true,
+      "review": false,
+      "required_codes": [
+        "CASH_BANK_INPUT"
+      ]
+    },
+    {
+      "id": "24_KRW외통화",
+      "file": "현금_24_KRW외통화.xlsx",
+      "blocking": true,
+      "review": false,
+      "required_codes": [
+        "CASH_ACCOUNT"
+      ]
+    },
+    {
+      "id": "25_원문금액공란",
+      "file": "현금_25_원문금액공란.xlsx",
+      "blocking": true,
+      "review": true,
+      "required_codes": [
+        "CASH_BANK_INPUT"
+      ]
+    },
+    {
+      "id": "26_bool금액",
+      "file": "현금_26_bool금액.xlsx",
+      "blocking": true,
+      "review": true,
+      "required_codes": [
+        "CASH_BANK_INPUT"
+      ]
+    },
+    {
+      "id": "27_양방향지급메타모순",
+      "file": "현금_27_양방향지급메타모순.xlsx",
+      "blocking": true,
+      "review": true,
+      "required_codes": [
+        "CASH_LINK_META"
+      ]
+    },
+    {
+      "id": "28_양방향메타미제출",
+      "file": "현금_28_양방향메타미제출.xlsx",
+      "blocking": false,
+      "review": false,
+      "required_codes": []
+    }
+  ],
+  "normal_oracle": {
+    "은행거래수": 12,
+    "선택원장행수": 12,
+    "입금합계": 2700000,
+    "출금합계": 4350000,
+    "1000기초": 4200000,
+    "1000기말": 2550000,
+    "1100기초": 1000000,
+    "1100기말": 1000000
+  },
+  "evidence_limit": "동일 생성기의 합성 자료. 독립적인 실제 은행/승인 증거 아님. 기대값은 입력으로 전달하지 않음."
+}

@@ -1,0 +1,193 @@
+{
+  "schema_version": "account-evidence-1",
+  "synthetic": true,
+  "ledger_joined": false,
+  "worker": "equity_disclosure",
+  "context": {
+    "company_code": "SYNTH01",
+    "start_date": "2026-01-01",
+    "end_date": "2026-12-31",
+    "currency": "KRW",
+    "financial_statement_scope": "별도"
+  },
+  "case_index": 2,
+  "case": {
+    "case_id": "EQUITY-CASE03",
+    "description": "같은 거래의 대안 버전: 필수 의사록·관계자 목록 제거. 누락을 금액0으로 치환하지 않음",
+    "documents": [
+      {
+        "document_id": "EQUITY-DOC-01",
+        "document_type": "share_capital_rollforward",
+        "transaction_id": "EQUITY-TXN-ISSUE01",
+        "fields": {
+          "company_code": "SYNTH01",
+          "currency": "KRW",
+          "as_of_date": "2026-12-31",
+          "shareholder_id": "EQUITY-SH01",
+          "opening_shares": 6000,
+          "issued_shares": 1000,
+          "closing_shares": 7000,
+          "par_value": 1000,
+          "issue_price": 1400,
+          "opening_capital_amount": 6000000,
+          "closing_capital_amount": 7000000,
+          "opening_premium_amount": 0,
+          "closing_premium_amount": 400000
+        }
+      },
+      {
+        "document_id": "EQUITY-DOC-03",
+        "document_type": "issue_bank_receipt",
+        "transaction_id": "EQUITY-TXN-ISSUE01",
+        "fields": {
+          "company_code": "SYNTH01",
+          "currency": "KRW",
+          "receipt_date": "2026-10-01",
+          "bank_transaction_id": "EQUITY-BANK01",
+          "received_amount": 1400000,
+          "payer_party_id": "EQUITY-SH01",
+          "external_authenticity_verified": false
+        }
+      },
+      {
+        "document_id": "EQUITY-DOC-04",
+        "document_type": "synthetic_registration_summary",
+        "transaction_id": "EQUITY-TXN-ISSUE01",
+        "fields": {
+          "company_code": "SYNTH01",
+          "currency": "KRW",
+          "registration_date": "2026-10-05",
+          "registered_new_shares": 1000,
+          "registered_capital_amount": 7000000,
+          "status": "합성 요약·공적 증명서 아님",
+          "legal_effect_review": null
+        }
+      },
+      {
+        "document_id": "EQUITY-DOC-06",
+        "document_type": "related_party_ledger",
+        "transaction_id": "EQUITY-TXN-RP01",
+        "fields": {
+          "company_code": "SYNTH01",
+          "currency": "KRW",
+          "as_of_date": "2026-12-31",
+          "party_id": "EQUITY-PARTY01",
+          "opening_amount": 0,
+          "advance_amount": 100000,
+          "repayment_amount": 0,
+          "closing_amount": 100000,
+          "contract_document_id": null
+        }
+      },
+      {
+        "document_id": "EQUITY-DOC-07",
+        "document_type": "related_party_note",
+        "transaction_id": "EQUITY-TXN-RP01",
+        "fields": {
+          "company_code": "SYNTH01",
+          "currency": "KRW",
+          "as_of_date": "2026-12-31",
+          "party_id": "EQUITY-PARTY01",
+          "closing_amount": 100000,
+          "note_status": "금액만 비교하는 합성 발췌·공시 전체 미검토"
+        }
+      }
+    ],
+    "expected": [
+      {
+        "check_id": "EQUITY-MINUTES_PRESENT",
+        "status": "INPUT_BLOCKED",
+        "expected_value": 1,
+        "actual_value": null,
+        "difference": null,
+        "reason": "필수 자료 누락, 실제 값과 차이는 null. 존재 수0으로 금액을 대체하지 않음"
+      },
+      {
+        "check_id": "EQUITY-RELATED_LIST_PRESENT",
+        "status": "INPUT_BLOCKED",
+        "expected_value": 1,
+        "actual_value": null,
+        "difference": null,
+        "reason": "필수 자료 누락, 실제 값과 차이는 null. 존재 수0으로 금액을 대체하지 않음"
+      },
+      {
+        "check_id": "EQUITY-SHARE_COUNT",
+        "status": "PASS",
+        "expected_value": 7000,
+        "actual_value": 7000,
+        "difference": 0,
+        "reason": "6000+1000=7000주"
+      },
+      {
+        "check_id": "EQUITY-CAPITAL",
+        "status": "PASS",
+        "expected_value": 7000000,
+        "actual_value": 7000000,
+        "difference": 0,
+        "reason": "6000000+1000*1000=7000000원"
+      },
+      {
+        "check_id": "EQUITY-PREMIUM",
+        "status": "PASS",
+        "expected_value": 400000,
+        "actual_value": 400000,
+        "difference": 0,
+        "reason": "0+1000*(1400-1000)=400000원"
+      },
+      {
+        "check_id": "EQUITY-ISSUE_TERMS",
+        "status": "INPUT_BLOCKED",
+        "expected_value": null,
+        "actual_value": null,
+        "difference": null,
+        "reason": "필수 합성 원천 누락으로 의존 검사를 차단. 나머지 산식 일치가 이를 해소하지 않음"
+      },
+      {
+        "check_id": "EQUITY-ISSUE_CASH",
+        "status": "INPUT_BLOCKED",
+        "expected_value": null,
+        "actual_value": null,
+        "difference": null,
+        "reason": "필수 합성 원천 누락으로 의존 검사를 차단. 나머지 산식 일치가 이를 해소하지 않음"
+      },
+      {
+        "check_id": "EQUITY-REGISTRATION",
+        "status": "PASS",
+        "expected_value": [
+          1000,
+          7000000
+        ],
+        "actual_value": [
+          1000,
+          7000000
+        ],
+        "difference": null,
+        "reason": "합성 등기 요약의 신주수·자본금이 명세와 일치"
+      },
+      {
+        "check_id": "EQUITY-RELATED_PARTY",
+        "status": "INPUT_BLOCKED",
+        "expected_value": null,
+        "actual_value": null,
+        "difference": null,
+        "reason": "필수 합성 원천 누락으로 의존 검사를 차단. 나머지 산식 일치가 이를 해소하지 않음"
+      },
+      {
+        "check_id": "EQUITY-RELATED_BALANCE",
+        "status": "PASS",
+        "expected_value": 100000,
+        "actual_value": 100000,
+        "difference": 0,
+        "reason": "0+100000-0=100000원"
+      },
+      {
+        "check_id": "EQUITY-RELATED_NOTE",
+        "status": "PASS",
+        "expected_value": 100000,
+        "actual_value": 100000,
+        "difference": 0,
+        "reason": "합성 거래잔액과 주석 발췌 금액 일치"
+      }
+    ]
+  }
+}

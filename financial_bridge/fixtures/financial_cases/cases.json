@@ -1,0 +1,83 @@
+{
+  "normal": "financial.json",
+  "cases": [
+    {
+      "name": "01_소계차이",
+      "file": "01_소계차이.json",
+      "blocking": 0,
+      "required_code": "FS_SUM"
+    },
+    {
+      "name": "02_주석차이",
+      "file": "02_주석차이.json",
+      "blocking": 0,
+      "required_code": "FS_NOTE"
+    },
+    {
+      "name": "03_매핑누락",
+      "file": "03_매핑누락.json",
+      "blocking": 1,
+      "required_code": "FS_INPUT"
+    },
+    {
+      "name": "04_주석연결누락",
+      "file": "04_주석연결누락.json",
+      "blocking": 1,
+      "required_code": "FS_INPUT"
+    },
+    {
+      "name": "05_미지원단위",
+      "file": "05_미지원단위.json",
+      "blocking": 1,
+      "required_code": "FS_INPUT"
+    },
+    {
+      "name": "06_기간불일치",
+      "file": "06_기간불일치.json",
+      "blocking": 1,
+      "required_code": "FS_INPUT"
+    },
+    {
+      "name": "07_계정중복매핑",
+      "file": "07_계정중복매핑.json",
+      "blocking": 1,
+      "required_code": "FS_INPUT"
+    },
+    {
+      "name": "08_순환합계",
+      "file": "08_순환합계.json",
+      "blocking": 1,
+      "required_code": "FS_INPUT"
+    },
+    {
+      "name": "09_천원단위정상",
+      "file": "09_천원단위정상.json",
+      "blocking": 0,
+      "review": 0
+    },
+    {
+      "name": "10_허용범위내차이",
+      "file": "10_허용범위내차이.json",
+      "blocking": 0,
+      "required_code": "FS_SUM"
+    },
+    {
+      "name": "11_조정후미지원",
+      "file": "11_조정후미지원.json",
+      "blocking": 1,
+      "required_code": "FS_INPUT"
+    },
+    {
+      "name": "12_표시부호오류",
+      "file": "12_표시부호오류.json",
+      "blocking": 0,
+      "required_code": "FS_TB"
+    },
+    {
+      "name": "13_합계는맞지만TB불일치",
+      "file": "13_합계는맞지만TB불일치.json",
+      "blocking": 0,
+      "required_code": "FS_TB"
+    }
+  ]
+}

@@ -1,0 +1,954 @@
+{
+  "schema_version": "account-evidence-1",
+  "synthetic": true,
+  "ledger_joined": false,
+  "worker": "financial_reporting",
+  "context": {
+    "company_code": "SYNTH01",
+    "start_date": "2026-01-01",
+    "end_date": "2026-12-31",
+    "currency": "KRW",
+    "financial_statement_scope": "별도"
+  },
+  "case_index": 0,
+  "case": {
+    "case_id": "FS-01",
+    "description": "정상: 조정 후 미마감 TB·본문·지정 주석 및 현금흐름 연결. 비현금 자산취득 4,000원은 현금흐름 제외, 차입금 증감에 포함.",
+    "documents": [
+      {
+        "document_id": "FS-EXTRACT",
+        "document_type": "extraction_control",
+        "transaction_id": "FS-REPORT-2026",
+        "fields": {
+          "company_code": "SYNTH01",
+          "start_date": "2026-01-01",
+          "end_date": "2026-12-31",
+          "currency": "KRW",
+          "financial_statement_scope": "별도",
+          "version": "FS-DRAFT-1",
+          "synthetic_label": "합성 테스트 자료 / 실제 증빙 아님",
+          "journal_count": 8,
+          "line_count": 17,
+          "debit_total": 67000,
+          "credit_total": 67000,
+          "source_system": "SYNTHETIC_FIXTURE",
+          "filter_description": "SYNTH01 / 2026 / all supplied synthetic journal rows",
+          "evidence_assessment": "독립 ERP 추출 증거 아님"
+        }
+      },
+      {
+        "document_id": "FS-LEDGER",
+        "document_type": "general_ledger",
+        "transaction_id": "FS-REPORT-2026",
+        "fields": {
+          "company_code": "SYNTH01",
+          "start_date": "2026-01-01",
+          "end_date": "2026-12-31",
+          "currency": "KRW",
+          "financial_statement_scope": "별도",
+          "version": "FS-DRAFT-1",
+          "synthetic_label": "합성 테스트 자료 / 실제 증빙 아님",
+          "rows": [
+            {
+              "journal_id": "FS-J-SALE",
+              "line_id": "FS-L-SALE-1",
+              "transaction_id": "FS-TX-SALE",
+              "posting_date": "2026-12-31",
+              "account_code": "1000",
+              "debit": 20000,
+              "credit": 0,
+              "adjustment_id": null
+            },
+            {
+              "journal_id": "FS-J-SALE",
+              "line_id": "FS-L-SALE-2",
+              "transaction_id": "FS-TX-SALE",
+              "posting_date": "2026-12-31",
+              "account_code": "1100",
+              "debit": 10000,
+              "credit": 0,
+              "adjustment_id": null
+            },
+            {
+              "journal_id": "FS-J-SALE",
+              "line_id": "FS-L-SALE-3",
+              "transaction_id": "FS-TX-SALE",
+              "posting_date": "2026-12-31",
+              "account_code": "4100",
+              "debit": 0,
+              "credit": 30000,
+              "adjustment_id": null
+            },
+            {
+              "journal_id": "FS-J-WAGE",
+              "line_id": "FS-L-WAGE-1",
+              "transaction_id": "FS-TX-WAGE",
+              "posting_date": "2026-12-31",
+              "account_code": "5100",
+              "debit": 10000,
+              "credit": 0,
+              "adjustment_id": null
+            },
+            {
+              "journal_id": "FS-J-WAGE",
+              "line_id": "FS-L-WAGE-2",
+              "transaction_id": "FS-TX-WAGE",
+              "posting_date": "2026-12-31",
+              "account_code": "1000",
+              "debit": 0,
+              "credit": 10000,
+              "adjustment_id": null
+            },
+            {
+              "journal_id": "FS-J-PPE",
+              "line_id": "FS-L-PPE-1",
+              "transaction_id": "FS-TX-PPE",
+              "posting_date": "2026-12-31",
+              "account_code": "1500",
+              "debit": 5000,
+              "credit": 0,
+              "adjustment_id": null
+            },
+            {
+              "journal_id": "FS-J-PPE",
+              "line_id": "FS-L-PPE-2",
+              "transaction_id": "FS-TX-PPE",
+              "posting_date": "2026-12-31",
+              "account_code": "1000",
+              "debit": 0,
+              "credit": 5000,
+              "adjustment_id": null
+            },
+            {
+              "journal_id": "FS-J-DEPN",
+              "line_id": "FS-L-DEPN-1",
+              "transaction_id": "FS-TX-DEPN",
+              "posting_date": "2026-12-31",
+              "account_code": "5200",
+              "debit": 6000,
+              "credit": 0,
+              "adjustment_id": "FS-AJE-01"
+            },
+            {
+              "journal_id": "FS-J-DEPN",
+              "line_id": "FS-L-DEPN-2",
+              "transaction_id": "FS-TX-DEPN",
+              "posting_date": "2026-12-31",
+              "account_code": "1590",
+              "debit": 0,
+              "credit": 6000,
+              "adjustment_id": "FS-AJE-01"
+            },
+            {
+              "journal_id": "FS-J-LOAN",
+              "line_id": "FS-L-LOAN-1",
+              "transaction_id": "FS-TX-LOAN",
+              "posting_date": "2026-12-31",
+              "account_code": "1000",
+              "debit": 7000,
+              "credit": 0,
+              "adjustment_id": null
+            },
+            {
+              "journal_id": "FS-J-LOAN",
+              "line_id": "FS-L-LOAN-2",
+              "transaction_id": "FS-TX-LOAN",
+              "posting_date": "2026-12-31",
+              "account_code": "2100",
+              "debit": 0,
+              "credit": 7000,
+              "adjustment_id": null
+            },
+            {
+              "journal_id": "FS-J-DIV",
+              "line_id": "FS-L-DIV-1",
+              "transaction_id": "FS-TX-DIV",
+              "posting_date": "2026-12-31",
+              "account_code": "3200",
+              "debit": 3000,
+              "credit": 0,
+              "adjustment_id": null
+            },
+            {
+              "journal_id": "FS-J-DIV",
+              "line_id": "FS-L-DIV-2",
+              "transaction_id": "FS-TX-DIV",
+              "posting_date": "2026-12-31",
+              "account_code": "1000",
+              "debit": 0,
+              "credit": 3000,
+              "adjustment_id": null
+            },
+            {
+              "journal_id": "FS-J-TAX",
+              "line_id": "FS-L-TAX-1",
+              "transaction_id": "FS-TX-TAX",
+              "posting_date": "2026-12-31",
+              "account_code": "5300",
+              "debit": 2000,
+              "credit": 0,
+              "adjustment_id": null
+            },
+            {
+              "journal_id": "FS-J-TAX",
+              "line_id": "FS-L-TAX-2",
+              "transaction_id": "FS-TX-TAX",
+              "posting_date": "2026-12-31",
+              "account_code": "1000",
+              "debit": 0,
+              "credit": 2000,
+              "adjustment_id": null
+            },
+            {
+              "journal_id": "FS-J-NONCASH",
+              "line_id": "FS-L-NONCASH-1",
+              "transaction_id": "FS-TX-NONCASH",
+              "posting_date": "2026-12-31",
+              "account_code": "1500",
+              "debit": 4000,
+              "credit": 0,
+              "adjustment_id": null
+            },
+            {
+              "journal_id": "FS-J-NONCASH",
+              "line_id": "FS-L-NONCASH-2",
+              "transaction_id": "FS-TX-NONCASH",
+              "posting_date": "2026-12-31",
+              "account_code": "2100",
+              "debit": 0,
+              "credit": 4000,
+              "adjustment_id": null
+            }
+          ]
+        }
+      },
+      {
+        "document_id": "FS-TB",
+        "document_type": "trial_balance",
+        "transaction_id": "FS-REPORT-2026",
+        "fields": {
+          "company_code": "SYNTH01",
+          "start_date": "2026-01-01",
+          "end_date": "2026-12-31",
+          "currency": "KRW",
+          "financial_statement_scope": "별도",
+          "version": "FS-DRAFT-1",
+          "synthetic_label": "합성 테스트 자료 / 실제 증빙 아님",
+          "basis": "adjusted_unclosed",
+          "sign_convention": "debit_positive_credit_negative",
+          "rows": [
+            {
+              "account_code": "1000",
+              "account_name": "현금",
+              "opening": 10000,
+              "period_debit": 27000,
+              "period_credit": 20000,
+              "closing": 17000
+            },
+            {
+              "account_code": "1100",
+              "account_name": "매출채권",
+              "opening": 0,
+              "period_debit": 10000,
+              "period_credit": 0,
+              "closing": 10000
+            },
+            {
+              "account_code": "1500",
+              "account_name": "유형자산 원가",
+              "opening": 40000,
+              "period_debit": 9000,
+              "period_credit": 0,
+              "closing": 49000
+            },
+            {
+              "account_code": "1590",
+              "account_name": "감가상각누계액",
+              "opening": -10000,
+              "period_debit": 0,
+              "period_credit": 6000,
+              "closing": -16000
+            },
+            {
+              "account_code": "2100",
+              "account_name": "차입금",
+              "opening": -20000,
+              "period_debit": 0,
+              "period_credit": 11000,
+              "closing": -31000
+            },
+            {
+              "account_code": "3100",
+              "account_name": "자본금",
+              "opening": -15000,
+              "period_debit": 0,
+              "period_credit": 0,
+              "closing": -15000
+            },
+            {
+              "account_code": "3200",
+              "account_name": "이익잉여금 이익대체 전",
+              "opening": -5000,
+              "period_debit": 3000,
+              "period_credit": 0,
+              "closing": -2000
+            },
+            {
+              "account_code": "4100",
+              "account_name": "매출",
+              "opening": 0,
+              "period_debit": 0,
+              "period_credit": 30000,
+              "closing": -30000
+            },
+            {
+              "account_code": "5100",
+              "account_name": "급여",
+              "opening": 0,
+              "period_debit": 10000,
+              "period_credit": 0,
+              "closing": 10000
+            },
+            {
+              "account_code": "5200",
+              "account_name": "감가상각비",
+              "opening": 0,
+              "period_debit": 6000,
+              "period_credit": 0,
+              "closing": 6000
+            },
+            {
+              "account_code": "5300",
+              "account_name": "법인세비용",
+              "opening": 0,
+              "period_debit": 2000,
+              "period_credit": 0,
+              "closing": 2000
+            }
+          ]
+        }
+      },
+      {
+        "document_id": "FS-BODY",
+        "document_type": "financial_statement_body",
+        "transaction_id": "FS-REPORT-2026",
+        "fields": {
+          "company_code": "SYNTH01",
+          "start_date": "2026-01-01",
+          "end_date": "2026-12-31",
+          "currency": "KRW",
+          "financial_statement_scope": "별도",
+          "version": "FS-DRAFT-1",
+          "synthetic_label": "합성 테스트 자료 / 실제 증빙 아님",
+          "unit": "KRW",
+          "items": {
+            "BS_CASH": 17000,
+            "BS_AR": 10000,
+            "BS_PPE_GROSS": 49000,
+            "BS_PPE_ACCUM": -16000,
+            "BS_CURRENT": 27000,
+            "BS_PPE_NET": 33000,
+            "BS_ASSETS": 60000,
+            "BS_DEBT": 31000,
+            "BS_CAPITAL": 15000,
+            "BS_RE_PRE": 2000,
+            "BS_RE_CLOSING": 14000,
+            "BS_EQUITY": 29000,
+            "BS_LIAB_EQUITY": 60000,
+            "PL_REVENUE": 30000,
+            "PL_WAGES": 10000,
+            "PL_DEPN": 6000,
+            "PL_TAX": 2000,
+            "PL_EXPENSES": 18000,
+            "PL_PROFIT": 12000
+          },
+          "sum_relations": [
+            {
+              "total_id": "BS_CURRENT",
+              "components": [
+                {
+                  "item_id": "BS_CASH",
+                  "coefficient": 1
+                },
+                {
+                  "item_id": "BS_AR",
+                  "coefficient": 1
+                }
+              ]
+            },
+            {
+              "total_id": "BS_PPE_NET",
+              "components": [
+                {
+                  "item_id": "BS_PPE_GROSS",
+                  "coefficient": 1
+                },
+                {
+                  "item_id": "BS_PPE_ACCUM",
+                  "coefficient": 1
+                }
+              ]
+            },
+            {
+              "total_id": "BS_ASSETS",
+              "components": [
+                {
+                  "item_id": "BS_CURRENT",
+                  "coefficient": 1
+                },
+                {
+                  "item_id": "BS_PPE_NET",
+                  "coefficient": 1
+                }
+              ]
+            },
+            {
+              "total_id": "PL_EXPENSES",
+              "components": [
+                {
+                  "item_id": "PL_WAGES",
+                  "coefficient": 1
+                },
+                {
+                  "item_id": "PL_DEPN",
+                  "coefficient": 1
+                },
+                {
+                  "item_id": "PL_TAX",
+                  "coefficient": 1
+                }
+              ]
+            },
+            {
+              "total_id": "PL_PROFIT",
+              "components": [
+                {
+                  "item_id": "PL_REVENUE",
+                  "coefficient": 1
+                },
+                {
+                  "item_id": "PL_EXPENSES",
+                  "coefficient": -1
+                }
+              ]
+            },
+            {
+              "total_id": "BS_RE_CLOSING",
+              "components": [
+                {
+                  "item_id": "BS_RE_PRE",
+                  "coefficient": 1
+                },
+                {
+                  "item_id": "PL_PROFIT",
+                  "coefficient": 1
+                }
+              ]
+            },
+            {
+              "total_id": "BS_EQUITY",
+              "components": [
+                {
+                  "item_id": "BS_CAPITAL",
+                  "coefficient": 1
+                },
+                {
+                  "item_id": "BS_RE_CLOSING",
+                  "coefficient": 1
+                }
+              ]
+            },
+            {
+              "total_id": "BS_LIAB_EQUITY",
+              "components": [
+                {
+                  "item_id": "BS_DEBT",
+                  "coefficient": 1
+                },
+                {
+                  "item_id": "BS_EQUITY",
+                  "coefficient": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "document_id": "FS-NOTES",
+        "document_type": "financial_statement_notes",
+        "transaction_id": "FS-REPORT-2026",
+        "fields": {
+          "company_code": "SYNTH01",
+          "start_date": "2026-01-01",
+          "end_date": "2026-12-31",
+          "currency": "KRW",
+          "financial_statement_scope": "별도",
+          "version": "FS-DRAFT-1",
+          "synthetic_label": "합성 테스트 자료 / 실제 증빙 아님",
+          "unit": "KRW",
+          "cash_components": [
+            {
+              "component_id": "FS-DEMAND-DEPOSIT",
+              "amount": 17000
+            }
+          ],
+          "ppe_gross": 49000,
+          "ppe_accumulated_depreciation": -16000,
+          "ppe_net": 33000,
+          "debt": 31000,
+          "required_note_ids": [
+            "FS-NOTE-CASH",
+            "FS-NOTE-PPE",
+            "FS-NOTE-DEBT"
+          ],
+          "completeness_assessment": "이 합성 사례의 지정 주석만 검사; 전체 공시 완전성 미구현"
+        }
+      },
+      {
+        "document_id": "FS-ACCOUNTMAP",
+        "document_type": "account_statement_mapping",
+        "transaction_id": "FS-REPORT-2026",
+        "fields": {
+          "company_code": "SYNTH01",
+          "start_date": "2026-01-01",
+          "end_date": "2026-12-31",
+          "currency": "KRW",
+          "financial_statement_scope": "별도",
+          "version": "FS-DRAFT-1",
+          "synthetic_label": "합성 테스트 자료 / 실제 증빙 아님",
+          "rows": [
+            {
+              "account_code": "1000",
+              "body_item_id": "BS_CASH",
+              "coefficient": 1
+            },
+            {
+              "account_code": "1100",
+              "body_item_id": "BS_AR",
+              "coefficient": 1
+            },
+            {
+              "account_code": "1500",
+              "body_item_id": "BS_PPE_GROSS",
+              "coefficient": 1
+            },
+            {
+              "account_code": "1590",
+              "body_item_id": "BS_PPE_ACCUM",
+              "coefficient": 1
+            },
+            {
+              "account_code": "2100",
+              "body_item_id": "BS_DEBT",
+              "coefficient": -1
+            },
+            {
+              "account_code": "3100",
+              "body_item_id": "BS_CAPITAL",
+              "coefficient": -1
+            },
+            {
+              "account_code": "3200",
+              "body_item_id": "BS_RE_PRE",
+              "coefficient": -1
+            },
+            {
+              "account_code": "4100",
+              "body_item_id": "PL_REVENUE",
+              "coefficient": -1
+            },
+            {
+              "account_code": "5100",
+              "body_item_id": "PL_WAGES",
+              "coefficient": 1
+            },
+            {
+              "account_code": "5200",
+              "body_item_id": "PL_DEPN",
+              "coefficient": 1
+            },
+            {
+              "account_code": "5300",
+              "body_item_id": "PL_TAX",
+              "coefficient": 1
+            }
+          ]
+        }
+      },
+      {
+        "document_id": "FS-CFMAP",
+        "document_type": "cash_flow_mapping",
+        "transaction_id": "FS-REPORT-2026",
+        "fields": {
+          "company_code": "SYNTH01",
+          "start_date": "2026-01-01",
+          "end_date": "2026-12-31",
+          "currency": "KRW",
+          "financial_statement_scope": "별도",
+          "version": "FS-DRAFT-1",
+          "synthetic_label": "합성 테스트 자료 / 실제 증빙 아님",
+          "policy_assessment": "not_implemented",
+          "rows": [
+            {
+              "classification_id": "FS-CF-SALE",
+              "transaction_id": "FS-TX-SALE",
+              "ledger_line_id": "FS-L-SALE-1",
+              "activity": "operating",
+              "cash_change": 20000,
+              "classification_basis": "SYNTH-ASSUMED-POLICY-2026; 분류 적정성은 별도 감사인 판단"
+            },
+            {
+              "classification_id": "FS-CF-WAGE",
+              "transaction_id": "FS-TX-WAGE",
+              "ledger_line_id": "FS-L-WAGE-2",
+              "activity": "operating",
+              "cash_change": -10000,
+              "classification_basis": "SYNTH-ASSUMED-POLICY-2026; 분류 적정성은 별도 감사인 판단"
+            },
+            {
+              "classification_id": "FS-CF-PPE",
+              "transaction_id": "FS-TX-PPE",
+              "ledger_line_id": "FS-L-PPE-2",
+              "activity": "investing",
+              "cash_change": -5000,
+              "classification_basis": "SYNTH-ASSUMED-POLICY-2026; 분류 적정성은 별도 감사인 판단"
+            },
+            {
+              "classification_id": "FS-CF-LOAN",
+              "transaction_id": "FS-TX-LOAN",
+              "ledger_line_id": "FS-L-LOAN-1",
+              "activity": "financing",
+              "cash_change": 7000,
+              "classification_basis": "SYNTH-ASSUMED-POLICY-2026; 분류 적정성은 별도 감사인 판단"
+            },
+            {
+              "classification_id": "FS-CF-DIV",
+              "transaction_id": "FS-TX-DIV",
+              "ledger_line_id": "FS-L-DIV-2",
+              "activity": "financing",
+              "cash_change": -3000,
+              "classification_basis": "SYNTH-ASSUMED-POLICY-2026; 분류 적정성은 별도 감사인 판단"
+            },
+            {
+              "classification_id": "FS-CF-TAX",
+              "transaction_id": "FS-TX-TAX",
+              "ledger_line_id": "FS-L-TAX-2",
+              "activity": "operating",
+              "cash_change": -2000,
+              "classification_basis": "SYNTH-ASSUMED-POLICY-2026; 분류 적정성은 별도 감사인 판단"
+            }
+          ]
+        }
+      },
+      {
+        "document_id": "FS-CFSTATEMENT",
+        "document_type": "statement_of_cash_flows",
+        "transaction_id": "FS-REPORT-2026",
+        "fields": {
+          "company_code": "SYNTH01",
+          "start_date": "2026-01-01",
+          "end_date": "2026-12-31",
+          "currency": "KRW",
+          "financial_statement_scope": "별도",
+          "version": "FS-DRAFT-1",
+          "synthetic_label": "합성 테스트 자료 / 실제 증빙 아님",
+          "method": "direct_synthetic",
+          "opening_cash": 10000,
+          "operating": 8000,
+          "investing": -5000,
+          "financing": 4000,
+          "fx_effect": 0,
+          "closing_cash": 17000,
+          "cash_equivalent_scope": "합성 보통예금만; 외화·현금성자산 판단 미구현"
+        }
+      },
+      {
+        "document_id": "FS-EQUITY",
+        "document_type": "equity_movements",
+        "transaction_id": "FS-REPORT-2026",
+        "fields": {
+          "company_code": "SYNTH01",
+          "start_date": "2026-01-01",
+          "end_date": "2026-12-31",
+          "currency": "KRW",
+          "financial_statement_scope": "별도",
+          "version": "FS-DRAFT-1",
+          "synthetic_label": "합성 테스트 자료 / 실제 증빙 아님",
+          "opening_capital": 15000,
+          "opening_retained_earnings": 5000,
+          "profit": 12000,
+          "dividends": 3000,
+          "other_changes": 0,
+          "closing_capital": 15000,
+          "closing_retained_earnings": 14000,
+          "closing_equity": 29000
+        }
+      },
+      {
+        "document_id": "FS-NONCASH",
+        "document_type": "non_cash_movements",
+        "transaction_id": "FS-REPORT-2026",
+        "fields": {
+          "company_code": "SYNTH01",
+          "start_date": "2026-01-01",
+          "end_date": "2026-12-31",
+          "currency": "KRW",
+          "financial_statement_scope": "별도",
+          "version": "FS-DRAFT-1",
+          "synthetic_label": "합성 테스트 자료 / 실제 증빙 아님",
+          "rows": [
+            {
+              "transaction_id": "FS-TX-DEPN",
+              "movement_type": "depreciation",
+              "amount": 6000,
+              "ledger_line_ids": [
+                "FS-L-DEPN-1",
+                "FS-L-DEPN-2"
+              ],
+              "cash_flow_amount": 0
+            },
+            {
+              "transaction_id": "FS-TX-NONCASH",
+              "movement_type": "asset_acquired_with_financing",
+              "amount": 4000,
+              "ledger_line_ids": [
+                "FS-L-NONCASH-1",
+                "FS-L-NONCASH-2"
+              ],
+              "cash_flow_amount": 0
+            }
+          ]
+        }
+      },
+      {
+        "document_id": "FS-DEBTBRIDGE",
+        "document_type": "financing_liability_reconciliation",
+        "transaction_id": "FS-REPORT-2026",
+        "fields": {
+          "company_code": "SYNTH01",
+          "start_date": "2026-01-01",
+          "end_date": "2026-12-31",
+          "currency": "KRW",
+          "financial_statement_scope": "별도",
+          "version": "FS-DRAFT-1",
+          "synthetic_label": "합성 테스트 자료 / 실제 증빙 아님",
+          "opening_debt": 20000,
+          "cash_borrowings": 7000,
+          "cash_repayments": 0,
+          "non_cash_additions": 4000,
+          "other_changes": 0,
+          "closing_debt": 31000
+        }
+      },
+      {
+        "document_id": "FS-AJEAPPROVAL",
+        "document_type": "adjustment_approval_support",
+        "transaction_id": "FS-TX-DEPN",
+        "fields": {
+          "company_code": "SYNTH01",
+          "start_date": "2026-01-01",
+          "end_date": "2026-12-31",
+          "currency": "KRW",
+          "financial_statement_scope": "별도",
+          "version": "FS-DRAFT-1",
+          "synthetic_label": "합성 테스트 자료 / 실제 증빙 아님",
+          "adjustment_id": "FS-AJE-01",
+          "journal_id": "FS-J-DEPN",
+          "amount": 6000,
+          "ledger_inclusion": "already_included_once",
+          "authorization_state": "SYNTHETIC_ASSUMED_APPROVED",
+          "approved_role": "SYNTHETIC_APPROVER",
+          "approval_date": "2026-12-31",
+          "approval_meaning": "테스트 시나리오의 가정; 실제 승인 또는 감사 결론 아님"
+        }
+      }
+    ],
+    "expected": [
+      {
+        "check_id": "FS_REQUIRED_EVIDENCE",
+        "status": "PASS",
+        "expected_value": 12,
+        "actual_value": 12,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_EXTRACTION_CONTROL",
+        "status": "PASS",
+        "expected_value": 0,
+        "actual_value": 0,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_GL_JOURNAL_BALANCE",
+        "status": "PASS",
+        "expected_value": 0,
+        "actual_value": 0,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_TB_BALANCE",
+        "status": "PASS",
+        "expected_value": 0,
+        "actual_value": 0,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_TB_GL",
+        "status": "PASS",
+        "expected_value": 0,
+        "actual_value": 0,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_BODY_TB_MAPPING",
+        "status": "PASS",
+        "expected_value": 0,
+        "actual_value": 0,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_BODY_SUM",
+        "status": "PASS",
+        "expected_value": 0,
+        "actual_value": 0,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_BS_EQUATION",
+        "status": "PASS",
+        "expected_value": 60000,
+        "actual_value": 60000,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_PL_PROFIT",
+        "status": "PASS",
+        "expected_value": 12000,
+        "actual_value": 12000,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_NOTE_CASH",
+        "status": "PASS",
+        "expected_value": 17000,
+        "actual_value": 17000,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_NOTE_PPE",
+        "status": "PASS",
+        "expected_value": 33000,
+        "actual_value": 33000,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_CF_MAPPING",
+        "status": "PASS",
+        "expected_value": 0,
+        "actual_value": 0,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_CF_OPERATING",
+        "status": "PASS",
+        "expected_value": 8000,
+        "actual_value": 8000,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_CF_INVESTING",
+        "status": "PASS",
+        "expected_value": -5000,
+        "actual_value": -5000,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_CF_FINANCING",
+        "status": "PASS",
+        "expected_value": 4000,
+        "actual_value": 4000,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_CF_ROLL",
+        "status": "PASS",
+        "expected_value": 17000,
+        "actual_value": 17000,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_CF_BS_CASH",
+        "status": "PASS",
+        "expected_value": 17000,
+        "actual_value": 17000,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_EQUITY_ROLL",
+        "status": "PASS",
+        "expected_value": 29000,
+        "actual_value": 29000,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_RETAINED_EARNINGS_ROLL",
+        "status": "PASS",
+        "expected_value": 14000,
+        "actual_value": 14000,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_NONCASH_ASSET",
+        "status": "PASS",
+        "expected_value": 4000,
+        "actual_value": 4000,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_NONCASH_DEPN",
+        "status": "PASS",
+        "expected_value": 6000,
+        "actual_value": 6000,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_DEBT_ROLL",
+        "status": "PASS",
+        "expected_value": 31000,
+        "actual_value": 31000,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_AJE_AMOUNT",
+        "status": "PASS",
+        "expected_value": 6000,
+        "actual_value": 6000,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      }
+    ]
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "ok": true,
+  "schema_version": "gla-benchmark-1",
+  "environment": {
+    "python": "3.14.8",
+    "implementation": "CPython",
+    "os": "Windows",
+    "os_release": "11",
+    "os_version": "10.0.26100",
+    "machine": "AMD64",
+    "python_bits": 64,
+    "processor": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD"
+  },
+  "scope": {
+    "GL_rows": 10000,
+    "claims_100000_or_1000000": false,
+    "external_independent_evidence": false,
+    "mode": "Source Python / offline GLA / all default rules; native UI, EXE and exports not timed"
+  },
+  "limitations": [
+    "Single run on this Windows development machine; no cross-machine or performance guarantee.",
+    "TB and independent-control worksheet are recalculated by the same synthetic generator.",
+    "Repeated candidates are review prompts; no human work, fraud conclusion, approval or AI inference.",
+    "Benchmark XLSX input files are local verification artifacts, excluded from release assets."
+  ],
+  "checks": [
+    "exact_10000_GL_rows_from_4959_balanced_2row_clones",
+    "all_10000_company_journal_line_keys_unique",
+    "generated_gross_debit_credit_match_fixed_clone_amount",
+    "current_ledger_independent_API_execution_not_blocked",
+    "current_ledger_keeps_10000_rows",
+    "GLA_10000_rows_valid_bound_input",
+    "GLA_10000_rows_4993_journals_not_truncated",
+    "all_input_keys_retained_no_omission",
+    "current_binding_10000_GL_plus_59_TB_rows_all_match",
+    "monthly_rows_total_10000",
+    "account_rows_total_10000",
+    "author_rows_total_10000",
+    "월별집계_gross_debit_credit_complete",
+    "계정별집계_gross_debit_credit_complete",
+    "작성자별집계_gross_debit_credit_complete",
+    "journal_combination_population_complete",
+    "expected_4984_candidates_4981_unique_journals",
+    "fixed_candidate_scope_21_monthend_3_large_4960_repeat",
+    "candidate_IDs_unique",
+    "every_candidate_has_complete_own_journal_original_rows",
+    "all_four_enabled_rules_cover_4993_journals",
+    "missing_manual_night_approval_not_inferred",
+    "one_repeat_group_indexes_4960_journals_once",
+    "candidate_reason_bounded_under_200_chars",
+    "repeat_candidates_link_shared_index",
+    "no_automatic_human_performance_or_conclusion",
+    "benchmark_input_and_current_result_unchanged",
+    "10001_rows_blocked_before_candidate_aggregation",
+    "10001_rows_rejected_by_explicit_input_limit",
+    "overlimit_input_not_mutated",
+    "original_base_ledger_semantic_values_unchanged",
+    "original_source_code_and_sample_file_hashes_unchanged"
+  ],
+  "source_before": {
+    "gla/__init__.py": "5f0eddb4dc7927ad2c0a5a33e95138228a5c0e546b0b0b1a0021368868319465",
+    "analytics_support.py": "bb2d0ec4fedb63f3349b37c0d6a4a6c5fa7e6789759f4dd3fe373eed5e15909e",
+    "common.py": "aa99c901c27afa267bcdfb148319c63413ec467b964d6107ae0a9ac45a25491f",
+    "ledger.py": "76c5db7c33e8a3891daf676dc1ccd76c3f062f7ba1178589307233fc475b8f48",
+    "tools/analytics_fixtures.py": "11b2aca0f29240eeb942e4997200dc9747ad143161fbf7c7e231175fc1c0af18",
+    "samples/통합/통합_v1.3_원장_리드.xlsx": "18765d8ad479bf36452500871a52b840f665799ce8a9aa8833272d87c1436388"
+  },
+  "generator_seconds": 0.05916,
+  "current_ledger_seconds": 0.106473,
+  "xlsx_write_seconds": 20.631813,
+  "memory_before_analysis": {
+    "available": true,
+    "working_set_mib": 74.379,
+    "process_lifetime_peak_working_set_mib": 80.949
+  },
+  "gla_read_validate_aggregate_candidates_seconds": 2.384934,
+  "memory_after_analysis": {
+    "available": true,
+    "working_set_mib": 107.57,
+    "process_lifetime_peak_working_set_mib": 117.57
+  },
+  "normal": {
+    "input": "gla/verification/benchmark_inputs/GLA_10000_합성반복.xlsx",
+    "input_sha256": "04662a7795f37e8a10a59775499bfa152193f0d662a223d813948849b14f4659",
+    "input_bytes": 345688,
+    "metrics": {
+      "원장행수": 10000,
+      "전표수": 4993,
+      "월수": 5,
+      "계정수": 59,
+      "작성자수": 2,
+      "계정조합수": 31,
+      "위험후보수": 4984,
+      "위험전표수": 4981,
+      "미확인규칙수": 3,
+      "복합대응미확인전표수": 11
+    },
+    "blocking": 0,
+    "review": 4984,
+    "gross_debit": 194649816,
+    "gross_credit": 194649816,
+    "binding_rows": 10059,
+    "binding_omissions": 0,
+    "candidate_rule_counts": {
+      "GLA_WEEKEND": 0,
+      "GLA_MONTH_END": 21,
+      "GLA_HIGH_AMOUNT": 3,
+      "GLA_REPEAT": 4960
+    },
+    "repeat_index_rows": 1,
+    "max_candidate_reason_chars": 55,
+    "serialized_result_bytes": 17588861,
+    "serialized_result_mib": 16.774
+  },
+  "limit_10001_read_rejection_seconds": 0.444327,
+  "over_limit": {
+    "input": "gla/verification/benchmark_inputs/GLA_10001_행한도초과.xlsx",
+    "input_sha256": "f897dbe0fd4c42f221ea61e3d9019f736f6fccdb6cbc3b0bae1a6eaae522c49f",
+    "GL_rows": 10001,
+    "blocking": 1,
+    "review": 0,
+    "issues": [
+      {
+        "code": "GLA_INPUT",
+        "severity": "차단",
+        "message": "물리 행 순서/한도 오류",
+        "reference": "GLA설정 또는 공통 원장 입력"
+      }
+    ],
+    "reported_GL_rows": 0,
+    "candidate_count": 0
+  },
+  "source_after": {
+    "gla/__init__.py": "5f0eddb4dc7927ad2c0a5a33e95138228a5c0e546b0b0b1a0021368868319465",
+    "analytics_support.py": "bb2d0ec4fedb63f3349b37c0d6a4a6c5fa7e6789759f4dd3fe373eed5e15909e",
+    "common.py": "aa99c901c27afa267bcdfb148319c63413ec467b964d6107ae0a9ac45a25491f",
+    "ledger.py": "76c5db7c33e8a3891daf676dc1ccd76c3f062f7ba1178589307233fc475b8f48",
+    "tools/analytics_fixtures.py": "11b2aca0f29240eeb942e4997200dc9747ad143161fbf7c7e231175fc1c0af18",
+    "samples/통합/통합_v1.3_원장_리드.xlsx": "18765d8ad479bf36452500871a52b840f665799ce8a9aa8833272d87c1436388"
+  },
+  "source_unchanged": true,
+  "assertions": 32,
+  "total_wall_seconds": 46.277896,
+  "memory_at_finish": {
+    "available": true,
+    "working_set_mib": 112.773,
+    "process_lifetime_peak_working_set_mib": 150.449
+  }
+}

@@ -1,0 +1,392 @@
+{
+  "schema_version": "pm-raw-1",
+  "worker": "financial_reporting",
+  "prefix": "FS-",
+  "synthetic": true,
+  "integrated": false,
+  "context": {
+    "company_code": "SYNTH01",
+    "start_date": "2026-01-01",
+    "end_date": "2026-12-31",
+    "currency": "KRW",
+    "financial_statement_scope": "별도"
+  },
+  "accounts": [
+    "재무제표 총계·소계",
+    "전체 TB·본문·주석 연결",
+    "현금 및 현금성자산 현금흐름 대사",
+    "자본·차입금 증감 연결"
+  ],
+  "assertions": [
+    "정확성",
+    "완전성(제공된 자료 범위)",
+    "분류·표시 및 공시 연결(산술 범위)"
+  ],
+  "scope": "3개 독립 합성 사례의 정수 원 산술 검증과 필수 근거 존재 통제. 회계 분류 판단 또는 전체 감사절차 수행 아님.",
+  "existing_sources": [
+    {
+      "file": "../../../2026-10-23/배포/01_현재프로그램입력/01_원장_리드_합성자료.xlsx",
+      "sheets": [
+        "시산표",
+        "총계정원장",
+        "계정매핑",
+        "독립통제",
+        "감사조정"
+      ],
+      "catalog_json_pointer": "/books/1",
+      "availability": "existing_read_only",
+      "app_input": "변환·매핑 필요; 워커 JSON은 직접 입력 미구현"
+    },
+    {
+      "file": "../../../2026-10-23/배포/02_절차별원천자료/01_공통_계획_통제.xlsx",
+      "sheets": [
+        "IT_IPE_추출기록",
+        "전표_승인로그",
+        "증거_색인"
+      ],
+      "catalog_json_pointer": "/books/10",
+      "availability": "existing_read_only",
+      "app_input": "변환·매핑 필요; 워커 JSON은 직접 입력 미구현"
+    },
+    {
+      "file": "../../../2026-10-23/배포/02_절차별원천자료/02_자금_금융_차입.xlsx",
+      "sheets": [
+        "은행_잔액",
+        "차입_조건"
+      ],
+      "catalog_json_pointer": "/books/11",
+      "availability": "existing_read_only",
+      "app_input": "변환·매핑 필요; 워커 JSON은 직접 입력 미구현"
+    },
+    {
+      "file": "../../../2026-10-23/배포/02_절차별원천자료/06_세무_자본_연결.xlsx",
+      "sheets": [
+        "주주_변동"
+      ],
+      "catalog_json_pointer": "/books/15",
+      "availability": "existing_read_only",
+      "app_input": "변환·매핑 필요; 워커 JSON은 직접 입력 미구현"
+    },
+    {
+      "file": "../../../2026-10-23/배포/02_절차별원천자료/07_결산_공시_종결.xlsx",
+      "sheets": [
+        "현금흐름_분류",
+        "재무제표_계정연결",
+        "감사차이_초안",
+        "조서_작성검토대장"
+      ],
+      "catalog_json_pointer": "/books/16",
+      "availability": "existing_read_only",
+      "app_input": "변환·매핑 필요; 워커 JSON은 직접 입력 미구현"
+    }
+  ],
+  "catalog_file": "../../../2026-10-23/spec.json",
+  "portfolio_reference": {
+    "file": "../../../../통합 감사프로그램/포트폴리오_v1.1_재무제표대사_2026-10-23/audit-data-review/data/01_normal/financial.json",
+    "json_pointers": [
+      "/TB문맥",
+      "/문서",
+      "/항목",
+      "/합계관계",
+      "/계정매핑",
+      "/주석연결"
+    ],
+    "access": "read_only",
+    "compatibility": "별도 v1.1 JSON 스키마. 본 워커의 조정후 미마감 TB/현금흐름 JSON과 호환되지 않음. v1.1의 조정전 기말잔액 규격에 조정후 잔액을 바로 전달하면 안 됨."
+  },
+  "additional_requests": [
+    {
+      "request_id": "FS-PBC-01",
+      "documents": [
+        "ERP 전계정 TB",
+        "전체 분개·전표 목록",
+        "독립 추출통제 및 조건·행수·차대합계"
+      ],
+      "required_fields": [
+        "회사·기간·통화·단위·연결구분·버전",
+        "계정코드",
+        "전표ID",
+        "행ID",
+        "기초/차변/대변/기말",
+        "원천시스템·추출시각·추출근거"
+      ],
+      "join_keys": [
+        "company_code",
+        "account_code",
+        "journal_id",
+        "line_id"
+      ]
+    },
+    {
+      "request_id": "FS-PBC-02",
+      "documents": [
+        "최종 및 전 버전 재무제표 본문",
+        "주석 원본",
+        "계정-본문-주석 매핑",
+        "전기 확정 재무제표"
+      ],
+      "required_fields": [
+        "문서ID·버전·페이지·행ID",
+        "표시금액·부호·단위",
+        "합계 구성행",
+        "주석ID"
+      ],
+      "join_keys": [
+        "company_code",
+        "version",
+        "body_item_id",
+        "note_id"
+      ]
+    },
+    {
+      "request_id": "FS-PBC-03",
+      "documents": [
+        "현금성자산 구성 및 제한예금 검토표",
+        "은행조정표",
+        "현금흐름 분류·거래별 배분표",
+        "외화 현금 환산 영향표"
+      ],
+      "required_fields": [
+        "현금 계정/계좌 가상ID",
+        "현금증감",
+        "영업/투자/재무 활동",
+        "정책 근거",
+        "분할 거래 배분액·총액",
+        "기초/기말 현금 연결"
+      ],
+      "join_keys": [
+        "company_code",
+        "transaction_id",
+        "document_id",
+        "ledger_line_id",
+        "classification_id"
+      ]
+    },
+    {
+      "request_id": "FS-PBC-04",
+      "documents": [
+        "비현금 투자·재무 거래 명세 및 계약",
+        "차입부채 증감표",
+        "이자·배당 현금흐름 정책 검토 근거"
+      ],
+      "required_fields": [
+        "거래ID",
+        "비현금 유형·금액",
+        "차입ID",
+        "기초+현금+비현금+환산=기말",
+        "계약 근거ID"
+      ],
+      "join_keys": [
+        "company_code",
+        "transaction_id",
+        "document_id",
+        "financing_id"
+      ]
+    },
+    {
+      "request_id": "FS-PBC-05",
+      "documents": [
+        "자본변동표",
+        "주주총회·이사회 의사록",
+        "배당 결의 및 지급",
+        "승인된 감사·결산 조정 및 전기 로그"
+      ],
+      "required_fields": [
+        "기초자본·당기손익·배당·기타변동·기말자본",
+        "조정ID·승인 상태·근거",
+        "조정 전후 TB 및 원장 포함 여부"
+      ],
+      "join_keys": [
+        "company_code",
+        "transaction_id",
+        "document_id",
+        "adjustment_id",
+        "journal_id"
+      ]
+    }
+  ],
+  "join_contract": {
+    "common": [
+      "company_code",
+      "transaction_id",
+      "document_id"
+    ],
+    "ledger": [
+      "journal_id",
+      "line_id",
+      "account_code"
+    ],
+    "report": [
+      "version",
+      "body_item_id",
+      "note_id"
+    ],
+    "adjustments": [
+      "adjustment_id",
+      "ledger_inclusion"
+    ],
+    "amount_allocation": "복합 전표를 임의 한 활동에 몰지 않고 현금행·배분액·원천ID로 PM이 검증해야 함. 본 사례는 1 현금행=1 분류만 구현.",
+    "isolated_cases": "FS-01/02/03은 대안 사례. 기존 원장 또는 다른 워커 사례와 합산 금지."
+  },
+  "automated_checks": [
+    {
+      "check_id": "FS_REQUIRED_EVIDENCE",
+      "fixed_expected_value": 12
+    },
+    {
+      "check_id": "FS_EXTRACTION_CONTROL",
+      "fixed_expected_value": 0
+    },
+    {
+      "check_id": "FS_GL_JOURNAL_BALANCE",
+      "fixed_expected_value": 0
+    },
+    {
+      "check_id": "FS_TB_BALANCE",
+      "fixed_expected_value": 0
+    },
+    {
+      "check_id": "FS_TB_GL",
+      "fixed_expected_value": 0
+    },
+    {
+      "check_id": "FS_BODY_TB_MAPPING",
+      "fixed_expected_value": 0
+    },
+    {
+      "check_id": "FS_BODY_SUM",
+      "fixed_expected_value": 0
+    },
+    {
+      "check_id": "FS_BS_EQUATION",
+      "fixed_expected_value": 60000
+    },
+    {
+      "check_id": "FS_PL_PROFIT",
+      "fixed_expected_value": 12000
+    },
+    {
+      "check_id": "FS_NOTE_CASH",
+      "fixed_expected_value": 17000
+    },
+    {
+      "check_id": "FS_NOTE_PPE",
+      "fixed_expected_value": 33000
+    },
+    {
+      "check_id": "FS_CF_MAPPING",
+      "fixed_expected_value": 0
+    },
+    {
+      "check_id": "FS_CF_OPERATING",
+      "fixed_expected_value": 8000
+    },
+    {
+      "check_id": "FS_CF_INVESTING",
+      "fixed_expected_value": -5000
+    },
+    {
+      "check_id": "FS_CF_FINANCING",
+      "fixed_expected_value": 4000
+    },
+    {
+      "check_id": "FS_CF_ROLL",
+      "fixed_expected_value": 17000
+    },
+    {
+      "check_id": "FS_CF_BS_CASH",
+      "fixed_expected_value": 17000
+    },
+    {
+      "check_id": "FS_EQUITY_ROLL",
+      "fixed_expected_value": 29000
+    },
+    {
+      "check_id": "FS_RETAINED_EARNINGS_ROLL",
+      "fixed_expected_value": 14000
+    },
+    {
+      "check_id": "FS_NONCASH_ASSET",
+      "fixed_expected_value": 4000
+    },
+    {
+      "check_id": "FS_NONCASH_DEPN",
+      "fixed_expected_value": 6000
+    },
+    {
+      "check_id": "FS_DEBT_ROLL",
+      "fixed_expected_value": 31000
+    },
+    {
+      "check_id": "FS_AJE_AMOUNT",
+      "fixed_expected_value": 6000
+    }
+  ],
+  "auditor_judgment": [
+    "계정·현금흐름 분류 및 이자·배당 정책의 해당 보고기간 기준 적정성",
+    "현금성자산 범위·사용제한·원천자료의 신뢰성 및 독립성",
+    "미반영·미승인 조정의 처리와 이중반영 여부",
+    "공시 요구사항 전체의 완전성 및 중요성 판단",
+    "연결 범위·제거분개·외화·기업결합·법인세·중단영업 등 복잡 거래",
+    "예외의 해소, 조정 승인, 최종 조서 결론 및 검토"
+  ],
+  "workpaper_fields": [
+    "미검토 초안 상태",
+    "계정·위험·경영진 주장",
+    "context·문서 버전",
+    "원천 파일 SHA256 및 JSON 위치",
+    "전표/거래/행/조정/증빙 ID",
+    "원본 값·기대 값·차이·허용오차",
+    "수행 절차·계산식·예외·후속 요청",
+    "작성자 null",
+    "검토자 null",
+    "결론 null",
+    "수정분개 승인 null"
+  ],
+  "implementation_status": {
+    "small_fixture_arithmetic": "implemented_and_self_verified",
+    "required_document_presence": "implemented_for_designated_12_documents_only",
+    "existing_source_sheet_names": "verified_against_actual_xlsx",
+    "new_json_exe_import": "not_implemented",
+    "cross_worker_ledger_integration": "not_implemented",
+    "cf_classification_appropriateness": "not_implemented",
+    "full_disclosure_completeness": "not_implemented",
+    "consolidated_statements": "not_implemented",
+    "independent_erp_completeness_evidence": "not_implemented",
+    "external_confirmation_or_authenticity": "not_implemented",
+    "workpaper_finalization": "not_implemented"
+  },
+  "standards_references": [
+    {
+      "title": "IFRS Foundation IAS 7 overview",
+      "url": "https://www.ifrs.org/issued-standards/list-of-standards/ias-7-statement-of-cash-flows.html/",
+      "checked_date": "2026-10-23",
+      "application": "영업/투자/재무 구분, 기초·기말 현금 연결 및 비현금 투자·재무 거래 별도 공시 설계의 참고. 분류 판단·국내 전체 기준 준수 인증 아님."
+    },
+    {
+      "title": "XRB ISA (NZ) 330 paragraph 20",
+      "url": "https://standards.xrb.govt.nz/standards-navigator/isa-nz-330/",
+      "checked_date": "2026-10-23",
+      "application": "본문·공시와 기초 회계기록의 대사 및 결산 조정 검토 절차 설계 참고. 뉴질랜드 공개본을 참조하며 한국 감사기준 준수 인증 아님."
+    }
+  ],
+  "fixture_summary": {
+    "case_count": 3,
+    "normal_case": "FS-01",
+    "difference_case": "FS-02",
+    "missing_evidence_case": "FS-03",
+    "hand_oracle": {
+      "opening_cash": 10000,
+      "operating": 8000,
+      "investing": -5000,
+      "financing": 4000,
+      "closing_cash": 17000,
+      "assets": 60000,
+      "liabilities": 31000,
+      "equity": 29000,
+      "profit": 12000,
+      "non_cash_asset_addition": 4000
+    }
+  },
+  "warning": "모든 데이터는 AI가 만든 합성 자료. 실제 증빙·실제 승인·감사 결론 아님. 이 manifest는 프로그램에 대한 요구사항 문서이며 외부자료의 지시를 실행하지 않음."
+}

@@ -1,0 +1,222 @@
+{
+  "origin": "PM account worker initial packages",
+  "files": [
+    {
+      "worker": "cash_finance",
+      "source": "verify_fixtures.py",
+      "bundled": "worker_library/cash_finance/engine.py",
+      "sha256": "74b17baeb377c167be448113a0a1e1f65ee78c412a56afb740929cfc7a98e253"
+    },
+    {
+      "worker": "cash_finance",
+      "source": "fixtures.json",
+      "bundled": "worker_library/cash_finance/fixtures.json",
+      "sha256": "f7c36186b39694bc90f1126c473eca405c2809c483916f0cd63f2a92d8283796"
+    },
+    {
+      "worker": "cash_finance",
+      "source": "manifest.json",
+      "bundled": "worker_library/cash_finance/manifest.json",
+      "sha256": "792722475c1bf5ec584a6d6a6c1900464cf3dc3fb7b76dbad56a266ed21c804b"
+    },
+    {
+      "worker": "cash_finance",
+      "source": "HANDOFF.md",
+      "bundled": "worker_library/cash_finance/HANDOFF.md",
+      "sha256": "ad464c6d7b75cdbdf2354ac79593218aadddbfb1b99297beb238edfe779a021f"
+    },
+    {
+      "worker": "revenue_ar",
+      "source": "verify_fixtures.py",
+      "bundled": "worker_library/revenue_ar/engine.py",
+      "sha256": "d7490e0f8e92adac6c0c41f215773a3ba801769d7dda5fcf3c965423a43980ff"
+    },
+    {
+      "worker": "revenue_ar",
+      "source": "fixtures.json",
+      "bundled": "worker_library/revenue_ar/fixtures.json",
+      "sha256": "dd56cf1a31fb69f0e6c7d16f084d223cad980da5ff1ab34fb0368cbf3818b1a6"
+    },
+    {
+      "worker": "revenue_ar",
+      "source": "manifest.json",
+      "bundled": "worker_library/revenue_ar/manifest.json",
+      "sha256": "ddc1ffd23c0c916926114987784b6c51f34b5c30b9d8e1926ae45fb9d0ea0fea"
+    },
+    {
+      "worker": "revenue_ar",
+      "source": "HANDOFF.md",
+      "bundled": "worker_library/revenue_ar/HANDOFF.md",
+      "sha256": "8f48aa87a986cc7ac7a6b9fb77e3d92a53b090e3da20a517511eb8bab39a6b82"
+    },
+    {
+      "worker": "inventory_ap",
+      "source": "verify_fixtures.py",
+      "bundled": "worker_library/inventory_ap/engine.py",
+      "sha256": "1b2cbac9be197d85ab8041f7b18ed4b0e1e20bc3c83e4687cf1d803dad4e090c"
+    },
+    {
+      "worker": "inventory_ap",
+      "source": "fixtures.json",
+      "bundled": "worker_library/inventory_ap/fixtures.json",
+      "sha256": "2e614f1667caa3c720d1ee521a6a998ae9b6c75061e85f6aecb52546ba74a843"
+    },
+    {
+      "worker": "inventory_ap",
+      "source": "manifest.json",
+      "bundled": "worker_library/inventory_ap/manifest.json",
+      "sha256": "dcf6d676f955f10c266c1579a1900f19573e347b19618cb8f60a4a208f8b175a"
+    },
+    {
+      "worker": "inventory_ap",
+      "source": "HANDOFF.md",
+      "bundled": "worker_library/inventory_ap/HANDOFF.md",
+      "sha256": "8cf931baf21ac8244eb19bcfe38fe6a58b1bbbd749369ba76b0164c59a34386e"
+    },
+    {
+      "worker": "fixed_assets",
+      "source": "verify_fixtures.py",
+      "bundled": "worker_library/fixed_assets/engine.py",
+      "sha256": "55211bfb0138ab544e91a218538b2415eeb784d5e10cab00f9007174c42ed064"
+    },
+    {
+      "worker": "fixed_assets",
+      "source": "fixtures.json",
+      "bundled": "worker_library/fixed_assets/fixtures.json",
+      "sha256": "846155fe692f699dd65ae49c6c5cf250976eec74a96e0c50f5da89e61eb93dd3"
+    },
+    {
+      "worker": "fixed_assets",
+      "source": "manifest.json",
+      "bundled": "worker_library/fixed_assets/manifest.json",
+      "sha256": "a9d708c0b5cfbc084f6919971a5136a5d542efe98514813e2b1b7c25abb2c868"
+    },
+    {
+      "worker": "fixed_assets",
+      "source": "HANDOFF.md",
+      "bundled": "worker_library/fixed_assets/HANDOFF.md",
+      "sha256": "9912bb689e027cc24b7fd8459db6a5e37476296d4073c602f2b9b09314310ed8"
+    },
+    {
+      "worker": "leases",
+      "source": "verify_fixtures.py",
+      "bundled": "worker_library/leases/engine.py",
+      "sha256": "f12eae262a3ca1a2c9e3987f51c4458345b458050fbaa2a554718861b7a2d823"
+    },
+    {
+      "worker": "leases",
+      "source": "fixtures.json",
+      "bundled": "worker_library/leases/fixtures.json",
+      "sha256": "b4ec6cc845259c82847b86c9b2d0647d873cc4899b828692b0841fddece9b198"
+    },
+    {
+      "worker": "leases",
+      "source": "manifest.json",
+      "bundled": "worker_library/leases/manifest.json",
+      "sha256": "ee9d917e0acbea2b7f26edfee297ab51e76aa6b7e0e62b5599980d29de74a5fa"
+    },
+    {
+      "worker": "leases",
+      "source": "HANDOFF.md",
+      "bundled": "worker_library/leases/HANDOFF.md",
+      "sha256": "0da06c13a00780e62a50b4e545a88d2de29e756b1f66b8aa5b3c69492320f95b"
+    },
+    {
+      "worker": "payroll",
+      "source": "verify_fixtures.py",
+      "bundled": "worker_library/payroll/engine.py",
+      "sha256": "f64df03ed8004e3a9f2d7157106447a74fa951ccacfd46e59d88d9bb28ee9324"
+    },
+    {
+      "worker": "payroll",
+      "source": "fixtures.json",
+      "bundled": "worker_library/payroll/fixtures.json",
+      "sha256": "7d3fbc917afef8919abe9b6a8beb397801020783914427be48dadb3c4d520df2"
+    },
+    {
+      "worker": "payroll",
+      "source": "manifest.json",
+      "bundled": "worker_library/payroll/manifest.json",
+      "sha256": "603cfb290c15361b6d3d8e72822e20467bb7faa3ffe1944b87e2952a19cb4350"
+    },
+    {
+      "worker": "payroll",
+      "source": "HANDOFF.md",
+      "bundled": "worker_library/payroll/HANDOFF.md",
+      "sha256": "7bdb714714b0560acbaf78663e31edf1372051f9dfaf3807f73b3f3fba185096"
+    },
+    {
+      "worker": "debt_tax",
+      "source": "verify_fixtures.py",
+      "bundled": "worker_library/debt_tax/engine.py",
+      "sha256": "d6f2f09bd2dafe7660ce3602970b32f35b8bc7a8b9d9d4f9c3699ca162785175"
+    },
+    {
+      "worker": "debt_tax",
+      "source": "fixtures.json",
+      "bundled": "worker_library/debt_tax/fixtures.json",
+      "sha256": "a52d7f624c887bd9854ea3eda9f147e960f6a4c8b12a8711f9140dfa2c045de1"
+    },
+    {
+      "worker": "debt_tax",
+      "source": "manifest.json",
+      "bundled": "worker_library/debt_tax/manifest.json",
+      "sha256": "d048779c1e3fbdc3fb832300fb9a046d3845136c8e4e5540803728c9cf8d612a"
+    },
+    {
+      "worker": "debt_tax",
+      "source": "HANDOFF.md",
+      "bundled": "worker_library/debt_tax/HANDOFF.md",
+      "sha256": "6a5d1b2e05bd92ecab2d95e792e54940266fbad1672a76bdca796419e072f3e8"
+    },
+    {
+      "worker": "equity_disclosure",
+      "source": "verify_fixtures.py",
+      "bundled": "worker_library/equity_disclosure/engine.py",
+      "sha256": "3a2d2ceaf61542905a9b9d6b40cb459cb261928a04132e4e88efdf6cab2292e3"
+    },
+    {
+      "worker": "equity_disclosure",
+      "source": "fixtures.json",
+      "bundled": "worker_library/equity_disclosure/fixtures.json",
+      "sha256": "76ec0c3671bacae6a748ed2d06df4b623abfc6b0c864da6aceddde71b7173665"
+    },
+    {
+      "worker": "equity_disclosure",
+      "source": "manifest.json",
+      "bundled": "worker_library/equity_disclosure/manifest.json",
+      "sha256": "7f449b6f450999d709f79ea9641890ae80ae45331f290854f36ee38ef4e85866"
+    },
+    {
+      "worker": "equity_disclosure",
+      "source": "HANDOFF.md",
+      "bundled": "worker_library/equity_disclosure/HANDOFF.md",
+      "sha256": "115c19a85edd5a2f15555bb9050da2b56d0a60048edd224dee514907d3ec2ec0"
+    },
+    {
+      "worker": "financial_reporting",
+      "source": "verify_fixtures.py",
+      "bundled": "worker_library/financial_reporting/engine.py",
+      "sha256": "45c4bad8cd73b8040f7ee76d051fbabf6b105411579b284c6412a905c52e02cc"
+    },
+    {
+      "worker": "financial_reporting",
+      "source": "fixtures.json",
+      "bundled": "worker_library/financial_reporting/fixtures.json",
+      "sha256": "d477ce688db30b366a1f960ba80f6b27f586bae8484b17dffe6a5cf581c0b36d"
+    },
+    {
+      "worker": "financial_reporting",
+      "source": "manifest.json",
+      "bundled": "worker_library/financial_reporting/manifest.json",
+      "sha256": "22e9a0f11370110203415f8abbe24944724260043efe7cc3e3e6fd416fdde81f"
+    },
+    {
+      "worker": "financial_reporting",
+      "source": "HANDOFF.md",
+      "bundled": "worker_library/financial_reporting/HANDOFF.md",
+      "sha256": "0e6788b9ae02558064a32eae0554b492f1f3c3f9b4f0697f41f9c7fb2063d452"
+    }
+  ],
+  "scope": "Original bytes retained. Runtime uses calculation functions, not fixed expected values or source-index verification."
+}

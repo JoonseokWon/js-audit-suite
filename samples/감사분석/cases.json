@@ -1,0 +1,674 @@
+{
+  "schema": "integrated-analytics-cases-1",
+  "cases": [
+    {
+      "module": "GLA",
+      "folder": "GLA",
+      "id": "GLA_01_정상전체규칙",
+      "file": "GLA_01_정상전체규칙.xlsx",
+      "blocking": false,
+      "review": true,
+      "required_codes": [
+        "GLA_MONTH_END",
+        "GLA_HIGH_AMOUNT"
+      ]
+    },
+    {
+      "module": "GLA",
+      "folder": "GLA",
+      "id": "GLA_02_고액정상대조",
+      "file": "GLA_02_고액정상대조.xlsx",
+      "blocking": false,
+      "review": false,
+      "required_codes": []
+    },
+    {
+      "module": "GLA",
+      "folder": "GLA",
+      "id": "GLA_03_고액경계",
+      "file": "GLA_03_고액경계.xlsx",
+      "blocking": false,
+      "review": true,
+      "required_codes": [
+        "GLA_HIGH_AMOUNT"
+      ]
+    },
+    {
+      "module": "GLA",
+      "folder": "GLA",
+      "id": "GLA_04_주말전표",
+      "file": "GLA_04_주말전표.xlsx",
+      "blocking": false,
+      "review": true,
+      "required_codes": [
+        "GLA_WEEKEND"
+      ],
+      "current_ledger": "GLA_04_주말전표_현재원장.xlsx"
+    },
+    {
+      "module": "GLA",
+      "folder": "GLA",
+      "id": "GLA_05_월말전표",
+      "file": "GLA_05_월말전표.xlsx",
+      "blocking": false,
+      "review": true,
+      "required_codes": [
+        "GLA_MONTH_END"
+      ]
+    },
+    {
+      "module": "GLA",
+      "folder": "GLA",
+      "id": "GLA_06_동일구성반복",
+      "file": "GLA_06_동일구성반복.xlsx",
+      "blocking": false,
+      "review": true,
+      "required_codes": [
+        "GLA_REPEAT"
+      ],
+      "current_ledger": "GLA_06_동일구성반복_현재원장.xlsx"
+    },
+    {
+      "module": "GLA",
+      "folder": "GLA",
+      "id": "GLA_07_동액다른계정정상",
+      "file": "GLA_07_동액다른계정정상.xlsx",
+      "blocking": false,
+      "review": false,
+      "required_codes": []
+    },
+    {
+      "module": "GLA",
+      "folder": "GLA",
+      "id": "GLA_08_필수설정누락",
+      "file": "GLA_08_필수설정누락.xlsx",
+      "blocking": true,
+      "review": false,
+      "required_codes": [
+        "GLA_INPUT"
+      ]
+    },
+    {
+      "module": "GLA",
+      "folder": "GLA",
+      "id": "GLA_09_중복설정",
+      "file": "GLA_09_중복설정.xlsx",
+      "blocking": true,
+      "review": false,
+      "required_codes": [
+        "GLA_INPUT"
+      ]
+    },
+    {
+      "module": "GLA",
+      "folder": "GLA",
+      "id": "GLA_10_회사오류",
+      "file": "GLA_10_회사오류.xlsx",
+      "blocking": true,
+      "review": false,
+      "required_codes": [
+        "AN_SCOPE",
+        "AN_LEDGER_DIFF"
+      ]
+    },
+    {
+      "module": "GLA",
+      "folder": "GLA",
+      "id": "GLA_11_기간오류",
+      "file": "GLA_11_기간오류.xlsx",
+      "blocking": true,
+      "review": false,
+      "required_codes": [
+        "AN_SCOPE"
+      ]
+    },
+    {
+      "module": "GLA",
+      "folder": "GLA",
+      "id": "GLA_12_현재원장불일치",
+      "file": "GLA_12_현재원장불일치.xlsx",
+      "blocking": true,
+      "review": false,
+      "required_codes": [
+        "AN_LEDGER_DIFF"
+      ]
+    },
+    {
+      "module": "FIA",
+      "folder": "FIA",
+      "id": "FIA_01_정상마감전후속입력",
+      "file": "FIA_01_정상마감전후속입력.xlsx",
+      "blocking": false,
+      "review": false,
+      "required_codes": []
+    },
+    {
+      "module": "FIA",
+      "folder": "FIA",
+      "id": "FIA_02_마감후과거기간전기",
+      "file": "FIA_02_마감후과거기간전기.xlsx",
+      "blocking": false,
+      "review": true,
+      "required_codes": [
+        "FIA_POST_CLOSE"
+      ]
+    },
+    {
+      "module": "FIA",
+      "folder": "FIA",
+      "id": "FIA_03_자기승인",
+      "file": "FIA_03_자기승인.xlsx",
+      "blocking": false,
+      "review": true,
+      "required_codes": [
+        "FIA_SELF_APPROVAL"
+      ]
+    },
+    {
+      "module": "FIA",
+      "folder": "FIA",
+      "id": "FIA_04_추출후미래입력",
+      "file": "FIA_04_추출후미래입력.xlsx",
+      "blocking": false,
+      "review": true,
+      "required_codes": [
+        "FIA_TIMESTAMP_ORDER",
+        "FIA_POST_CLOSE"
+      ]
+    },
+    {
+      "module": "FIA",
+      "folder": "FIA",
+      "id": "FIA_05_업무시간밖",
+      "file": "FIA_05_업무시간밖.xlsx",
+      "blocking": false,
+      "review": true,
+      "required_codes": [
+        "FIA_OUTSIDE_HOURS"
+      ]
+    },
+    {
+      "module": "FIA",
+      "folder": "FIA",
+      "id": "FIA_06_수동전표집중",
+      "file": "FIA_06_수동전표집중.xlsx",
+      "blocking": false,
+      "review": true,
+      "required_codes": [
+        "FIA_MANUAL_CONCENTRATION"
+      ]
+    },
+    {
+      "module": "FIA",
+      "folder": "FIA",
+      "id": "FIA_07_정상유사마감전입력",
+      "file": "FIA_07_정상유사마감전입력.xlsx",
+      "blocking": false,
+      "review": false,
+      "required_codes": []
+    },
+    {
+      "module": "FIA",
+      "folder": "FIA",
+      "id": "FIA_08_메타누락",
+      "file": "FIA_08_메타누락.xlsx",
+      "blocking": true,
+      "review": false,
+      "required_codes": [
+        "FIA_INPUT"
+      ]
+    },
+    {
+      "module": "FIA",
+      "folder": "FIA",
+      "id": "FIA_09_메타중복",
+      "file": "FIA_09_메타중복.xlsx",
+      "blocking": true,
+      "review": false,
+      "required_codes": [
+        "FIA_INPUT"
+      ]
+    },
+    {
+      "module": "FIA",
+      "folder": "FIA",
+      "id": "FIA_10_타회사",
+      "file": "FIA_10_타회사.xlsx",
+      "blocking": true,
+      "review": false,
+      "required_codes": [
+        "FIA_INPUT"
+      ]
+    },
+    {
+      "module": "FIA",
+      "folder": "FIA",
+      "id": "FIA_11_기간불일치",
+      "file": "FIA_11_기간불일치.xlsx",
+      "blocking": true,
+      "review": false,
+      "required_codes": [
+        "AN_SCOPE"
+      ]
+    },
+    {
+      "module": "FIA",
+      "folder": "FIA",
+      "id": "FIA_12_현재원장불일치",
+      "file": "FIA_12_현재원장불일치.xlsx",
+      "blocking": true,
+      "review": false,
+      "required_codes": [
+        "AN_LEDGER_DIFF"
+      ]
+    },
+    {
+      "module": "FIA",
+      "folder": "FIA",
+      "id": "FIA_13_유형미확인",
+      "file": "FIA_13_유형미확인.xlsx",
+      "blocking": false,
+      "review": true,
+      "required_codes": [
+        "FIA_UNCONFIRMED"
+      ]
+    },
+    {
+      "module": "FIA",
+      "folder": "FIA",
+      "id": "FIA_14_선승인금지시각역전",
+      "file": "FIA_14_선승인금지시각역전.xlsx",
+      "blocking": false,
+      "review": true,
+      "required_codes": [
+        "FIA_TIMESTAMP_ORDER"
+      ]
+    },
+    {
+      "module": "FIA",
+      "folder": "FIA",
+      "id": "FIA_15_정상허용선승인",
+      "file": "FIA_15_정상허용선승인.xlsx",
+      "blocking": false,
+      "review": false,
+      "required_codes": []
+    },
+    {
+      "module": "FIA",
+      "folder": "FIA",
+      "id": "FIA_16_승인필수시각누락",
+      "file": "FIA_16_승인필수시각누락.xlsx",
+      "blocking": true,
+      "review": false,
+      "required_codes": [
+        "FIA_INPUT"
+      ]
+    },
+    {
+      "module": "FIA",
+      "folder": "FIA",
+      "id": "FIA_17_명시반복재분류",
+      "file": "FIA_17_명시반복재분류.xlsx",
+      "blocking": false,
+      "review": true,
+      "required_codes": [
+        "FIA_RECLASS_REPEAT"
+      ]
+    },
+    {
+      "module": "FIA",
+      "folder": "FIA",
+      "id": "FIA_18_수동승인대기",
+      "file": "FIA_18_수동승인대기.xlsx",
+      "blocking": false,
+      "review": true,
+      "required_codes": [
+        "FIA_APPROVAL_STATUS"
+      ]
+    },
+    {
+      "module": "FIA",
+      "folder": "FIA",
+      "id": "FIA_19_부서시스템미확인",
+      "file": "FIA_19_부서시스템미확인.xlsx",
+      "blocking": false,
+      "review": true,
+      "required_codes": [
+        "FIA_UNCONFIRMED"
+      ]
+    },
+    {
+      "module": "FIA",
+      "folder": "FIA",
+      "id": "FIA_20_시간대누락",
+      "file": "FIA_20_시간대누락.xlsx",
+      "blocking": true,
+      "review": false,
+      "required_codes": [
+        "FIA_INPUT"
+      ]
+    },
+    {
+      "module": "FIA",
+      "folder": "FIA",
+      "id": "FIA_21_승인미확인",
+      "file": "FIA_21_승인미확인.xlsx",
+      "blocking": false,
+      "review": true,
+      "required_codes": [
+        "FIA_UNCONFIRMED"
+      ]
+    },
+    {
+      "module": "FIA",
+      "folder": "FIA",
+      "id": "FIA_22_같은전표메타충돌",
+      "file": "FIA_22_같은전표메타충돌.xlsx",
+      "blocking": true,
+      "review": false,
+      "required_codes": [
+        "FIA_INPUT"
+      ]
+    },
+    {
+      "module": "현금분석",
+      "folder": "현금분석",
+      "id": "01_정상",
+      "file": "현금_01_정상.xlsx",
+      "blocking": false,
+      "review": false,
+      "required_codes": []
+    },
+    {
+      "module": "현금분석",
+      "folder": "현금분석",
+      "id": "02_반복지급후보",
+      "file": "현금_02_반복지급후보.xlsx",
+      "blocking": false,
+      "review": true,
+      "required_codes": [
+        "CASH_REPEAT_CANDIDATE",
+        "CASH_APPROVED_EXCESS"
+      ]
+    },
+    {
+      "module": "현금분석",
+      "folder": "현금분석",
+      "id": "03_상대계좌집중후보",
+      "file": "현금_03_상대계좌집중후보.xlsx",
+      "blocking": false,
+      "review": true,
+      "required_codes": [
+        "CASH_CONCENTRATION"
+      ]
+    },
+    {
+      "module": "현금분석",
+      "folder": "현금분석",
+      "id": "04_계좌변경직후후보",
+      "file": "현금_04_계좌변경직후후보.xlsx",
+      "blocking": false,
+      "review": true,
+      "required_codes": [
+        "CASH_ACCOUNT_CHANGE"
+      ]
+    },
+    {
+      "module": "현금분석",
+      "folder": "현금분석",
+      "id": "05_정상반복유사대조",
+      "file": "현금_05_정상반복유사대조.xlsx",
+      "blocking": false,
+      "review": false,
+      "required_codes": []
+    },
+    {
+      "module": "현금분석",
+      "folder": "현금분석",
+      "id": "06_합법분할지급대조",
+      "file": "현금_06_합법분할지급대조.xlsx",
+      "blocking": false,
+      "review": false,
+      "required_codes": []
+    },
+    {
+      "module": "현금분석",
+      "folder": "현금분석",
+      "id": "07_여러원장합산지급",
+      "file": "현금_07_여러원장합산지급.xlsx",
+      "blocking": false,
+      "review": false,
+      "required_codes": []
+    },
+    {
+      "module": "현금분석",
+      "folder": "현금분석",
+      "id": "08_부분배부잔여",
+      "file": "현금_08_부분배부잔여.xlsx",
+      "blocking": false,
+      "review": true,
+      "required_codes": [
+        "CASH_RESIDUAL"
+      ]
+    },
+    {
+      "module": "현금분석",
+      "folder": "현금분석",
+      "id": "09_은행만잔여1원",
+      "file": "현금_09_은행만잔여1원.xlsx",
+      "blocking": false,
+      "review": true,
+      "required_codes": [
+        "CASH_RESIDUAL",
+        "CASH_BALANCE_DIFF"
+      ]
+    },
+    {
+      "module": "현금분석",
+      "folder": "현금분석",
+      "id": "10_장부만잔여",
+      "file": "현금_10_장부만잔여.xlsx",
+      "blocking": false,
+      "review": true,
+      "required_codes": [
+        "CASH_RESIDUAL",
+        "CASH_BALANCE_DIFF"
+      ]
+    },
+    {
+      "module": "현금분석",
+      "folder": "현금분석",
+      "id": "11_은행누락통제탐지",
+      "file": "현금_11_은행누락통제탐지.xlsx",
+      "blocking": true,
+      "review": true,
+      "required_codes": [
+        "CASH_CONTROL"
+      ]
+    },
+    {
+      "module": "현금분석",
+      "folder": "현금분석",
+      "id": "12_부호반전",
+      "file": "현금_12_부호반전.xlsx",
+      "blocking": true,
+      "review": true,
+      "required_codes": [
+        "CASH_ALLOC_SIGN"
+      ]
+    },
+    {
+      "module": "현금분석",
+      "folder": "현금분석",
+      "id": "13_중복배부",
+      "file": "현금_13_중복배부.xlsx",
+      "blocking": true,
+      "review": false,
+      "required_codes": [
+        "CASH_ALLOCATION"
+      ]
+    },
+    {
+      "module": "현금분석",
+      "folder": "현금분석",
+      "id": "14_과배부",
+      "file": "현금_14_과배부.xlsx",
+      "blocking": true,
+      "review": false,
+      "required_codes": [
+        "CASH_OVERALLOC"
+      ]
+    },
+    {
+      "module": "현금분석",
+      "folder": "현금분석",
+      "id": "15_은행회사혼입",
+      "file": "현금_15_은행회사혼입.xlsx",
+      "blocking": true,
+      "review": true,
+      "required_codes": [
+        "CASH_BANK_INPUT"
+      ]
+    },
+    {
+      "module": "현금분석",
+      "folder": "현금분석",
+      "id": "16_은행기간밖",
+      "file": "현금_16_은행기간밖.xlsx",
+      "blocking": true,
+      "review": true,
+      "required_codes": [
+        "CASH_BANK_INPUT"
+      ]
+    },
+    {
+      "module": "현금분석",
+      "folder": "현금분석",
+      "id": "17_현금원장행선택누락",
+      "file": "현금_17_현금원장행선택누락.xlsx",
+      "blocking": true,
+      "review": true,
+      "required_codes": [
+        "CASH_GL_SCOPE"
+      ]
+    },
+    {
+      "module": "현금분석",
+      "folder": "현금분석",
+      "id": "18_독립행수통제오류",
+      "file": "현금_18_독립행수통제오류.xlsx",
+      "blocking": true,
+      "review": false,
+      "required_codes": [
+        "CASH_CONTROL"
+      ]
+    },
+    {
+      "module": "현금분석",
+      "folder": "현금분석",
+      "id": "19_은행기말잔액오류",
+      "file": "현금_19_은행기말잔액오류.xlsx",
+      "blocking": true,
+      "review": true,
+      "required_codes": [
+        "CASH_CONTROL"
+      ]
+    },
+    {
+      "module": "현금분석",
+      "folder": "현금분석",
+      "id": "20_규칙메타미제출",
+      "file": "현금_20_규칙메타미제출.xlsx",
+      "blocking": false,
+      "review": false,
+      "required_codes": []
+    },
+    {
+      "module": "현금분석",
+      "folder": "현금분석",
+      "id": "21_현재원장불일치",
+      "file": "현금_21_현재원장불일치.xlsx",
+      "blocking": true,
+      "review": false,
+      "required_codes": [
+        "AN_LEDGER_DIFF"
+      ]
+    },
+    {
+      "module": "현금분석",
+      "folder": "현금분석",
+      "id": "22_정상자금이체대조",
+      "file": "현금_22_정상자금이체대조.xlsx",
+      "blocking": false,
+      "review": false,
+      "required_codes": [],
+      "current_ledger": "현금_22_자금이체_현재원장.xlsx"
+    },
+    {
+      "module": "현금분석",
+      "folder": "현금분석",
+      "id": "23_은행거래ID중복",
+      "file": "현금_23_은행거래ID중복.xlsx",
+      "blocking": true,
+      "review": false,
+      "required_codes": [
+        "CASH_BANK_INPUT"
+      ]
+    },
+    {
+      "module": "현금분석",
+      "folder": "현금분석",
+      "id": "24_KRW외통화",
+      "file": "현금_24_KRW외통화.xlsx",
+      "blocking": true,
+      "review": false,
+      "required_codes": [
+        "CASH_ACCOUNT"
+      ]
+    },
+    {
+      "module": "현금분석",
+      "folder": "현금분석",
+      "id": "25_원문금액공란",
+      "file": "현금_25_원문금액공란.xlsx",
+      "blocking": true,
+      "review": true,
+      "required_codes": [
+        "CASH_BANK_INPUT"
+      ]
+    },
+    {
+      "module": "현금분석",
+      "folder": "현금분석",
+      "id": "26_bool금액",
+      "file": "현금_26_bool금액.xlsx",
+      "blocking": true,
+      "review": true,
+      "required_codes": [
+        "CASH_BANK_INPUT"
+      ]
+    },
+    {
+      "module": "현금분석",
+      "folder": "현금분석",
+      "id": "27_양방향지급메타모순",
+      "file": "현금_27_양방향지급메타모순.xlsx",
+      "blocking": true,
+      "review": true,
+      "required_codes": [
+        "CASH_LINK_META"
+      ]
+    },
+    {
+      "module": "현금분석",
+      "folder": "현금분석",
+      "id": "28_양방향메타미제출",
+      "file": "현금_28_양방향메타미제출.xlsx",
+      "blocking": false,
+      "review": false,
+      "required_codes": []
+    }
+  ],
+  "case_count": 62,
+  "note": "모든 사례는 독립 합성 업무. current_ledger가 있으면 해당 7시트 파일을 먼저 실행. 기대값은 계산 입력에 주입하지 않음."
+}

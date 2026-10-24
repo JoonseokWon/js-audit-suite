@@ -1,0 +1,712 @@
+{
+  "schema_version": "pm-raw-1",
+  "worker": "revenue_ar",
+  "synthetic": true,
+  "integrated": false,
+  "context": {
+    "company_id": "SYNTH01",
+    "period_start": "2026-01-01",
+    "period_end": "2026-12-31",
+    "currency": "KRW",
+    "consolidation": "별도",
+    "subsequent_period_start": "2027-01-01",
+    "subsequent_search_end": "2027-02-28"
+  },
+  "accounts": [
+    {
+      "account": "매출",
+      "assertions": [
+        "발생사실",
+        "완전성",
+        "정확성",
+        "기간귀속",
+        "분류"
+      ]
+    },
+    {
+      "account": "매출채권",
+      "assertions": [
+        "실재성",
+        "권리와 의무",
+        "완전성",
+        "정확성·평가·배분"
+      ]
+    },
+    {
+      "account": "대손충당금·대손상각비",
+      "assertions": [
+        "평가·배분",
+        "완전성",
+        "정확성",
+        "표시"
+      ]
+    }
+  ],
+  "existing_source_index": [
+    {
+      "source_path_relative_to_rawdata_root": "2026-10-23/배포/01_현재프로그램입력/03_매출_합성자료.xlsx",
+      "sheet": "orders",
+      "range": "A1:K3",
+      "rows": 2,
+      "headers": [
+        "order_id",
+        "order_line_id",
+        "item_code",
+        "customer_id",
+        "order_date",
+        "quantity",
+        "unit",
+        "unit_price",
+        "price_basis",
+        "tax_rate",
+        "currency"
+      ],
+      "spec_json_pointer": "/books/3/tables/orders",
+      "sha256": "e93e145984dd2a441b4d7952497e92b8ba5f43daf20099cbdb752d7793b2acae",
+      "native_schema_declared_in_spec": true,
+      "actual_xlsx_inspected": true
+    },
+    {
+      "source_path_relative_to_rawdata_root": "2026-10-23/배포/01_현재프로그램입력/03_매출_합성자료.xlsx",
+      "sheet": "deliveries",
+      "range": "A1:K3",
+      "rows": 2,
+      "headers": [
+        "delivery_id",
+        "delivery_line_id",
+        "order_id",
+        "order_line_id",
+        "item_code",
+        "customer_id",
+        "delivery_date",
+        "acceptance_date",
+        "quantity",
+        "accepted_quantity",
+        "unit"
+      ],
+      "spec_json_pointer": "/books/3/tables/deliveries",
+      "sha256": "e93e145984dd2a441b4d7952497e92b8ba5f43daf20099cbdb752d7793b2acae",
+      "native_schema_declared_in_spec": true,
+      "actual_xlsx_inspected": true
+    },
+    {
+      "source_path_relative_to_rawdata_root": "2026-10-23/배포/01_현재프로그램입력/03_매출_합성자료.xlsx",
+      "sheet": "invoices",
+      "range": "A1:P3",
+      "rows": 2,
+      "headers": [
+        "invoice_id",
+        "invoice_line_id",
+        "order_id",
+        "order_line_id",
+        "item_code",
+        "customer_id",
+        "invoice_date",
+        "quantity",
+        "unit",
+        "unit_price",
+        "price_basis",
+        "tax_rate",
+        "currency",
+        "supply_amount",
+        "tax_amount",
+        "total_amount"
+      ],
+      "spec_json_pointer": "/books/3/tables/invoices",
+      "sha256": "e93e145984dd2a441b4d7952497e92b8ba5f43daf20099cbdb752d7793b2acae",
+      "native_schema_declared_in_spec": true,
+      "actual_xlsx_inspected": true
+    },
+    {
+      "source_path_relative_to_rawdata_root": "2026-10-23/배포/01_현재프로그램입력/03_매출_합성자료.xlsx",
+      "sheet": "ledger",
+      "range": "A1:K3",
+      "rows": 2,
+      "headers": [
+        "journal_id",
+        "journal_line_id",
+        "company_id",
+        "account_code",
+        "posting_date",
+        "invoice_id",
+        "invoice_line_id",
+        "customer_id",
+        "currency",
+        "revenue_debit",
+        "revenue_credit"
+      ],
+      "spec_json_pointer": "/books/3/tables/ledger",
+      "sha256": "e93e145984dd2a441b4d7952497e92b8ba5f43daf20099cbdb752d7793b2acae",
+      "native_schema_declared_in_spec": true,
+      "actual_xlsx_inspected": true
+    },
+    {
+      "source_path_relative_to_rawdata_root": "2026-10-23/배포/01_현재프로그램입력/03_매출_합성자료.xlsx",
+      "sheet": "control",
+      "range": "A1:J2",
+      "rows": 1,
+      "headers": [
+        "company_id",
+        "period_start",
+        "period_end",
+        "account_codes",
+        "expected_rows",
+        "debit_total",
+        "credit_total",
+        "source_reference",
+        "extracted_at",
+        "prepared_by"
+      ],
+      "spec_json_pointer": "/books/3/tables/control",
+      "sha256": "e93e145984dd2a441b4d7952497e92b8ba5f43daf20099cbdb752d7793b2acae",
+      "native_schema_declared_in_spec": true,
+      "actual_xlsx_inspected": true
+    },
+    {
+      "source_path_relative_to_rawdata_root": "2026-10-23/배포/01_현재프로그램입력/05_확장검사_합성자료.xlsx",
+      "sheet": "채권",
+      "range": "A1:E3",
+      "rows": 2,
+      "headers": [
+        "채권ID",
+        "거래처",
+        "발생일",
+        "만기일",
+        "기말잔액"
+      ],
+      "spec_json_pointer": "/books/5/tables/채권",
+      "sha256": "3fd49a2d933048aa6c4d9900f8ba6a01c0759740706981dda57a4a1b079c1840",
+      "native_schema_declared_in_spec": true,
+      "actual_xlsx_inspected": true
+    },
+    {
+      "source_path_relative_to_rawdata_root": "2026-10-23/배포/01_현재프로그램입력/05_확장검사_합성자료.xlsx",
+      "sheet": "후속회수",
+      "range": "A1:E3",
+      "rows": 2,
+      "headers": [
+        "회수ID",
+        "채권ID",
+        "입금일",
+        "금액",
+        "근거"
+      ],
+      "spec_json_pointer": "/books/5/tables/후속회수",
+      "sha256": "3fd49a2d933048aa6c4d9900f8ba6a01c0759740706981dda57a4a1b079c1840",
+      "native_schema_declared_in_spec": true,
+      "actual_xlsx_inspected": true
+    },
+    {
+      "source_path_relative_to_rawdata_root": "2026-10-23/배포/01_현재프로그램입력/07_대손충당금_합성자료.xlsx",
+      "sheet": "설정",
+      "range": "A1:B10",
+      "rows": 9,
+      "headers": [
+        "항목",
+        "값"
+      ],
+      "spec_json_pointer": "/books/7/tables/설정",
+      "sha256": "2325e481d513d1f9f0b842ecc8ac3affd275d85c2bab651a0ddbca267f6d4b5a",
+      "native_schema_declared_in_spec": true,
+      "actual_xlsx_inspected": true
+    },
+    {
+      "source_path_relative_to_rawdata_root": "2026-10-23/배포/01_현재프로그램입력/07_대손충당금_합성자료.xlsx",
+      "sheet": "채권",
+      "range": "A1:J3",
+      "rows": 2,
+      "headers": [
+        "회사코드",
+        "채권ID",
+        "분류군",
+        "거래처",
+        "발생일",
+        "만기일",
+        "채권잔액",
+        "측정구분",
+        "개별손실률",
+        "개별평가근거"
+      ],
+      "spec_json_pointer": "/books/7/tables/채권",
+      "sha256": "2325e481d513d1f9f0b842ecc8ac3affd275d85c2bab651a0ddbca267f6d4b5a",
+      "native_schema_declared_in_spec": true,
+      "actual_xlsx_inspected": true
+    },
+    {
+      "source_path_relative_to_rawdata_root": "2026-10-23/배포/01_현재프로그램입력/07_대손충당금_합성자료.xlsx",
+      "sheet": "시나리오",
+      "range": "A1:C3",
+      "rows": 2,
+      "headers": [
+        "시나리오ID",
+        "확률",
+        "전망근거"
+      ],
+      "spec_json_pointer": "/books/7/tables/시나리오",
+      "sha256": "2325e481d513d1f9f0b842ecc8ac3affd275d85c2bab651a0ddbca267f6d4b5a",
+      "native_schema_declared_in_spec": true,
+      "actual_xlsx_inspected": true
+    },
+    {
+      "source_path_relative_to_rawdata_root": "2026-10-23/배포/01_현재프로그램입력/07_대손충당금_합성자료.xlsx",
+      "sheet": "충당률표",
+      "range": "A1:I7",
+      "rows": 6,
+      "headers": [
+        "행ID",
+        "분류군",
+        "시나리오ID",
+        "연체하한",
+        "연체상한",
+        "과거손실률",
+        "전망배수",
+        "가산조정",
+        "산출근거"
+      ],
+      "spec_json_pointer": "/books/7/tables/충당률표",
+      "sha256": "2325e481d513d1f9f0b842ecc8ac3affd275d85c2bab651a0ddbca267f6d4b5a",
+      "native_schema_declared_in_spec": true,
+      "actual_xlsx_inspected": true
+    },
+    {
+      "source_path_relative_to_rawdata_root": "2026-10-23/배포/01_현재프로그램입력/07_대손충당금_합성자료.xlsx",
+      "sheet": "충당금원장",
+      "range": "A1:H2",
+      "rows": 1,
+      "headers": [
+        "회사코드",
+        "분류군",
+        "채권잔액",
+        "기초충당금",
+        "비용외증감",
+        "기말충당금",
+        "당기대손상각비",
+        "원장근거"
+      ],
+      "spec_json_pointer": "/books/7/tables/충당금원장",
+      "sha256": "2325e481d513d1f9f0b842ecc8ac3affd275d85c2bab651a0ddbca267f6d4b5a",
+      "native_schema_declared_in_spec": true,
+      "actual_xlsx_inspected": true
+    },
+    {
+      "source_path_relative_to_rawdata_root": "2026-10-23/배포/01_현재프로그램입력/07_대손충당금_합성자료.xlsx",
+      "sheet": "충당금변동",
+      "range": "A1:E2",
+      "rows": 1,
+      "headers": [
+        "변동ID",
+        "분류군",
+        "유형",
+        "증감액",
+        "근거"
+      ],
+      "spec_json_pointer": "/books/7/tables/충당금변동",
+      "sha256": "2325e481d513d1f9f0b842ecc8ac3affd275d85c2bab651a0ddbca267f6d4b5a",
+      "native_schema_declared_in_spec": true,
+      "actual_xlsx_inspected": true
+    },
+    {
+      "source_path_relative_to_rawdata_root": "2026-10-23/배포/01_현재프로그램입력/07_대손충당금_합성자료.xlsx",
+      "sheet": "독립통제",
+      "range": "A1:F25",
+      "rows": 24,
+      "headers": [
+        "자료",
+        "지표",
+        "기대값",
+        "추출근거",
+        "추출일시",
+        "작성자"
+      ],
+      "spec_json_pointer": "/books/7/tables/독립통제",
+      "sha256": "2325e481d513d1f9f0b842ecc8ac3affd275d85c2bab651a0ddbca267f6d4b5a",
+      "native_schema_declared_in_spec": true,
+      "actual_xlsx_inspected": true
+    },
+    {
+      "source_path_relative_to_rawdata_root": "2026-10-23/배포/02_절차별원천자료/02_자금_금융_차입.xlsx",
+      "sheet": "조회_통제대장",
+      "range": "A1:K4",
+      "rows": 3,
+      "headers": [
+        "조회ID",
+        "절차ID",
+        "대상ID",
+        "대상유형",
+        "발송통제",
+        "회신경로",
+        "발송일",
+        "회신일",
+        "회신금액",
+        "상태",
+        "증거ID"
+      ],
+      "spec_json_pointer": "/books/11/tables/조회_통제대장",
+      "sha256": "d4cb630f2125da0ebb465260054b9e3c61627d8b6bd78d08f220d411f007d135",
+      "native_schema_declared_in_spec": false,
+      "actual_xlsx_inspected": true
+    },
+    {
+      "source_path_relative_to_rawdata_root": "2026-10-23/배포/02_절차별원천자료/03_매출_매입_재고.xlsx",
+      "sheet": "거래처",
+      "range": "A1:G6",
+      "rows": 5,
+      "headers": [
+        "거래처ID",
+        "회사코드",
+        "거래처명",
+        "유형",
+        "관계회사여부",
+        "신용조건",
+        "자료성격"
+      ],
+      "spec_json_pointer": "/books/12/tables/거래처",
+      "sha256": "0428323a2aab5197678c4162e25e93bc6fee1985463d3006f2ca4c94279c67c3",
+      "native_schema_declared_in_spec": false,
+      "actual_xlsx_inspected": true
+    },
+    {
+      "source_path_relative_to_rawdata_root": "2026-10-23/배포/02_절차별원천자료/03_매출_매입_재고.xlsx",
+      "sheet": "채권_송장연결",
+      "range": "A1:H3",
+      "rows": 2,
+      "headers": [
+        "채권ID",
+        "회사코드",
+        "거래처ID",
+        "송장ID",
+        "원장전표ID",
+        "발생금액",
+        "기말잔액",
+        "증거ID"
+      ],
+      "spec_json_pointer": "/books/12/tables/채권_송장연결",
+      "sha256": "0428323a2aab5197678c4162e25e93bc6fee1985463d3006f2ca4c94279c67c3",
+      "native_schema_declared_in_spec": false,
+      "actual_xlsx_inspected": true
+    },
+    {
+      "source_path_relative_to_rawdata_root": "2026-10-23/배포/02_절차별원천자료/03_매출_매입_재고.xlsx",
+      "sheet": "계약_기간귀속",
+      "range": "A1:L3",
+      "rows": 2,
+      "headers": [
+        "계약ID",
+        "회사코드",
+        "고객ID",
+        "유형",
+        "계약금액",
+        "수행의무",
+        "검수일",
+        "청구일",
+        "수익인식일",
+        "계약자산",
+        "계약부채",
+        "증거ID"
+      ],
+      "spec_json_pointer": "/books/12/tables/계약_기간귀속",
+      "sha256": "0428323a2aab5197678c4162e25e93bc6fee1985463d3006f2ca4c94279c67c3",
+      "native_schema_declared_in_spec": false,
+      "actual_xlsx_inspected": true
+    },
+    {
+      "source_path_relative_to_rawdata_root": "2026-10-23/배포/02_절차별원천자료/03_매출_매입_재고.xlsx",
+      "sheet": "후속_반품검색",
+      "range": "A1:I2",
+      "rows": 1,
+      "headers": [
+        "검색ID",
+        "회사코드",
+        "검색시작",
+        "검색종료",
+        "자료명",
+        "검색건수",
+        "반품금액",
+        "검색조건",
+        "근거ID"
+      ],
+      "spec_json_pointer": "/books/12/tables/후속_반품검색",
+      "sha256": "0428323a2aab5197678c4162e25e93bc6fee1985463d3006f2ca4c94279c67c3",
+      "native_schema_declared_in_spec": false,
+      "actual_xlsx_inspected": true
+    },
+    {
+      "source_path_relative_to_rawdata_root": "2026-10-23/배포/03_오류시나리오/현재EXE/02_매출송장누락.xlsx",
+      "sheet": "invoices",
+      "range": "A1:P2",
+      "rows": 1,
+      "headers": [
+        "invoice_id",
+        "invoice_line_id",
+        "order_id",
+        "order_line_id",
+        "item_code",
+        "customer_id",
+        "invoice_date",
+        "quantity",
+        "unit",
+        "unit_price",
+        "price_basis",
+        "tax_rate",
+        "currency",
+        "supply_amount",
+        "tax_amount",
+        "total_amount"
+      ],
+      "spec_json_pointer": "/books/18/tables/invoices",
+      "sha256": "742d406ccf342560d555e1099e28b0d178def055e02754bf634945eb027e66c9",
+      "native_schema_declared_in_spec": true,
+      "actual_xlsx_inspected": true
+    }
+  ],
+  "additional_requested_sources": [
+    {
+      "source": "고객 계약·변경계약·부수약정",
+      "needed_fields": [
+        "계약ID",
+        "수행의무",
+        "통제이전 조건",
+        "반품·리베이트·변동대가",
+        "검수·인도조건",
+        "유의적 금융요소 판단",
+        "계약자산·부채"
+      ],
+      "purpose": "세금계산서 발행일만으로 수익인식일을 결정하지 않음"
+    },
+    {
+      "source": "출고증·운송장·고객 인수·검수 자료",
+      "needed_fields": [
+        "출고ID",
+        "주문행ID",
+        "품목ID",
+        "수량·단위",
+        "실제 인도일",
+        "검수일",
+        "외부 수령 증거",
+        "원본 위치"
+      ],
+      "purpose": "출고와 통제이전의 차이 및 기말 전후 기간귀속"
+    },
+    {
+      "source": "기말 전후 반품·대변메모·가격조정 전체 추출",
+      "needed_fields": [
+        "원송장ID",
+        "반품입고ID",
+        "발생·발행·기장일",
+        "수량",
+        "공급가·VAT·총액",
+        "검색기간·건수·합계 통제"
+      ],
+      "purpose": "검색 0건과 원자료 누락 구별; 반품 권리 및 기말 조건 판단"
+    },
+    {
+      "source": "송장별 기초·발생·반품·상계·입금·제각·기말 채권 명세",
+      "needed_fields": [
+        "회사코드",
+        "고객ID",
+        "송장ID·행ID",
+        "채권ID",
+        "약정만기",
+        "변동유형",
+        "원장전표ID",
+        "양도·담보·팩토링 약정"
+      ],
+      "purpose": "연령표 재계산, 채권 권리, 원장 완전성 및 중복 배부 확인"
+    },
+    {
+      "source": "후속 은행 입금 원본 및 송장 배부 근거",
+      "needed_fields": [
+        "은행거래ID",
+        "입금일",
+        "금액",
+        "송금인",
+        "송장별 배부금액",
+        "외화·환율",
+        "원본 출처·통제"
+      ],
+      "purpose": "후속회수 검사; 입금만으로 기말 매출의 발생사실·조회 독립성 확정 불가"
+    },
+    {
+      "source": "감사인 조회 발송·회신 통제 및 차이조사",
+      "needed_fields": [
+        "대상선정 근거",
+        "검증된 주소",
+        "발송주체",
+        "재발송",
+        "직접 회신 경로",
+        "회신자 권한·진위 확인",
+        "회신잔액 기준일",
+        "차이·미회신·대체절차"
+      ],
+      "purpose": "회사 전달 회신과 감사인 직접 회신 구분; 민감한 실제 연락처는 본 더미에 없음"
+    },
+    {
+      "source": "ECL 과거 이력·미래 전망·개별 신용위험",
+      "needed_fields": [
+        "동질군별 노출·손실·회수·제각 이력",
+        "미래 전망 출처·기준일",
+        "시나리오·확률",
+        "약정만기",
+        "채무분쟁·파산·담보",
+        "할인 영향",
+        "모형·가정 승인·백테스트"
+      ],
+      "purpose": "충당률 입력값 재계산과 입력 가정의 적합성 판단 구분"
+    }
+  ],
+  "link_keys": {
+    "business": [
+      "company_id",
+      "transaction_id",
+      "document_id"
+    ],
+    "line": [
+      "order_id",
+      "order_line_id",
+      "invoice_id",
+      "invoice_line_id",
+      "customer_id",
+      "item_id"
+    ],
+    "cross_worker": [
+      "bank_transaction_id",
+      "receivable_id",
+      "delivery_id",
+      "return_receipt_id"
+    ],
+    "new_id_prefix": "REV-",
+    "join_warning": "독립 사례 ID는 기존 O1/SI01/AR01 등에 자동 연결하거나 원장에 합산하지 않음"
+  },
+  "automatic_checks": [
+    {
+      "check_id": "DOC_LINKS",
+      "scope": "회사·거래·고객·송장 식별자가 연결됨"
+    },
+    {
+      "check_id": "INVOICE_CALC",
+      "scope": "20개×5000원 + VAT 10000원"
+    },
+    {
+      "check_id": "CUTOFF_REVENUE",
+      "scope": "계약상 검수 조건을 사전에 판단했다는 합성 가정"
+    },
+    {
+      "check_id": "RETURN_POSTING",
+      "scope": "검색 범위를 선언한 반품 검색 0건"
+    },
+    {
+      "check_id": "AR_TIE",
+      "scope": "기장된 채권 변동과 보조원장 수치 대사"
+    },
+    {
+      "check_id": "RECEIPT_ALLOCATION",
+      "scope": "후속입금 60000원만 해당 송장에 배부됨; 조회 회신 대체 아님"
+    },
+    {
+      "check_id": "CONFIRMATION_PROTOCOL",
+      "scope": "직접 회신을 가정한 통제 필드 일치만 검사; 실제 인증 아님"
+    },
+    {
+      "check_id": "AGING",
+      "scope": "2026-12-30 만기, 12-31 기준 1일 연체"
+    },
+    {
+      "check_id": "ECL",
+      "scope": "110000×(1%×70%+2%×30%)=1430원; 주어진 가정의 재계산"
+    },
+    {
+      "check_id": "ECL_ROLLFORWARD",
+      "scope": "기초1000 + 비용430 + 기타0 = 기말1430"
+    }
+  ],
+  "auditor_judgment": [
+    "계약·수행의무·통제이전 및 변동대가 판단",
+    "표본 선정·위험 대응·모집단 완전성 및 IPE 검증",
+    "조회처 검증·발송 통제·직접 회신 진위와 차이조사·대체절차 충분성",
+    "대손 동질군·손실이력·미래전망·확률·개별평가·할인·담보의 적정성",
+    "후속사건이 기말 상황에 주는 정보 평가",
+    "중요성·왜곡표시 중복 제거·수정분개 승인·최종 감사결론"
+  ],
+  "workpaper_fields": [
+    "회사·기간·계정·주장·위험",
+    "목적·범위·모집단·통제값·표본 근거",
+    "거래ID·증빙ID·원천 파일·시트·범위 또는 JSON 포인터",
+    "원본값·기대값·차이·허용오차",
+    "후속입금과 조회통제의 구분",
+    "수익인식 및 ECL 가정·검토 이력",
+    "예외·후속절차·처리상태",
+    "작성자·작성일·검토자·검토일·미해결사항·결론",
+    "제안분개·승인·전기 상태"
+  ],
+  "implementation_status": {
+    "existing_integrated_v1_3": {
+      "status": "기존 입력 스키마 및 코드 확인; 이번 워커는 EXE 재실행 안 함",
+      "native_files": [
+        "03_매출_합성자료.xlsx",
+        "05_확장검사_합성자료.xlsx",
+        "07_대손충당금_합성자료.xlsx"
+      ],
+      "supported": "주문·납품·청구·매출원장 수치 대사, 채권연령·후속회수, 입력 충당률/시나리오·개별평가와 원장 변동 대사",
+      "limitations": "IFRS15 수익인식 판단, 조회 발송·진위 인증, ECL 가정 적합성은 자동 확정하지 않음",
+      "code_references": [
+        "통합 감사프로그램/v1.3_미기록부채비용이연_2026-10-23/app.py:19",
+        "통합 감사프로그램/v1.3_미기록부채비용이연_2026-10-23/app.py:20",
+        "통합 감사프로그램/v1.3_미기록부채비용이연_2026-10-23/adapters.py:8"
+      ]
+    },
+    "supplementary_xlsx": {
+      "status": "변환 및 신규 검사 연결 필요",
+      "files": [
+        "02_자금_금융_차입.xlsx",
+        "03_매출_매입_재고.xlsx"
+      ]
+    },
+    "new_json_fixtures": {
+      "status": "독립 실행 검증만 수행; 앱 가져오기·TB·리드·조서 자동 연결 미구현",
+      "adapter_implemented": false,
+      "merged_into_ledger": false
+    },
+    "portfolio_v1_1": "별도 배포물이며 이 JSON 신규 입력 미연결"
+  },
+  "standards_references": [
+    {
+      "source": "IFRS Foundation IFRS 15 소개",
+      "url": "https://www.ifrs.org/issued-standards/list-of-standards/ifrs-15-revenue-from-contracts-with-customers/",
+      "scope": "계약·수행의무·대가·통제이전의 설명. 검수일을 모든 계약의 수익인식일로 일반화하지 않음"
+    },
+    {
+      "source": "XRB ISA (NZ) 505",
+      "url": "https://standards.xrb.govt.nz/standards-navigator/isa-nz-505/",
+      "paragraphs": [
+        "6",
+        "7",
+        "10-14",
+        "A12-A18"
+      ],
+      "scope": "감사인 직접 회신·조회 통제·신뢰성·미회신과 대체절차 설계 참고"
+    },
+    {
+      "source": "XRB NZ IFRS 9",
+      "url": "https://standards.xrb.govt.nz/standards-navigator/nz-ifrs-9/",
+      "paragraphs": [
+        "5.5.15",
+        "5.5.17",
+        "B5.5.35"
+      ],
+      "scope": "유의적 금융요소 없는 매출채권의 전체기간 ECL, 확률·미래전망, 충당률표 설계 참고"
+    }
+  ],
+  "standards_limit": "공식 공개 IFRS 및 뉴질랜드 채택본 참고이며 한국 적용 기준 전문·시행일·법인 방법론을 별도로 확인해야 함. 기준 준수 또는 감사완료 인증이 아님",
+  "handoff_to_pm": [
+    "공통 은행 입금 및 재고 출고·반품 ID 매핑 합의",
+    "회사·기간·통화·연결구분을 포함한 전표·TB 연결표 작성",
+    "원천 독립 통제·중복·누락·다대다 배부 검사 설계",
+    "어댑터 및 실패 시 계산·조서 확정 차단 테스트",
+    "통합 오류의 중복 금액 집계를 막고 미검토 조서로만 연결"
+  ],
+  "spec_source": {
+    "path_relative_to_rawdata_root": "2026-10-23/spec.json",
+    "sha256": "47bc21d4e9045f0e22efde1e4fc46a38adb13306119ec8dc07ddfdf6bde76919"
+  },
+  "difference_convention": "actual_value - expected_value; null은 금액 0 아님. boolean 진단의 차이는 0/-1이며 금액과 합산하지 않음."
+}

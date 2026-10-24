@@ -1,0 +1,271 @@
+{
+  "schema_version": "account-evidence-1",
+  "synthetic": true,
+  "ledger_joined": false,
+  "worker": "leases",
+  "context": {
+    "company_code": "SYNTH01",
+    "start_date": "2026-01-01",
+    "end_date": "2026-12-31",
+    "currency": "KRW",
+    "financial_statement_scope": "별도"
+  },
+  "case_index": 0,
+  "case": {
+    "case_id": "LEASE-01-NORMAL",
+    "description": "2년 고정 연말 후급, 2026년 개시. 2027년 지급은 후속기간으로 표시. 정상도 미검토 조서 상태.",
+    "documents": [
+      {
+        "document_id": "LEASE-D001",
+        "document_type": "lease_contract",
+        "transaction_id": "LEASE-T001",
+        "fields": {
+          "company_code": "SYNTH01",
+          "lease_id": "LEASE-L001",
+          "synthetic_notice": "합성 시험 계약 / 법적 효력 없음",
+          "asset_id": "LEASE-ASSET001",
+          "counterparty_id": "LEASE-LESSOR001",
+          "agreement_date": "2025-12-15",
+          "commencement_date": "2026-01-01",
+          "contract_end_date": "2027-12-31",
+          "noncancellable_end_date": "2027-12-31",
+          "lease_years": 2,
+          "annual_payment": 121000,
+          "payment_timing": "ANNUAL_END",
+          "discount_rate_type": "ANNUAL_EFFECTIVE",
+          "annual_effective_discount_rate": "0.10",
+          "applied_discount_rate_basis": "INCREMENTAL_BORROWING_RATE",
+          "implicit_rate_readily_determinable": false,
+          "rate_document_id": "LEASE-D002",
+          "transfer_of_ownership": false,
+          "extension_option": false,
+          "purchase_option": false,
+          "termination_option": false,
+          "variable_payment": false,
+          "modifications": [],
+          "depreciation_method": "STRAIGHT_LINE_OVER_LEASE_TERM",
+          "prepayment": 0,
+          "initial_direct_cost": 0,
+          "incentive_received": 0,
+          "restoration_cost": 0,
+          "residual_value_guarantee": 0
+        }
+      },
+      {
+        "document_id": "LEASE-D002",
+        "document_type": "discount_rate_memo",
+        "transaction_id": "LEASE-T001",
+        "fields": {
+          "company_code": "SYNTH01",
+          "lease_id": "LEASE-L001",
+          "synthetic_notice": "합성 할인율 메모 / 시장금리 추천 아님",
+          "annual_effective_discount_rate": "0.10",
+          "observation_date": "2026-01-01",
+          "rate_basis": "INCREMENTAL_BORROWING_RATE",
+          "currency": "KRW",
+          "term_years": 2,
+          "underlying_asset_value": 210000,
+          "security": "SYNTHETIC_ASSET_SECURITY",
+          "economic_environment": "SYNTHETIC_KRW_ENVIRONMENT",
+          "review_status": "DRAFT_UNREVIEWED"
+        }
+      },
+      {
+        "document_id": "LEASE-D003",
+        "document_type": "payment_schedule",
+        "transaction_id": "LEASE-T001",
+        "fields": {
+          "company_code": "SYNTH01",
+          "lease_id": "LEASE-L001",
+          "synthetic_notice": "합성 계약상 지급예정표 / 실제 송금 증명 아님",
+          "payments": [
+            {
+              "payment_id": "LEASE-P001",
+              "payment_date": "2026-12-31",
+              "amount": 121000,
+              "subsequent_period": false
+            },
+            {
+              "payment_id": "LEASE-P002",
+              "payment_date": "2027-12-31",
+              "amount": 121000,
+              "subsequent_period": true
+            }
+          ]
+        }
+      },
+      {
+        "document_id": "LEASE-D004",
+        "document_type": "bank_payment",
+        "transaction_id": "LEASE-T001",
+        "fields": {
+          "company_code": "SYNTH01",
+          "lease_id": "LEASE-L001",
+          "synthetic_notice": "합성 은행 지급 예시 / 외부 회신 아님",
+          "payment_id": "LEASE-P001",
+          "payment_date": "2026-12-31",
+          "bank_reference": "LEASE-BANK001",
+          "cash_movement": -121000
+        }
+      },
+      {
+        "document_id": "LEASE-D005",
+        "document_type": "lease_subledger",
+        "transaction_id": "LEASE-T001",
+        "fields": {
+          "company_code": "SYNTH01",
+          "lease_id": "LEASE-L001",
+          "as_of_date": "2026-12-31",
+          "liability_opening_amount": 0,
+          "liability_addition_amount": 210000,
+          "interest_amount": 21000,
+          "payment_amount": 121000,
+          "liability_closing_amount": 110000,
+          "rou_opening_amount": 0,
+          "rou_addition_amount": 210000,
+          "depreciation_amount": 105000,
+          "rou_closing_amount": 105000,
+          "review_status": "DRAFT_UNREVIEWED"
+        }
+      },
+      {
+        "document_id": "LEASE-D006",
+        "document_type": "general_ledger_extract",
+        "transaction_id": "LEASE-T001",
+        "fields": {
+          "company_code": "SYNTH01",
+          "lease_id": "LEASE-L001",
+          "as_of_date": "2026-12-31",
+          "sign_convention": "DEBIT_POSITIVE_CREDIT_NEGATIVE",
+          "lease_liability_account_id": "LEASE-ACCT-LL",
+          "rou_cost_account_id": "LEASE-ACCT-ROU",
+          "rou_accumulated_depreciation_account_id": "LEASE-ACCT-AD",
+          "interest_expense_account_id": "LEASE-ACCT-INT",
+          "depreciation_expense_account_id": "LEASE-ACCT-DEP",
+          "cash_account_id": "LEASE-ACCT-CASH",
+          "lease_liability_amount": -110000,
+          "rou_cost_amount": 210000,
+          "rou_accumulated_depreciation_amount": -105000,
+          "interest_expense_amount": 21000,
+          "depreciation_expense_amount": 105000,
+          "cash_movement_amount": -121000,
+          "source_extract_control": "SYNTHETIC_ONLY_NOT_INDEPENDENT_ERP"
+        }
+      }
+    ],
+    "expected": [
+      {
+        "check_id": "LEASE-PV",
+        "status": "PASS",
+        "expected_value": 210000,
+        "actual_value": 210000,
+        "difference": 0,
+        "reason": "개시 부채 현재가치"
+      },
+      {
+        "check_id": "LEASE-LL-CLOSE",
+        "status": "PASS",
+        "expected_value": 110000,
+        "actual_value": 110000,
+        "difference": 0,
+        "reason": "기말 부채 재계산"
+      },
+      {
+        "check_id": "LEASE-LL-ROLL",
+        "status": "PASS",
+        "expected_value": 110000,
+        "actual_value": 110000,
+        "difference": 0,
+        "reason": "부채 롤포워드"
+      },
+      {
+        "check_id": "LEASE-INTEREST",
+        "status": "PASS",
+        "expected_value": 21000,
+        "actual_value": 21000,
+        "difference": 0,
+        "reason": "연 유효이자"
+      },
+      {
+        "check_id": "LEASE-ROU-ADDITION",
+        "status": "PASS",
+        "expected_value": 210000,
+        "actual_value": 210000,
+        "difference": 0,
+        "reason": "사용권자산 최초 인식"
+      },
+      {
+        "check_id": "LEASE-DEPRECIATION",
+        "status": "PASS",
+        "expected_value": 105000,
+        "actual_value": 105000,
+        "difference": 0,
+        "reason": "리스기간 정액 상각"
+      },
+      {
+        "check_id": "LEASE-ROU-CLOSE",
+        "status": "PASS",
+        "expected_value": 105000,
+        "actual_value": 105000,
+        "difference": 0,
+        "reason": "사용권자산 기말 순액"
+      },
+      {
+        "check_id": "LEASE-PAYMENT",
+        "status": "PASS",
+        "expected_value": -121000,
+        "actual_value": -121000,
+        "difference": 0,
+        "reason": "은행 지급 부호 보존"
+      },
+      {
+        "check_id": "LEASE-GL-LL",
+        "status": "PASS",
+        "expected_value": -110000,
+        "actual_value": -110000,
+        "difference": 0,
+        "reason": "부채 원장 대변잔액"
+      },
+      {
+        "check_id": "LEASE-GL-ROU",
+        "status": "PASS",
+        "expected_value": 105000,
+        "actual_value": 105000,
+        "difference": 0,
+        "reason": "사용권자산 원가와 누계"
+      },
+      {
+        "check_id": "LEASE-GL-INTEREST",
+        "status": "PASS",
+        "expected_value": 21000,
+        "actual_value": 21000,
+        "difference": 0,
+        "reason": "이자비용 원장 대사"
+      },
+      {
+        "check_id": "LEASE-GL-CASH",
+        "status": "PASS",
+        "expected_value": -121000,
+        "actual_value": -121000,
+        "difference": 0,
+        "reason": "은행과 원장 현금 변동"
+      },
+      {
+        "check_id": "LEASE-GL-DEPRECIATION",
+        "status": "PASS",
+        "expected_value": 105000,
+        "actual_value": 105000,
+        "difference": 0,
+        "reason": "상각비 원장 대사"
+      },
+      {
+        "check_id": "LEASE-PAYMENT-SUBLEDGER",
+        "status": "PASS",
+        "expected_value": 121000,
+        "actual_value": 121000,
+        "difference": 0,
+        "reason": "보조원장 지급 대사"
+      }
+    ]
+  }
+}

@@ -1,0 +1,549 @@
+{
+  "schema_version": "pm-raw-1",
+  "worker": "equity_disclosure",
+  "synthetic": true,
+  "integrated": false,
+  "context": {
+    "company_code": "SYNTH01",
+    "start_date": "2026-01-01",
+    "end_date": "2026-12-31",
+    "currency": "KRW",
+    "financial_statement_scope": "별도"
+  },
+  "implementation_status": {
+    "fixture_prototype": "3 isolated cases; 11 checks per case; standard-library verifier",
+    "existing_exe_input": "not_connected",
+    "source_workbooks": "indexed; original files unchanged",
+    "legal_effect": "not_assessed",
+    "audit_conclusion": "not_issued"
+  },
+  "accounts": [
+    {
+      "account": "자본금·주식발행초과금·배당/자본변동",
+      "assertions": [
+        "발생",
+        "완전성",
+        "권리와 의무",
+        "정확성",
+        "기간귀속",
+        "분류·표시"
+      ]
+    },
+    {
+      "account": "특수관계자 거래·잔액·약정 공시",
+      "assertions": [
+        "완전성",
+        "발생",
+        "정확성",
+        "분류·표시"
+      ]
+    },
+    {
+      "account": "우발약정·소송·후속사건·계속기업·종결",
+      "assertions": [
+        "완전성",
+        "평가",
+        "표시·공시"
+      ]
+    }
+  ],
+  "source_catalog": "../../../2026-10-23/spec.json",
+  "existing_sources": [
+    {
+      "dataset_id": "D029",
+      "catalog_pointer": "/datasets/28",
+      "file": "../../../2026-10-23/배포/02_절차별원천자료/04_자산_비용_손상.xlsx",
+      "sheet": "거래없음_범위",
+      "excel_header_row": 1,
+      "excel_data_rows": "2:5",
+      "data_rows": 4,
+      "joining_key": "범위ID",
+      "status": "existing_synthetic_reference_requires_adapter",
+      "xlsx_sha256": "74a1214a5d25a1dc3138ae02dbf4675572317059b49542437c46635e6a89e469",
+      "note": "기존 합성 참고자료. 이번 독립 사례와 합산하지 않음"
+    },
+    {
+      "dataset_id": "D036",
+      "catalog_pointer": "/datasets/35",
+      "file": "../../../2026-10-23/배포/02_절차별원천자료/06_세무_자본_연결.xlsx",
+      "sheet": "특수관계_잔액",
+      "excel_header_row": 1,
+      "excel_data_rows": "2:2",
+      "data_rows": 1,
+      "joining_key": "거래ID",
+      "status": "existing_synthetic_reference_requires_adapter",
+      "xlsx_sha256": "edc8e819ede72e7a47fb1ec4ec05c58a3a470240f2068a5c6ae5f6029951e227",
+      "note": "단기·무이자 가정의 관계회사대여금. native 매출채권 ECL 범위에는 미포함."
+    },
+    {
+      "dataset_id": "D041",
+      "catalog_pointer": "/datasets/40",
+      "file": "../../../2026-10-23/배포/02_절차별원천자료/06_세무_자본_연결.xlsx",
+      "sheet": "주주_변동",
+      "excel_header_row": 1,
+      "excel_data_rows": "2:3",
+      "data_rows": 2,
+      "joining_key": "주주ID",
+      "status": "existing_synthetic_reference_requires_adapter",
+      "xlsx_sha256": "edc8e819ede72e7a47fb1ec4ec05c58a3a470240f2068a5c6ae5f6029951e227",
+      "note": "기존 합성 참고자료. 이번 독립 사례와 합산하지 않음"
+    },
+    {
+      "dataset_id": "D045",
+      "catalog_pointer": "/datasets/44",
+      "file": "../../../2026-10-23/배포/02_절차별원천자료/07_결산_공시_종결.xlsx",
+      "sheet": "충당_소송",
+      "excel_header_row": 1,
+      "excel_data_rows": "2:3",
+      "data_rows": 2,
+      "joining_key": "사건ID",
+      "status": "existing_synthetic_reference_requires_adapter",
+      "xlsx_sha256": "f95b6577a797c4b5b56effa4e576d236c2d6c9f2adac4595b61a1bafba2c5d82",
+      "note": "기존 합성 참고자료. 이번 독립 사례와 합산하지 않음"
+    },
+    {
+      "dataset_id": "D048",
+      "catalog_pointer": "/datasets/47",
+      "file": "../../../2026-10-23/배포/02_절차별원천자료/07_결산_공시_종결.xlsx",
+      "sheet": "후속사건_대장",
+      "excel_header_row": 1,
+      "excel_data_rows": "2:4",
+      "data_rows": 3,
+      "joining_key": "사건ID",
+      "status": "existing_synthetic_reference_requires_adapter",
+      "xlsx_sha256": "f95b6577a797c4b5b56effa4e576d236c2d6c9f2adac4595b61a1bafba2c5d82",
+      "note": "기존 합성 참고자료. 이번 독립 사례와 합산하지 않음"
+    },
+    {
+      "dataset_id": "D049",
+      "catalog_pointer": "/datasets/48",
+      "file": "../../../2026-10-23/배포/02_절차별원천자료/07_결산_공시_종결.xlsx",
+      "sheet": "계속기업_월별예측",
+      "excel_header_row": 1,
+      "excel_data_rows": "2:13",
+      "data_rows": 12,
+      "joining_key": "예측ID",
+      "status": "existing_synthetic_reference_requires_adapter",
+      "xlsx_sha256": "f95b6577a797c4b5b56effa4e576d236c2d6c9f2adac4595b61a1bafba2c5d82",
+      "note": "현금부족이 발생하도록 구성. 정상은 자료 관계의 정합성을 뜻하며 계속기업 결론이 양호하다는 뜻이 아님."
+    },
+    {
+      "dataset_id": "D051",
+      "catalog_pointer": "/datasets/50",
+      "file": "../../../2026-10-23/배포/02_절차별원천자료/07_결산_공시_종결.xlsx",
+      "sheet": "조서_작성검토대장",
+      "excel_header_row": 1,
+      "excel_data_rows": "2:49",
+      "data_rows": 48,
+      "joining_key": "조서ID",
+      "status": "existing_synthetic_reference_requires_adapter",
+      "xlsx_sha256": "f95b6577a797c4b5b56effa4e576d236c2d6c9f2adac4595b61a1bafba2c5d82",
+      "note": "기존 합성 참고자료. 이번 독립 사례와 합산하지 않음"
+    },
+    {
+      "dataset_id": "D052",
+      "catalog_pointer": "/datasets/51",
+      "file": "../../../2026-10-23/배포/02_절차별원천자료/07_결산_공시_종결.xlsx",
+      "sheet": "종결_요청체크",
+      "excel_header_row": 1,
+      "excel_data_rows": "2:5",
+      "data_rows": 4,
+      "joining_key": "요청ID",
+      "status": "existing_synthetic_reference_requires_adapter",
+      "xlsx_sha256": "f95b6577a797c4b5b56effa4e576d236c2d6c9f2adac4595b61a1bafba2c5d82",
+      "note": "기존 합성 참고자료. 이번 독립 사례와 합산하지 않음"
+    },
+    {
+      "dataset_id": "D053",
+      "catalog_pointer": "/datasets/52",
+      "file": "../../../2026-10-23/배포/02_절차별원천자료/01_공통_계획_통제.xlsx",
+      "sheet": "증거_색인",
+      "excel_header_row": 1,
+      "excel_data_rows": "2:22",
+      "data_rows": 21,
+      "joining_key": "증거ID",
+      "status": "existing_synthetic_reference_requires_adapter",
+      "xlsx_sha256": "7b5438ff6325de47f1f584c43ac3a48737dfd80a8144782fa165eb68c3e60366",
+      "note": "기존 합성 참고자료. 이번 독립 사례와 합산하지 않음"
+    }
+  ],
+  "evidence_examples": {
+    "file": "../../../2026-10-23/배포/04_증빙예시/합성_원천증빙묶음.pdf",
+    "pages": {
+      "16": "EV16 종속기업 투자·내부대여",
+      "17": "EV17 주주명부·증자",
+      "19": "EV19 제품보증·소송 가정",
+      "20": "EV20 현금예측·자금조달 미확약",
+      "21": "EV21 진술·보고·커뮤니케이션 초안"
+    },
+    "status": "existing_synthetic_examples_not_external_confirmations"
+  },
+  "additional_requests": [
+    {
+      "area": "주주·자본변동",
+      "documents": [
+        "기초·기말 주주명부 및 기간 중 변경 이력",
+        "주식 종류별 발행조건·정관·자본금/잉여금 원장",
+        "신주인수계약·청약서·납입증명·은행거래 원본",
+        "증자·감자 등기사항 및 변경일"
+      ],
+      "join": [
+        "company_code",
+        "transaction_id",
+        "shareholder_id",
+        "resolution_id",
+        "document_id"
+      ],
+      "automatic_candidates": [
+        "기초+변동=기말 주식수·자본금",
+        "발행가·액면가·입금의 대사",
+        "승인·입금·등기·회계처리 기간 불일치 검색"
+      ],
+      "human": [
+        "주식/금융부채 분류",
+        "법적 효력·의결 권한",
+        "주식발행비용·자본거래 회계처리"
+      ]
+    },
+    {
+      "area": "이사회·주총·배당",
+      "documents": [
+        "연중 및 재무제표 승인일까지 이사회/주총 의사록과 전체 회의목록",
+        "배당 승인·기준일·지급 명세와 은행 출금",
+        "소각·감자·자기주식 관련 승인 및 계약"
+      ],
+      "join": [
+        "company_code",
+        "resolution_id",
+        "transaction_id",
+        "document_id"
+      ],
+      "automatic_candidates": [
+        "회의목록 대비 의사록 누락",
+        "승인액·주식수·지급액 대사",
+        "보고기간 후 승인/배당 항목 추출"
+      ],
+      "human": [
+        "기관별 권한·정족수·적법성",
+        "자본거래 인식시점 및 후속사건 판단",
+        "배당 법률 의견은 제공하지 않음"
+      ]
+    },
+    {
+      "area": "특수관계자",
+      "documents": [
+        "지배구조·주주·임원/주요 경영진 변동·가까운 가족 관련 경영진 확인 목록",
+        "관계자별 계약·거래액·기말잔액·약정·보증·충당금",
+        "상대방 잔액대사·금융/법률 조회·원가 없는 자원 이전 및 주요 경영진 보상자료"
+      ],
+      "join": [
+        "company_code",
+        "party_id",
+        "transaction_id",
+        "document_id"
+      ],
+      "automatic_candidates": [
+        "제공 목록/원장/계약/주석 사이 식별자 대사",
+        "관계자별 거래·잔액 롤포워드",
+        "의사록·조회서 신규 관계자 후보를 검토대장에 표시"
+      ],
+      "human": [
+        "미공개 관계자의 전체 완전성",
+        "관계의 성격·정상 거래조건 주장 평가",
+        "관련 거래·보증·약정 및 보상 공시 적정성"
+      ]
+    },
+    {
+      "area": "약정·소송",
+      "documents": [
+        "금융·구매·판매·보증·담보·투자 약정 전체 대장 및 변경계약",
+        "소송/분쟁 목록·외부 법률대리인 문의 및 직접 회신·법무비용 원장",
+        "기간 후 판결·합의·지급내역"
+      ],
+      "join": [
+        "company_code",
+        "case_id",
+        "contract_id",
+        "document_id"
+      ],
+      "automatic_candidates": [
+        "대장/계약/주석/법무비용 후보 목록 비교",
+        "금액·기간·누락 회신 표시"
+      ],
+      "human": [
+        "유출 가능성·최선 추정치·우발부채 공시",
+        "법률전문가 증거·회신 신뢰성",
+        "합성 가정이 소송 결론을 의미하지 않음"
+      ]
+    },
+    {
+      "area": "후속사건",
+      "documents": [
+        "보고기간 종료일부터 실제 감사보고서일까지 후속사건 대장·중간결산·은행거래·청구/회수·반품",
+        "같은 기간 이사회·주총 의사록과 재무제표 발행 승인일 자료"
+      ],
+      "join": [
+        "company_code",
+        "event_id",
+        "transaction_id",
+        "document_id"
+      ],
+      "automatic_candidates": [
+        "후속 기간·검색 종료일 및 누락 자료 표시",
+        "기말 조건과 연관된 사건 후보 연결"
+      ],
+      "human": [
+        "조정/비조정 사건 및 중요성",
+        "재무제표 승인일과 감사보고서일까지 절차 범위 결정",
+        "사건 검색 종료일을 프로그램이 임의 확정하지 않음"
+      ]
+    },
+    {
+      "area": "계속기업·경영자확인·종결",
+      "documents": [
+        "경영진 계속기업 평가·월별 현금예측·가정·민감도·만기/약정 준수 명세",
+        "실제 확약 자금조달 계약·지원능력·후속 실적",
+        "경영자확인서 초안/실제 서명본·작성일·확인 주체·미해결 감사차이·지배기구 보고"
+      ],
+      "join": [
+        "company_code",
+        "forecast_id",
+        "contract_id",
+        "representation_id",
+        "document_id"
+      ],
+      "automatic_candidates": [
+        "예측 산식·월 연결·부족월·미확약 조달 구분",
+        "요청/수령/서명/검토 상태 추적"
+      ],
+      "human": [
+        "평가기간과 경영진 계획 실행가능성",
+        "중요한 불확실성·재무제표 작성기준·공시·감사보고 영향",
+        "확인서는 다른 충분하고 적합한 증거를 대체하지 않음"
+      ]
+    }
+  ],
+  "linking": {
+    "primary_key": [
+      "company_code",
+      "transaction_id",
+      "document_id"
+    ],
+    "secondary_keys": [
+      "shareholder_id",
+      "party_id",
+      "resolution_id",
+      "contract_id",
+      "case_id",
+      "event_id"
+    ],
+    "current_fixture_ids": [
+      "EQUITY-TXN-ISSUE01",
+      "EQUITY-TXN-RP01"
+    ],
+    "rule": "All cases are isolated counterfactual versions. No addition into legacy GL/TB. PM must approve allocation and adapter before integration.",
+    "next_workers": {
+      "cash_finance": "증자입금·배당지급 원본과 배분 연결",
+      "debt_tax": "차입약정·담보·계속기업 확약조달 공유",
+      "financial_reporting": "자본변동/관계자/후속사건 주석과 TB 매핑 연결",
+      "payroll": "주요 경영진 보상 분류·총액 연결"
+    }
+  },
+  "automatic_checks": [
+    {
+      "check_id": "EQUITY-MINUTES_PRESENT",
+      "status": "prototype_only",
+      "fixture_file": "fixtures.json",
+      "result_fields": [
+        "expected_value",
+        "actual_value",
+        "difference",
+        "source_locations",
+        "follow_up"
+      ]
+    },
+    {
+      "check_id": "EQUITY-RELATED_LIST_PRESENT",
+      "status": "prototype_only",
+      "fixture_file": "fixtures.json",
+      "result_fields": [
+        "expected_value",
+        "actual_value",
+        "difference",
+        "source_locations",
+        "follow_up"
+      ]
+    },
+    {
+      "check_id": "EQUITY-SHARE_COUNT",
+      "status": "prototype_only",
+      "fixture_file": "fixtures.json",
+      "result_fields": [
+        "expected_value",
+        "actual_value",
+        "difference",
+        "source_locations",
+        "follow_up"
+      ]
+    },
+    {
+      "check_id": "EQUITY-CAPITAL",
+      "status": "prototype_only",
+      "fixture_file": "fixtures.json",
+      "result_fields": [
+        "expected_value",
+        "actual_value",
+        "difference",
+        "source_locations",
+        "follow_up"
+      ]
+    },
+    {
+      "check_id": "EQUITY-PREMIUM",
+      "status": "prototype_only",
+      "fixture_file": "fixtures.json",
+      "result_fields": [
+        "expected_value",
+        "actual_value",
+        "difference",
+        "source_locations",
+        "follow_up"
+      ]
+    },
+    {
+      "check_id": "EQUITY-ISSUE_TERMS",
+      "status": "prototype_only",
+      "fixture_file": "fixtures.json",
+      "result_fields": [
+        "expected_value",
+        "actual_value",
+        "difference",
+        "source_locations",
+        "follow_up"
+      ]
+    },
+    {
+      "check_id": "EQUITY-ISSUE_CASH",
+      "status": "prototype_only",
+      "fixture_file": "fixtures.json",
+      "result_fields": [
+        "expected_value",
+        "actual_value",
+        "difference",
+        "source_locations",
+        "follow_up"
+      ]
+    },
+    {
+      "check_id": "EQUITY-REGISTRATION",
+      "status": "prototype_only",
+      "fixture_file": "fixtures.json",
+      "result_fields": [
+        "expected_value",
+        "actual_value",
+        "difference",
+        "source_locations",
+        "follow_up"
+      ]
+    },
+    {
+      "check_id": "EQUITY-RELATED_PARTY",
+      "status": "prototype_only",
+      "fixture_file": "fixtures.json",
+      "result_fields": [
+        "expected_value",
+        "actual_value",
+        "difference",
+        "source_locations",
+        "follow_up"
+      ]
+    },
+    {
+      "check_id": "EQUITY-RELATED_BALANCE",
+      "status": "prototype_only",
+      "fixture_file": "fixtures.json",
+      "result_fields": [
+        "expected_value",
+        "actual_value",
+        "difference",
+        "source_locations",
+        "follow_up"
+      ]
+    },
+    {
+      "check_id": "EQUITY-RELATED_NOTE",
+      "status": "prototype_only",
+      "fixture_file": "fixtures.json",
+      "result_fields": [
+        "expected_value",
+        "actual_value",
+        "difference",
+        "source_locations",
+        "follow_up"
+      ]
+    }
+  ],
+  "auditor_judgment": [
+    "실제 승인·납입·등기의 존재·진위·법적 효력",
+    "명세에 없는 주주·관계자·거래의 완전성",
+    "비정상 관계자 거래와 부정위험",
+    "공시 항목의 적절한 세분화와 중요성",
+    "소송·후속사건·계속기업 결론 및 감사보고 영향"
+  ],
+  "workpaper": {
+    "status": "미검토 초안",
+    "fields": [
+      "조서ID",
+      "계정/주장/위험",
+      "기간·회사·범위",
+      "모집단·자료요청/추출통제",
+      "증빙ID·원천위치·해시",
+      "검사ID·수행내용",
+      "원본값·기대값·차이",
+      "누락자료·후속절차·담당",
+      "경영진 설명과 반대증거",
+      "회계기준/감사기준 참조",
+      "작성자·작성일",
+      "검토자·검토일",
+      "미해결사항·최종결론·승인상태"
+    ],
+    "preparer": null,
+    "reviewer": null,
+    "conclusion": null,
+    "adjustment_approved": false,
+    "posted": false
+  },
+  "sources": [
+    {
+      "title": "IFRS Foundation — IAS 24 Related Party Disclosures",
+      "url": "https://www.ifrs.org/issued-standards/list-of-standards/ias-24-related-party-disclosures/",
+      "retrieved": "2026-10-23",
+      "use": "관계·거래·잔액/약정 공시 및 주요 경영진 보상 요청자료의 범위. 공시 전체성 인증 없음."
+    },
+    {
+      "title": "IFRS Foundation — IAS 10 Events after the Reporting Period",
+      "url": "https://www.ifrs.org/issued-standards/list-of-standards/ias-10-events-after-the-reporting-period/",
+      "retrieved": "2026-10-23",
+      "use": "보고기간말과 발행승인일 사이 사건, 조정/비조정 분류의 판단 구분. 자동분류 미구현."
+    },
+    {
+      "title": "XRB ISA (NZ) 550, paragraphs 13–15, 23–24, 28",
+      "url": "https://standards.xrb.govt.nz/standards-navigator/isa-nz-550/",
+      "retrieved": "2026-10-23",
+      "use": "관계자 문의·의사록/조회 등 검색·비정상 거래·문서화의 공개 참고. NZ 공표본이며 한국 감사기준 준수 인증 아님."
+    },
+    {
+      "title": "XRB ISA (NZ) 580, paragraph 4",
+      "url": "https://standards.xrb.govt.nz/standards-navigator/isa-nz-580/",
+      "retrieved": "2026-10-23",
+      "use": "경영자 서면진술만으로 충분하고 적합한 증거가 되지 않는다는 한계. NZ 공표본이며 한국 감사기준 준수 인증 아님."
+    }
+  ],
+  "limits": [
+    "독립 초기 합성 JSON 3개만 구현. 계정 전체 절차 구현 아님.",
+    "기존 EXE·OCR·외부 조회·법적 등기 조회·자동 분개 미연결.",
+    "실제 인물/주민번호/계좌/기관 로고·인감·서명 없음.",
+    "소송·계속기업·배당 법률·세무 결론을 산출하지 않음.",
+    "합성 통제 일치가 실제 감사증거의 충분성·적합성 또는 관계자 전체 완전성을 의미하지 않음."
+  ]
+}

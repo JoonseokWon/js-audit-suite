@@ -1,0 +1,67 @@
+{
+  "source_workbooks": 4,
+  "source_sheets": 19,
+  "data_rows": 464,
+  "reconstructed_analysis_workbooks": 3,
+  "missing_rows": 0,
+  "changed_cells": 0,
+  "original_analysis_inputs_unchanged": true,
+  "checks": [
+    {
+      "file": "01_GL_TB_합성원천.xlsx",
+      "sheets": 7,
+      "data_rows": 296,
+      "exact_values_types_row_order": true,
+      "missing_rows": 0,
+      "changed_cells": 0
+    },
+    {
+      "file": "02_ERP전표로그_합성.xlsx",
+      "sheets": 2,
+      "data_rows": 94,
+      "exact_values_types_row_order": true,
+      "missing_rows": 0,
+      "changed_cells": 0
+    },
+    {
+      "file": "03_은행현금_합성원천.xlsx",
+      "sheets": 9,
+      "data_rows": 66,
+      "exact_values_types_row_order": true,
+      "missing_rows": 0,
+      "changed_cells": 0
+    },
+    {
+      "file": "04_GLA_정책.xlsx",
+      "sheets": 1,
+      "data_rows": 8,
+      "exact_values_types_row_order": true,
+      "missing_rows": 0,
+      "changed_cells": 0
+    },
+    {
+      "module": "GLA",
+      "reconstructed_sheets": 8,
+      "all_values_types_row_order_exact": true,
+      "missing_rows": 0,
+      "changed_cells": 0,
+      "analysis_input_sha256": "e48f246bc74e938a5252f991a2f3b81bd846e492439271591b403da34474e420"
+    },
+    {
+      "module": "FIA",
+      "reconstructed_sheets": 9,
+      "all_values_types_row_order_exact": true,
+      "missing_rows": 0,
+      "changed_cells": 0,
+      "analysis_input_sha256": "28bcb1b432d5e3a844d8e64cd4d6ee2423842b36f2020001a23533943f97861a"
+    },
+    {
+      "module": "현금분석",
+      "reconstructed_sheets": 16,
+      "all_values_types_row_order_exact": true,
+      "missing_rows": 0,
+      "changed_cells": 0,
+      "analysis_input_sha256": "a2f887de18f9d56ff1ba35d308975d99cdd7b3bfa1444568490099884be20be2"
+    }
+  ]
+}

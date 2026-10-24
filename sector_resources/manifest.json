@@ -1,0 +1,1961 @@
+{
+  "schema_version": "sector-resources-1",
+  "engine_contract": "1.7",
+  "synthetic": true,
+  "uses_ai_inference": false,
+  "scope": "one industry-free parent ledger and four separate subsidiary engagements; no consolidation or completed human judgment",
+  "source_bundle": "v1.6 subsidiary inputs preserved; JS parent newly generated arbitrary scenario",
+  "procedure_catalog": "procedure_catalog.json",
+  "procedure_policy": "stable IDs only; runtime exception IDs are generated from the current run",
+  "companies": [
+    {
+      "code": "JS",
+      "name": "JS",
+      "sector": "업종 없음 · 모회사",
+      "business_description": "JS 모회사의 현금·투자주식·자본만 있는 별도 합성 원장. 제조·유통 업종을 부여하지 않음.",
+      "context": {
+        "회사코드": "JS",
+        "회사명": "JS",
+        "시작일": "2026-01-01",
+        "기준일": "2026-12-31",
+        "회계체계": "K-IFRS / 합성",
+        "감사기준": "합성 절차 검증",
+        "작성자": "합성작성자",
+        "더미업무": true,
+        "통화": "KRW",
+        "연결구분": "별도"
+      },
+      "inputs": [
+        {
+          "module": "원장·리드",
+          "path": "companies/JS/inputs/모회사_JS_원장_리드.xlsx",
+          "sha256": "9a1dd4d3b0c2559d27de64d3a122f6573bd52c49af0e1f6c184d570efcaf4e87",
+          "bytes": 11135
+        }
+      ],
+      "metadata": {
+        "master": {
+          "path": "companies/JS/master.json",
+          "sha256": "97d67cf1245a8e2d4f347905e95c3e73795e2c5eedc1893707aab698a6d5e94e",
+          "bytes": 1459
+        },
+        "profile": {
+          "path": "companies/JS/profile.json",
+          "sha256": "d79cc066492358a77c4a7881eb84fe1839e0e3ca384ce97f83408f134b5315ee",
+          "bytes": 855
+        },
+        "plan": {
+          "path": "companies/JS/plan.json",
+          "sha256": "9ff0a2ab5ef9f1570313ba03641baf920fed4c325945964d868a34c341a87c11",
+          "bytes": 726
+        }
+      },
+      "industry_topics": [],
+      "industry_topic_count": 0,
+      "procedure_ids": [
+        "C02",
+        "C04",
+        "C05",
+        "P01",
+        "P07"
+      ],
+      "source_baseline": null,
+      "kind": "parent",
+      "unperformed_scope": [
+        "실제 독립 감사증거가 아닌 가상 선택 시나리오",
+        "가상 자본납입 10000000원, 가상 투자 2000000원씩 4건, 가상 기말현금 2000000원",
+        "실제 지분율·지배력·투자취득 근거·투자주식 평가·금융기관 조회·연결계산은 미검사",
+        "JS 모회사의 업종·매출·재고·제조·유형자산 자료는 생성하지 않음. 미제공을 0으로 대체하지 않음"
+      ],
+      "scenario_is_arbitrary": true,
+      "ownership_percentage": null,
+      "ledger_links_expected": 0
+    },
+    {
+      "code": "JS_ELEC",
+      "name": "JS전자",
+      "sector": "전자부품·소재",
+      "business_description": "전자부품·소재의 상품 유통 및 제한적 조립·검사 합성 사업. 자체생산 완제품의 제조원가·BOM·수율은 이 모본에 없음.",
+      "context": {
+        "회사코드": "JS_ELEC",
+        "회사명": "JS전자",
+        "시작일": "2026-01-01",
+        "기준일": "2026-12-31",
+        "회계체계": "K-IFRS / 합성",
+        "감사기준": "합성 절차 검증",
+        "작성자": "합성작성자",
+        "더미업무": true,
+        "통화": "KRW",
+        "연결구분": "별도"
+      },
+      "inputs": [
+        {
+          "module": "원장·리드",
+          "path": "companies/JS_ELEC/inputs/통합_v1.3_원장_리드.xlsx",
+          "sha256": "15257e3f3e26d3fb6570c8c037a4714468c18e8e971dea5136828b0a4e7e9ec5",
+          "bytes": 21881
+        },
+        {
+          "module": "금융상품",
+          "path": "companies/JS_ELEC/inputs/통합_v1.3_금융상품.xlsx",
+          "sha256": "f9e89afbc3c8dd33d5500aa6108a9871f8ae8099d3572e9575420eba200ec8cc",
+          "bytes": 9494
+        },
+        {
+          "module": "매출",
+          "path": "companies/JS_ELEC/inputs/통합_v1.3_매출.xlsx",
+          "sha256": "a62a84720ee3c3c01a2d0d4c308335b9f98176089521f9edf80f839eb747e0c9",
+          "bytes": 8741
+        },
+        {
+          "module": "감가상각",
+          "path": "companies/JS_ELEC/inputs/통합_v1.3_감가상각.xlsx",
+          "sha256": "357f0467fe48498ccf597469406d6f7dc50e26bff32773c4d6924791fb8efa8a",
+          "bytes": 9130
+        },
+        {
+          "module": "확장검사",
+          "path": "companies/JS_ELEC/inputs/통합_v1.3_확장검사.xlsx",
+          "sha256": "8f83682c7c8d0c6dc4af766e1973566193b6390cea1e3b2a92ce0d17ce59ce06",
+          "bytes": 13293
+        },
+        {
+          "module": "리스",
+          "path": "companies/JS_ELEC/inputs/통합_v1.3_리스.xlsx",
+          "sha256": "934e7b1d5ab24fc3deaea7adc02dd420c740f988110d4b4d25f76dd34730ca21",
+          "bytes": 8340
+        },
+        {
+          "module": "대손충당금",
+          "path": "companies/JS_ELEC/inputs/통합_v1.3_대손충당금.xlsx",
+          "sha256": "8318e75c5c36e90972121836928c7690bcfc09b75218d332fd5b703dc135fefb",
+          "bytes": 11278
+        },
+        {
+          "module": "재고평가",
+          "path": "companies/JS_ELEC/inputs/통합_v1.3_재고평가.xlsx",
+          "sha256": "3ac5f53a52d786391f71a5db721fb10adf65d88d5b1139717c5f8e0094d9864d",
+          "bytes": 10497
+        },
+        {
+          "module": "종업원급여",
+          "path": "companies/JS_ELEC/inputs/통합_v1.3_종업원급여.xlsx",
+          "sha256": "e576e8337ec38ca83377bd3c44ddb3e4f1fbf40bc59801bae9e845893af9ad09",
+          "bytes": 13988
+        },
+        {
+          "module": "미기록부채·비용이연",
+          "path": "companies/JS_ELEC/inputs/비용이연_01_정상.xlsx",
+          "sha256": "db21449904f88aae1aa4a102a9e19c9cfd25feb484e0b98da1d2d1f38350a401",
+          "bytes": 10908
+        },
+        {
+          "module": "원천증빙",
+          "path": "companies/JS_ELEC/inputs/통합_v1.4_원천증빙.auditpack",
+          "sha256": "2729c0848de1f529af1f4dc49000b3b4b2f5fd40cd062dde1b15c9ca41223893",
+          "bytes": 274342
+        },
+        {
+          "module": "재무제표·주석",
+          "path": "companies/JS_ELEC/inputs/통합_v1.4_재무제표.json",
+          "sha256": "e90c342eb4c527e2a3eab4235b015c129e569d07e6cc520f406ed2f51ba8ed4d",
+          "bytes": 42430
+        },
+        {
+          "module": "GLA",
+          "path": "companies/JS_ELEC/inputs/통합_v1.5_GLA.xlsx",
+          "sha256": "9d64150d1712b9a771fb0c0aee0ee8c4ff013feef20ef3ef289e8a16759902bb",
+          "bytes": 23353
+        },
+        {
+          "module": "FIA",
+          "path": "companies/JS_ELEC/inputs/통합_v1.5_FIA.xlsx",
+          "sha256": "326411c4aae50010af598ab5c70caf425e8a6c34a634b0f000ab6b23f54a24b0",
+          "bytes": 28335
+        },
+        {
+          "module": "현금분석",
+          "path": "companies/JS_ELEC/inputs/통합_v1.5_현금분석.xlsx",
+          "sha256": "228e640041b9419762acfda625562a818f67b544ca65d496c8cd2e2912cf17b3",
+          "bytes": 33203
+        }
+      ],
+      "metadata": {
+        "master": {
+          "path": "companies/JS_ELEC/master.json",
+          "sha256": "f24c7b316a893d27e8717ce363c3a492674bf13c36ab0ad4350f77ff5a44c797",
+          "bytes": 1457
+        },
+        "profile": {
+          "path": "companies/JS_ELEC/profile.json",
+          "sha256": "26b6c657ba2c157466f57833490873058d81591bb054cbc066d8d0c33510aaad",
+          "bytes": 45944
+        },
+        "plan": {
+          "path": "companies/JS_ELEC/plan.json",
+          "sha256": "faf2c6dd128a2121c70a341d627bf89f3575457b9b482b57cd97e29d3bbcc754",
+          "bytes": 26434
+        }
+      },
+      "industry_topics": [
+        {
+          "id": "ELEC-01",
+          "title": "상품 진부화·사용기한과 NRV",
+          "workpaper_id": "A11",
+          "additional_workpaper_ids": [],
+          "activity_condition": "전원제어모듈·소분소재 등 보유 상품에 가격 하락·장기체화·반품·사용기한 위험이 있는 경우"
+        },
+        {
+          "id": "ELEC-02",
+          "title": "출고·반품·판매차감의 매출 귀속",
+          "workpaper_id": "A04",
+          "additional_workpaper_ids": [],
+          "activity_condition": "상품 매출에서 검수조건·반품권·판매장려금·위탁재고 등의 계약조건이 존재하는 경우"
+        },
+        {
+          "id": "ELEC-03",
+          "title": "판매보증·품질보상 충당 검토",
+          "workpaper_id": "A19",
+          "additional_workpaper_ids": [],
+          "activity_condition": "JS전자 자신의 판매계약상 보증·교환·수리·품질보상 의무가 존재하는 경우"
+        },
+        {
+          "id": "ELEC-04",
+          "title": "조립검사장비 취득·상각과 지출 구분",
+          "workpaper_id": "A12",
+          "additional_workpaper_ids": [],
+          "activity_condition": "가상 SMT 조립·검사 장비 등 유한 내용연수 유형자산을 취득·사용하는 경우"
+        },
+        {
+          "id": "ELEC-05",
+          "title": "펌웨어·전자설계 연구개발비",
+          "workpaper_id": "A13",
+          "additional_workpaper_ids": [],
+          "activity_condition": "JS전자에 실제 자체 연구·개발 프로젝트가 존재하는 경우만 적용"
+        }
+      ],
+      "industry_topic_count": 5,
+      "procedure_ids": [
+        "A01",
+        "A02",
+        "A04",
+        "A06",
+        "A07",
+        "A08",
+        "A09",
+        "A10",
+        "A11",
+        "A12",
+        "A13",
+        "A15",
+        "A16",
+        "A19",
+        "C02",
+        "C04",
+        "C05",
+        "F01",
+        "G01",
+        "H01",
+        "I01",
+        "P01",
+        "P07",
+        "R01"
+      ],
+      "source_baseline": {
+        "kind": "prior-observation-only; never calculation input",
+        "modules": 15,
+        "current_ledger_links": 35,
+        "review_candidates": 24,
+        "procedures": 48,
+        "industry_topics": 5,
+        "source_file": "회사별/JS_ELEC/검증결과.json",
+        "source_sha256": "e37da0974bd95f4fad2548f3ab518a4f47468f2d09132aad6c7cac7205bcbeb5",
+        "not_external_independent_evidence": true
+      },
+      "kind": "subsidiary",
+      "ledger_links_expected": 35
+    },
+    {
+      "code": "JS_AUTO",
+      "name": "JS자동차",
+      "sector": "자동차부품·가공소재",
+      "business_description": "자동차부품·가공소재의 상품 유통 및 제한적 가공·검사 합성 사업. 완성차 제조·딜러망·차종별 실제 보증모형은 이 모본에 없음.",
+      "context": {
+        "회사코드": "JS_AUTO",
+        "회사명": "JS자동차",
+        "시작일": "2026-01-01",
+        "기준일": "2026-12-31",
+        "회계체계": "K-IFRS / 합성",
+        "감사기준": "합성 절차 검증",
+        "작성자": "합성작성자",
+        "더미업무": true,
+        "통화": "KRW",
+        "연결구분": "별도"
+      },
+      "inputs": [
+        {
+          "module": "원장·리드",
+          "path": "companies/JS_AUTO/inputs/통합_v1.3_원장_리드.xlsx",
+          "sha256": "39d42df34be1586e9d4ce4be56dd91700df5b3137ea1223db6ee947f526da03a",
+          "bytes": 21886
+        },
+        {
+          "module": "금융상품",
+          "path": "companies/JS_AUTO/inputs/통합_v1.3_금융상품.xlsx",
+          "sha256": "c0b1442421357899f123092b9e8798b033bca3756fb5f4f8bb0d3dfa5cda8202",
+          "bytes": 9494
+        },
+        {
+          "module": "매출",
+          "path": "companies/JS_AUTO/inputs/통합_v1.3_매출.xlsx",
+          "sha256": "2353a76a08be0c9b16de8c81d7014a910a6a524f70e633371c691c2c6cb1932c",
+          "bytes": 8734
+        },
+        {
+          "module": "감가상각",
+          "path": "companies/JS_AUTO/inputs/통합_v1.3_감가상각.xlsx",
+          "sha256": "8fa3b5cf219babe2e2f175562dd8c42e3f0e5938bf15862860f7a476a1f9ef27",
+          "bytes": 9137
+        },
+        {
+          "module": "확장검사",
+          "path": "companies/JS_AUTO/inputs/통합_v1.3_확장검사.xlsx",
+          "sha256": "9ce5d2204b0ed604fdb57e99d382c8836595f1e3c371e903e3b0df4bcac7283b",
+          "bytes": 13305
+        },
+        {
+          "module": "리스",
+          "path": "companies/JS_AUTO/inputs/통합_v1.3_리스.xlsx",
+          "sha256": "ff9c786b3259d511faf6ab9fa4483a2128234430391aa33b4c5d93735bccc446",
+          "bytes": 8340
+        },
+        {
+          "module": "대손충당금",
+          "path": "companies/JS_AUTO/inputs/통합_v1.3_대손충당금.xlsx",
+          "sha256": "abcc6e76c37ac912f44f1acfa7ab70f827bc9c65d76105a5db170f5526822122",
+          "bytes": 11275
+        },
+        {
+          "module": "재고평가",
+          "path": "companies/JS_AUTO/inputs/통합_v1.3_재고평가.xlsx",
+          "sha256": "d559bc2016a29af38156cff9077b6707c6e0ebe2ea1717b9012d75041d22b156",
+          "bytes": 10498
+        },
+        {
+          "module": "종업원급여",
+          "path": "companies/JS_AUTO/inputs/통합_v1.3_종업원급여.xlsx",
+          "sha256": "27aead4a6b6db776f5b0f37077b1f8f836baa9f3f1b6511f772c12d3d279d9aa",
+          "bytes": 13990
+        },
+        {
+          "module": "미기록부채·비용이연",
+          "path": "companies/JS_AUTO/inputs/비용이연_01_정상.xlsx",
+          "sha256": "7022e506f44958a6d86f8aaab9bc5b3308ce5064f3d124e23709b77988e64926",
+          "bytes": 10946
+        },
+        {
+          "module": "원천증빙",
+          "path": "companies/JS_AUTO/inputs/통합_v1.4_원천증빙.auditpack",
+          "sha256": "d93e5531a4ec0c9f60de5a50eff9177e84150a1bce69c32ceb627ef3aca315a9",
+          "bytes": 274627
+        },
+        {
+          "module": "재무제표·주석",
+          "path": "companies/JS_AUTO/inputs/통합_v1.4_재무제표.json",
+          "sha256": "206ac7332c09c41213c49c16214322ab07527cce1b26a81a8e77582d1f9a667f",
+          "bytes": 42436
+        },
+        {
+          "module": "GLA",
+          "path": "companies/JS_AUTO/inputs/통합_v1.5_GLA.xlsx",
+          "sha256": "92e4c46915a942e703bcba117b82a49e187923710e815f87239b5a81a3b90cb0",
+          "bytes": 23370
+        },
+        {
+          "module": "FIA",
+          "path": "companies/JS_AUTO/inputs/통합_v1.5_FIA.xlsx",
+          "sha256": "f0947e76e10e0c96c56bf142d55312c819c9c5580cead5107a3d97595b64b258",
+          "bytes": 28350
+        },
+        {
+          "module": "현금분석",
+          "path": "companies/JS_AUTO/inputs/통합_v1.5_현금분석.xlsx",
+          "sha256": "6db9711d0b326110b1d2aec6838f09535f39d31c828181a0c66c64a38924561b",
+          "bytes": 33273
+        }
+      ],
+      "metadata": {
+        "master": {
+          "path": "companies/JS_AUTO/master.json",
+          "sha256": "126c1cfa7d1253804017f9c18b7e80db0e69392778f5d852f4579499be89767a",
+          "bytes": 1508
+        },
+        "profile": {
+          "path": "companies/JS_AUTO/profile.json",
+          "sha256": "524b7ec9b6882738434c9723fa5e135b392b2296bb5baa079427a283e33a0c16",
+          "bytes": 46461
+        },
+        "plan": {
+          "path": "companies/JS_AUTO/plan.json",
+          "sha256": "06c1b0c66e7f8a795f2fcd36606573a07e91056e059f84aa397eb3f8f67fe9e6",
+          "bytes": 25496
+        }
+      },
+      "industry_topics": [
+        {
+          "id": "AUTO-01",
+          "title": "차량부품·소재 체화와 NRV",
+          "workpaper_id": "A11",
+          "additional_workpaper_ids": [],
+          "activity_condition": "기말 자동차 부품·가공소재 상품에 체화·규격변경·가격하락 위험이 있는 경우"
+        },
+        {
+          "id": "AUTO-02",
+          "title": "부품 보증·품질클레임과 리콜 참고 검토",
+          "workpaper_id": "A19",
+          "additional_workpaper_ids": [],
+          "activity_condition": "판매 부품의 보증·품질책임이 있는 경우. 완성차 리콜은 실제 해당 계약·차량 모집단이 있을 때만 확장 적용"
+        },
+        {
+          "id": "AUTO-03",
+          "title": "부품 매출·딜러/위탁 조건과 판매차감",
+          "workpaper_id": "A04",
+          "additional_workpaper_ids": [],
+          "activity_condition": "부품 매출에 인도·검수·위탁·반품·장려금 조건이 있는 경우. 완성차 딜러 계약은 별도 존재 확인 후 적용"
+        },
+        {
+          "id": "AUTO-04",
+          "title": "가공검사장비와 금형 등 사용 자산 상각",
+          "workpaper_id": "A12",
+          "additional_workpaper_ids": [],
+          "activity_condition": "부품가공검사장비를 사용하거나 실제 소유 금형·로봇 등이 있는 경우"
+        },
+        {
+          "id": "AUTO-05",
+          "title": "제어부품·구동기술 연구개발 지출",
+          "workpaper_id": "A13",
+          "additional_workpaper_ids": [],
+          "activity_condition": "실제 자체 부품설계·구동기술 개발 프로젝트가 있는 경우만 적용"
+        }
+      ],
+      "industry_topic_count": 5,
+      "procedure_ids": [
+        "A01",
+        "A02",
+        "A04",
+        "A06",
+        "A07",
+        "A08",
+        "A09",
+        "A10",
+        "A11",
+        "A12",
+        "A13",
+        "A15",
+        "A16",
+        "A19",
+        "C02",
+        "C04",
+        "C05",
+        "F01",
+        "G01",
+        "H01",
+        "I01",
+        "P01",
+        "P07",
+        "R01"
+      ],
+      "source_baseline": {
+        "kind": "prior-observation-only; never calculation input",
+        "modules": 15,
+        "current_ledger_links": 35,
+        "review_candidates": 24,
+        "procedures": 48,
+        "industry_topics": 5,
+        "source_file": "회사별/JS_AUTO/검증결과.json",
+        "source_sha256": "c8d1e1bb13e25144bec755601b614e0592df0797b42b31250665e421546d323a",
+        "not_external_independent_evidence": true
+      },
+      "kind": "subsidiary",
+      "ledger_links_expected": 35
+    },
+    {
+      "code": "JS_SEMI",
+      "name": "JS반도체",
+      "sector": "검사용 반도체·공정소재",
+      "business_description": "검사용 패키지반도체·공정소재의 상품 유통 및 시험·검사 합성 사업. 직접 웨이퍼 제조·공정재고·실제 수율원가 자료는 이 모본에 없음.",
+      "context": {
+        "회사코드": "JS_SEMI",
+        "회사명": "JS반도체",
+        "시작일": "2026-01-01",
+        "기준일": "2026-12-31",
+        "회계체계": "K-IFRS / 합성",
+        "감사기준": "합성 절차 검증",
+        "작성자": "합성작성자",
+        "더미업무": true,
+        "통화": "KRW",
+        "연결구분": "별도"
+      },
+      "inputs": [
+        {
+          "module": "원장·리드",
+          "path": "companies/JS_SEMI/inputs/통합_v1.3_원장_리드.xlsx",
+          "sha256": "fc126cc6135c4df5083ab9b16ff726d93448b42a5fdb5ffe2b517dd79408051f",
+          "bytes": 21884
+        },
+        {
+          "module": "금융상품",
+          "path": "companies/JS_SEMI/inputs/통합_v1.3_금융상품.xlsx",
+          "sha256": "26cabf216ef867574b09511103808d590f1e9741b9d0c7cd463c0cc20ba4529f",
+          "bytes": 9495
+        },
+        {
+          "module": "매출",
+          "path": "companies/JS_SEMI/inputs/통합_v1.3_매출.xlsx",
+          "sha256": "0083dbf2f34ecc9334d9b3c95abe050a2e2bfc42df87ae6b86e7fa9abbc119e9",
+          "bytes": 8762
+        },
+        {
+          "module": "감가상각",
+          "path": "companies/JS_SEMI/inputs/통합_v1.3_감가상각.xlsx",
+          "sha256": "b8a8b711976f7ac356e52e97a7fb1321acdb012ce96a4c9bba981a61aef38990",
+          "bytes": 9131
+        },
+        {
+          "module": "확장검사",
+          "path": "companies/JS_SEMI/inputs/통합_v1.3_확장검사.xlsx",
+          "sha256": "fa10c138d6d99150c9c41c54fcd2ef06ab5fc042ddbaff5f1fd32d4c0e68f1a5",
+          "bytes": 13356
+        },
+        {
+          "module": "리스",
+          "path": "companies/JS_SEMI/inputs/통합_v1.3_리스.xlsx",
+          "sha256": "31a8763499fda2f2639a8857e489f555af1ce5ca327779dde3811c07bd79a2e9",
+          "bytes": 8342
+        },
+        {
+          "module": "대손충당금",
+          "path": "companies/JS_SEMI/inputs/통합_v1.3_대손충당금.xlsx",
+          "sha256": "d64f3ecaafc4230457f9b79078e0c2fe2e32ba0065f4ce9d4a449cede9ec9f7f",
+          "bytes": 11273
+        },
+        {
+          "module": "재고평가",
+          "path": "companies/JS_SEMI/inputs/통합_v1.3_재고평가.xlsx",
+          "sha256": "329ffb68ddf6b3f9ef368c42755a94905597f74b845aa5631b9f175078b45e2d",
+          "bytes": 10511
+        },
+        {
+          "module": "종업원급여",
+          "path": "companies/JS_SEMI/inputs/통합_v1.3_종업원급여.xlsx",
+          "sha256": "b135d9fc14eeb76cba2135f1156f9b81cfdf28b4d889299265bf09e3ee3be672",
+          "bytes": 13989
+        },
+        {
+          "module": "미기록부채·비용이연",
+          "path": "companies/JS_SEMI/inputs/비용이연_01_정상.xlsx",
+          "sha256": "4e0bfe53990c06ac069b25c2e353c0fc44b0cdfa12cc524a16ddd5981743861b",
+          "bytes": 10945
+        },
+        {
+          "module": "원천증빙",
+          "path": "companies/JS_SEMI/inputs/통합_v1.4_원천증빙.auditpack",
+          "sha256": "4a70b2e0549eccfaa56da456fa7ceb79e21362f846e024e753e86c3734034bb6",
+          "bytes": 274739
+        },
+        {
+          "module": "재무제표·주석",
+          "path": "companies/JS_SEMI/inputs/통합_v1.4_재무제표.json",
+          "sha256": "f818a3d67a70b636a40260d6e82f991495f4a178b80d5a8133ab949b438bc5fc",
+          "bytes": 42436
+        },
+        {
+          "module": "GLA",
+          "path": "companies/JS_SEMI/inputs/통합_v1.5_GLA.xlsx",
+          "sha256": "23747ac98c5af5a3d4caa686b3e12c8a3f6155049744c43cadf38c8d1a019b32",
+          "bytes": 23364
+        },
+        {
+          "module": "FIA",
+          "path": "companies/JS_SEMI/inputs/통합_v1.5_FIA.xlsx",
+          "sha256": "cb0fdae0c61e1095badaa7852425a6fab552362bcf295c87d3c3b34d46687218",
+          "bytes": 28349
+        },
+        {
+          "module": "현금분석",
+          "path": "companies/JS_SEMI/inputs/통합_v1.5_현금분석.xlsx",
+          "sha256": "a651178f0259cbb6602ab53a251eeb504b19c31d9d98b1251a73e980bed07141",
+          "bytes": 33227
+        }
+      ],
+      "metadata": {
+        "master": {
+          "path": "companies/JS_SEMI/master.json",
+          "sha256": "25cbb6f4451e670d031a9ff7a438c8003670aae4d96255405ad9eed7653ee779",
+          "bytes": 1535
+        },
+        "profile": {
+          "path": "companies/JS_SEMI/profile.json",
+          "sha256": "4bfb5b7078d32f51c3b5234d578c96c13bf6cd0ab265d0e644f9c167460a138f",
+          "bytes": 46576
+        },
+        "plan": {
+          "path": "companies/JS_SEMI/plan.json",
+          "sha256": "d9d33bde73fba4cf85a9daedd3db5ce05ca8b19f063c0539e7d42f0597474205",
+          "bytes": 25942
+        }
+      },
+      "industry_topics": [
+        {
+          "id": "SEMI-01",
+          "title": "제조 수율·비정상 원가·공정재고 확장 참고",
+          "workpaper_id": "A11",
+          "additional_workpaper_ids": [],
+          "activity_condition": "직접 웨이퍼 제조·가공과 공정재고가 실제 존재할 때만 적용. 현재 검사용 상품유통·검사 모본에서는 미구현 참고 계획"
+        },
+        {
+          "id": "SEMI-02",
+          "title": "검사용 반도체·공정소재 진부화와 NRV",
+          "workpaper_id": "A11",
+          "additional_workpaper_ids": [],
+          "activity_condition": "패키지반도체(검사용 합성품)·공정소재 등 실제 보유 상품에 규격·공정 세대 변경, 오염·체화·가격 하락 위험이 있는 경우"
+        },
+        {
+          "id": "SEMI-03",
+          "title": "패키지반도체 검사 장비 상각과 손상 징후",
+          "workpaper_id": "A12",
+          "additional_workpaper_ids": [
+            "A14"
+          ],
+          "activity_condition": "가상 패키지반도체 검사 장비 등 실제 명세상 자산을 보유·사용하며 가동 변경·진부화가 있는 경우"
+        },
+        {
+          "id": "SEMI-04",
+          "title": "고객 규격 검수·인도조건과 매출 귀속",
+          "workpaper_id": "A04",
+          "additional_workpaper_ids": [],
+          "activity_condition": "상품 공급에 고객 규격검사·승인·반품 또는 위탁 보관 조건이 존재하는 경우"
+        },
+        {
+          "id": "SEMI-05",
+          "title": "반도체 설계·공정 연구개발비 참고",
+          "workpaper_id": "A13",
+          "additional_workpaper_ids": [],
+          "activity_condition": "자체 설계·공정 개발 또는 관련 라이선스 계약이 실제 존재하는 경우만 적용"
+        }
+      ],
+      "industry_topic_count": 5,
+      "procedure_ids": [
+        "A01",
+        "A02",
+        "A04",
+        "A06",
+        "A07",
+        "A08",
+        "A09",
+        "A10",
+        "A11",
+        "A12",
+        "A13",
+        "A14",
+        "A15",
+        "A16",
+        "C02",
+        "C04",
+        "C05",
+        "F01",
+        "G01",
+        "H01",
+        "I01",
+        "P01",
+        "P07",
+        "R01"
+      ],
+      "source_baseline": {
+        "kind": "prior-observation-only; never calculation input",
+        "modules": 15,
+        "current_ledger_links": 35,
+        "review_candidates": 24,
+        "procedures": 48,
+        "industry_topics": 5,
+        "source_file": "회사별/JS_SEMI/검증결과.json",
+        "source_sha256": "b61a1da5bbed904996ddd46b2990b3bcda9106e9e7edeecc93240130d34c5365",
+        "not_external_independent_evidence": true
+      },
+      "kind": "subsidiary",
+      "ledger_links_expected": 35
+    },
+    {
+      "code": "JS_BIO",
+      "name": "JS바이오",
+      "sector": "연구용 시약·배지",
+      "business_description": "연구용 시약·배지의 상품 유통 및 제한적 소분·충전 합성 사업. 인체투여 의약품·상업생산허가·임상 단계 충족을 가정하지 않음.",
+      "context": {
+        "회사코드": "JS_BIO",
+        "회사명": "JS바이오",
+        "시작일": "2026-01-01",
+        "기준일": "2026-12-31",
+        "회계체계": "K-IFRS / 합성",
+        "감사기준": "합성 절차 검증",
+        "작성자": "합성작성자",
+        "더미업무": true,
+        "통화": "KRW",
+        "연결구분": "별도"
+      },
+      "inputs": [
+        {
+          "module": "원장·리드",
+          "path": "companies/JS_BIO/inputs/통합_v1.3_원장_리드.xlsx",
+          "sha256": "aa9263379099ccb353a6dca9ed4819f5ae27664da91db46e4b2689847def0d6f",
+          "bytes": 21865
+        },
+        {
+          "module": "금융상품",
+          "path": "companies/JS_BIO/inputs/통합_v1.3_금융상품.xlsx",
+          "sha256": "2fc0be09be64a23d433500216cb3f79cbd70bb81bd99befade82424aa4b2d0af",
+          "bytes": 9494
+        },
+        {
+          "module": "매출",
+          "path": "companies/JS_BIO/inputs/통합_v1.3_매출.xlsx",
+          "sha256": "151527bf07b7efea1783c0433d2621b7c89f4c02b1431fea5a36b251c462a93c",
+          "bytes": 8707
+        },
+        {
+          "module": "감가상각",
+          "path": "companies/JS_BIO/inputs/통합_v1.3_감가상각.xlsx",
+          "sha256": "84e789aa495f71c586519ca59a3c36ce2518c8a04a287eb8de8afea2de219392",
+          "bytes": 9130
+        },
+        {
+          "module": "확장검사",
+          "path": "companies/JS_BIO/inputs/통합_v1.3_확장검사.xlsx",
+          "sha256": "b7f51fa431496c4e8b8a35fb7ca5d74837134fe0ebd580ac819493fa77e76359",
+          "bytes": 13281
+        },
+        {
+          "module": "리스",
+          "path": "companies/JS_BIO/inputs/통합_v1.3_리스.xlsx",
+          "sha256": "47d413ce988cafbab0df5f7957993661d3a8f6b6dc28cedcdbf4ac932169db1a",
+          "bytes": 8337
+        },
+        {
+          "module": "대손충당금",
+          "path": "companies/JS_BIO/inputs/통합_v1.3_대손충당금.xlsx",
+          "sha256": "73f8ecc4e3c851e715a8e9c86e621b9e3b637f21b261a9a90a4d6b06f7cc2549",
+          "bytes": 11276
+        },
+        {
+          "module": "재고평가",
+          "path": "companies/JS_BIO/inputs/통합_v1.3_재고평가.xlsx",
+          "sha256": "1caa8b8f586f17ff0bd5640291c51e616a8373f73ca54c7ef5b1199e66db29a6",
+          "bytes": 10483
+        },
+        {
+          "module": "종업원급여",
+          "path": "companies/JS_BIO/inputs/통합_v1.3_종업원급여.xlsx",
+          "sha256": "a1196ff242cb0b38e9f2659764fbfc468a34982dcd5f33dbb7e0eb7acff78d26",
+          "bytes": 13983
+        },
+        {
+          "module": "미기록부채·비용이연",
+          "path": "companies/JS_BIO/inputs/비용이연_01_정상.xlsx",
+          "sha256": "d00bb89265a86ea92109790957fea8c3453bb9a766f51a748ffa9c8159ed4aa1",
+          "bytes": 10932
+        },
+        {
+          "module": "원천증빙",
+          "path": "companies/JS_BIO/inputs/통합_v1.4_원천증빙.auditpack",
+          "sha256": "2c147ed679ec5e75b5776084460aabee5a4f75ab183a8de55e0d6f08c6d6f999",
+          "bytes": 274245
+        },
+        {
+          "module": "재무제표·주석",
+          "path": "companies/JS_BIO/inputs/통합_v1.4_재무제표.json",
+          "sha256": "fcc504b0fee03fa559afecf91003ee302a9a125ff0c78c98960beec7343c3c32",
+          "bytes": 42432
+        },
+        {
+          "module": "GLA",
+          "path": "companies/JS_BIO/inputs/통합_v1.5_GLA.xlsx",
+          "sha256": "6220a12f35644d2541e623d0ff91fc27b1c781aa0ad3c989f8e671a84eafe236",
+          "bytes": 23339
+        },
+        {
+          "module": "FIA",
+          "path": "companies/JS_BIO/inputs/통합_v1.5_FIA.xlsx",
+          "sha256": "2f376747638c7a117e173502a11f625c607e8ad4458c4e2e27ed6e16775f5402",
+          "bytes": 28323
+        },
+        {
+          "module": "현금분석",
+          "path": "companies/JS_BIO/inputs/통합_v1.5_현금분석.xlsx",
+          "sha256": "23f5abfbdf5abd41ca42df8df1794ebfe0529468e88010448519c242337de8ea",
+          "bytes": 33180
+        }
+      ],
+      "metadata": {
+        "master": {
+          "path": "companies/JS_BIO/master.json",
+          "sha256": "fac5d85e5623aa8be436b2766779ea554e476f87e34969400c99e7c4dbd8992a",
+          "bytes": 1487
+        },
+        "profile": {
+          "path": "companies/JS_BIO/profile.json",
+          "sha256": "1edad1c576a689abb683734abb7f80ce989c46aa09069d76c3fb20499e05aa1c",
+          "bytes": 46299
+        },
+        "plan": {
+          "path": "companies/JS_BIO/plan.json",
+          "sha256": "0ea83853a3dc578bc879d32cd0f35c7659b33c2de1bd502c5271b15051515303",
+          "bytes": 26432
+        }
+      },
+      "industry_topics": [
+        {
+          "id": "BIO-01",
+          "title": "시약·배지 사용기한·보관상태와 NRV",
+          "workpaper_id": "A11",
+          "additional_workpaper_ids": [],
+          "activity_condition": "보유 연구용 시약·배지에 사용기한·보관조건·품질보류·체화가 존재하는 경우"
+        },
+        {
+          "id": "BIO-02",
+          "title": "위탁개발·제조 계약의 수익인식 참고",
+          "workpaper_id": "A05",
+          "additional_workpaper_ids": [
+            "A04"
+          ],
+          "activity_condition": "실제 위탁개발·분석·제조 서비스 계약이 있을 경우만 적용. 단순 연구시약 매매는 A04 별도 검토"
+        },
+        {
+          "id": "BIO-03",
+          "title": "연구개발 지출·개발자산 인식 참고",
+          "workpaper_id": "A13",
+          "additional_workpaper_ids": [
+            "A14"
+          ],
+          "activity_condition": "실제 자체 연구·개발 프로젝트가 존재할 경우만 적용. 의약품·임상 관련이면 계약과 적용 판단을 추가 확인"
+        },
+        {
+          "id": "BIO-04",
+          "title": "소분충전장비 상각·사용가능 상태",
+          "workpaper_id": "A12",
+          "additional_workpaper_ids": [],
+          "activity_condition": "가상 연구시약 소분·충전 장비 등 실제 보유 설비를 취득·사용하는 경우"
+        },
+        {
+          "id": "BIO-05",
+          "title": "외주 시험·분석 용역의 미지급·선급 귀속",
+          "workpaper_id": "A09",
+          "additional_workpaper_ids": [],
+          "activity_condition": "실제 확정 KRW 외주 시험·분석·연구 용역 계약이 존재하고 현재 지원하는 단순 기간배분 범위에 맞는 경우"
+        }
+      ],
+      "industry_topic_count": 5,
+      "procedure_ids": [
+        "A01",
+        "A02",
+        "A04",
+        "A05",
+        "A06",
+        "A07",
+        "A08",
+        "A09",
+        "A10",
+        "A11",
+        "A12",
+        "A13",
+        "A14",
+        "A15",
+        "A16",
+        "C02",
+        "C04",
+        "C05",
+        "F01",
+        "G01",
+        "H01",
+        "I01",
+        "P01",
+        "P07",
+        "R01"
+      ],
+      "source_baseline": {
+        "kind": "prior-observation-only; never calculation input",
+        "modules": 15,
+        "current_ledger_links": 35,
+        "review_candidates": 24,
+        "procedures": 49,
+        "industry_topics": 5,
+        "source_file": "회사별/JS_BIO/검증결과.json",
+        "source_sha256": "387f8ca1c05c83f16d8eca9f031b5e58de5b78d906918d1ab09f160ea6137bc9",
+        "not_external_independent_evidence": true
+      },
+      "kind": "subsidiary",
+      "ledger_links_expected": 35
+    }
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "d928d07a87da41d0b6f195e8f536d8a46bf55bbb428837afbd2f142b97e9051e",
+      "bytes": 1587
+    },
+    {
+      "path": "companies/JS/inputs/모회사_JS_원장_리드.xlsx",
+      "sha256": "9a1dd4d3b0c2559d27de64d3a122f6573bd52c49af0e1f6c184d570efcaf4e87",
+      "bytes": 11135
+    },
+    {
+      "path": "companies/JS/master.json",
+      "sha256": "97d67cf1245a8e2d4f347905e95c3e73795e2c5eedc1893707aab698a6d5e94e",
+      "bytes": 1459
+    },
+    {
+      "path": "companies/JS/plan.json",
+      "sha256": "9ff0a2ab5ef9f1570313ba03641baf920fed4c325945964d868a34c341a87c11",
+      "bytes": 726
+    },
+    {
+      "path": "companies/JS/profile.json",
+      "sha256": "d79cc066492358a77c4a7881eb84fe1839e0e3ca384ce97f83408f134b5315ee",
+      "bytes": 855
+    },
+    {
+      "path": "companies/JS_AUTO/inputs/비용이연_01_정상.xlsx",
+      "sha256": "7022e506f44958a6d86f8aaab9bc5b3308ce5064f3d124e23709b77988e64926",
+      "bytes": 10946
+    },
+    {
+      "path": "companies/JS_AUTO/inputs/통합_v1.3_감가상각.xlsx",
+      "sha256": "8fa3b5cf219babe2e2f175562dd8c42e3f0e5938bf15862860f7a476a1f9ef27",
+      "bytes": 9137
+    },
+    {
+      "path": "companies/JS_AUTO/inputs/통합_v1.3_금융상품.xlsx",
+      "sha256": "c0b1442421357899f123092b9e8798b033bca3756fb5f4f8bb0d3dfa5cda8202",
+      "bytes": 9494
+    },
+    {
+      "path": "companies/JS_AUTO/inputs/통합_v1.3_대손충당금.xlsx",
+      "sha256": "abcc6e76c37ac912f44f1acfa7ab70f827bc9c65d76105a5db170f5526822122",
+      "bytes": 11275
+    },
+    {
+      "path": "companies/JS_AUTO/inputs/통합_v1.3_리스.xlsx",
+      "sha256": "ff9c786b3259d511faf6ab9fa4483a2128234430391aa33b4c5d93735bccc446",
+      "bytes": 8340
+    },
+    {
+      "path": "companies/JS_AUTO/inputs/통합_v1.3_매출.xlsx",
+      "sha256": "2353a76a08be0c9b16de8c81d7014a910a6a524f70e633371c691c2c6cb1932c",
+      "bytes": 8734
+    },
+    {
+      "path": "companies/JS_AUTO/inputs/통합_v1.3_원장_리드.xlsx",
+      "sha256": "39d42df34be1586e9d4ce4be56dd91700df5b3137ea1223db6ee947f526da03a",
+      "bytes": 21886
+    },
+    {
+      "path": "companies/JS_AUTO/inputs/통합_v1.3_재고평가.xlsx",
+      "sha256": "d559bc2016a29af38156cff9077b6707c6e0ebe2ea1717b9012d75041d22b156",
+      "bytes": 10498
+    },
+    {
+      "path": "companies/JS_AUTO/inputs/통합_v1.3_종업원급여.xlsx",
+      "sha256": "27aead4a6b6db776f5b0f37077b1f8f836baa9f3f1b6511f772c12d3d279d9aa",
+      "bytes": 13990
+    },
+    {
+      "path": "companies/JS_AUTO/inputs/통합_v1.3_확장검사.xlsx",
+      "sha256": "9ce5d2204b0ed604fdb57e99d382c8836595f1e3c371e903e3b0df4bcac7283b",
+      "bytes": 13305
+    },
+    {
+      "path": "companies/JS_AUTO/inputs/통합_v1.4_원천증빙.auditpack",
+      "sha256": "d93e5531a4ec0c9f60de5a50eff9177e84150a1bce69c32ceb627ef3aca315a9",
+      "bytes": 274627
+    },
+    {
+      "path": "companies/JS_AUTO/inputs/통합_v1.4_재무제표.json",
+      "sha256": "206ac7332c09c41213c49c16214322ab07527cce1b26a81a8e77582d1f9a667f",
+      "bytes": 42436
+    },
+    {
+      "path": "companies/JS_AUTO/inputs/통합_v1.5_FIA.xlsx",
+      "sha256": "f0947e76e10e0c96c56bf142d55312c819c9c5580cead5107a3d97595b64b258",
+      "bytes": 28350
+    },
+    {
+      "path": "companies/JS_AUTO/inputs/통합_v1.5_GLA.xlsx",
+      "sha256": "92e4c46915a942e703bcba117b82a49e187923710e815f87239b5a81a3b90cb0",
+      "bytes": 23370
+    },
+    {
+      "path": "companies/JS_AUTO/inputs/통합_v1.5_현금분석.xlsx",
+      "sha256": "6db9711d0b326110b1d2aec6838f09535f39d31c828181a0c66c64a38924561b",
+      "bytes": 33273
+    },
+    {
+      "path": "companies/JS_AUTO/master.json",
+      "sha256": "126c1cfa7d1253804017f9c18b7e80db0e69392778f5d852f4579499be89767a",
+      "bytes": 1508
+    },
+    {
+      "path": "companies/JS_AUTO/plan.json",
+      "sha256": "06c1b0c66e7f8a795f2fcd36606573a07e91056e059f84aa397eb3f8f67fe9e6",
+      "bytes": 25496
+    },
+    {
+      "path": "companies/JS_AUTO/profile.json",
+      "sha256": "524b7ec9b6882738434c9723fa5e135b392b2296bb5baa079427a283e33a0c16",
+      "bytes": 46461
+    },
+    {
+      "path": "companies/JS_BIO/inputs/비용이연_01_정상.xlsx",
+      "sha256": "d00bb89265a86ea92109790957fea8c3453bb9a766f51a748ffa9c8159ed4aa1",
+      "bytes": 10932
+    },
+    {
+      "path": "companies/JS_BIO/inputs/통합_v1.3_감가상각.xlsx",
+      "sha256": "84e789aa495f71c586519ca59a3c36ce2518c8a04a287eb8de8afea2de219392",
+      "bytes": 9130
+    },
+    {
+      "path": "companies/JS_BIO/inputs/통합_v1.3_금융상품.xlsx",
+      "sha256": "2fc0be09be64a23d433500216cb3f79cbd70bb81bd99befade82424aa4b2d0af",
+      "bytes": 9494
+    },
+    {
+      "path": "companies/JS_BIO/inputs/통합_v1.3_대손충당금.xlsx",
+      "sha256": "73f8ecc4e3c851e715a8e9c86e621b9e3b637f21b261a9a90a4d6b06f7cc2549",
+      "bytes": 11276
+    },
+    {
+      "path": "companies/JS_BIO/inputs/통합_v1.3_리스.xlsx",
+      "sha256": "47d413ce988cafbab0df5f7957993661d3a8f6b6dc28cedcdbf4ac932169db1a",
+      "bytes": 8337
+    },
+    {
+      "path": "companies/JS_BIO/inputs/통합_v1.3_매출.xlsx",
+      "sha256": "151527bf07b7efea1783c0433d2621b7c89f4c02b1431fea5a36b251c462a93c",
+      "bytes": 8707
+    },
+    {
+      "path": "companies/JS_BIO/inputs/통합_v1.3_원장_리드.xlsx",
+      "sha256": "aa9263379099ccb353a6dca9ed4819f5ae27664da91db46e4b2689847def0d6f",
+      "bytes": 21865
+    },
+    {
+      "path": "companies/JS_BIO/inputs/통합_v1.3_재고평가.xlsx",
+      "sha256": "1caa8b8f586f17ff0bd5640291c51e616a8373f73ca54c7ef5b1199e66db29a6",
+      "bytes": 10483
+    },
+    {
+      "path": "companies/JS_BIO/inputs/통합_v1.3_종업원급여.xlsx",
+      "sha256": "a1196ff242cb0b38e9f2659764fbfc468a34982dcd5f33dbb7e0eb7acff78d26",
+      "bytes": 13983
+    },
+    {
+      "path": "companies/JS_BIO/inputs/통합_v1.3_확장검사.xlsx",
+      "sha256": "b7f51fa431496c4e8b8a35fb7ca5d74837134fe0ebd580ac819493fa77e76359",
+      "bytes": 13281
+    },
+    {
+      "path": "companies/JS_BIO/inputs/통합_v1.4_원천증빙.auditpack",
+      "sha256": "2c147ed679ec5e75b5776084460aabee5a4f75ab183a8de55e0d6f08c6d6f999",
+      "bytes": 274245
+    },
+    {
+      "path": "companies/JS_BIO/inputs/통합_v1.4_재무제표.json",
+      "sha256": "fcc504b0fee03fa559afecf91003ee302a9a125ff0c78c98960beec7343c3c32",
+      "bytes": 42432
+    },
+    {
+      "path": "companies/JS_BIO/inputs/통합_v1.5_FIA.xlsx",
+      "sha256": "2f376747638c7a117e173502a11f625c607e8ad4458c4e2e27ed6e16775f5402",
+      "bytes": 28323
+    },
+    {
+      "path": "companies/JS_BIO/inputs/통합_v1.5_GLA.xlsx",
+      "sha256": "6220a12f35644d2541e623d0ff91fc27b1c781aa0ad3c989f8e671a84eafe236",
+      "bytes": 23339
+    },
+    {
+      "path": "companies/JS_BIO/inputs/통합_v1.5_현금분석.xlsx",
+      "sha256": "23f5abfbdf5abd41ca42df8df1794ebfe0529468e88010448519c242337de8ea",
+      "bytes": 33180
+    },
+    {
+      "path": "companies/JS_BIO/master.json",
+      "sha256": "fac5d85e5623aa8be436b2766779ea554e476f87e34969400c99e7c4dbd8992a",
+      "bytes": 1487
+    },
+    {
+      "path": "companies/JS_BIO/plan.json",
+      "sha256": "0ea83853a3dc578bc879d32cd0f35c7659b33c2de1bd502c5271b15051515303",
+      "bytes": 26432
+    },
+    {
+      "path": "companies/JS_BIO/profile.json",
+      "sha256": "1edad1c576a689abb683734abb7f80ce989c46aa09069d76c3fb20499e05aa1c",
+      "bytes": 46299
+    },
+    {
+      "path": "companies/JS_ELEC/inputs/비용이연_01_정상.xlsx",
+      "sha256": "db21449904f88aae1aa4a102a9e19c9cfd25feb484e0b98da1d2d1f38350a401",
+      "bytes": 10908
+    },
+    {
+      "path": "companies/JS_ELEC/inputs/통합_v1.3_감가상각.xlsx",
+      "sha256": "357f0467fe48498ccf597469406d6f7dc50e26bff32773c4d6924791fb8efa8a",
+      "bytes": 9130
+    },
+    {
+      "path": "companies/JS_ELEC/inputs/통합_v1.3_금융상품.xlsx",
+      "sha256": "f9e89afbc3c8dd33d5500aa6108a9871f8ae8099d3572e9575420eba200ec8cc",
+      "bytes": 9494
+    },
+    {
+      "path": "companies/JS_ELEC/inputs/통합_v1.3_대손충당금.xlsx",
+      "sha256": "8318e75c5c36e90972121836928c7690bcfc09b75218d332fd5b703dc135fefb",
+      "bytes": 11278
+    },
+    {
+      "path": "companies/JS_ELEC/inputs/통합_v1.3_리스.xlsx",
+      "sha256": "934e7b1d5ab24fc3deaea7adc02dd420c740f988110d4b4d25f76dd34730ca21",
+      "bytes": 8340
+    },
+    {
+      "path": "companies/JS_ELEC/inputs/통합_v1.3_매출.xlsx",
+      "sha256": "a62a84720ee3c3c01a2d0d4c308335b9f98176089521f9edf80f839eb747e0c9",
+      "bytes": 8741
+    },
+    {
+      "path": "companies/JS_ELEC/inputs/통합_v1.3_원장_리드.xlsx",
+      "sha256": "15257e3f3e26d3fb6570c8c037a4714468c18e8e971dea5136828b0a4e7e9ec5",
+      "bytes": 21881
+    },
+    {
+      "path": "companies/JS_ELEC/inputs/통합_v1.3_재고평가.xlsx",
+      "sha256": "3ac5f53a52d786391f71a5db721fb10adf65d88d5b1139717c5f8e0094d9864d",
+      "bytes": 10497
+    },
+    {
+      "path": "companies/JS_ELEC/inputs/통합_v1.3_종업원급여.xlsx",
+      "sha256": "e576e8337ec38ca83377bd3c44ddb3e4f1fbf40bc59801bae9e845893af9ad09",
+      "bytes": 13988
+    },
+    {
+      "path": "companies/JS_ELEC/inputs/통합_v1.3_확장검사.xlsx",
+      "sha256": "8f83682c7c8d0c6dc4af766e1973566193b6390cea1e3b2a92ce0d17ce59ce06",
+      "bytes": 13293
+    },
+    {
+      "path": "companies/JS_ELEC/inputs/통합_v1.4_원천증빙.auditpack",
+      "sha256": "2729c0848de1f529af1f4dc49000b3b4b2f5fd40cd062dde1b15c9ca41223893",
+      "bytes": 274342
+    },
+    {
+      "path": "companies/JS_ELEC/inputs/통합_v1.4_재무제표.json",
+      "sha256": "e90c342eb4c527e2a3eab4235b015c129e569d07e6cc520f406ed2f51ba8ed4d",
+      "bytes": 42430
+    },
+    {
+      "path": "companies/JS_ELEC/inputs/통합_v1.5_FIA.xlsx",
+      "sha256": "326411c4aae50010af598ab5c70caf425e8a6c34a634b0f000ab6b23f54a24b0",
+      "bytes": 28335
+    },
+    {
+      "path": "companies/JS_ELEC/inputs/통합_v1.5_GLA.xlsx",
+      "sha256": "9d64150d1712b9a771fb0c0aee0ee8c4ff013feef20ef3ef289e8a16759902bb",
+      "bytes": 23353
+    },
+    {
+      "path": "companies/JS_ELEC/inputs/통합_v1.5_현금분석.xlsx",
+      "sha256": "228e640041b9419762acfda625562a818f67b544ca65d496c8cd2e2912cf17b3",
+      "bytes": 33203
+    },
+    {
+      "path": "companies/JS_ELEC/master.json",
+      "sha256": "f24c7b316a893d27e8717ce363c3a492674bf13c36ab0ad4350f77ff5a44c797",
+      "bytes": 1457
+    },
+    {
+      "path": "companies/JS_ELEC/plan.json",
+      "sha256": "faf2c6dd128a2121c70a341d627bf89f3575457b9b482b57cd97e29d3bbcc754",
+      "bytes": 26434
+    },
+    {
+      "path": "companies/JS_ELEC/profile.json",
+      "sha256": "26b6c657ba2c157466f57833490873058d81591bb054cbc066d8d0c33510aaad",
+      "bytes": 45944
+    },
+    {
+      "path": "companies/JS_SEMI/inputs/비용이연_01_정상.xlsx",
+      "sha256": "4e0bfe53990c06ac069b25c2e353c0fc44b0cdfa12cc524a16ddd5981743861b",
+      "bytes": 10945
+    },
+    {
+      "path": "companies/JS_SEMI/inputs/통합_v1.3_감가상각.xlsx",
+      "sha256": "b8a8b711976f7ac356e52e97a7fb1321acdb012ce96a4c9bba981a61aef38990",
+      "bytes": 9131
+    },
+    {
+      "path": "companies/JS_SEMI/inputs/통합_v1.3_금융상품.xlsx",
+      "sha256": "26cabf216ef867574b09511103808d590f1e9741b9d0c7cd463c0cc20ba4529f",
+      "bytes": 9495
+    },
+    {
+      "path": "companies/JS_SEMI/inputs/통합_v1.3_대손충당금.xlsx",
+      "sha256": "d64f3ecaafc4230457f9b79078e0c2fe2e32ba0065f4ce9d4a449cede9ec9f7f",
+      "bytes": 11273
+    },
+    {
+      "path": "companies/JS_SEMI/inputs/통합_v1.3_리스.xlsx",
+      "sha256": "31a8763499fda2f2639a8857e489f555af1ce5ca327779dde3811c07bd79a2e9",
+      "bytes": 8342
+    },
+    {
+      "path": "companies/JS_SEMI/inputs/통합_v1.3_매출.xlsx",
+      "sha256": "0083dbf2f34ecc9334d9b3c95abe050a2e2bfc42df87ae6b86e7fa9abbc119e9",
+      "bytes": 8762
+    },
+    {
+      "path": "companies/JS_SEMI/inputs/통합_v1.3_원장_리드.xlsx",
+      "sha256": "fc126cc6135c4df5083ab9b16ff726d93448b42a5fdb5ffe2b517dd79408051f",
+      "bytes": 21884
+    },
+    {
+      "path": "companies/JS_SEMI/inputs/통합_v1.3_재고평가.xlsx",
+      "sha256": "329ffb68ddf6b3f9ef368c42755a94905597f74b845aa5631b9f175078b45e2d",
+      "bytes": 10511
+    },
+    {
+      "path": "companies/JS_SEMI/inputs/통합_v1.3_종업원급여.xlsx",
+      "sha256": "b135d9fc14eeb76cba2135f1156f9b81cfdf28b4d889299265bf09e3ee3be672",
+      "bytes": 13989
+    },
+    {
+      "path": "companies/JS_SEMI/inputs/통합_v1.3_확장검사.xlsx",
+      "sha256": "fa10c138d6d99150c9c41c54fcd2ef06ab5fc042ddbaff5f1fd32d4c0e68f1a5",
+      "bytes": 13356
+    },
+    {
+      "path": "companies/JS_SEMI/inputs/통합_v1.4_원천증빙.auditpack",
+      "sha256": "4a70b2e0549eccfaa56da456fa7ceb79e21362f846e024e753e86c3734034bb6",
+      "bytes": 274739
+    },
+    {
+      "path": "companies/JS_SEMI/inputs/통합_v1.4_재무제표.json",
+      "sha256": "f818a3d67a70b636a40260d6e82f991495f4a178b80d5a8133ab949b438bc5fc",
+      "bytes": 42436
+    },
+    {
+      "path": "companies/JS_SEMI/inputs/통합_v1.5_FIA.xlsx",
+      "sha256": "cb0fdae0c61e1095badaa7852425a6fab552362bcf295c87d3c3b34d46687218",
+      "bytes": 28349
+    },
+    {
+      "path": "companies/JS_SEMI/inputs/통합_v1.5_GLA.xlsx",
+      "sha256": "23747ac98c5af5a3d4caa686b3e12c8a3f6155049744c43cadf38c8d1a019b32",
+      "bytes": 23364
+    },
+    {
+      "path": "companies/JS_SEMI/inputs/통합_v1.5_현금분석.xlsx",
+      "sha256": "a651178f0259cbb6602ab53a251eeb504b19c31d9d98b1251a73e980bed07141",
+      "bytes": 33227
+    },
+    {
+      "path": "companies/JS_SEMI/master.json",
+      "sha256": "25cbb6f4451e670d031a9ff7a438c8003670aae4d96255405ad9eed7653ee779",
+      "bytes": 1535
+    },
+    {
+      "path": "companies/JS_SEMI/plan.json",
+      "sha256": "d9d33bde73fba4cf85a9daedd3db5ce05ca8b19f063c0539e7d42f0597474205",
+      "bytes": 25942
+    },
+    {
+      "path": "companies/JS_SEMI/profile.json",
+      "sha256": "4bfb5b7078d32f51c3b5234d578c96c13bf6cd0ab265d0e644f9c167460a138f",
+      "bytes": 46576
+    },
+    {
+      "path": "procedure_catalog.json",
+      "sha256": "9a452d291fe939c14b11109ee52db99c48934a589c1d3ea353f06978fd9d4a84",
+      "bytes": 31622
+    },
+    {
+      "path": "reference/JS_업종별_항목표.xlsx",
+      "sha256": "5dcb1187be6685aed5eab8945fce3e57b8739a8c2e6109f5bf3d37c62c82d998",
+      "bytes": 11757
+    },
+    {
+      "path": "reference/official_sources.md",
+      "sha256": "4190313fd2790b18d1153cd70afd7c9695eb75e5157b8fb5d847eadb1a37255c",
+      "bytes": 17386
+    },
+    {
+      "path": "reference/sector_audit_checks.json",
+      "sha256": "c3611da273d1ff8918dcbd10b3f1168bd1ec8fa32f5279429930ad3a0eb39b52",
+      "bytes": 94331
+    },
+    {
+      "path": "reference/sector_profiles.json",
+      "sha256": "806e79ce9e0eddaab625febf09b6af31a15cbcea3bafc74b07789b295cf27abf",
+      "bytes": 480244
+    }
+  ],
+  "provenance": [
+    {
+      "source_root": "generated-parent-scenario",
+      "source_path": "tools/prepare_sector_resources_v17.py",
+      "source_sha256": null,
+      "resource_path": "companies/JS/inputs/모회사_JS_원장_리드.xlsx",
+      "resource_sha256": "9a1dd4d3b0c2559d27de64d3a122f6573bd52c49af0e1f6c184d570efcaf4e87",
+      "normalization": "new arbitrary synthetic parent-only fixture; no external evidence"
+    },
+    {
+      "source_root": "generated-parent-scenario",
+      "source_path": "tools/prepare_sector_resources_v17.py",
+      "source_sha256": null,
+      "resource_path": "companies/JS/master.json",
+      "resource_sha256": "97d67cf1245a8e2d4f347905e95c3e73795e2c5eedc1893707aab698a6d5e94e",
+      "normalization": "new arbitrary synthetic parent-only fixture; no external evidence"
+    },
+    {
+      "source_root": "generated-parent-scenario",
+      "source_path": "tools/prepare_sector_resources_v17.py",
+      "source_sha256": null,
+      "resource_path": "companies/JS/plan.json",
+      "resource_sha256": "9ff0a2ab5ef9f1570313ba03641baf920fed4c325945964d868a34c341a87c11",
+      "normalization": "new arbitrary synthetic parent-only fixture; no external evidence"
+    },
+    {
+      "source_root": "generated-parent-scenario",
+      "source_path": "tools/prepare_sector_resources_v17.py",
+      "source_sha256": null,
+      "resource_path": "companies/JS/profile.json",
+      "resource_sha256": "d79cc066492358a77c4a7881eb84fe1839e0e3ca384ce97f83408f134b5315ee",
+      "normalization": "new arbitrary synthetic parent-only fixture; no external evidence"
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_AUTO/입력자료/비용이연_01_정상.xlsx",
+      "source_sha256": "7022e506f44958a6d86f8aaab9bc5b3308ce5064f3d124e23709b77988e64926",
+      "resource_path": "companies/JS_AUTO/inputs/비용이연_01_정상.xlsx",
+      "resource_sha256": "7022e506f44958a6d86f8aaab9bc5b3308ce5064f3d124e23709b77988e64926",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_AUTO/입력자료/통합_v1.3_감가상각.xlsx",
+      "source_sha256": "8fa3b5cf219babe2e2f175562dd8c42e3f0e5938bf15862860f7a476a1f9ef27",
+      "resource_path": "companies/JS_AUTO/inputs/통합_v1.3_감가상각.xlsx",
+      "resource_sha256": "8fa3b5cf219babe2e2f175562dd8c42e3f0e5938bf15862860f7a476a1f9ef27",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_AUTO/입력자료/통합_v1.3_금융상품.xlsx",
+      "source_sha256": "c0b1442421357899f123092b9e8798b033bca3756fb5f4f8bb0d3dfa5cda8202",
+      "resource_path": "companies/JS_AUTO/inputs/통합_v1.3_금융상품.xlsx",
+      "resource_sha256": "c0b1442421357899f123092b9e8798b033bca3756fb5f4f8bb0d3dfa5cda8202",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_AUTO/입력자료/통합_v1.3_대손충당금.xlsx",
+      "source_sha256": "abcc6e76c37ac912f44f1acfa7ab70f827bc9c65d76105a5db170f5526822122",
+      "resource_path": "companies/JS_AUTO/inputs/통합_v1.3_대손충당금.xlsx",
+      "resource_sha256": "abcc6e76c37ac912f44f1acfa7ab70f827bc9c65d76105a5db170f5526822122",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_AUTO/입력자료/통합_v1.3_리스.xlsx",
+      "source_sha256": "ff9c786b3259d511faf6ab9fa4483a2128234430391aa33b4c5d93735bccc446",
+      "resource_path": "companies/JS_AUTO/inputs/통합_v1.3_리스.xlsx",
+      "resource_sha256": "ff9c786b3259d511faf6ab9fa4483a2128234430391aa33b4c5d93735bccc446",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_AUTO/입력자료/통합_v1.3_매출.xlsx",
+      "source_sha256": "2353a76a08be0c9b16de8c81d7014a910a6a524f70e633371c691c2c6cb1932c",
+      "resource_path": "companies/JS_AUTO/inputs/통합_v1.3_매출.xlsx",
+      "resource_sha256": "2353a76a08be0c9b16de8c81d7014a910a6a524f70e633371c691c2c6cb1932c",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_AUTO/입력자료/통합_v1.3_원장_리드.xlsx",
+      "source_sha256": "39d42df34be1586e9d4ce4be56dd91700df5b3137ea1223db6ee947f526da03a",
+      "resource_path": "companies/JS_AUTO/inputs/통합_v1.3_원장_리드.xlsx",
+      "resource_sha256": "39d42df34be1586e9d4ce4be56dd91700df5b3137ea1223db6ee947f526da03a",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_AUTO/입력자료/통합_v1.3_재고평가.xlsx",
+      "source_sha256": "d559bc2016a29af38156cff9077b6707c6e0ebe2ea1717b9012d75041d22b156",
+      "resource_path": "companies/JS_AUTO/inputs/통합_v1.3_재고평가.xlsx",
+      "resource_sha256": "d559bc2016a29af38156cff9077b6707c6e0ebe2ea1717b9012d75041d22b156",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_AUTO/입력자료/통합_v1.3_종업원급여.xlsx",
+      "source_sha256": "27aead4a6b6db776f5b0f37077b1f8f836baa9f3f1b6511f772c12d3d279d9aa",
+      "resource_path": "companies/JS_AUTO/inputs/통합_v1.3_종업원급여.xlsx",
+      "resource_sha256": "27aead4a6b6db776f5b0f37077b1f8f836baa9f3f1b6511f772c12d3d279d9aa",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_AUTO/입력자료/통합_v1.3_확장검사.xlsx",
+      "source_sha256": "9ce5d2204b0ed604fdb57e99d382c8836595f1e3c371e903e3b0df4bcac7283b",
+      "resource_path": "companies/JS_AUTO/inputs/통합_v1.3_확장검사.xlsx",
+      "resource_sha256": "9ce5d2204b0ed604fdb57e99d382c8836595f1e3c371e903e3b0df4bcac7283b",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_AUTO/입력자료/통합_v1.4_원천증빙.auditpack",
+      "source_sha256": "d93e5531a4ec0c9f60de5a50eff9177e84150a1bce69c32ceb627ef3aca315a9",
+      "resource_path": "companies/JS_AUTO/inputs/통합_v1.4_원천증빙.auditpack",
+      "resource_sha256": "d93e5531a4ec0c9f60de5a50eff9177e84150a1bce69c32ceb627ef3aca315a9",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_AUTO/입력자료/통합_v1.4_재무제표.json",
+      "source_sha256": "206ac7332c09c41213c49c16214322ab07527cce1b26a81a8e77582d1f9a667f",
+      "resource_path": "companies/JS_AUTO/inputs/통합_v1.4_재무제표.json",
+      "resource_sha256": "206ac7332c09c41213c49c16214322ab07527cce1b26a81a8e77582d1f9a667f",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_AUTO/입력자료/통합_v1.5_FIA.xlsx",
+      "source_sha256": "f0947e76e10e0c96c56bf142d55312c819c9c5580cead5107a3d97595b64b258",
+      "resource_path": "companies/JS_AUTO/inputs/통합_v1.5_FIA.xlsx",
+      "resource_sha256": "f0947e76e10e0c96c56bf142d55312c819c9c5580cead5107a3d97595b64b258",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_AUTO/입력자료/통합_v1.5_GLA.xlsx",
+      "source_sha256": "92e4c46915a942e703bcba117b82a49e187923710e815f87239b5a81a3b90cb0",
+      "resource_path": "companies/JS_AUTO/inputs/통합_v1.5_GLA.xlsx",
+      "resource_sha256": "92e4c46915a942e703bcba117b82a49e187923710e815f87239b5a81a3b90cb0",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_AUTO/입력자료/통합_v1.5_현금분석.xlsx",
+      "source_sha256": "6db9711d0b326110b1d2aec6838f09535f39d31c828181a0c66c64a38924561b",
+      "resource_path": "companies/JS_AUTO/inputs/통합_v1.5_현금분석.xlsx",
+      "resource_sha256": "6db9711d0b326110b1d2aec6838f09535f39d31c828181a0c66c64a38924561b",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_AUTO/품목자산_마스터.json",
+      "source_sha256": "db55dcba7fc53776f657e43eadcfde28fc8ecd89749a281bcb6772fb251bd293",
+      "resource_path": "companies/JS_AUTO/master.json",
+      "resource_sha256": "126c1cfa7d1253804017f9c18b7e80db0e69392778f5d852f4579499be89767a",
+      "normalization": "profile_file: 업종설정.json → profile.json only"
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_AUTO/업종별_감사검토계획.json",
+      "source_sha256": "06c1b0c66e7f8a795f2fcd36606573a07e91056e059f84aa397eb3f8f67fe9e6",
+      "resource_path": "companies/JS_AUTO/plan.json",
+      "resource_sha256": "06c1b0c66e7f8a795f2fcd36606573a07e91056e059f84aa397eb3f8f67fe9e6",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_AUTO/업종설정.json",
+      "source_sha256": "524b7ec9b6882738434c9723fa5e135b392b2296bb5baa079427a283e33a0c16",
+      "resource_path": "companies/JS_AUTO/profile.json",
+      "resource_sha256": "524b7ec9b6882738434c9723fa5e135b392b2296bb5baa079427a283e33a0c16",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_BIO/입력자료/비용이연_01_정상.xlsx",
+      "source_sha256": "d00bb89265a86ea92109790957fea8c3453bb9a766f51a748ffa9c8159ed4aa1",
+      "resource_path": "companies/JS_BIO/inputs/비용이연_01_정상.xlsx",
+      "resource_sha256": "d00bb89265a86ea92109790957fea8c3453bb9a766f51a748ffa9c8159ed4aa1",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_BIO/입력자료/통합_v1.3_감가상각.xlsx",
+      "source_sha256": "84e789aa495f71c586519ca59a3c36ce2518c8a04a287eb8de8afea2de219392",
+      "resource_path": "companies/JS_BIO/inputs/통합_v1.3_감가상각.xlsx",
+      "resource_sha256": "84e789aa495f71c586519ca59a3c36ce2518c8a04a287eb8de8afea2de219392",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_BIO/입력자료/통합_v1.3_금융상품.xlsx",
+      "source_sha256": "2fc0be09be64a23d433500216cb3f79cbd70bb81bd99befade82424aa4b2d0af",
+      "resource_path": "companies/JS_BIO/inputs/통합_v1.3_금융상품.xlsx",
+      "resource_sha256": "2fc0be09be64a23d433500216cb3f79cbd70bb81bd99befade82424aa4b2d0af",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_BIO/입력자료/통합_v1.3_대손충당금.xlsx",
+      "source_sha256": "73f8ecc4e3c851e715a8e9c86e621b9e3b637f21b261a9a90a4d6b06f7cc2549",
+      "resource_path": "companies/JS_BIO/inputs/통합_v1.3_대손충당금.xlsx",
+      "resource_sha256": "73f8ecc4e3c851e715a8e9c86e621b9e3b637f21b261a9a90a4d6b06f7cc2549",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_BIO/입력자료/통합_v1.3_리스.xlsx",
+      "source_sha256": "47d413ce988cafbab0df5f7957993661d3a8f6b6dc28cedcdbf4ac932169db1a",
+      "resource_path": "companies/JS_BIO/inputs/통합_v1.3_리스.xlsx",
+      "resource_sha256": "47d413ce988cafbab0df5f7957993661d3a8f6b6dc28cedcdbf4ac932169db1a",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_BIO/입력자료/통합_v1.3_매출.xlsx",
+      "source_sha256": "151527bf07b7efea1783c0433d2621b7c89f4c02b1431fea5a36b251c462a93c",
+      "resource_path": "companies/JS_BIO/inputs/통합_v1.3_매출.xlsx",
+      "resource_sha256": "151527bf07b7efea1783c0433d2621b7c89f4c02b1431fea5a36b251c462a93c",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_BIO/입력자료/통합_v1.3_원장_리드.xlsx",
+      "source_sha256": "aa9263379099ccb353a6dca9ed4819f5ae27664da91db46e4b2689847def0d6f",
+      "resource_path": "companies/JS_BIO/inputs/통합_v1.3_원장_리드.xlsx",
+      "resource_sha256": "aa9263379099ccb353a6dca9ed4819f5ae27664da91db46e4b2689847def0d6f",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_BIO/입력자료/통합_v1.3_재고평가.xlsx",
+      "source_sha256": "1caa8b8f586f17ff0bd5640291c51e616a8373f73ca54c7ef5b1199e66db29a6",
+      "resource_path": "companies/JS_BIO/inputs/통합_v1.3_재고평가.xlsx",
+      "resource_sha256": "1caa8b8f586f17ff0bd5640291c51e616a8373f73ca54c7ef5b1199e66db29a6",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_BIO/입력자료/통합_v1.3_종업원급여.xlsx",
+      "source_sha256": "a1196ff242cb0b38e9f2659764fbfc468a34982dcd5f33dbb7e0eb7acff78d26",
+      "resource_path": "companies/JS_BIO/inputs/통합_v1.3_종업원급여.xlsx",
+      "resource_sha256": "a1196ff242cb0b38e9f2659764fbfc468a34982dcd5f33dbb7e0eb7acff78d26",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_BIO/입력자료/통합_v1.3_확장검사.xlsx",
+      "source_sha256": "b7f51fa431496c4e8b8a35fb7ca5d74837134fe0ebd580ac819493fa77e76359",
+      "resource_path": "companies/JS_BIO/inputs/통합_v1.3_확장검사.xlsx",
+      "resource_sha256": "b7f51fa431496c4e8b8a35fb7ca5d74837134fe0ebd580ac819493fa77e76359",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_BIO/입력자료/통합_v1.4_원천증빙.auditpack",
+      "source_sha256": "2c147ed679ec5e75b5776084460aabee5a4f75ab183a8de55e0d6f08c6d6f999",
+      "resource_path": "companies/JS_BIO/inputs/통합_v1.4_원천증빙.auditpack",
+      "resource_sha256": "2c147ed679ec5e75b5776084460aabee5a4f75ab183a8de55e0d6f08c6d6f999",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_BIO/입력자료/통합_v1.4_재무제표.json",
+      "source_sha256": "fcc504b0fee03fa559afecf91003ee302a9a125ff0c78c98960beec7343c3c32",
+      "resource_path": "companies/JS_BIO/inputs/통합_v1.4_재무제표.json",
+      "resource_sha256": "fcc504b0fee03fa559afecf91003ee302a9a125ff0c78c98960beec7343c3c32",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_BIO/입력자료/통합_v1.5_FIA.xlsx",
+      "source_sha256": "2f376747638c7a117e173502a11f625c607e8ad4458c4e2e27ed6e16775f5402",
+      "resource_path": "companies/JS_BIO/inputs/통합_v1.5_FIA.xlsx",
+      "resource_sha256": "2f376747638c7a117e173502a11f625c607e8ad4458c4e2e27ed6e16775f5402",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_BIO/입력자료/통합_v1.5_GLA.xlsx",
+      "source_sha256": "6220a12f35644d2541e623d0ff91fc27b1c781aa0ad3c989f8e671a84eafe236",
+      "resource_path": "companies/JS_BIO/inputs/통합_v1.5_GLA.xlsx",
+      "resource_sha256": "6220a12f35644d2541e623d0ff91fc27b1c781aa0ad3c989f8e671a84eafe236",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_BIO/입력자료/통합_v1.5_현금분석.xlsx",
+      "source_sha256": "23f5abfbdf5abd41ca42df8df1794ebfe0529468e88010448519c242337de8ea",
+      "resource_path": "companies/JS_BIO/inputs/통합_v1.5_현금분석.xlsx",
+      "resource_sha256": "23f5abfbdf5abd41ca42df8df1794ebfe0529468e88010448519c242337de8ea",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_BIO/품목자산_마스터.json",
+      "source_sha256": "3a201ebd60c943c50827135e2f1435ec08409648b01b86e08014402a306bd8b3",
+      "resource_path": "companies/JS_BIO/master.json",
+      "resource_sha256": "fac5d85e5623aa8be436b2766779ea554e476f87e34969400c99e7c4dbd8992a",
+      "normalization": "profile_file: 업종설정.json → profile.json only"
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_BIO/업종별_감사검토계획.json",
+      "source_sha256": "0ea83853a3dc578bc879d32cd0f35c7659b33c2de1bd502c5271b15051515303",
+      "resource_path": "companies/JS_BIO/plan.json",
+      "resource_sha256": "0ea83853a3dc578bc879d32cd0f35c7659b33c2de1bd502c5271b15051515303",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_BIO/업종설정.json",
+      "source_sha256": "1edad1c576a689abb683734abb7f80ce989c46aa09069d76c3fb20499e05aa1c",
+      "resource_path": "companies/JS_BIO/profile.json",
+      "resource_sha256": "1edad1c576a689abb683734abb7f80ce989c46aa09069d76c3fb20499e05aa1c",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_ELEC/입력자료/비용이연_01_정상.xlsx",
+      "source_sha256": "db21449904f88aae1aa4a102a9e19c9cfd25feb484e0b98da1d2d1f38350a401",
+      "resource_path": "companies/JS_ELEC/inputs/비용이연_01_정상.xlsx",
+      "resource_sha256": "db21449904f88aae1aa4a102a9e19c9cfd25feb484e0b98da1d2d1f38350a401",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_ELEC/입력자료/통합_v1.3_감가상각.xlsx",
+      "source_sha256": "357f0467fe48498ccf597469406d6f7dc50e26bff32773c4d6924791fb8efa8a",
+      "resource_path": "companies/JS_ELEC/inputs/통합_v1.3_감가상각.xlsx",
+      "resource_sha256": "357f0467fe48498ccf597469406d6f7dc50e26bff32773c4d6924791fb8efa8a",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_ELEC/입력자료/통합_v1.3_금융상품.xlsx",
+      "source_sha256": "f9e89afbc3c8dd33d5500aa6108a9871f8ae8099d3572e9575420eba200ec8cc",
+      "resource_path": "companies/JS_ELEC/inputs/통합_v1.3_금융상품.xlsx",
+      "resource_sha256": "f9e89afbc3c8dd33d5500aa6108a9871f8ae8099d3572e9575420eba200ec8cc",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_ELEC/입력자료/통합_v1.3_대손충당금.xlsx",
+      "source_sha256": "8318e75c5c36e90972121836928c7690bcfc09b75218d332fd5b703dc135fefb",
+      "resource_path": "companies/JS_ELEC/inputs/통합_v1.3_대손충당금.xlsx",
+      "resource_sha256": "8318e75c5c36e90972121836928c7690bcfc09b75218d332fd5b703dc135fefb",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_ELEC/입력자료/통합_v1.3_리스.xlsx",
+      "source_sha256": "934e7b1d5ab24fc3deaea7adc02dd420c740f988110d4b4d25f76dd34730ca21",
+      "resource_path": "companies/JS_ELEC/inputs/통합_v1.3_리스.xlsx",
+      "resource_sha256": "934e7b1d5ab24fc3deaea7adc02dd420c740f988110d4b4d25f76dd34730ca21",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_ELEC/입력자료/통합_v1.3_매출.xlsx",
+      "source_sha256": "a62a84720ee3c3c01a2d0d4c308335b9f98176089521f9edf80f839eb747e0c9",
+      "resource_path": "companies/JS_ELEC/inputs/통합_v1.3_매출.xlsx",
+      "resource_sha256": "a62a84720ee3c3c01a2d0d4c308335b9f98176089521f9edf80f839eb747e0c9",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_ELEC/입력자료/통합_v1.3_원장_리드.xlsx",
+      "source_sha256": "15257e3f3e26d3fb6570c8c037a4714468c18e8e971dea5136828b0a4e7e9ec5",
+      "resource_path": "companies/JS_ELEC/inputs/통합_v1.3_원장_리드.xlsx",
+      "resource_sha256": "15257e3f3e26d3fb6570c8c037a4714468c18e8e971dea5136828b0a4e7e9ec5",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_ELEC/입력자료/통합_v1.3_재고평가.xlsx",
+      "source_sha256": "3ac5f53a52d786391f71a5db721fb10adf65d88d5b1139717c5f8e0094d9864d",
+      "resource_path": "companies/JS_ELEC/inputs/통합_v1.3_재고평가.xlsx",
+      "resource_sha256": "3ac5f53a52d786391f71a5db721fb10adf65d88d5b1139717c5f8e0094d9864d",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_ELEC/입력자료/통합_v1.3_종업원급여.xlsx",
+      "source_sha256": "e576e8337ec38ca83377bd3c44ddb3e4f1fbf40bc59801bae9e845893af9ad09",
+      "resource_path": "companies/JS_ELEC/inputs/통합_v1.3_종업원급여.xlsx",
+      "resource_sha256": "e576e8337ec38ca83377bd3c44ddb3e4f1fbf40bc59801bae9e845893af9ad09",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_ELEC/입력자료/통합_v1.3_확장검사.xlsx",
+      "source_sha256": "8f83682c7c8d0c6dc4af766e1973566193b6390cea1e3b2a92ce0d17ce59ce06",
+      "resource_path": "companies/JS_ELEC/inputs/통합_v1.3_확장검사.xlsx",
+      "resource_sha256": "8f83682c7c8d0c6dc4af766e1973566193b6390cea1e3b2a92ce0d17ce59ce06",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_ELEC/입력자료/통합_v1.4_원천증빙.auditpack",
+      "source_sha256": "2729c0848de1f529af1f4dc49000b3b4b2f5fd40cd062dde1b15c9ca41223893",
+      "resource_path": "companies/JS_ELEC/inputs/통합_v1.4_원천증빙.auditpack",
+      "resource_sha256": "2729c0848de1f529af1f4dc49000b3b4b2f5fd40cd062dde1b15c9ca41223893",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_ELEC/입력자료/통합_v1.4_재무제표.json",
+      "source_sha256": "e90c342eb4c527e2a3eab4235b015c129e569d07e6cc520f406ed2f51ba8ed4d",
+      "resource_path": "companies/JS_ELEC/inputs/통합_v1.4_재무제표.json",
+      "resource_sha256": "e90c342eb4c527e2a3eab4235b015c129e569d07e6cc520f406ed2f51ba8ed4d",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_ELEC/입력자료/통합_v1.5_FIA.xlsx",
+      "source_sha256": "326411c4aae50010af598ab5c70caf425e8a6c34a634b0f000ab6b23f54a24b0",
+      "resource_path": "companies/JS_ELEC/inputs/통합_v1.5_FIA.xlsx",
+      "resource_sha256": "326411c4aae50010af598ab5c70caf425e8a6c34a634b0f000ab6b23f54a24b0",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_ELEC/입력자료/통합_v1.5_GLA.xlsx",
+      "source_sha256": "9d64150d1712b9a771fb0c0aee0ee8c4ff013feef20ef3ef289e8a16759902bb",
+      "resource_path": "companies/JS_ELEC/inputs/통합_v1.5_GLA.xlsx",
+      "resource_sha256": "9d64150d1712b9a771fb0c0aee0ee8c4ff013feef20ef3ef289e8a16759902bb",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_ELEC/입력자료/통합_v1.5_현금분석.xlsx",
+      "source_sha256": "228e640041b9419762acfda625562a818f67b544ca65d496c8cd2e2912cf17b3",
+      "resource_path": "companies/JS_ELEC/inputs/통합_v1.5_현금분석.xlsx",
+      "resource_sha256": "228e640041b9419762acfda625562a818f67b544ca65d496c8cd2e2912cf17b3",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_ELEC/품목자산_마스터.json",
+      "source_sha256": "0e7229907d2782f35a96c6950a91950512ffe87a69eece1f5309c8855ce9426e",
+      "resource_path": "companies/JS_ELEC/master.json",
+      "resource_sha256": "f24c7b316a893d27e8717ce363c3a492674bf13c36ab0ad4350f77ff5a44c797",
+      "normalization": "profile_file: 업종설정.json → profile.json only"
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_ELEC/업종별_감사검토계획.json",
+      "source_sha256": "faf2c6dd128a2121c70a341d627bf89f3575457b9b482b57cd97e29d3bbcc754",
+      "resource_path": "companies/JS_ELEC/plan.json",
+      "resource_sha256": "faf2c6dd128a2121c70a341d627bf89f3575457b9b482b57cd97e29d3bbcc754",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_ELEC/업종설정.json",
+      "source_sha256": "26b6c657ba2c157466f57833490873058d81591bb054cbc066d8d0c33510aaad",
+      "resource_path": "companies/JS_ELEC/profile.json",
+      "resource_sha256": "26b6c657ba2c157466f57833490873058d81591bb054cbc066d8d0c33510aaad",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_SEMI/입력자료/비용이연_01_정상.xlsx",
+      "source_sha256": "4e0bfe53990c06ac069b25c2e353c0fc44b0cdfa12cc524a16ddd5981743861b",
+      "resource_path": "companies/JS_SEMI/inputs/비용이연_01_정상.xlsx",
+      "resource_sha256": "4e0bfe53990c06ac069b25c2e353c0fc44b0cdfa12cc524a16ddd5981743861b",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_SEMI/입력자료/통합_v1.3_감가상각.xlsx",
+      "source_sha256": "b8a8b711976f7ac356e52e97a7fb1321acdb012ce96a4c9bba981a61aef38990",
+      "resource_path": "companies/JS_SEMI/inputs/통합_v1.3_감가상각.xlsx",
+      "resource_sha256": "b8a8b711976f7ac356e52e97a7fb1321acdb012ce96a4c9bba981a61aef38990",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_SEMI/입력자료/통합_v1.3_금융상품.xlsx",
+      "source_sha256": "26cabf216ef867574b09511103808d590f1e9741b9d0c7cd463c0cc20ba4529f",
+      "resource_path": "companies/JS_SEMI/inputs/통합_v1.3_금융상품.xlsx",
+      "resource_sha256": "26cabf216ef867574b09511103808d590f1e9741b9d0c7cd463c0cc20ba4529f",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_SEMI/입력자료/통합_v1.3_대손충당금.xlsx",
+      "source_sha256": "d64f3ecaafc4230457f9b79078e0c2fe2e32ba0065f4ce9d4a449cede9ec9f7f",
+      "resource_path": "companies/JS_SEMI/inputs/통합_v1.3_대손충당금.xlsx",
+      "resource_sha256": "d64f3ecaafc4230457f9b79078e0c2fe2e32ba0065f4ce9d4a449cede9ec9f7f",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_SEMI/입력자료/통합_v1.3_리스.xlsx",
+      "source_sha256": "31a8763499fda2f2639a8857e489f555af1ce5ca327779dde3811c07bd79a2e9",
+      "resource_path": "companies/JS_SEMI/inputs/통합_v1.3_리스.xlsx",
+      "resource_sha256": "31a8763499fda2f2639a8857e489f555af1ce5ca327779dde3811c07bd79a2e9",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_SEMI/입력자료/통합_v1.3_매출.xlsx",
+      "source_sha256": "0083dbf2f34ecc9334d9b3c95abe050a2e2bfc42df87ae6b86e7fa9abbc119e9",
+      "resource_path": "companies/JS_SEMI/inputs/통합_v1.3_매출.xlsx",
+      "resource_sha256": "0083dbf2f34ecc9334d9b3c95abe050a2e2bfc42df87ae6b86e7fa9abbc119e9",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_SEMI/입력자료/통합_v1.3_원장_리드.xlsx",
+      "source_sha256": "fc126cc6135c4df5083ab9b16ff726d93448b42a5fdb5ffe2b517dd79408051f",
+      "resource_path": "companies/JS_SEMI/inputs/통합_v1.3_원장_리드.xlsx",
+      "resource_sha256": "fc126cc6135c4df5083ab9b16ff726d93448b42a5fdb5ffe2b517dd79408051f",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_SEMI/입력자료/통합_v1.3_재고평가.xlsx",
+      "source_sha256": "329ffb68ddf6b3f9ef368c42755a94905597f74b845aa5631b9f175078b45e2d",
+      "resource_path": "companies/JS_SEMI/inputs/통합_v1.3_재고평가.xlsx",
+      "resource_sha256": "329ffb68ddf6b3f9ef368c42755a94905597f74b845aa5631b9f175078b45e2d",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_SEMI/입력자료/통합_v1.3_종업원급여.xlsx",
+      "source_sha256": "b135d9fc14eeb76cba2135f1156f9b81cfdf28b4d889299265bf09e3ee3be672",
+      "resource_path": "companies/JS_SEMI/inputs/통합_v1.3_종업원급여.xlsx",
+      "resource_sha256": "b135d9fc14eeb76cba2135f1156f9b81cfdf28b4d889299265bf09e3ee3be672",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_SEMI/입력자료/통합_v1.3_확장검사.xlsx",
+      "source_sha256": "fa10c138d6d99150c9c41c54fcd2ef06ab5fc042ddbaff5f1fd32d4c0e68f1a5",
+      "resource_path": "companies/JS_SEMI/inputs/통합_v1.3_확장검사.xlsx",
+      "resource_sha256": "fa10c138d6d99150c9c41c54fcd2ef06ab5fc042ddbaff5f1fd32d4c0e68f1a5",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_SEMI/입력자료/통합_v1.4_원천증빙.auditpack",
+      "source_sha256": "4a70b2e0549eccfaa56da456fa7ceb79e21362f846e024e753e86c3734034bb6",
+      "resource_path": "companies/JS_SEMI/inputs/통합_v1.4_원천증빙.auditpack",
+      "resource_sha256": "4a70b2e0549eccfaa56da456fa7ceb79e21362f846e024e753e86c3734034bb6",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_SEMI/입력자료/통합_v1.4_재무제표.json",
+      "source_sha256": "f818a3d67a70b636a40260d6e82f991495f4a178b80d5a8133ab949b438bc5fc",
+      "resource_path": "companies/JS_SEMI/inputs/통합_v1.4_재무제표.json",
+      "resource_sha256": "f818a3d67a70b636a40260d6e82f991495f4a178b80d5a8133ab949b438bc5fc",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_SEMI/입력자료/통합_v1.5_FIA.xlsx",
+      "source_sha256": "cb0fdae0c61e1095badaa7852425a6fab552362bcf295c87d3c3b34d46687218",
+      "resource_path": "companies/JS_SEMI/inputs/통합_v1.5_FIA.xlsx",
+      "resource_sha256": "cb0fdae0c61e1095badaa7852425a6fab552362bcf295c87d3c3b34d46687218",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_SEMI/입력자료/통합_v1.5_GLA.xlsx",
+      "source_sha256": "23747ac98c5af5a3d4caa686b3e12c8a3f6155049744c43cadf38c8d1a019b32",
+      "resource_path": "companies/JS_SEMI/inputs/통합_v1.5_GLA.xlsx",
+      "resource_sha256": "23747ac98c5af5a3d4caa686b3e12c8a3f6155049744c43cadf38c8d1a019b32",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_SEMI/입력자료/통합_v1.5_현금분석.xlsx",
+      "source_sha256": "a651178f0259cbb6602ab53a251eeb504b19c31d9d98b1251a73e980bed07141",
+      "resource_path": "companies/JS_SEMI/inputs/통합_v1.5_현금분석.xlsx",
+      "resource_sha256": "a651178f0259cbb6602ab53a251eeb504b19c31d9d98b1251a73e980bed07141",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_SEMI/품목자산_마스터.json",
+      "source_sha256": "eb8eb2fa57c7c1d194a9c93d8c80397954ae29b6d6779de638e04194b4eeee53",
+      "resource_path": "companies/JS_SEMI/master.json",
+      "resource_sha256": "25cbb6f4451e670d031a9ff7a438c8003670aae4d96255405ad9eed7653ee779",
+      "normalization": "profile_file: 업종설정.json → profile.json only"
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_SEMI/업종별_감사검토계획.json",
+      "source_sha256": "d9d33bde73fba4cf85a9daedd3db5ce05ca8b19f063c0539e7d42f0597474205",
+      "resource_path": "companies/JS_SEMI/plan.json",
+      "resource_sha256": "d9d33bde73fba4cf85a9daedd3db5ce05ca8b19f063c0539e7d42f0597474205",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "회사별/JS_SEMI/업종설정.json",
+      "source_sha256": "4bfb5b7078d32f51c3b5234d578c96c13bf6cd0ab265d0e644f9c167460a138f",
+      "resource_path": "companies/JS_SEMI/profile.json",
+      "resource_sha256": "4bfb5b7078d32f51c3b5234d578c96c13bf6cd0ab265d0e644f9c167460a138f",
+      "normalization": null
+    },
+    {
+      "source_root": "engine-catalog",
+      "source_path": "procedure_catalog.json",
+      "source_sha256": "9a452d291fe939c14b11109ee52db99c48934a589c1d3ea353f06978fd9d4a84",
+      "resource_path": "procedure_catalog.json",
+      "resource_sha256": "9a452d291fe939c14b11109ee52db99c48934a589c1d3ea353f06978fd9d4a84",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "JS_업종별_항목표.xlsx",
+      "source_sha256": "5dcb1187be6685aed5eab8945fce3e57b8739a8c2e6109f5bf3d37c62c82d998",
+      "resource_path": "reference/JS_업종별_항목표.xlsx",
+      "resource_sha256": "5dcb1187be6685aed5eab8945fce3e57b8739a8c2e6109f5bf3d37c62c82d998",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "sector_design/official_sources.md",
+      "source_sha256": "4190313fd2790b18d1153cd70afd7c9695eb75e5157b8fb5d847eadb1a37255c",
+      "resource_path": "reference/official_sources.md",
+      "resource_sha256": "4190313fd2790b18d1153cd70afd7c9695eb75e5157b8fb5d847eadb1a37255c",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "sector_design/sector_audit_checks.json",
+      "source_sha256": "c3611da273d1ff8918dcbd10b3f1168bd1ec8fa32f5279429930ad3a0eb39b52",
+      "resource_path": "reference/sector_audit_checks.json",
+      "resource_sha256": "c3611da273d1ff8918dcbd10b3f1168bd1ec8fa32f5279429930ad3a0eb39b52",
+      "normalization": null
+    },
+    {
+      "source_root": "JS_업종별_더미업무_2026-10-23",
+      "source_path": "sector_design/sector_profiles.json",
+      "source_sha256": "806e79ce9e0eddaab625febf09b6af31a15cbcea3bafc74b07789b295cf27abf",
+      "resource_path": "reference/sector_profiles.json",
+      "resource_sha256": "806e79ce9e0eddaab625febf09b6af31a15cbcea3bafc74b07789b295cf27abf",
+      "normalization": null
+    }
+  ],
+  "normalization_policy": "inputs/profile/plan/catalog/reference bytes unchanged; master.profile_file only"
+}

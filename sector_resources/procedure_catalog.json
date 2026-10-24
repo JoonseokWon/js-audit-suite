@@ -1,0 +1,719 @@
+{
+  "date": "2026-10-23",
+  "status": "v1.3: 제한된 자동검사10개 모듈·전체48개 수동조서 지원",
+  "scope": "일반기업 재무제표감사 중심의 기능 분해. 모든 회사에 48개가 일률적으로 필요한 것은 아니며 산업별 절차는 별도 확장.",
+  "mapping": "기준 번호 연결은 이번 조사자의 설계상 판단이다. 원문을 대체하거나 공식 적합성을 인증하지 않는다.",
+  "modules": [
+    {
+      "id": "C01",
+      "group": "공통 기반",
+      "name": "업무수임·독립성·계약",
+      "input": "수임자료, 독립성 확인, 계약서",
+      "automatable": "체크리스트·유효기간·서명 누락 관리",
+      "human_required": "수임 및 유지, 독립성·윤리 위협 평가와 승인",
+      "workpaper": "업무수임·독립성·계약 체크리스트",
+      "standards": "210,220",
+      "source_ids": [],
+      "priority": 2,
+      "current_status": "신규 설계"
+    },
+    {
+      "id": "C02",
+      "group": "공통 기반",
+      "name": "회사·기간·기준·전기자료",
+      "input": "법인·사업장·통화, 보고기간, 전기 조서·수치",
+      "automatable": "법인/기간 구분, 전기 이월, 기준 버전과 시행일 기록",
+      "human_required": "적용 회계체계와 감사기준, 전기 비교·기초잔액 절차 결정",
+      "workpaper": "업무 기본정보·기초잔액·비교정보 조서",
+      "standards": "210,510,710",
+      "source_ids": [],
+      "priority": 1,
+      "current_status": "신규 설계"
+    },
+    {
+      "id": "C03",
+      "group": "공통 기반",
+      "name": "PBC 자료요청·진행관리",
+      "input": "요청목록, 담당자, 수령자료",
+      "automatable": "요청/수령/보완/완료 상태, 기한·버전·누락 표시",
+      "human_required": "자료의 적합성, 요청 범위와 추가자료 판단",
+      "workpaper": "PBC 관리대장",
+      "standards": "300,500",
+      "source_ids": [
+        "R11"
+      ],
+      "priority": 1,
+      "current_status": "신규 설계"
+    },
+    {
+      "id": "C04",
+      "group": "공통 기반",
+      "name": "TB·GL·보조부 모집단 완전성",
+      "input": "시산표, 총계정원장, 보조부, 독립 추출 건수·금액·범위",
+      "automatable": "차대합계, 기초+변동=기말, 행수·계정합계, 누락·중복·기간·회사 오류",
+      "human_required": "추출 조건·권한·신뢰성 확인; 동일 불완전 자료 간 일치와 구별",
+      "workpaper": "자료수령·IPE·모집단 통제 조서",
+      "standards": "500,330",
+      "source_ids": [
+        "R01",
+        "R12"
+      ],
+      "priority": 1,
+      "current_status": "신규 설계"
+    },
+    {
+      "id": "C05",
+      "group": "공통 기반",
+      "name": "계정 매핑·리드스케줄",
+      "input": "전·당기 TB, 계정체계, FS·주석 매핑",
+      "automatable": "미매핑·다중매핑 표시, 조정 전후 잔액, 계정별 합계·교차참조",
+      "human_required": "계정 분류, 공시 구분과 연결 범위 승인",
+      "workpaper": "계정별 리드스케줄·TB-FS 대사표",
+      "standards": "330,500",
+      "source_ids": [
+        "R12",
+        "R13",
+        "R14"
+      ],
+      "priority": 1,
+      "current_status": "신규 설계"
+    },
+    {
+      "id": "C06",
+      "group": "공통 기반",
+      "name": "증빙 수집·PDF/OCR·출처 추적",
+      "input": "PDF, 스캔, Excel, 원본 파일",
+      "automatable": "텍스트/표 추출, 페이지·영역·시트·행·해시 보존, 미추출 별도 표시",
+      "human_required": "원본 진위·신뢰성 및 OCR 금액·단위·부호 확인",
+      "workpaper": "증거목록·추출 검증 조서",
+      "standards": "230,500",
+      "source_ids": [
+        "R03"
+      ],
+      "priority": 1,
+      "current_status": "신규 설계"
+    },
+    {
+      "id": "C07",
+      "group": "공통 기반",
+      "name": "공통 대사 엔진",
+      "input": "양쪽 원천, 거래/문서/행 ID, 통화·금액·일자",
+      "automatable": "정확대사, 분할/합산 후보, 잔액·미매칭·중복·모호성 보존",
+      "human_required": "모호한 연결 확정, 정산·통제 조건에 맞는 규칙 승인",
+      "workpaper": "대사 결과·예외 등록부",
+      "standards": "500",
+      "source_ids": [
+        "R02",
+        "R04"
+      ],
+      "priority": 1,
+      "current_status": "신규 설계"
+    },
+    {
+      "id": "P01",
+      "group": "계획·위험·통제",
+      "name": "사업이해·위험평가",
+      "input": "사업·산업·규제·지배구조·전기 이슈",
+      "automatable": "위험→계정→주장→절차 연결, 미대응 위험 표시",
+      "human_required": "중요왜곡표시위험·유의적 위험 판단, 질문·관찰·문서검사",
+      "workpaper": "사업이해·위험평가표",
+      "standards": "315,240",
+      "source_ids": [],
+      "priority": 2,
+      "current_status": "신규 설계"
+    },
+    {
+      "id": "P02",
+      "group": "계획·위험·통제",
+      "name": "중요성·수행중요성",
+      "input": "재무수치, 벤치마크, 질적 요인",
+      "automatable": "승인된 산식의 계산·변경 영향, 계정별 배분 기록",
+      "human_required": "벤치마크·비율·수행중요성·명백히 사소한 금액 결정",
+      "workpaper": "중요성 결정·재평가 조서",
+      "standards": "320,450",
+      "source_ids": [],
+      "priority": 2,
+      "current_status": "신규 설계"
+    },
+    {
+      "id": "P03",
+      "group": "계획·위험·통제",
+      "name": "감사전략·절차 설계",
+      "input": "위험평가, 중요성, 회계정책, 인력·일정",
+      "automatable": "위험별 절차 추천, 적용/제외 사유·시기·범위 관리",
+      "human_required": "절차의 충분성 및 구체적 성격·시기·범위 승인",
+      "workpaper": "감사전략·감사프로그램",
+      "standards": "300,330",
+      "source_ids": [],
+      "priority": 2,
+      "current_status": "신규 설계"
+    },
+    {
+      "id": "P04",
+      "group": "계획·위험·통제",
+      "name": "분석적 절차",
+      "input": "월별·전기·예산·비재무 데이터",
+      "automatable": "증감률·회전율·마진·기대치·허용차 비교, 조사대상 추출",
+      "human_required": "기대치의 정밀성·자료 신뢰성 평가, 변동 설명의 증거 확인",
+      "workpaper": "분석적 절차 조서",
+      "standards": "315,520",
+      "source_ids": [
+        "R12"
+      ],
+      "priority": 2,
+      "current_status": "신규 설계"
+    },
+    {
+      "id": "P05",
+      "group": "계획·위험·통제",
+      "name": "업무흐름·RCM·통제테스트",
+      "input": "프로세스 기술, RCM, 통제 수행 모집단·증거",
+      "automatable": "통제-위험 연결, 빈도별 표본·예외·후속절차 기록",
+      "human_required": "설계·구현 확인, 운영효과성 검사, 통제 의존 판단",
+      "workpaper": "워크스루·통제테스트·미비점 조서",
+      "standards": "315,330,265",
+      "source_ids": [
+        "R05",
+        "R06",
+        "R11"
+      ],
+      "priority": 2,
+      "current_status": "신규 설계"
+    },
+    {
+      "id": "P06",
+      "group": "계획·위험·통제",
+      "name": "ITGC·IPE·서비스조직",
+      "input": "사용자·권한·변경·배치 로그, 보고서 조건, SOC 보고서",
+      "automatable": "퇴사자 접근·특권계정·승인 누락 후보, 추출설정·버전 기록",
+      "human_required": "로그 완전성, 실제 통제 수행·간접통제, SOC 범위·보완통제 평가; 별도 내부회계 의견과 구분",
+      "workpaper": "ITGC·IPE 검증·서비스조직 검토 조서",
+      "standards": "315,330,402",
+      "source_ids": [
+        "R11"
+      ],
+      "priority": 3,
+      "current_status": "신규 설계"
+    },
+    {
+      "id": "P07",
+      "group": "계획·위험·통제",
+      "name": "전표테스트·경영진 통제무력화",
+      "input": "전체 GL, 전표/행 ID, 작성·승인자, 입력시각, 계정·적요",
+      "automatable": "전표 단위 차대불일치, 결산·비정상 시간/사용자·반복금액·드문 계정 후보",
+      "human_required": "부정위험과 연결한 선정, 증빙 검사, 사업상 합리성·사후 수정 평가",
+      "workpaper": "전표테스트·부정위험 대응 조서",
+      "standards": "240,315,330",
+      "source_ids": [
+        "R07",
+        "R06"
+      ],
+      "priority": 2,
+      "current_status": "신규 설계"
+    },
+    {
+      "id": "P08",
+      "group": "계획·위험·통제",
+      "name": "표본 계획·선정·오류평가",
+      "input": "완전한 모집단, 감사목적, 위험·허용/예상 오류",
+      "automatable": "층화·전수층·무작위/체계/MUS 선정, seed·버전, 투영·상한 평가",
+      "human_required": "방법·가정·표본규모 승인, 증빙 검사·이탈 원인 및 모집단 결론",
+      "workpaper": "표본설계·선정·평가 조서",
+      "standards": "530,500",
+      "source_ids": [
+        "R05",
+        "R06"
+      ],
+      "priority": 2,
+      "current_status": "신규 설계"
+    },
+    {
+      "id": "A01",
+      "group": "계정별 실증",
+      "name": "현금·예금·은행조정·조회",
+      "input": "현금출납/계좌별 GL, 은행거래·잔액, 회신·미결항목",
+      "automatable": "잔액·거래 대사, 미인출/미기입·장기미결·후속청산 검토대상",
+      "human_required": "현금실사·은행조회 통제, 제한예금·담보·미기록 계좌 확인",
+      "workpaper": "현금예금·은행조정·조회 조서",
+      "standards": "500,505",
+      "source_ids": [
+        "R02"
+      ],
+      "priority": 2,
+      "current_status": "신규 설계"
+    },
+    {
+      "id": "A02",
+      "group": "계정별 실증",
+      "name": "금융상품·미수수익·이자",
+      "input": "상품명세, 계약, 원장, 회신, 금리·기간·원천징수",
+      "automatable": "기존 대사·명시된 이자구간/일수·차이 집계, 향후 유효이자 확장",
+      "human_required": "실재·권리·제한·분류, 복합 계약 및 시장자료 평가",
+      "workpaper": "금융상품 대사·이자 재계산 조서",
+      "standards": "500,505,540 / IFRS 9",
+      "source_ids": [
+        "R08",
+        "R09"
+      ],
+      "priority": 1,
+      "current_status": "금융상품 v2.1 EXE 존재; 단순이자·정해진 입력범위의 통합 대상"
+    },
+    {
+      "id": "A03",
+      "group": "계정별 실증",
+      "name": "차입금·사채·약정",
+      "input": "계약, 잔액·상환·이자, 수수료, 담보·재무약정",
+      "automatable": "원금변동·이자·상환스케줄, 약정 산식 및 만기분류 점검",
+      "human_required": "계약조건·약정 위반·차환·면제 시점 및 공시 판단",
+      "workpaper": "차입금·이자·재무약정 검토 조서",
+      "standards": "500,505,540 / IFRS 9, IAS 1",
+      "source_ids": [
+        "R09"
+      ],
+      "priority": 2,
+      "current_status": "신규 설계"
+    },
+    {
+      "id": "A04",
+      "group": "계정별 실증",
+      "name": "매출·발생·기간귀속·반품",
+      "input": "GL, 주문·계약, 출고·검수, 청구, 반품·환입",
+      "automatable": "기존 주문/납품/청구/원장 대사, 결산 전후일자·분할·누락 후보",
+      "human_required": "통제이전 시점·본인대리인·위탁/인도조건 및 증거 평가",
+      "workpaper": "매출 대사·기간귀속·반품 조서",
+      "standards": "240,330,500 / IFRS 15",
+      "source_ids": [
+        "R04"
+      ],
+      "priority": 1,
+      "current_status": "매출 v2.1 EXE 존재; 증빙 대사와 모집단 통제 중심"
+    },
+    {
+      "id": "A05",
+      "group": "계정별 실증",
+      "name": "계약자산·계약부채·진행기준",
+      "input": "계약, 이행의무·가격배분, 진행률, 선청구·기성",
+      "automatable": "승인된 배분·진행률 계산, 롤포워드·이연수익 비교",
+      "human_required": "5단계 인식, 변동대가·추정 총원가·진행률 합리성",
+      "workpaper": "수익인식·계약자산부채 조서",
+      "standards": "500,540 / IFRS 15",
+      "source_ids": [
+        "R13"
+      ],
+      "priority": 3,
+      "current_status": "신규 설계"
+    },
+    {
+      "id": "A06",
+      "group": "계정별 실증",
+      "name": "매출채권·연령·조회·후속입금",
+      "input": "채권명세, GL, 반품/대변전표, 회신, 결산 후 입금",
+      "automatable": "잔액·연령·입금 충당 대사, 장기연체·분쟁·상계 후보",
+      "human_required": "조회 통제·대체절차, 후속입금의 대상채권·실재성·권리 확인",
+      "workpaper": "채권 대사·조회·후속회수 조서",
+      "standards": "500,505",
+      "source_ids": [
+        "R02",
+        "R13"
+      ],
+      "priority": 2,
+      "current_status": "신규 설계"
+    },
+    {
+      "id": "A07",
+      "group": "계정별 실증",
+      "name": "대손충당금·기대신용손실",
+      "input": "채권/대출 모집단, 과거 손실·회수, 가정·전망·담보",
+      "automatable": "충당률표 또는 기간별 PD/LGD/EAD 재계산, 시나리오·민감도",
+      "human_required": "모형 적합성·세분화·전망·신용위험·편의 평가",
+      "workpaper": "ECL 재계산·추정 검토 조서",
+      "standards": "540,500 / IFRS 9",
+      "source_ids": [
+        "R08"
+      ],
+      "priority": 3,
+      "current_status": "신규 설계"
+    },
+    {
+      "id": "A08",
+      "group": "계정별 실증",
+      "name": "매입·매입채무·미기록부채",
+      "input": "발주·입고·매입송장, 거래처명세, GL, 결산 후 지급·송장",
+      "automatable": "3자대사, 미청구 입고·중복송장·후속지급과 기말잔액 연결",
+      "human_required": "재화·용역 수령시점, 미기록의무·거래처 회신·대체절차 평가",
+      "workpaper": "매입채무·미기록부채·매입기간귀속 조서",
+      "standards": "330,500,505",
+      "source_ids": [
+        "R13",
+        "R23"
+      ],
+      "priority": 2,
+      "current_status": "v1.3: 확정 용역의 후속증빙·지급 검색, 미지급/선급 배분, 원장·조서 연결. 매입 재고·자산·부가세 등은 별도."
+    },
+    {
+      "id": "A09",
+      "group": "계정별 실증",
+      "name": "비용·선급·미지급·충당경비",
+      "input": "GL, 계약·청구, 사용기간, 배부·정산 자료",
+      "automatable": "기간배분·전기비교·미지급 롤포워드·후속지급 대사",
+      "human_required": "용역 수행·실제 귀속기간, 자산화·비용 구분·추정 판단",
+      "workpaper": "비용 표본·선급/미지급 재계산 조서",
+      "standards": "500,540",
+      "source_ids": [],
+      "priority": 2,
+      "current_status": "v1.3: 확정 용역의 후속증빙·지급 검색, 미지급/선급 배분, 원장·조서 연결. 매입 재고·자산·부가세 등은 별도."
+    },
+    {
+      "id": "A10",
+      "group": "계정별 실증",
+      "name": "재고실사·수량·권리·이동",
+      "input": "실사표, 수불·보조부, 창고·외주/위탁, 실사일 전후 이동",
+      "automatable": "쌍방향 표본, 실사차이, 실사일→기말 롤포워드/백, 중복품목",
+      "human_required": "실사입회·현물관찰, 회사 count 통제·권리·제3자 재고 확인",
+      "workpaper": "재고실사·수량대사·기간귀속 조서",
+      "standards": "501,500",
+      "source_ids": [
+        "R13"
+      ],
+      "priority": 2,
+      "current_status": "재고실사 폴더는 계획 문서; 통합 완료 모듈로 보지 않음"
+    },
+    {
+      "id": "A11",
+      "group": "계정별 실증",
+      "name": "재고단가·제조원가·NRV",
+      "input": "품목·재고층, 매입/제조원가, BOM·배부, 후속판매·처분비",
+      "automatable": "정책별 원가 재계산, 원가층·수량·금액 대사, 저회전·NRV 후보",
+      "human_required": "정상조업도·배부/폐기·진부화·판매가 근거와 순실현가능가치 판단",
+      "workpaper": "재고평가·제조원가·평가충당금 조서",
+      "standards": "500,540 / IAS 2",
+      "source_ids": [
+        "R13"
+      ],
+      "priority": 3,
+      "current_status": "v1.2 제한된 전용 계산·원장/조서 연결. 제조원가·DB·퇴직정산 등은 수동."
+    },
+    {
+      "id": "A12",
+      "group": "계정별 실증",
+      "name": "유형자산·감가상각·취득처분",
+      "input": "자산대장, GL, 사용가능일·정책, 취득·처분·변경",
+      "automatable": "기존 5방법 재계산, 독립 원장대사, 원가/누계 변동·예외",
+      "human_required": "실물·권리·사용가능일, 내용연수·잔존·구성요소·자본화/배부 판단",
+      "workpaper": "유형자산 리드·변동·상각·추정 검토 조서",
+      "standards": "500,540 / IAS 16",
+      "source_ids": [
+        "R10"
+      ],
+      "priority": 1,
+      "current_status": "자산 감가상각 v1.0 EXE 존재; 원가모형·유한내용연수·월할 정책"
+    },
+    {
+      "id": "A13",
+      "group": "계정별 실증",
+      "name": "무형자산·개발비·상각",
+      "input": "대장·GL, 프로젝트·공수·개발비, 계약·인식 근거",
+      "automatable": "유한내용연수 상각·대사, 자본화 발생일·항목 후보",
+      "human_required": "연구/개발 구분, 인식요건·경제적 효익, 비한정 내용연수 판단",
+      "workpaper": "무형자산 인식·개발비·상각 조서",
+      "standards": "500,540 / IAS 38",
+      "source_ids": [
+        "R10"
+      ],
+      "priority": 2,
+      "current_status": "기존 자산 EXE의 유한내용연수 상각만 재사용 가능"
+    },
+    {
+      "id": "A14",
+      "group": "계정별 실증",
+      "name": "영업권·자산손상",
+      "input": "CGU 장부가, 승인 예산, CF·할인율·성장률·평가보고",
+      "automatable": "연도별 할인·말기가치·민감도·전기예측실적·회수가능액 비교",
+      "human_required": "CGU·손상징후·가정 일관성·전문가·공시 평가",
+      "workpaper": "손상검사·추정·민감도 조서",
+      "standards": "540,620 / IAS 36",
+      "source_ids": [
+        "R09",
+        "R24"
+      ],
+      "priority": 4,
+      "current_status": "신규 설계"
+    },
+    {
+      "id": "A15",
+      "group": "계정별 실증",
+      "name": "리스부채·사용권자산",
+      "input": "계약대장, 실제 지급일/금액, 할인율·옵션·변경",
+      "automatable": "현재가치·이자·상각·부채 변동·현금흐름, 미대사 계약 후보",
+      "human_required": "리스 식별·완전성, 기간·옵션·할인율·변경/재측정 판단",
+      "workpaper": "리스 계약검토·재계산·주석 대사 조서",
+      "standards": "500,540 / IFRS 16",
+      "source_ids": [
+        "R14"
+      ],
+      "priority": 3,
+      "current_status": "신규 설계"
+    },
+    {
+      "id": "A16",
+      "group": "계정별 실증",
+      "name": "급여·상여·연차·퇴직정산",
+      "input": "인사명부, 급여·근태·급여이체, 입퇴사, GL",
+      "automatable": "인원·급여·이체 대사, 중복계좌·퇴사 후 지급·미지급/연차 재계산",
+      "human_required": "고용·근로/보상 조건, 개인정보·권한, 추정 입력 확인",
+      "workpaper": "급여 대사·인원변동·미지급급여 조서",
+      "standards": "500,540 / IAS 19",
+      "source_ids": [
+        "R04"
+      ],
+      "priority": 2,
+      "current_status": "v1.2 제한된 전용 계산·원장/조서 연결. 제조원가·DB·퇴직정산 등은 수동."
+    },
+    {
+      "id": "A17",
+      "group": "계정별 실증",
+      "name": "확정급여채무·사외적립자산",
+      "input": "인사기초·규약·계리보고서·적립자산 회신·가정",
+      "automatable": "인원·급여 기초 대사, 채무/자산 변동, 할인·가정 민감도 검산",
+      "human_required": "예측단위적립방식·퇴직률/사망률·할인곡선·전문가 평가",
+      "workpaper": "퇴직급여 기초자료·계리보고서 검토 조서",
+      "standards": "500,540,620 / IAS 19",
+      "source_ids": [
+        "R16",
+        "R21"
+      ],
+      "priority": 4,
+      "current_status": "신규 설계"
+    },
+    {
+      "id": "A18",
+      "group": "계정별 실증",
+      "name": "당기법인세·이연법인세·세무잔액",
+      "input": "세무조정, 신고·납부, 장부가·세무기준액, 결손·세액공제",
+      "automatable": "승인된 지역/연도 세율로 과세소득·일시적차이·이연세 변동·ETR 재계산",
+      "human_required": "세법·세율 시점, 회수가능성·불확실성·예외·상계·OCI/자본 귀속 판단",
+      "workpaper": "법인세·이연법인세·세금잔액 대사 조서",
+      "standards": "500,540 / IAS 12, IFRIC 23",
+      "source_ids": [
+        "R22"
+      ],
+      "priority": 4,
+      "current_status": "신규 설계"
+    },
+    {
+      "id": "A19",
+      "group": "계정별 실증",
+      "name": "충당부채·우발채무·소송",
+      "input": "법무/법률서신, 의사록, 계약·보증·수선/복구 추정",
+      "automatable": "변동·할인·지급내역·민감도, 의무/회신 누락 체크",
+      "human_required": "현재의무·유출가능성·최선추정·법률조회·공시 판단",
+      "workpaper": "충당부채·소송/우발사항 조서",
+      "standards": "501,540 / IAS 37",
+      "source_ids": [
+        "R09"
+      ],
+      "priority": 3,
+      "current_status": "신규 설계"
+    },
+    {
+      "id": "A20",
+      "group": "계정별 실증",
+      "name": "자본·배당·주식보상·복합상품",
+      "input": "주주명부, 정관·등기·의사록, 약정·보상계획·평가",
+      "automatable": "주식수·지분·배당·자본변동, 조건에 맞는 평가·비용배분 검산",
+      "human_required": "자본/부채 분류, 가득/성과조건·희석·공정가치·공시 판단",
+      "workpaper": "자본변동·주식보상·복합상품 조서",
+      "standards": "500,540,620 / IAS 32, IFRS 2",
+      "source_ids": [
+        "R09"
+      ],
+      "priority": 4,
+      "current_status": "신규 설계"
+    },
+    {
+      "id": "A21",
+      "group": "계정별 실증",
+      "name": "외화거래·환산·해외사업",
+      "input": "통화별 잔액, 거래/기말 환율·기간, 해외법인 보고",
+      "automatable": "외화환산·차이·환산조정·현금흐름 환율영향 검산",
+      "human_required": "기능통화, 화폐성/비화폐성·환율 출처·교환가능성 판단",
+      "workpaper": "외화환산·환산조정 조서",
+      "standards": "500,540 / IAS 21",
+      "source_ids": [
+        "R09"
+      ],
+      "priority": 3,
+      "current_status": "신규 설계"
+    },
+    {
+      "id": "A22",
+      "group": "계정별 실증",
+      "name": "특수관계자·자금거래·공시",
+      "input": "관계자명부, 주주·임원, 거래처·계좌·계약·의사록",
+      "automatable": "명칭/식별자 연결 후보, 미공시 거래·잔액·비정상조건 추출",
+      "human_required": "관계의 실질·완전성, 사업목적·거래조건·공시 평가",
+      "workpaper": "특수관계자 식별·거래·공시 조서",
+      "standards": "550 / IAS 24",
+      "source_ids": [
+        "R04"
+      ],
+      "priority": 3,
+      "current_status": "신규 설계"
+    },
+    {
+      "id": "A23",
+      "group": "계정별 실증",
+      "name": "연결·내부거래·기업결합",
+      "input": "법인별 TB, 보고패키지, 관계·지분, 내부거래·취득일 평가",
+      "automatable": "회사간 잔액/손익 대사, 환산·제거·미실현손익·지분변동 검산",
+      "human_required": "지배력·범위·취득법·PPA·비지배지분, 부문감사인 업무 평가",
+      "workpaper": "연결범위·내부거래·연결조정·기업결합 조서",
+      "standards": "600,540 / IFRS 10, IFRS 3, IAS 28",
+      "source_ids": [
+        "R13"
+      ],
+      "priority": 4,
+      "current_status": "신규 설계"
+    },
+    {
+      "id": "A24",
+      "group": "계정별 실증",
+      "name": "현금흐름표",
+      "input": "전·당기 TB/GL, CF 초안, 비현금·취득/처분·리스·환율",
+      "automatable": "기초현금+증감=기말, 분류별 연결, 비현금·환율·사업결합 조정",
+      "human_required": "영업/투자/재무 분류와 회계정책·별도공시 판단",
+      "workpaper": "현금흐름표 검증·비현금거래 조서",
+      "standards": "330,500 / IAS 7",
+      "source_ids": [
+        "R12",
+        "R13"
+      ],
+      "priority": 3,
+      "current_status": "현금흐름표 폴더는 별도 존재; 최신 통합·검증 완료로 간주하지 않음"
+    },
+    {
+      "id": "A25",
+      "group": "계정별 실증",
+      "name": "재무제표·주석·공시 대사",
+      "input": "조정 후 TB, FS/주석, 전기 공시, DART/XBRL",
+      "automatable": "가감산·상호참조·단위/부호·주석/표 합계·전기 비교·매핑 점검",
+      "human_required": "누락공시·중요성·측정/표시 및 회사별 적용요건 판단",
+      "workpaper": "FS-TB·주석 대사·공시 체크리스트",
+      "standards": "330,500,700,710 / 적용 회계체계",
+      "source_ids": [
+        "R03",
+        "R15",
+        "R17",
+        "R18"
+      ],
+      "priority": 2,
+      "current_status": "신규 설계"
+    },
+    {
+      "id": "F01",
+      "group": "마무리·검토·보관",
+      "name": "후속사건",
+      "input": "보고기간말~보고서일 의사록·입금·지급·계약·사건",
+      "automatable": "기간별 수집목록, 사건·조정/공시 검토대상 관리",
+      "human_required": "수정/비수정 사건·추가절차·보고서 영향 판단",
+      "workpaper": "후속사건 조서",
+      "standards": "560 / IAS 10",
+      "source_ids": [],
+      "priority": 3,
+      "current_status": "신규 설계"
+    },
+    {
+      "id": "F02",
+      "group": "마무리·검토·보관",
+      "name": "계속기업",
+      "input": "현금예측, 차입약정, 만기·차환·지원, 계획·후속실적",
+      "automatable": "유동성·헤드룸·약정·시나리오·민감도 재계산",
+      "human_required": "경영진 계획 실현가능성·중요한 불확실성·공시·보고 판단",
+      "workpaper": "계속기업·유동성·민감도 조서",
+      "standards": "570",
+      "source_ids": [],
+      "priority": 3,
+      "current_status": "신규 설계"
+    },
+    {
+      "id": "F03",
+      "group": "마무리·검토·보관",
+      "name": "왜곡표시·수정분개·미수정사항",
+      "input": "확정 차이·잠재 차이, 세효과, 경영진 회신·반영 TB",
+      "automatable": "원인별 묶음, 과대/과소·총액/순액·투영 구분, 반영 전후 연결",
+      "human_required": "왜곡표시 확정·질적 영향·미수정 집계·추가절차 판단",
+      "workpaper": "수정분개·미수정왜곡표시 요약",
+      "standards": "450,530",
+      "source_ids": [],
+      "priority": 2,
+      "current_status": "신규 설계"
+    },
+    {
+      "id": "F04",
+      "group": "마무리·검토·보관",
+      "name": "최종 분석·모순 및 미완료 검토",
+      "input": "조정 후 FS, 전체 조서·이슈·반증",
+      "automatable": "미해결 위험/예외/리뷰노트·미응답 자료·최종 비율 표시",
+      "human_required": "재무제표 전반 일관성, 반증 해결·증거 충분성 판단",
+      "workpaper": "최종 분석·중요사항 요약 조서",
+      "standards": "520,330,230",
+      "source_ids": [],
+      "priority": 2,
+      "current_status": "신규 설계"
+    },
+    {
+      "id": "F05",
+      "group": "마무리·검토·보관",
+      "name": "경영진진술·지배기구 커뮤니케이션",
+      "input": "진술서, 미비점·수정사항·중요사항",
+      "automatable": "필수 항목·서명·날짜·대상기간·전달 상태 추적",
+      "human_required": "진술의 신뢰성·서명자 적합성, 구두/서면 커뮤니케이션 수행",
+      "workpaper": "경영진진술·감사결과/미비점 커뮤니케이션 기록",
+      "standards": "580,260,265",
+      "source_ids": [],
+      "priority": 3,
+      "current_status": "신규 설계"
+    },
+    {
+      "id": "F06",
+      "group": "마무리·검토·보관",
+      "name": "전문가·부문/내부감사인 업무",
+      "input": "전문가 보고·역량/객관성, 부문지시·결과·내부감사 업무",
+      "automatable": "업무범위·보고·질문·후속대응 연결",
+      "human_required": "타인의 업무 적합성·증거·관여범위와 결론 평가",
+      "workpaper": "전문가·부문/내부감사인 검토 조서",
+      "standards": "600,610,620",
+      "source_ids": [],
+      "priority": 3,
+      "current_status": "신규 설계"
+    },
+    {
+      "id": "F07",
+      "group": "마무리·검토·보관",
+      "name": "감사보고서·핵심감사사항·기타정보",
+      "input": "최종 FS, 결론·불확실성·미수정사항, 기타정보",
+      "automatable": "승인 템플릿 초안, 명칭·날짜·수치·상호참조·정합성 점검",
+      "human_required": "의견·변형·강조/기타사항·KAM·보고서 승인 및 발행",
+      "workpaper": "보고서 검토·KAM·기타정보 조서",
+      "standards": "700,701,705,706,710,720",
+      "source_ids": [],
+      "priority": 4,
+      "current_status": "신규 설계"
+    },
+    {
+      "id": "F08",
+      "group": "마무리·검토·보관",
+      "name": "조서 작성·검토·품질·최종보관",
+      "input": "모든 실행/증거/절차/검토이력, 조직 보관정책",
+      "automatable": "조서번호·교차참조·작성/검토자/시점·리뷰노트·버전·완료조건·백업",
+      "human_required": "업무수행이사·해당 품질검토자 판단, 최종보관 및 변경 사유 승인",
+      "workpaper": "조서 인덱스·검토·완료·보관대장",
+      "standards": "230,220",
+      "source_ids": [
+        "R11"
+      ],
+      "priority": 1,
+      "current_status": "기존 3개 로컬 프로그램에 일부 검토기록·Excel 조서 기능; 중앙 DB 통합은 미구현"
+    }
+  ]
+}

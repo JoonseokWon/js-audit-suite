@@ -1,0 +1,1619 @@
+{
+  "company_code": "JS_AUTO",
+  "name": "JS자동차",
+  "sector": "자동차부품·가공소재",
+  "business_assumption": "자동차부품·가공소재의 상품 유통 및 제한적 가공·검사 합성 사업. 완성차 제조·딜러망·차종별 실제 보증모형은 이 모본에 없음.",
+  "items": {
+    "sales": [
+      {
+        "original": "P01",
+        "code": "AU-S01_차량용제어센서",
+        "name": "차량용제어센서",
+        "unit": "EA"
+      },
+      {
+        "original": "P02",
+        "code": "AU-S02_부품가공용윤활제1KG포장",
+        "name": "부품가공용윤활제 1KG 포장",
+        "unit": "EA"
+      }
+    ],
+    "inventory": [
+      {
+        "original": "P01",
+        "code": "AU-S01_차량용제어센서",
+        "name": "차량용제어센서",
+        "unit": "EA"
+      },
+      {
+        "original": "P02",
+        "code": "AU-B02_부품가공용윤활제벌크",
+        "name": "부품가공용윤활제 벌크",
+        "unit": "KG"
+      }
+    ]
+  },
+  "assets": [
+    {
+      "asset_id": "A01",
+      "original_name": "합성 기계",
+      "name": "가상 자동차부품 가공·검사 장비",
+      "nature": "기존유형자산 표제·취득/사용가능일/내용월수/금액 유지"
+    },
+    {
+      "asset_id": "IA01",
+      "original_name": "가상 소프트웨어",
+      "name": "가상 자동차부품 생산·품질관리 소프트웨어(취득형)",
+      "nature": "취득형 소프트웨어 표제. 개발비 자산인식 판단을 새로 가정하지 않음."
+    }
+  ],
+  "customers": [
+    {
+      "original_id": "C01",
+      "code": "AU-C01_가상 자동차부품 조립고객",
+      "name": "가상 자동차부품 조립고객"
+    },
+    {
+      "original_id": "C02",
+      "code": "AU-C02_가상 자동차정비 부품유통고객",
+      "name": "가상 자동차정비 부품유통고객"
+    }
+  ],
+  "vendors": [
+    {
+      "original_id": "V01",
+      "code": "AU-V01_가상 차량제어센서 공급자",
+      "name": "가상 차량제어센서 공급자"
+    },
+    {
+      "original_id": "V02",
+      "code": "AU-V02_가상 부품가공윤활제 공급자",
+      "name": "가상 부품가공윤활제 공급자"
+    },
+    {
+      "original_id": "V03",
+      "code": "AU-V03_가상 부품가공장비 유지보수 공급자",
+      "name": "가상 부품가공장비 유지보수 공급자"
+    }
+  ],
+  "department": "JS자동차 경영지원·회계팀",
+  "warehouse": "JS자동차 자동차부품·소재 보관창고",
+  "field_rules": [
+    {
+      "rule_id": "ITEM_P01_EA",
+      "books": [
+        "03_매출_매입_재고.xlsx",
+        "03_매출_합성자료.xlsx",
+        "05_확장검사_합성자료.xlsx",
+        "08_재고평가_합성자료.xlsx",
+        "통합_v1.3_매출.xlsx",
+        "통합_v1.3_재고평가.xlsx",
+        "통합_v1.3_확장검사.xlsx"
+      ],
+      "sheets": [
+        "deliveries",
+        "invoices",
+        "orders",
+        "단위_환산근거",
+        "발주",
+        "실사",
+        "장부재고",
+        "재고_권리_보관",
+        "재고_수불",
+        "재고명세"
+      ],
+      "headers": [
+        "item_code",
+        "품목"
+      ],
+      "old": "P01",
+      "new": "AU-S01_차량용제어센서",
+      "source_ref": "ITEM_P01_EA",
+      "source_match_count": 19
+    },
+    {
+      "rule_id": "ITEM_P02_SALES_EA",
+      "books": [
+        "03_매출_합성자료.xlsx",
+        "통합_v1.3_매출.xlsx"
+      ],
+      "sheets": [
+        "deliveries",
+        "invoices",
+        "orders"
+      ],
+      "headers": [
+        "item_code"
+      ],
+      "old": "P02",
+      "new": "AU-S02_부품가공용윤활제1KG포장",
+      "source_ref": "ITEM_P02_SALES_EA",
+      "source_match_count": 6
+    },
+    {
+      "rule_id": "ITEM_P02_BULK_KG",
+      "books": [
+        "03_매출_매입_재고.xlsx",
+        "05_확장검사_합성자료.xlsx",
+        "08_재고평가_합성자료.xlsx",
+        "통합_v1.3_재고평가.xlsx",
+        "통합_v1.3_확장검사.xlsx"
+      ],
+      "sheets": [
+        "단위_환산근거",
+        "발주",
+        "실사",
+        "장부재고",
+        "재고_권리_보관",
+        "재고_수불",
+        "재고명세"
+      ],
+      "headers": [
+        "품목"
+      ],
+      "old": "P02",
+      "new": "AU-B02_부품가공용윤활제벌크",
+      "source_ref": "ITEM_P02_BULK_KG",
+      "source_match_count": 13
+    },
+    {
+      "rule_id": "WAREHOUSE_W1",
+      "books": [
+        "03_매출_매입_재고.xlsx",
+        "05_확장검사_합성자료.xlsx",
+        "08_재고평가_합성자료.xlsx",
+        "통합_v1.3_재고평가.xlsx",
+        "통합_v1.3_확장검사.xlsx"
+      ],
+      "sheets": [
+        "실사",
+        "장부재고",
+        "재고_권리_보관",
+        "재고_수불",
+        "재고명세"
+      ],
+      "headers": [
+        "창고"
+      ],
+      "old": "W1",
+      "new": "JS자동차 자동차부품·소재 보관창고",
+      "source_ref": "WAREHOUSE_W1",
+      "source_match_count": 20
+    },
+    {
+      "rule_id": "ASSET_A01_LABEL",
+      "books": [
+        "04_감가상각_합성자료.xlsx",
+        "통합_v1.3_감가상각.xlsx"
+      ],
+      "sheets": [
+        "자산"
+      ],
+      "headers": [
+        "자산명"
+      ],
+      "old": "합성 기계",
+      "new": "가상 자동차부품 가공·검사 장비",
+      "source_ref": "ASSET_A01_LABEL",
+      "source_match_count": 2
+    },
+    {
+      "rule_id": "ASSET_IA01_LABEL",
+      "books": [
+        "04_자산_비용_손상.xlsx"
+      ],
+      "sheets": [
+        "무형_취득_상각"
+      ],
+      "headers": [
+        "자산명"
+      ],
+      "old": "가상 소프트웨어",
+      "new": "가상 자동차부품 생산·품질관리 소프트웨어(취득형)",
+      "source_ref": "ASSET_IA01_LABEL",
+      "source_match_count": 1
+    },
+    {
+      "rule_id": "CUSTOMER_ID_C01",
+      "books": [
+        "02_자금_금융_차입.xlsx",
+        "03_매출_매입_재고.xlsx",
+        "03_매출_합성자료.xlsx",
+        "05_확장검사_합성자료.xlsx",
+        "07_대손충당금_합성자료.xlsx",
+        "통합_v1.3_대손충당금.xlsx",
+        "통합_v1.3_매출.xlsx",
+        "통합_v1.3_확장검사.xlsx"
+      ],
+      "sheets": [
+        "deliveries",
+        "invoices",
+        "ledger",
+        "orders",
+        "거래처",
+        "계약_기간귀속",
+        "조회_통제대장",
+        "채권",
+        "채권_송장연결"
+      ],
+      "headers": [
+        "customer_id",
+        "거래처",
+        "거래처ID",
+        "고객ID",
+        "대상ID"
+      ],
+      "old": "C01",
+      "new": "AU-C01_가상 자동차부품 조립고객",
+      "source_ref": "CUSTOMER_ID_C01",
+      "source_match_count": 16
+    },
+    {
+      "rule_id": "CUSTOMER_ID_C02",
+      "books": [
+        "03_매출_매입_재고.xlsx",
+        "03_매출_합성자료.xlsx",
+        "05_확장검사_합성자료.xlsx",
+        "07_대손충당금_합성자료.xlsx",
+        "통합_v1.3_대손충당금.xlsx",
+        "통합_v1.3_매출.xlsx",
+        "통합_v1.3_확장검사.xlsx"
+      ],
+      "sheets": [
+        "deliveries",
+        "invoices",
+        "ledger",
+        "orders",
+        "거래처",
+        "계약_기간귀속",
+        "채권",
+        "채권_송장연결"
+      ],
+      "headers": [
+        "customer_id",
+        "거래처",
+        "거래처ID",
+        "고객ID",
+        "대상ID"
+      ],
+      "old": "C02",
+      "new": "AU-C02_가상 자동차정비 부품유통고객",
+      "source_ref": "CUSTOMER_ID_C02",
+      "source_match_count": 15
+    },
+    {
+      "rule_id": "CUSTOMER_NAME_1",
+      "books": [
+        "03_매출_매입_재고.xlsx"
+      ],
+      "sheets": [
+        "거래처"
+      ],
+      "headers": [
+        "거래처명"
+      ],
+      "old": "가상고객 일",
+      "new": "가상 자동차부품 조립고객",
+      "source_ref": "CUSTOMER_NAME_1",
+      "source_match_count": 1
+    },
+    {
+      "rule_id": "CUSTOMER_NAME_2",
+      "books": [
+        "03_매출_매입_재고.xlsx"
+      ],
+      "sheets": [
+        "거래처"
+      ],
+      "headers": [
+        "거래처명"
+      ],
+      "old": "가상고객 이",
+      "new": "가상 자동차정비 부품유통고객",
+      "source_ref": "CUSTOMER_NAME_2",
+      "source_match_count": 1
+    },
+    {
+      "rule_id": "VENDOR_ID_V01",
+      "books": [
+        "03_매출_매입_재고.xlsx"
+      ],
+      "sheets": [
+        "거래처",
+        "매입_송장_잔액"
+      ],
+      "headers": [
+        "거래처ID"
+      ],
+      "old": "V01",
+      "new": "AU-V01_가상 차량제어센서 공급자",
+      "source_ref": "VENDOR_ID_V01",
+      "source_match_count": 2
+    },
+    {
+      "rule_id": "VENDOR_ID_V02",
+      "books": [
+        "03_매출_매입_재고.xlsx"
+      ],
+      "sheets": [
+        "거래처",
+        "매입_송장_잔액"
+      ],
+      "headers": [
+        "거래처ID"
+      ],
+      "old": "V02",
+      "new": "AU-V02_가상 부품가공윤활제 공급자",
+      "source_ref": "VENDOR_ID_V02",
+      "source_match_count": 2
+    },
+    {
+      "rule_id": "VENDOR_ID_V03",
+      "books": [
+        "03_매출_매입_재고.xlsx",
+        "비용이연_01_정상.xlsx"
+      ],
+      "sheets": [
+        "거래처",
+        "대금지급",
+        "용역계약",
+        "후속_미청구용역",
+        "후속송장"
+      ],
+      "headers": [
+        "거래처ID"
+      ],
+      "old": "V03",
+      "new": "AU-V03_가상 부품가공장비 유지보수 공급자",
+      "source_ref": "VENDOR_ID_V03",
+      "source_match_count": 5
+    },
+    {
+      "rule_id": "VENDOR_NAME_1",
+      "books": [
+        "03_매출_매입_재고.xlsx"
+      ],
+      "sheets": [
+        "거래처"
+      ],
+      "headers": [
+        "거래처명"
+      ],
+      "old": "가상공급자 일",
+      "new": "가상 차량제어센서 공급자",
+      "source_ref": "VENDOR_NAME_1",
+      "source_match_count": 1
+    },
+    {
+      "rule_id": "VENDOR_NAME_2",
+      "books": [
+        "03_매출_매입_재고.xlsx"
+      ],
+      "sheets": [
+        "거래처"
+      ],
+      "headers": [
+        "거래처명"
+      ],
+      "old": "가상공급자 이",
+      "new": "가상 부품가공윤활제 공급자",
+      "source_ref": "VENDOR_NAME_2",
+      "source_match_count": 1
+    },
+    {
+      "rule_id": "VENDOR_NAME_3",
+      "books": [
+        "03_매출_매입_재고.xlsx"
+      ],
+      "sheets": [
+        "거래처"
+      ],
+      "headers": [
+        "거래처명"
+      ],
+      "old": "가상용역공급자",
+      "new": "가상 부품가공장비 유지보수 공급자",
+      "source_ref": "VENDOR_NAME_3",
+      "source_match_count": 1
+    },
+    {
+      "rule_id": "FIA_DEPARTMENT",
+      "books": [
+        "통합_v1.5_FIA.xlsx"
+      ],
+      "sheets": [
+        "전표메타"
+      ],
+      "headers": [
+        "부서"
+      ],
+      "old": "합성회계팀",
+      "new": "JS자동차 경영지원·회계팀",
+      "source_ref": "FIA_DEPARTMENT",
+      "source_match_count": 82
+    },
+    {
+      "rule_id": "SOURCE_OBLIGATION_P01",
+      "books": [
+        "03_매출_매입_재고.xlsx"
+      ],
+      "sheets": [
+        "계약_기간귀속"
+      ],
+      "headers": [
+        "수행의무"
+      ],
+      "old": "P01 10EA 인도",
+      "new": "AU-S01_차량용제어센서 10EA 인도(합성)",
+      "source_ref": "SOURCE_OBLIGATION_P01",
+      "source_match_count": 1
+    },
+    {
+      "rule_id": "SOURCE_OBLIGATION_P02",
+      "books": [
+        "03_매출_매입_재고.xlsx"
+      ],
+      "sheets": [
+        "계약_기간귀속"
+      ],
+      "headers": [
+        "수행의무"
+      ],
+      "old": "P02 1EA(1KG 포장) 인도",
+      "new": "AU-S02_부품가공용윤활제1KG포장 1EA(1KG 포장) 인도(합성)",
+      "source_ref": "SOURCE_OBLIGATION_P02",
+      "source_match_count": 1
+    },
+    {
+      "rule_id": "SERVICE_CONTRACT_SRV01",
+      "books": [
+        "비용이연_01_정상.xlsx"
+      ],
+      "sheets": [
+        "용역계약"
+      ],
+      "headers": [
+        "계약근거"
+      ],
+      "old": "SYNTHETIC ONLY / EV09 가상 검수·계약",
+      "new": "SYNTHETIC ONLY / EV09 자동차부품 가공장비 유지보수 검수·계약",
+      "source_ref": "SERVICE_CONTRACT_SRV01",
+      "source_match_count": 1
+    },
+    {
+      "rule_id": "CASH_PARTY_SYNTH-J-L",
+      "books": [
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "거래처계좌",
+        "계좌변경",
+        "은행거래",
+        "지급근거",
+        "현금원장선택"
+      ],
+      "headers": [
+        "거래처ID"
+      ],
+      "old": "SYNTH-J-L",
+      "new": "AU-LS01_가상검사시설임대처",
+      "source_ref": "CASH_PARTY_SYNTH-J-L",
+      "source_match_count": 5
+    },
+    {
+      "rule_id": "CASH_PARTY_SYNTH-J-CASH",
+      "books": [
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "거래처계좌",
+        "은행거래",
+        "지급근거",
+        "현금원장선택"
+      ],
+      "headers": [
+        "거래처ID"
+      ],
+      "old": "SYNTH-J-CASH",
+      "new": "AU-HR01_가상급여DC지급처",
+      "source_ref": "CASH_PARTY_SYNTH-J-CASH",
+      "source_match_count": 4
+    },
+    {
+      "rule_id": "CASH_PARTY_SYNTH-J-LOAN",
+      "books": [
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "은행거래",
+        "현금원장선택"
+      ],
+      "headers": [
+        "거래처ID"
+      ],
+      "old": "SYNTH-J-LOAN",
+      "new": "AU-BK01_가상차입금융기관",
+      "source_ref": "CASH_PARTY_SYNTH-J-LOAN",
+      "source_match_count": 2
+    },
+    {
+      "rule_id": "CASH_PARTY_SYNTH-J-INT",
+      "books": [
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "거래처계좌",
+        "은행거래",
+        "지급근거",
+        "현금원장선택"
+      ],
+      "headers": [
+        "거래처ID"
+      ],
+      "old": "SYNTH-J-INT",
+      "new": "AU-BK01_가상차입금융기관",
+      "source_ref": "CASH_PARTY_SYNTH-J-INT",
+      "source_match_count": 4
+    },
+    {
+      "rule_id": "CASH_PARTY_SYNTH-J-AP1",
+      "books": [
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "거래처계좌",
+        "은행거래",
+        "지급근거",
+        "현금원장선택"
+      ],
+      "headers": [
+        "거래처ID"
+      ],
+      "old": "SYNTH-J-AP1",
+      "new": "AU-V01_가상 차량제어센서 공급자",
+      "source_ref": "CASH_PARTY_SYNTH-J-AP1",
+      "source_match_count": 4
+    },
+    {
+      "rule_id": "CASH_PARTY_SYNTH-J-AP2",
+      "books": [
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "거래처계좌",
+        "은행거래",
+        "지급근거",
+        "현금원장선택"
+      ],
+      "headers": [
+        "거래처ID"
+      ],
+      "old": "SYNTH-J-AP2",
+      "new": "AU-V02_가상 부품가공윤활제 공급자",
+      "source_ref": "CASH_PARTY_SYNTH-J-AP2",
+      "source_match_count": 4
+    },
+    {
+      "rule_id": "CASH_PARTY_SYNTH-J-INS",
+      "books": [
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "거래처계좌",
+        "은행거래",
+        "지급근거",
+        "현금원장선택"
+      ],
+      "headers": [
+        "거래처ID"
+      ],
+      "old": "SYNTH-J-INS",
+      "new": "AU-INS01_가상사업장보험사",
+      "source_ref": "CASH_PARTY_SYNTH-J-INS",
+      "source_match_count": 4
+    },
+    {
+      "rule_id": "CASH_PARTY_FAKE-INSURER",
+      "books": [
+        "비용이연_01_정상.xlsx"
+      ],
+      "sheets": [
+        "대금지급",
+        "용역계약"
+      ],
+      "headers": [
+        "거래처ID"
+      ],
+      "old": "FAKE-INSURER",
+      "new": "AU-INS01_가상사업장보험사",
+      "source_ref": "CASH_PARTY_FAKE-INSURER",
+      "source_match_count": 2
+    },
+    {
+      "rule_id": "CASH_PARTY_SYNTH-J-IA",
+      "books": [
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "거래처계좌",
+        "은행거래",
+        "지급근거",
+        "현금원장선택"
+      ],
+      "headers": [
+        "거래처ID"
+      ],
+      "old": "SYNTH-J-IA",
+      "new": "AU-SW01_가상취득소프트웨어공급처",
+      "source_ref": "CASH_PARTY_SYNTH-J-IA",
+      "source_match_count": 4
+    },
+    {
+      "rule_id": "CASH_PARTY_SYNTH-J-FVTPL",
+      "books": [
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "거래처계좌",
+        "은행거래",
+        "지급근거",
+        "현금원장선택"
+      ],
+      "headers": [
+        "거래처ID"
+      ],
+      "old": "SYNTH-J-FVTPL",
+      "new": "AU-FI01_가상금융투자거래처",
+      "source_ref": "CASH_PARTY_SYNTH-J-FVTPL",
+      "source_match_count": 4
+    },
+    {
+      "rule_id": "CASH_PARTY_SYNTH-J-SUB",
+      "books": [
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "거래처계좌",
+        "은행거래",
+        "지급근거",
+        "현금원장선택"
+      ],
+      "headers": [
+        "거래처ID"
+      ],
+      "old": "SYNTH-J-SUB",
+      "new": "AU-INV01_가상지분거래상대방",
+      "source_ref": "CASH_PARTY_SYNTH-J-SUB",
+      "source_match_count": 4
+    },
+    {
+      "rule_id": "CASH_PARTY_SYNTH-J-IC",
+      "books": [
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "거래처계좌",
+        "은행거래",
+        "지급근거",
+        "현금원장선택"
+      ],
+      "headers": [
+        "거래처ID"
+      ],
+      "old": "SYNTH-J-IC",
+      "new": "AU-IC01_가상대여거래상대방",
+      "source_ref": "CASH_PARTY_SYNTH-J-IC",
+      "source_match_count": 4
+    },
+    {
+      "rule_id": "CASH_PARTY_SYNTH-J-EQUITY",
+      "books": [
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "은행거래",
+        "현금원장선택"
+      ],
+      "headers": [
+        "거래처ID"
+      ],
+      "old": "SYNTH-J-EQUITY",
+      "new": "AU-EQ01_가상출자자",
+      "source_ref": "CASH_PARTY_SYNTH-J-EQUITY",
+      "source_match_count": 2
+    }
+  ],
+  "value_overrides": [
+    {
+      "rule_id": "JOURNAL_J-I",
+      "books": [
+        "01_원장_리드_합성자료.xlsx",
+        "통합_v1.3_원장_리드.xlsx",
+        "통합_v1.5_FIA.xlsx",
+        "통합_v1.5_GLA.xlsx",
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "총계정원장"
+      ],
+      "headers": [
+        "적요"
+      ],
+      "old": "합성 이자",
+      "new": "SYNTHETIC ONLY / 정기예금 미수이자 계상",
+      "source_ref": "JOURNAL_J-I",
+      "source_match_count": 10,
+      "where": {
+        "전표ID": "J-I"
+      }
+    },
+    {
+      "rule_id": "JOURNAL_J-D",
+      "books": [
+        "01_원장_리드_합성자료.xlsx",
+        "통합_v1.3_원장_리드.xlsx",
+        "통합_v1.5_FIA.xlsx",
+        "통합_v1.5_GLA.xlsx",
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "총계정원장"
+      ],
+      "headers": [
+        "적요"
+      ],
+      "old": "합성 상각",
+      "new": "SYNTHETIC ONLY / 가상 자동차부품 가공·검사 장비 정액 상각",
+      "source_ref": "JOURNAL_J-D",
+      "source_match_count": 10,
+      "where": {
+        "전표ID": "J-D"
+      }
+    },
+    {
+      "rule_id": "JOURNAL_J-L",
+      "books": [
+        "01_원장_리드_합성자료.xlsx",
+        "통합_v1.3_원장_리드.xlsx",
+        "통합_v1.5_FIA.xlsx",
+        "통합_v1.5_GLA.xlsx",
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "총계정원장"
+      ],
+      "headers": [
+        "적요"
+      ],
+      "old": "SYNTHETIC ONLY / 리스·ECL 가상 분개",
+      "new": "SYNTHETIC ONLY / 가상 자동차부품·가공소재 지원시설 리스 상각·이자·월지급",
+      "source_ref": "JOURNAL_J-L",
+      "source_match_count": 30,
+      "where": {
+        "전표ID": "J-L"
+      }
+    },
+    {
+      "rule_id": "JOURNAL_J-E",
+      "books": [
+        "01_원장_리드_합성자료.xlsx",
+        "통합_v1.3_원장_리드.xlsx",
+        "통합_v1.5_FIA.xlsx",
+        "통합_v1.5_GLA.xlsx",
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "총계정원장"
+      ],
+      "headers": [
+        "적요"
+      ],
+      "old": "SYNTHETIC ONLY / 리스·ECL 가상 분개",
+      "new": "SYNTHETIC ONLY / 가상 고객 매출채권 충당금 계상",
+      "source_ref": "JOURNAL_J-E",
+      "source_match_count": 10,
+      "where": {
+        "전표ID": "J-E"
+      }
+    },
+    {
+      "rule_id": "JOURNAL_J-W",
+      "books": [
+        "01_원장_리드_합성자료.xlsx",
+        "통합_v1.3_원장_리드.xlsx",
+        "통합_v1.5_FIA.xlsx",
+        "통합_v1.5_GLA.xlsx",
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "총계정원장"
+      ],
+      "headers": [
+        "적요"
+      ],
+      "old": "SYNTHETIC ONLY / 리스·ECL 가상 분개",
+      "new": "SYNTHETIC ONLY / 가상 고객 매출채권 제각 처리",
+      "source_ref": "JOURNAL_J-W",
+      "source_match_count": 10,
+      "where": {
+        "전표ID": "J-W"
+      }
+    },
+    {
+      "rule_id": "JOURNAL_J-NRV",
+      "books": [
+        "01_원장_리드_합성자료.xlsx",
+        "통합_v1.3_원장_리드.xlsx",
+        "통합_v1.5_FIA.xlsx",
+        "통합_v1.5_GLA.xlsx",
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "총계정원장"
+      ],
+      "headers": [
+        "적요"
+      ],
+      "old": "SYNTHETIC ONLY / 재고·급여 가상 분개",
+      "new": "SYNTHETIC ONLY / 차량용제어센서·부품가공용윤활제 상품 NRV 평가·처분 대체",
+      "source_ref": "JOURNAL_J-NRV",
+      "source_match_count": 15,
+      "where": {
+        "전표ID": "J-NRV"
+      }
+    },
+    {
+      "rule_id": "JOURNAL_J-PAY",
+      "books": [
+        "01_원장_리드_합성자료.xlsx",
+        "통합_v1.3_원장_리드.xlsx",
+        "통합_v1.5_FIA.xlsx",
+        "통합_v1.5_GLA.xlsx",
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "총계정원장"
+      ],
+      "headers": [
+        "적요"
+      ],
+      "old": "SYNTHETIC ONLY / 재고·급여 가상 분개",
+      "new": "SYNTHETIC ONLY / JS자동차 가상 임직원 급여·공제 계상",
+      "source_ref": "JOURNAL_J-PAY",
+      "source_match_count": 15,
+      "where": {
+        "전표ID": "J-PAY"
+      }
+    },
+    {
+      "rule_id": "JOURNAL_J-DC",
+      "books": [
+        "01_원장_리드_합성자료.xlsx",
+        "통합_v1.3_원장_리드.xlsx",
+        "통합_v1.5_FIA.xlsx",
+        "통합_v1.5_GLA.xlsx",
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "총계정원장"
+      ],
+      "headers": [
+        "적요"
+      ],
+      "old": "SYNTHETIC ONLY / 재고·급여 가상 분개",
+      "new": "SYNTHETIC ONLY / JS자동차 가상 임직원 DC 부담금 계상",
+      "source_ref": "JOURNAL_J-DC",
+      "source_match_count": 10,
+      "where": {
+        "전표ID": "J-DC"
+      }
+    },
+    {
+      "rule_id": "JOURNAL_J-CASH",
+      "books": [
+        "01_원장_리드_합성자료.xlsx",
+        "통합_v1.3_원장_리드.xlsx",
+        "통합_v1.5_FIA.xlsx",
+        "통합_v1.5_GLA.xlsx",
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "총계정원장"
+      ],
+      "headers": [
+        "적요"
+      ],
+      "old": "SYNTHETIC ONLY / 재고·급여 가상 분개",
+      "new": "SYNTHETIC ONLY / JS자동차 가상 급여·DC 지급",
+      "source_ref": "JOURNAL_J-CASH",
+      "source_match_count": 15,
+      "where": {
+        "전표ID": "J-CASH"
+      }
+    },
+    {
+      "rule_id": "JOURNAL_J-LEAVE",
+      "books": [
+        "01_원장_리드_합성자료.xlsx",
+        "통합_v1.3_원장_리드.xlsx",
+        "통합_v1.5_FIA.xlsx",
+        "통합_v1.5_GLA.xlsx",
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "총계정원장"
+      ],
+      "headers": [
+        "적요"
+      ],
+      "old": "SYNTHETIC ONLY / 재고·급여 가상 분개",
+      "new": "SYNTHETIC ONLY / JS자동차 가상 단기누적연차 비용 계상",
+      "source_ref": "JOURNAL_J-LEAVE",
+      "source_match_count": 10,
+      "where": {
+        "전표ID": "J-LEAVE"
+      }
+    },
+    {
+      "rule_id": "JOURNAL_J-S1",
+      "books": [
+        "01_원장_리드_합성자료.xlsx",
+        "통합_v1.3_원장_리드.xlsx",
+        "통합_v1.5_FIA.xlsx",
+        "통합_v1.5_GLA.xlsx",
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "총계정원장"
+      ],
+      "headers": [
+        "적요"
+      ],
+      "old": "SYNTHETIC ONLY / J-S1",
+      "new": "SYNTHETIC ONLY / AU-S01_차량용제어센서 상품 외상매출·부가세 계상",
+      "source_ref": "JOURNAL_J-S1",
+      "source_match_count": 15,
+      "where": {
+        "전표ID": "J-S1"
+      }
+    },
+    {
+      "rule_id": "JOURNAL_J-S2",
+      "books": [
+        "01_원장_리드_합성자료.xlsx",
+        "통합_v1.3_원장_리드.xlsx",
+        "통합_v1.5_FIA.xlsx",
+        "통합_v1.5_GLA.xlsx",
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "총계정원장"
+      ],
+      "headers": [
+        "적요"
+      ],
+      "old": "SYNTHETIC ONLY / J-S2",
+      "new": "SYNTHETIC ONLY / AU-S02_부품가공용윤활제1KG포장 상품 외상매출·부가세 계상",
+      "source_ref": "JOURNAL_J-S2",
+      "source_match_count": 15,
+      "where": {
+        "전표ID": "J-S2"
+      }
+    },
+    {
+      "rule_id": "JOURNAL_J-LOAN",
+      "books": [
+        "01_원장_리드_합성자료.xlsx",
+        "통합_v1.3_원장_리드.xlsx",
+        "통합_v1.5_FIA.xlsx",
+        "통합_v1.5_GLA.xlsx",
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "총계정원장"
+      ],
+      "headers": [
+        "적요"
+      ],
+      "old": "SYNTHETIC ONLY / J-LOAN",
+      "new": "SYNTHETIC ONLY / JS자동차 가상 운전자금 차입",
+      "source_ref": "JOURNAL_J-LOAN",
+      "source_match_count": 10,
+      "where": {
+        "전표ID": "J-LOAN"
+      }
+    },
+    {
+      "rule_id": "JOURNAL_J-INT",
+      "books": [
+        "01_원장_리드_합성자료.xlsx",
+        "통합_v1.3_원장_리드.xlsx",
+        "통합_v1.5_FIA.xlsx",
+        "통합_v1.5_GLA.xlsx",
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "총계정원장"
+      ],
+      "headers": [
+        "적요"
+      ],
+      "old": "SYNTHETIC ONLY / J-INT",
+      "new": "SYNTHETIC ONLY / JS자동차 가상 차입이자 지급·미지급 계상",
+      "source_ref": "JOURNAL_J-INT",
+      "source_match_count": 15,
+      "where": {
+        "전표ID": "J-INT"
+      }
+    },
+    {
+      "rule_id": "JOURNAL_J-PO1",
+      "books": [
+        "01_원장_리드_합성자료.xlsx",
+        "통합_v1.3_원장_리드.xlsx",
+        "통합_v1.5_FIA.xlsx",
+        "통합_v1.5_GLA.xlsx",
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "총계정원장"
+      ],
+      "headers": [
+        "적요"
+      ],
+      "old": "SYNTHETIC ONLY / J-PO1",
+      "new": "SYNTHETIC ONLY / AU-S01_차량용제어센서 상품 매입·부가세·매입채무 계상",
+      "source_ref": "JOURNAL_J-PO1",
+      "source_match_count": 15,
+      "where": {
+        "전표ID": "J-PO1"
+      }
+    },
+    {
+      "rule_id": "JOURNAL_J-PO2",
+      "books": [
+        "01_원장_리드_합성자료.xlsx",
+        "통합_v1.3_원장_리드.xlsx",
+        "통합_v1.5_FIA.xlsx",
+        "통합_v1.5_GLA.xlsx",
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "총계정원장"
+      ],
+      "headers": [
+        "적요"
+      ],
+      "old": "SYNTHETIC ONLY / J-PO2",
+      "new": "SYNTHETIC ONLY / AU-B02_부품가공용윤활제벌크 구매·부가세·매입채무 계상",
+      "source_ref": "JOURNAL_J-PO2",
+      "source_match_count": 15,
+      "where": {
+        "전표ID": "J-PO2"
+      }
+    },
+    {
+      "rule_id": "JOURNAL_J-AP1",
+      "books": [
+        "01_원장_리드_합성자료.xlsx",
+        "통합_v1.3_원장_리드.xlsx",
+        "통합_v1.5_FIA.xlsx",
+        "통합_v1.5_GLA.xlsx",
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "총계정원장"
+      ],
+      "headers": [
+        "적요"
+      ],
+      "old": "SYNTHETIC ONLY / J-AP1",
+      "new": "SYNTHETIC ONLY / AU-V01_가상 차량제어센서 공급자 가상 매입대금 일부 지급",
+      "source_ref": "JOURNAL_J-AP1",
+      "source_match_count": 10,
+      "where": {
+        "전표ID": "J-AP1"
+      }
+    },
+    {
+      "rule_id": "JOURNAL_J-AP2",
+      "books": [
+        "01_원장_리드_합성자료.xlsx",
+        "통합_v1.3_원장_리드.xlsx",
+        "통합_v1.5_FIA.xlsx",
+        "통합_v1.5_GLA.xlsx",
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "총계정원장"
+      ],
+      "headers": [
+        "적요"
+      ],
+      "old": "SYNTHETIC ONLY / J-AP2",
+      "new": "SYNTHETIC ONLY / AU-V02_가상 부품가공윤활제 공급자 가상 매입대금 일부 지급",
+      "source_ref": "JOURNAL_J-AP2",
+      "source_match_count": 10,
+      "where": {
+        "전표ID": "J-AP2"
+      }
+    },
+    {
+      "rule_id": "JOURNAL_J-COGS",
+      "books": [
+        "01_원장_리드_합성자료.xlsx",
+        "통합_v1.3_원장_리드.xlsx",
+        "통합_v1.5_FIA.xlsx",
+        "통합_v1.5_GLA.xlsx",
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "총계정원장"
+      ],
+      "headers": [
+        "적요"
+      ],
+      "old": "SYNTHETIC ONLY / J-COGS",
+      "new": "SYNTHETIC ONLY / 자동차부품·가공소재 상품 매출원가 대체",
+      "source_ref": "JOURNAL_J-COGS",
+      "source_match_count": 10,
+      "where": {
+        "전표ID": "J-COGS"
+      }
+    },
+    {
+      "rule_id": "JOURNAL_J-ACCR",
+      "books": [
+        "01_원장_리드_합성자료.xlsx",
+        "통합_v1.3_원장_리드.xlsx",
+        "통합_v1.5_FIA.xlsx",
+        "통합_v1.5_GLA.xlsx",
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "총계정원장"
+      ],
+      "headers": [
+        "적요"
+      ],
+      "old": "SYNTHETIC ONLY / J-ACCR",
+      "new": "SYNTHETIC ONLY / 자동차부품 가공장비 유지보수 확정용역 미청구비용 계상",
+      "source_ref": "JOURNAL_J-ACCR",
+      "source_match_count": 10,
+      "where": {
+        "전표ID": "J-ACCR"
+      }
+    },
+    {
+      "rule_id": "JOURNAL_J-INS",
+      "books": [
+        "01_원장_리드_합성자료.xlsx",
+        "통합_v1.3_원장_리드.xlsx",
+        "통합_v1.5_FIA.xlsx",
+        "통합_v1.5_GLA.xlsx",
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "총계정원장"
+      ],
+      "headers": [
+        "적요"
+      ],
+      "old": "SYNTHETIC ONLY / J-INS",
+      "new": "SYNTHETIC ONLY / JS자동차 가상 사업장 보험료 선급",
+      "source_ref": "JOURNAL_J-INS",
+      "source_match_count": 10,
+      "where": {
+        "전표ID": "J-INS"
+      }
+    },
+    {
+      "rule_id": "JOURNAL_J-INSEXP",
+      "books": [
+        "01_원장_리드_합성자료.xlsx",
+        "통합_v1.3_원장_리드.xlsx",
+        "통합_v1.5_FIA.xlsx",
+        "통합_v1.5_GLA.xlsx",
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "총계정원장"
+      ],
+      "headers": [
+        "적요"
+      ],
+      "old": "SYNTHETIC ONLY / J-INSEXP",
+      "new": "SYNTHETIC ONLY / JS자동차 가상 사업장 선급보험료 비용 배분",
+      "source_ref": "JOURNAL_J-INSEXP",
+      "source_match_count": 10,
+      "where": {
+        "전표ID": "J-INSEXP"
+      }
+    },
+    {
+      "rule_id": "JOURNAL_J-IA",
+      "books": [
+        "01_원장_리드_합성자료.xlsx",
+        "통합_v1.3_원장_리드.xlsx",
+        "통합_v1.5_FIA.xlsx",
+        "통합_v1.5_GLA.xlsx",
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "총계정원장"
+      ],
+      "headers": [
+        "적요"
+      ],
+      "old": "SYNTHETIC ONLY / J-IA",
+      "new": "SYNTHETIC ONLY / 가상 자동차부품 생산·품질관리 소프트웨어(취득형) 취득·부가세·지급",
+      "source_ref": "JOURNAL_J-IA",
+      "source_match_count": 15,
+      "where": {
+        "전표ID": "J-IA"
+      }
+    },
+    {
+      "rule_id": "JOURNAL_J-IAD",
+      "books": [
+        "01_원장_리드_합성자료.xlsx",
+        "통합_v1.3_원장_리드.xlsx",
+        "통합_v1.5_FIA.xlsx",
+        "통합_v1.5_GLA.xlsx",
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "총계정원장"
+      ],
+      "headers": [
+        "적요"
+      ],
+      "old": "SYNTHETIC ONLY / J-IAD",
+      "new": "SYNTHETIC ONLY / 가상 자동차부품 생산·품질관리 소프트웨어(취득형) 상각",
+      "source_ref": "JOURNAL_J-IAD",
+      "source_match_count": 10,
+      "where": {
+        "전표ID": "J-IAD"
+      }
+    },
+    {
+      "rule_id": "JOURNAL_J-FVTPL",
+      "books": [
+        "01_원장_리드_합성자료.xlsx",
+        "통합_v1.3_원장_리드.xlsx",
+        "통합_v1.5_FIA.xlsx",
+        "통합_v1.5_GLA.xlsx",
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "총계정원장"
+      ],
+      "headers": [
+        "적요"
+      ],
+      "old": "SYNTHETIC ONLY / J-FVTPL",
+      "new": "SYNTHETIC ONLY / JS자동차 가상 당기손익금융자산 취득",
+      "source_ref": "JOURNAL_J-FVTPL",
+      "source_match_count": 10,
+      "where": {
+        "전표ID": "J-FVTPL"
+      }
+    },
+    {
+      "rule_id": "JOURNAL_J-FV",
+      "books": [
+        "01_원장_리드_합성자료.xlsx",
+        "통합_v1.3_원장_리드.xlsx",
+        "통합_v1.5_FIA.xlsx",
+        "통합_v1.5_GLA.xlsx",
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "총계정원장"
+      ],
+      "headers": [
+        "적요"
+      ],
+      "old": "SYNTHETIC ONLY / J-FV",
+      "new": "SYNTHETIC ONLY / JS자동차 가상 금융자산 평가이익 계상",
+      "source_ref": "JOURNAL_J-FV",
+      "source_match_count": 10,
+      "where": {
+        "전표ID": "J-FV"
+      }
+    },
+    {
+      "rule_id": "JOURNAL_J-FXAP",
+      "books": [
+        "01_원장_리드_합성자료.xlsx",
+        "통합_v1.3_원장_리드.xlsx",
+        "통합_v1.5_FIA.xlsx",
+        "통합_v1.5_GLA.xlsx",
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "총계정원장"
+      ],
+      "headers": [
+        "적요"
+      ],
+      "old": "SYNTHETIC ONLY / J-FXAP",
+      "new": "SYNTHETIC ONLY / JS자동차 가상 해외 지원용역 외화 미지급경비 계상",
+      "source_ref": "JOURNAL_J-FXAP",
+      "source_match_count": 10,
+      "where": {
+        "전표ID": "J-FXAP"
+      }
+    },
+    {
+      "rule_id": "JOURNAL_J-FX",
+      "books": [
+        "01_원장_리드_합성자료.xlsx",
+        "통합_v1.3_원장_리드.xlsx",
+        "통합_v1.5_FIA.xlsx",
+        "통합_v1.5_GLA.xlsx",
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "총계정원장"
+      ],
+      "headers": [
+        "적요"
+      ],
+      "old": "SYNTHETIC ONLY / J-FX",
+      "new": "SYNTHETIC ONLY / JS자동차 가상 외화채무 환산",
+      "source_ref": "JOURNAL_J-FX",
+      "source_match_count": 10,
+      "where": {
+        "전표ID": "J-FX"
+      }
+    },
+    {
+      "rule_id": "JOURNAL_J-SUB",
+      "books": [
+        "01_원장_리드_합성자료.xlsx",
+        "통합_v1.3_원장_리드.xlsx",
+        "통합_v1.5_FIA.xlsx",
+        "통합_v1.5_GLA.xlsx",
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "총계정원장"
+      ],
+      "headers": [
+        "적요"
+      ],
+      "old": "SYNTHETIC ONLY / J-SUB",
+      "new": "SYNTHETIC ONLY / JS자동차 가상 종속기업투자 취득(관계·연결제거 검토 미수행)",
+      "source_ref": "JOURNAL_J-SUB",
+      "source_match_count": 10,
+      "where": {
+        "전표ID": "J-SUB"
+      }
+    },
+    {
+      "rule_id": "JOURNAL_J-IC",
+      "books": [
+        "01_원장_리드_합성자료.xlsx",
+        "통합_v1.3_원장_리드.xlsx",
+        "통합_v1.5_FIA.xlsx",
+        "통합_v1.5_GLA.xlsx",
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "총계정원장"
+      ],
+      "headers": [
+        "적요"
+      ],
+      "old": "SYNTHETIC ONLY / J-IC",
+      "new": "SYNTHETIC ONLY / JS자동차 가상 관계회사 대여금 지급(그룹관계 확정 아님)",
+      "source_ref": "JOURNAL_J-IC",
+      "source_match_count": 10,
+      "where": {
+        "전표ID": "J-IC"
+      }
+    },
+    {
+      "rule_id": "JOURNAL_J-ICL",
+      "books": [
+        "01_원장_리드_합성자료.xlsx",
+        "통합_v1.3_원장_리드.xlsx",
+        "통합_v1.5_FIA.xlsx",
+        "통합_v1.5_GLA.xlsx",
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "총계정원장"
+      ],
+      "headers": [
+        "적요"
+      ],
+      "old": "SYNTHETIC ONLY / J-ICL",
+      "new": "SYNTHETIC ONLY / JS자동차 가상 관계회사 대여금 손상 계상(기존 합성값)",
+      "source_ref": "JOURNAL_J-ICL",
+      "source_match_count": 10,
+      "where": {
+        "전표ID": "J-ICL"
+      }
+    },
+    {
+      "rule_id": "JOURNAL_J-WARRANTY",
+      "books": [
+        "01_원장_리드_합성자료.xlsx",
+        "통합_v1.3_원장_리드.xlsx",
+        "통합_v1.5_FIA.xlsx",
+        "통합_v1.5_GLA.xlsx",
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "총계정원장"
+      ],
+      "headers": [
+        "적요"
+      ],
+      "old": "SYNTHETIC ONLY / J-WARRANTY",
+      "new": "SYNTHETIC ONLY / 자동차부품·가공소재 가상 상품보증 비용·충당부채 계상(기존 합성값)",
+      "source_ref": "JOURNAL_J-WARRANTY",
+      "source_match_count": 10,
+      "where": {
+        "전표ID": "J-WARRANTY"
+      }
+    },
+    {
+      "rule_id": "JOURNAL_J-DTL",
+      "books": [
+        "01_원장_리드_합성자료.xlsx",
+        "통합_v1.3_원장_리드.xlsx",
+        "통합_v1.5_FIA.xlsx",
+        "통합_v1.5_GLA.xlsx",
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "총계정원장"
+      ],
+      "headers": [
+        "적요"
+      ],
+      "old": "SYNTHETIC ONLY / J-DTL",
+      "new": "SYNTHETIC ONLY / JS자동차 가상 이연법인세 계상(기존 합성값)",
+      "source_ref": "JOURNAL_J-DTL",
+      "source_match_count": 10,
+      "where": {
+        "전표ID": "J-DTL"
+      }
+    },
+    {
+      "rule_id": "JOURNAL_J-EQUITY",
+      "books": [
+        "01_원장_리드_합성자료.xlsx",
+        "통합_v1.3_원장_리드.xlsx",
+        "통합_v1.5_FIA.xlsx",
+        "통합_v1.5_GLA.xlsx",
+        "통합_v1.5_현금분석.xlsx"
+      ],
+      "sheets": [
+        "총계정원장"
+      ],
+      "headers": [
+        "적요"
+      ],
+      "old": "SYNTHETIC ONLY / J-EQUITY",
+      "new": "SYNTHETIC ONLY / JS자동차 가상 유상증자·주식발행초과금 계상",
+      "source_ref": "JOURNAL_J-EQUITY",
+      "source_match_count": 15,
+      "where": {
+        "전표ID": "J-EQUITY"
+      }
+    }
+  ],
+  "explicit_unit_bridge": {
+    "sales_sku": "AU-S02_부품가공용윤활제1KG포장",
+    "sales_unit": "EA",
+    "inventory_sku": "AU-B02_부품가공용윤활제벌크",
+    "inventory_unit": "KG",
+    "ratio": 1,
+    "meaning": "판매 1EA(1KG 포장)당 벌크 1KG. 새 환산 가정이 아니라 기존 합성 원문의 선언.",
+    "source": {
+      "file": "samples/통합/통합_v1.4_원천증빙.auditpack",
+      "dataset_id": "D024",
+      "sheet": "단위_환산근거",
+      "where": {
+        "환산ID": "UOM02"
+      },
+      "observed_values": {
+        "품목": "P02",
+        "판매단위": "EA",
+        "창고단위": "KG",
+        "판매1단위당창고수량": 1
+      },
+      "row": 3
+    },
+    "cross_reference": {
+      "dataset_id": "D018",
+      "sheet": "계약_기간귀속",
+      "where": {
+        "계약ID": "CT02"
+      },
+      "old": "P02 1EA(1KG 포장) 인도"
+    },
+    "application": "D024 품목은 벌크SKU로 치환. 별도 판매SKU와의 연결은 이 프로필에 명시; 현행 모듈이 자동 환산·재고 전과정 대사를 수행했다고 주장하지 않음.",
+    "verification_status": "합성 원문 선언·포장/창고 단위의 실물 및 회계적 검증 미수행"
+  },
+  "manual_review_items": [
+    {
+      "topic": "매출·채권",
+      "request": "업종 상품 주문·인도/검수·반품/대변메모·조회/후속입금",
+      "review": "현재 원문·계약에 따른 통제이전·기간귀속·채권회수 판단. 인도/검수일 및 환산수량의 회계적 적정성은 사람이 확인.",
+      "status": "수동 참고·미수행",
+      "performed": null,
+      "conclusion": null,
+      "reviewer": null
+    },
+    {
+      "topic": "상품·소재 재고",
+      "request": "EA 품목 및 KG 벌크의 로트·권리·수불·포장환산 근거·기말상태/후속가격",
+      "review": "품질·진부화·사용기한 및 NRV 판단. 제품/재공품 제조원가·수율·원가배부를 새로 구현한 것이 아님.",
+      "status": "수동 참고·미수행",
+      "performed": null,
+      "conclusion": null,
+      "reviewer": null
+    },
+    {
+      "topic": "자산·소프트웨어",
+      "request": "가상 자동차부품 가공·검사 장비 검수·사용가능일·내용연수 근거, 취득형 소프트웨어 계약",
+      "review": "원본 사용가능 시점·원가와 수선비 구분·내용연수·손상 판단. 기존 합성 상각정책/수치는 업종 실무 추정치가 아님.",
+      "status": "수동 참고·미수행",
+      "performed": null,
+      "conclusion": null,
+      "reviewer": null
+    },
+    {
+      "topic": "미청구 용역",
+      "request": "자동차부품 가공장비 유지보수 검수·수행기간·후속송장/지급",
+      "review": "확정용역 비용의 기말귀속과 미기록부채 검색. 실제 수행 완료나 감사결론을 자동 기록하지 않음.",
+      "status": "수동 참고·미수행",
+      "performed": null,
+      "conclusion": null,
+      "reviewer": null
+    },
+    {
+      "topic": "GLA·FIA",
+      "request": "JS자동차 경영지원·회계팀 원장 추출·실제 입력/승인 메타·마감정책",
+      "review": "주말/월말/고액/반복 및 명시 메타 후보의 정상업무 사유 확인. 적요·부서 변경은 업종 라벨이며 수동/심야나 부정을 뜻하지 않음.",
+      "status": "수동 참고·미수행",
+      "performed": null,
+      "conclusion": null,
+      "reviewer": null
+    },
+    {
+      "topic": "현금·거래처계좌",
+      "request": "은행 원문/독립통제·승인근거·거래처 계좌 변경 이력",
+      "review": "명시 배부·잔여·지급근거 및 상대방 계좌의 진위·승인 범위를 사람이 확인. 계좌 집중·변경 사실만으로 부정을 결론내리지 않음.",
+      "status": "수동 참고·미수행",
+      "performed": null,
+      "conclusion": null,
+      "reviewer": null
+    }
+  ],
+  "human_performance": null,
+  "conclusion": null,
+  "reviewer": null,
+  "automatic_accounting_assumptions_added": false,
+  "cash_counterparty_aliases": {
+    "SYNTH-J-L": "AU-LS01_가상검사시설임대처",
+    "SYNTH-J-CASH": "AU-HR01_가상급여DC지급처",
+    "SYNTH-J-LOAN": "AU-BK01_가상차입금융기관",
+    "SYNTH-J-INT": "AU-BK01_가상차입금융기관",
+    "SYNTH-J-AP1": "AU-V01_가상 차량제어센서 공급자",
+    "SYNTH-J-AP2": "AU-V02_가상 부품가공윤활제 공급자",
+    "SYNTH-J-INS": "AU-INS01_가상사업장보험사",
+    "FAKE-INSURER": "AU-INS01_가상사업장보험사",
+    "SYNTH-J-IA": "AU-SW01_가상취득소프트웨어공급처",
+    "SYNTH-J-FVTPL": "AU-FI01_가상금융투자거래처",
+    "SYNTH-J-SUB": "AU-INV01_가상지분거래상대방",
+    "SYNTH-J-IC": "AU-IC01_가상대여거래상대방",
+    "SYNTH-J-EQUITY": "AU-EQ01_가상출자자"
+  },
+  "cash_alias_policy": "기존 전표기반 가상 ID의 역할 표시만 변경. 실재 거래처·계좌소유·차입/투자관계·임직원 개별 송금의 진위는 확정하지 않음. 지분·대여 상대방을 실제 JS그룹 회사명으로 대입하지 않음."
+}

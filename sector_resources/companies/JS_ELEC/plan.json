@@ -1,0 +1,648 @@
+{
+  "company_code": "JS_ELEC",
+  "company_name": "JS전자",
+  "state": "계획·미검토",
+  "audit_topics": [
+    {
+      "id": "ELEC-01",
+      "title": "상품 진부화·사용기한과 NRV",
+      "workpaper_id": "A11",
+      "additional_workpaper_ids": [],
+      "activity_condition": "전원제어모듈·소분소재 등 보유 상품에 가격 하락·장기체화·반품·사용기한 위험이 있는 경우",
+      "risk": "개선형 부품 출시, 재고 체화 또는 소재 품질 저하가 기말 판매가능가액에 반영되지 않을 위험",
+      "assertions": [
+        "실재성",
+        "권리와 의무",
+        "완전성",
+        "평가·배분"
+      ],
+      "standard_source_ids": [
+        "S_IAS2"
+      ],
+      "industry_source_ids": [
+        "M_SEC_BUS",
+        "M_SEC_FS"
+      ],
+      "required_inputs": [
+        {
+          "document": "품목·로트 재고명세",
+          "fields": [
+            "품목ID",
+            "로트ID",
+            "품명",
+            "재고구분",
+            "단위",
+            "수량",
+            "원가단가",
+            "장부충당금"
+          ],
+          "receipt_state": "수령·원문·완전성 확인 필요",
+          "app_schema_note": "자료요청용 항목. 기존 앱의 정해진 시트·헤더를 임의로 바꾸라는 지시가 아님."
+        },
+        {
+          "document": "NRV·체화 근거",
+          "fields": [
+            "가격근거ID",
+            "견적일",
+            "후속판매일",
+            "예상판매단가",
+            "완성원가",
+            "판매원가",
+            "최종출고일",
+            "사용기한"
+          ],
+          "receipt_state": "수령·원문·완전성 확인 필요",
+          "app_schema_note": "자료요청용 항목. 기존 앱의 정해진 시트·헤더를 임의로 바꾸라는 지시가 아님."
+        },
+        {
+          "document": "반품·폐기·보관자료",
+          "fields": [
+            "품목ID",
+            "로트ID",
+            "수량",
+            "사유",
+            "검사결과",
+            "처리승인",
+            "회계전표ID"
+          ],
+          "receipt_state": "수령·원문·완전성 확인 필요",
+          "app_schema_note": "자료요청용 항목. 기존 앱의 정해진 시트·헤더를 임의로 바꾸라는 지시가 아님."
+        }
+      ],
+      "join_keys": [
+        "회사코드",
+        "품목ID",
+        "로트ID",
+        "단위",
+        "가격근거ID"
+      ],
+      "manual_procedures": [
+        "기말 명세를 원장과 수불·실물 범위에 연결하고 미제출 로트가 있는지 확인",
+        "후속 할인·반품·폐기 사유가 기말 존재한 조건인지 원문으로 조사",
+        "판매가능성·추가원가와 필요 평가손실/환입을 판단하고 근거를 기록"
+      ],
+      "app_support": {
+        "baseline_version": "1.5",
+        "status": "PARTIAL_NUMERIC",
+        "modules": [
+          "재고평가",
+          "확장검사"
+        ],
+        "automatic_scope": "지원 양식의 확정 수량·원가단가·단위 NRV 및 평가변동의 수치 재계산·대사",
+        "not_implemented": [
+          "시장가격·사용기한·품질 판정의 자동 추정",
+          "원재료/WIP 원가계산·자동 EA↔KG 환산",
+          "평가 가정의 적정성 결론"
+        ]
+      },
+      "review_questions": [
+        "신구 모델을 같은 가격근거로 처리하지 않았는가",
+        "판매 EA와 보관 KG는 원문 환산 근거가 있는가"
+      ],
+      "execution": {
+        "state": "계획·미검토",
+        "actually_performed": false,
+        "automatic_industry_judgment": false,
+        "preparer": null,
+        "performed": null,
+        "reviewer": null,
+        "conclusion": null,
+        "adjustment_approved": false
+      },
+      "missing_evidence_action": "미수령·미확인 범위를 조서에 남기고 추가 자료를 요청. 미구현 검토를 계산 완료로 표시하거나 빈값을 0으로 채우지 않음."
+    },
+    {
+      "id": "ELEC-02",
+      "title": "출고·반품·판매차감의 매출 귀속",
+      "workpaper_id": "A04",
+      "additional_workpaper_ids": [],
+      "activity_condition": "상품 매출에서 검수조건·반품권·판매장려금·위탁재고 등의 계약조건이 존재하는 경우",
+      "risk": "출고와 고객 통제 이전을 동일하게 보거나 기말 반품·판매차감을 누락할 위험",
+      "assertions": [
+        "발생",
+        "완전성",
+        "정확성",
+        "기간귀속",
+        "분류"
+      ],
+      "standard_source_ids": [
+        "S_IFRS15"
+      ],
+      "industry_source_ids": [
+        "M_SEC_FS"
+      ],
+      "required_inputs": [
+        {
+          "document": "주문·계약·판매정책",
+          "fields": [
+            "주문ID",
+            "계약ID",
+            "거래처ID",
+            "품목ID",
+            "검수조건",
+            "반품권",
+            "장려금조건"
+          ],
+          "receipt_state": "수령·원문·완전성 확인 필요",
+          "app_schema_note": "자료요청용 항목. 기존 앱의 정해진 시트·헤더를 임의로 바꾸라는 지시가 아님."
+        },
+        {
+          "document": "출고·검수·청구·원장",
+          "fields": [
+            "출고ID",
+            "검수일",
+            "송장ID",
+            "전표ID",
+            "수량",
+            "공급가액",
+            "전기일"
+          ],
+          "receipt_state": "수령·원문·완전성 확인 필요",
+          "app_schema_note": "자료요청용 항목. 기존 앱의 정해진 시트·헤더를 임의로 바꾸라는 지시가 아님."
+        },
+        {
+          "document": "후속 반품·가격조정",
+          "fields": [
+            "원송장ID",
+            "반품일",
+            "반품수량",
+            "환불액",
+            "조정근거",
+            "승인자"
+          ],
+          "receipt_state": "수령·원문·완전성 확인 필요",
+          "app_schema_note": "자료요청용 항목. 기존 앱의 정해진 시트·헤더를 임의로 바꾸라는 지시가 아님."
+        }
+      ],
+      "join_keys": [
+        "회사코드",
+        "계약ID",
+        "주문ID",
+        "출고ID",
+        "송장ID",
+        "전표ID"
+      ],
+      "manual_procedures": [
+        "주문부터 출고·검수·청구·원장까지 동일 거래를 추적",
+        "결산 전후 검수와 반품·차감 증빙을 대조하고 판매조건을 읽기",
+        "수익인식 시점과 차감 추정은 계약별 판단으로 조서화"
+      ],
+      "app_support": {
+        "baseline_version": "1.5",
+        "status": "PARTIAL_NUMERIC",
+        "modules": [
+          "매출",
+          "GLA",
+          "FIA"
+        ],
+        "automatic_scope": "기존 주문·납품·송장·원장 수치 및 명시 메타의 규칙 대조",
+        "not_implemented": [
+          "계약상 통제 이전 판단",
+          "반품권·변동대가·별도 수행의무의 종합 계산"
+        ]
+      },
+      "review_questions": [
+        "기말 출고했지만 검수가 다음 기간인 계약이 있는가",
+        "같은 모본 금액의 거래를 실제 판매조건 검토 완료로 오해하지 않았는가"
+      ],
+      "execution": {
+        "state": "계획·미검토",
+        "actually_performed": false,
+        "automatic_industry_judgment": false,
+        "preparer": null,
+        "performed": null,
+        "reviewer": null,
+        "conclusion": null,
+        "adjustment_approved": false
+      },
+      "missing_evidence_action": "미수령·미확인 범위를 조서에 남기고 추가 자료를 요청. 미구현 검토를 계산 완료로 표시하거나 빈값을 0으로 채우지 않음."
+    },
+    {
+      "id": "ELEC-03",
+      "title": "판매보증·품질보상 충당 검토",
+      "workpaper_id": "A19",
+      "additional_workpaper_ids": [],
+      "activity_condition": "JS전자 자신의 판매계약상 보증·교환·수리·품질보상 의무가 존재하는 경우",
+      "risk": "공급업체 책임과 당사 의무를 구분하지 않거나 미청구 보증비를 누락할 위험",
+      "assertions": [
+        "완전성",
+        "권리와 의무",
+        "평가·배분",
+        "표시"
+      ],
+      "standard_source_ids": [
+        "S_IAS37",
+        "S_IFRS15"
+      ],
+      "industry_source_ids": [
+        "M_SEC_FS"
+      ],
+      "required_inputs": [
+        {
+          "document": "보증·품질 계약",
+          "fields": [
+            "계약ID",
+            "품목ID",
+            "책임주체",
+            "보증기간",
+            "적용조건",
+            "유상서비스구분"
+          ],
+          "receipt_state": "수령·원문·완전성 확인 필요",
+          "app_schema_note": "자료요청용 항목. 기존 앱의 정해진 시트·헤더를 임의로 바꾸라는 지시가 아님."
+        },
+        {
+          "document": "판매·보증청구 코호트",
+          "fields": [
+            "판매기간",
+            "품목ID",
+            "판매수량",
+            "청구일",
+            "수리비",
+            "교환비",
+            "미처리건"
+          ],
+          "receipt_state": "수령·원문·완전성 확인 필요",
+          "app_schema_note": "자료요청용 항목. 기존 앱의 정해진 시트·헤더를 임의로 바꾸라는 지시가 아님."
+        },
+        {
+          "document": "충당부채 추정·변동",
+          "fields": [
+            "기초잔액",
+            "당기설정",
+            "사용",
+            "환입",
+            "기말잔액",
+            "추정근거",
+            "원장계정"
+          ],
+          "receipt_state": "수령·원문·완전성 확인 필요",
+          "app_schema_note": "자료요청용 항목. 기존 앱의 정해진 시트·헤더를 임의로 바꾸라는 지시가 아님."
+        }
+      ],
+      "join_keys": [
+        "회사코드",
+        "계약ID",
+        "품목ID",
+        "판매기간",
+        "보증청구ID"
+      ],
+      "manual_procedures": [
+        "계약을 읽어 당사 의무와 제조사·공급처의 책임을 구분",
+        "청구·후속 지급·미처리 내역의 완전성과 추정 변경을 확인",
+        "충당 또는 공시 필요성과 별도 유상서비스의 수익 검토 여부를 수동 기록"
+      ],
+      "app_support": {
+        "baseline_version": "1.5",
+        "status": "MANUAL_ONLY",
+        "modules": [],
+        "automatic_scope": "없음. 보증충당금 전용 자동 추정 기능은 구현하지 않음",
+        "not_implemented": [
+          "보증충당금 추정·코호트 모형",
+          "보증/서비스 수행의무 분류·현재가치 산정"
+        ]
+      },
+      "review_questions": [
+        "보증조건이 미제출인데 의무 없음으로 처리하지 않았는가",
+        "실제 제조사 보증기간·청구율을 JS의 수치로 복사하지 않았는가"
+      ],
+      "execution": {
+        "state": "계획·미검토",
+        "actually_performed": false,
+        "automatic_industry_judgment": false,
+        "preparer": null,
+        "performed": null,
+        "reviewer": null,
+        "conclusion": null,
+        "adjustment_approved": false
+      },
+      "missing_evidence_action": "미수령·미확인 범위를 조서에 남기고 추가 자료를 요청. 미구현 검토를 계산 완료로 표시하거나 빈값을 0으로 채우지 않음."
+    },
+    {
+      "id": "ELEC-04",
+      "title": "조립검사장비 취득·상각과 지출 구분",
+      "workpaper_id": "A12",
+      "additional_workpaper_ids": [],
+      "activity_condition": "가상 SMT 조립·검사 장비 등 유한 내용연수 유형자산을 취득·사용하는 경우",
+      "risk": "사용가능 상태 확인 없이 상각개시일을 정하거나 유지보수비를 취득원가로 잘못 포함할 위험",
+      "assertions": [
+        "실재성",
+        "권리와 의무",
+        "평가·배분",
+        "기간귀속",
+        "분류"
+      ],
+      "standard_source_ids": [
+        "S_IAS16"
+      ],
+      "industry_source_ids": [
+        "M_SEC_FS"
+      ],
+      "required_inputs": [
+        {
+          "document": "자산대장·취득증빙",
+          "fields": [
+            "자산ID",
+            "자산명",
+            "취득원가",
+            "취득일",
+            "설치비",
+            "지급전표ID"
+          ],
+          "receipt_state": "수령·원문·완전성 확인 필요",
+          "app_schema_note": "자료요청용 항목. 기존 앱의 정해진 시트·헤더를 임의로 바꾸라는 지시가 아님."
+        },
+        {
+          "document": "설치·검수·가동 자료",
+          "fields": [
+            "자산ID",
+            "검수일",
+            "사용가능일",
+            "시험가동기록",
+            "승인근거"
+          ],
+          "receipt_state": "수령·원문·완전성 확인 필요",
+          "app_schema_note": "자료요청용 항목. 기존 앱의 정해진 시트·헤더를 임의로 바꾸라는 지시가 아님."
+        },
+        {
+          "document": "상각정책·수선 내역",
+          "fields": [
+            "내용연수",
+            "잔존가치",
+            "상각방법",
+            "수선목적",
+            "원장상각액"
+          ],
+          "receipt_state": "수령·원문·완전성 확인 필요",
+          "app_schema_note": "자료요청용 항목. 기존 앱의 정해진 시트·헤더를 임의로 바꾸라는 지시가 아님."
+        }
+      ],
+      "join_keys": [
+        "회사코드",
+        "자산ID",
+        "취득전표ID",
+        "검수근거ID"
+      ],
+      "manual_procedures": [
+        "자산 실재·취득증빙 및 설치 상태를 확인",
+        "사용가능일·내용연수·잔존가치와 수선/자본적 지출 분류를 검토",
+        "기존 제한된 월할 상각 결과와 원장 차이를 조사"
+      ],
+      "app_support": {
+        "baseline_version": "1.5",
+        "status": "PARTIAL_NUMERIC",
+        "modules": [
+          "감가상각"
+        ],
+        "automatic_scope": "지원 원가모형·유한 내용연수 자산의 기존 월할 계산 및 원장 대사",
+        "not_implemented": [
+          "자본화·사용가능 상태의 자동 판단",
+          "손상·재평가·처분의 종합 계산"
+        ]
+      },
+      "review_questions": [
+        "납품일과 사용가능일이 다른가",
+        "매출액에 비례한 임의 상각률을 입력하지 않았는가"
+      ],
+      "execution": {
+        "state": "계획·미검토",
+        "actually_performed": false,
+        "automatic_industry_judgment": false,
+        "preparer": null,
+        "performed": null,
+        "reviewer": null,
+        "conclusion": null,
+        "adjustment_approved": false
+      },
+      "missing_evidence_action": "미수령·미확인 범위를 조서에 남기고 추가 자료를 요청. 미구현 검토를 계산 완료로 표시하거나 빈값을 0으로 채우지 않음."
+    },
+    {
+      "id": "ELEC-05",
+      "title": "펌웨어·전자설계 연구개발비",
+      "workpaper_id": "A13",
+      "additional_workpaper_ids": [],
+      "activity_condition": "JS전자에 실제 자체 연구·개발 프로젝트가 존재하는 경우만 적용",
+      "risk": "연구 지출을 자동 자산화하거나 개발 요건 충족 시점 이전 비용을 누적할 위험",
+      "assertions": [
+        "발생",
+        "정확성",
+        "분류",
+        "평가·배분",
+        "기간귀속"
+      ],
+      "standard_source_ids": [
+        "S_IAS38"
+      ],
+      "industry_source_ids": [
+        "M_SEC_BUS"
+      ],
+      "required_inputs": [
+        {
+          "document": "프로젝트 승인·단계 근거",
+          "fields": [
+            "프로젝트ID",
+            "목적",
+            "연구/개발단계",
+            "판단일",
+            "기술·사업 근거"
+          ],
+          "receipt_state": "수령·원문·완전성 확인 필요",
+          "app_schema_note": "자료요청용 항목. 기존 앱의 정해진 시트·헤더를 임의로 바꾸라는 지시가 아님."
+        },
+        {
+          "document": "프로젝트별 원가",
+          "fields": [
+            "프로젝트ID",
+            "인력시간",
+            "외주비",
+            "재료비",
+            "발생일",
+            "원장전표ID"
+          ],
+          "receipt_state": "수령·원문·완전성 확인 필요",
+          "app_schema_note": "자료요청용 항목. 기존 앱의 정해진 시트·헤더를 임의로 바꾸라는 지시가 아님."
+        },
+        {
+          "document": "상업화·중단 검토",
+          "fields": [
+            "계획승인",
+            "자원확보",
+            "중단여부",
+            "회수가능성",
+            "검토근거"
+          ],
+          "receipt_state": "수령·원문·완전성 확인 필요",
+          "app_schema_note": "자료요청용 항목. 기존 앱의 정해진 시트·헤더를 임의로 바꾸라는 지시가 아님."
+        }
+      ],
+      "join_keys": [
+        "회사코드",
+        "프로젝트ID",
+        "원장전표ID",
+        "발생일"
+      ],
+      "manual_procedures": [
+        "활동의 실제 존재와 연구/개발 구분부터 확인",
+        "인식요건과 입증 시점·원가 추적성을 수동 판단",
+        "중단·성능 문제 및 손상 검토 필요성을 기록"
+      ],
+      "app_support": {
+        "baseline_version": "1.5",
+        "status": "MANUAL_ONLY",
+        "modules": [],
+        "automatic_scope": "없음. 급여·매입 수치 대사는 개발비 자산인식의 자동 판단이 아님",
+        "not_implemented": [
+          "프로젝트 자산화 기준·시점 평가",
+          "개발비 상각·손상 종합 모형"
+        ]
+      },
+      "review_questions": [
+        "상품 유통 더미만 있는데 자체 펌웨어 개발이 있었다고 가정하지 않았는가"
+      ],
+      "execution": {
+        "state": "계획·미검토",
+        "actually_performed": false,
+        "automatic_industry_judgment": false,
+        "preparer": null,
+        "performed": null,
+        "reviewer": null,
+        "conclusion": null,
+        "adjustment_approved": false
+      },
+      "missing_evidence_action": "미수령·미확인 범위를 조서에 남기고 추가 자료를 요청. 미구현 검토를 계산 완료로 표시하거나 빈값을 0으로 채우지 않음."
+    }
+  ],
+  "sources": [
+    {
+      "id": "S_IAS2",
+      "title": "IFRS Foundation — IAS 2 Inventories",
+      "url": "https://www.ifrs.org/issued-standards/list-of-standards/ias-2-inventories/",
+      "locator": "공개 About",
+      "verified_fact": "재고 원가와 NRV의 비교 및 원가의 기본 범위를 확인.",
+      "kind": "standard",
+      "checked_on": "2026-10-23",
+      "access": "공개 원문 또는 공개 요약 직접 확인"
+    },
+    {
+      "id": "S_IAS16",
+      "title": "IFRS Foundation — IAS 16 Property, Plant and Equipment",
+      "url": "https://www.ifrs.org/issued-standards/list-of-standards/ias-16-property-plant-and-equipment/",
+      "locator": "공개 About",
+      "verified_fact": "유형자산 인식·취득원가·감가상각의 기본 주제를 확인.",
+      "kind": "standard",
+      "checked_on": "2026-10-23",
+      "access": "공개 원문 또는 공개 요약 직접 확인"
+    },
+    {
+      "id": "S_IAS37",
+      "title": "IFRS Foundation — IAS 37 Provisions, Contingent Liabilities and Contingent Assets",
+      "url": "https://www.ifrs.org/issued-standards/list-of-standards/ias-37-provisions-contingent-liabilities-and-contingent-assets/",
+      "locator": "공개 About / Provisions",
+      "verified_fact": "보증의무가 충당부채 사례이며 측정에 불확실성을 고려함을 확인.",
+      "kind": "standard",
+      "checked_on": "2026-10-23",
+      "access": "공개 원문 또는 공개 요약 직접 확인"
+    },
+    {
+      "id": "S_IAS38",
+      "title": "IFRS Foundation — IAS 38 Intangible Assets",
+      "url": "https://www.ifrs.org/issued-standards/list-of-standards/ias-38-intangible-assets/",
+      "locator": "공개 About",
+      "verified_fact": "연구 지출과 요건을 충족한 개발 지출을 구분함을 확인.",
+      "kind": "standard",
+      "checked_on": "2026-10-23",
+      "access": "공개 원문 또는 공개 요약 직접 확인"
+    },
+    {
+      "id": "S_IFRS15",
+      "title": "IFRS Foundation — IFRS 15 Revenue from Contracts with Customers",
+      "url": "https://www.ifrs.org/issued-standards/list-of-standards/ifrs-15-revenue-from-contracts-with-customers/",
+      "locator": "공개 About / five steps",
+      "verified_fact": "수행의무·거래가격·통제 이전 및 기간에 걸친 이행의 기본 틀을 확인.",
+      "kind": "standard",
+      "checked_on": "2026-10-23",
+      "access": "공개 원문 또는 공개 요약 직접 확인"
+    },
+    {
+      "id": "S_IAS36",
+      "title": "IFRS Foundation — IAS 36 Impairment of Assets",
+      "url": "https://www.ifrs.org/issued-standards/list-of-standards/ias-36-impairment-of-assets/",
+      "locator": "공개 About",
+      "verified_fact": "비금융자산 회수가능액과 손상 검토의 기본 범위를 확인.",
+      "kind": "standard",
+      "checked_on": "2026-10-23",
+      "access": "공개 원문 또는 공개 요약 직접 확인"
+    },
+    {
+      "id": "M_SEC_BUS",
+      "title": "Samsung Electronics — Our Business",
+      "url": "https://www.samsung.com/global/ir/ir-resources/our-business/",
+      "locator": "Device eXperience / Device Solutions 구분",
+      "verified_fact": "전자제품·부품 사업 구분을 업종 참고로 확인.",
+      "kind": "manufacturer",
+      "checked_on": "2026-10-23",
+      "access": "공개 원문 또는 공개 요약 직접 확인"
+    },
+    {
+      "id": "M_SEC_FS",
+      "title": "Samsung Electronics — 2025 Consolidated Financial Statements",
+      "url": "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/2025_con_quarter04_all.pdf",
+      "locator": "주석 2.8·2.9, 3(A)·(B), 8, 15(A)",
+      "verified_fact": "정상조업도 원가·진부화·자산 사용가능 상태·판매 차감·보증 추정 공시를 업종 사례로 확인.",
+      "kind": "manufacturer",
+      "checked_on": "2026-10-23",
+      "access": "공개 원문 또는 공개 요약 직접 확인"
+    },
+    {
+      "id": "M_HYUN_WARRANTY",
+      "title": "Hyundai Motor — 국내 승용차 기본 보증 안내",
+      "url": "https://www.hyundai.com/kr/ko/purchase-event/policy-Information/warranty/normal-period",
+      "locator": "일반보증기간·부품별 구분",
+      "verified_fact": "보증이 차종·부품·조건에 따라 구분됨을 확인. 실제 수치·보증기간을 JS에 이식하지 않음.",
+      "kind": "manufacturer",
+      "checked_on": "2026-10-23",
+      "access": "공개 원문 또는 공개 요약 직접 확인"
+    },
+    {
+      "id": "M_HYUN_FACTORY",
+      "title": "Hyundai Motorstudio — 자동차 제조 공정 소개",
+      "url": "https://motorstudio.hyundai.com/goyang/cotn/exhb/exprnDsp.do?lang=en&strgCd=01",
+      "locator": "Stamping / Welding / Painting / Assembly",
+      "verified_fact": "프레스·용접·도장·조립 공정을 일반 자산명 설계의 참고로 확인.",
+      "kind": "manufacturer",
+      "checked_on": "2026-10-23",
+      "access": "공개 원문 또는 공개 요약 직접 확인"
+    },
+    {
+      "id": "M_SK_MI",
+      "title": "SK hynix — Advanced Metrology & Inspection",
+      "url": "https://research.skhynix.com/research-areas/semiconductor-Infrastructure-technology/advanced-metrology-inspection",
+      "locator": "Advanced Metrology & Inspection / Metrology / Inspection",
+      "verified_fact": "반도체 공정·결함검사·수율 관리의 산업 맥락을 확인. 수율 수치나 원가모형은 가져오지 않음.",
+      "kind": "manufacturer",
+      "checked_on": "2026-10-23",
+      "access": "공개 원문 또는 공개 요약 직접 확인"
+    },
+    {
+      "id": "M_BIO_DP",
+      "title": "Samsung Biologics — Drug Product Manufacturing",
+      "url": "https://samsungbiologics.com/services/cmo/drug-product",
+      "locator": "Finishing and Inspection / Cold Chain Storage & Shipping",
+      "verified_fact": "배치 출하검사·온도조건·보관·운송 관리의 업종 맥락을 확인. 의약품별 보관기준을 JS에 이식하지 않음.",
+      "kind": "manufacturer",
+      "checked_on": "2026-10-23",
+      "access": "공개 원문 또는 공개 요약 직접 확인"
+    },
+    {
+      "id": "M_BIO_CDO",
+      "title": "Samsung Biologics — Biopharma Development Services",
+      "url": "https://samsungbiologics.com/services/biopharma-development",
+      "locator": "Development Services / Development Capabilities",
+      "verified_fact": "세포주·공정·분석·제형 개발 등 위탁개발 단계의 존재를 확인. 개발기간·성공률을 가정하지 않음.",
+      "kind": "manufacturer",
+      "checked_on": "2026-10-23",
+      "access": "공개 원문 또는 공개 요약 직접 확인"
+    }
+  ],
+  "scope": "해당 거래가 있을 때 적용하는 수동 검토 계획. 더미에 없는 생산·연구·임상·리콜 활동을 수행했다고 주장하지 않음."
+}

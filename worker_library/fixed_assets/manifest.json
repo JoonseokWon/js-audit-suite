@@ -1,0 +1,375 @@
+{
+  "schema_version": "pm-raw-1",
+  "worker": "fixed_assets",
+  "synthetic": true,
+  "integrated": false,
+  "context": {
+    "company_code": "SYNTH01",
+    "start_date": "2026-01-01",
+    "end_date": "2026-12-31",
+    "currency": "KRW",
+    "financial_statement_scope": "별도"
+  },
+  "accounts": [
+    "유형자산",
+    "감가상각누계액",
+    "감가상각비",
+    "유한내용연수 무형자산",
+    "무형상각누계액/상각비",
+    "토지",
+    "자산처분손익",
+    "자산손상차손"
+  ],
+  "assertions": [
+    "실재성",
+    "완전성",
+    "권리와 의무",
+    "정확성/평가/배분",
+    "기간귀속",
+    "분류/표시"
+  ],
+  "existing_sources": [
+    {
+      "relative_path_from_worker": "../../../2026-10-23/배포/01_현재프로그램입력/04_감가상각_합성자료.xlsx",
+      "sheets": [
+        {
+          "sheet": "자산",
+          "range": "A1:T2"
+        },
+        {
+          "sheet": "원장",
+          "range": "A1:H2"
+        },
+        {
+          "sheet": "통제",
+          "range": "A1:M2"
+        }
+      ],
+      "catalog_path": "../../../2026-10-23/spec.json",
+      "catalog_pointers": [
+        "/books/4/tables/자산/0",
+        "/books/4/tables/원장/0",
+        "/books/4/tables/통제/0"
+      ],
+      "sha256": "860c6a74f61ab2fbb4534cb1c0b381db5191d4327a2f01b89f64d77b1d66a441",
+      "read_only": true,
+      "existing_native_app_input": true,
+      "status": "existing input reused/indexed; new worker JSON is not accepted by EXE"
+    },
+    {
+      "relative_path_from_worker": "../../../2026-10-23/배포/02_절차별원천자료/04_자산_비용_손상.xlsx",
+      "sheets": [
+        {
+          "sheet": "무형_취득_상각",
+          "range": "A1:N2"
+        },
+        {
+          "sheet": "손상_추정입력",
+          "range": "A1:L3"
+        },
+        {
+          "sheet": "거래없음_범위",
+          "range": "A1:G3"
+        }
+      ],
+      "catalog_path": "../../../2026-10-23/spec.json",
+      "catalog_pointers": [
+        "/books/13/tables/무형_취득_상각/0",
+        "/books/13/tables/손상_추정입력/0",
+        "/books/13/tables/손상_추정입력/1",
+        "/books/13/tables/거래없음_범위/0"
+      ],
+      "sha256": "74a1214a5d25a1dc3138ae02dbf4675572317059b49542437c46635e6a89e469",
+      "read_only": true,
+      "existing_native_app_input": false,
+      "status": "existing input reused/indexed; new worker JSON is not accepted by EXE"
+    },
+    {
+      "relative_path_from_worker": "../../../2026-10-23/배포/01_현재프로그램입력/01_원장_리드_합성자료.xlsx",
+      "sheets": [
+        {
+          "sheet": "시산표",
+          "range": "A5:G6"
+        },
+        {
+          "sheet": "시산표",
+          "range": "A11:G11"
+        },
+        {
+          "sheet": "모듈연결",
+          "range": "A5:E7"
+        }
+      ],
+      "catalog_path": "../../../2026-10-23/spec.json",
+      "catalog_pointers": [
+        "/books/1/tables/시산표/3",
+        "/books/1/tables/시산표/4",
+        "/books/1/tables/모듈연결/3"
+      ],
+      "sha256": "fefed80f21e464df457af9033248ebaafc3cae6f239930fbc3dcecaadcbd2ade",
+      "read_only": true,
+      "existing_native_app_input": true,
+      "status": "existing input reused/indexed; new worker JSON is not accepted by EXE"
+    }
+  ],
+  "existing_data_observations": [
+    "Existing machine A01 has cost 1200000, accumulated 480000 and net 720000; annual charge 240000.",
+    "Existing finite software IA01 is 200000 cost, 24 months, 100000 current charge.",
+    "Existing land/building/CIP sheet only declares no transactions; that is not independently tested absence.",
+    "New ASSET-prefixed counterfactuals deliberately have different amounts and must not be added to legacy A01/IA01."
+  ],
+  "additional_requested_evidence": [
+    {
+      "process": "취득/지급/사용개시",
+      "documents": [
+        "취득품의/발주/계약",
+        "매입송장·세금계산서",
+        "입고/검수/설치완료·사용가능 승인",
+        "운송·설치·차입원가 배부",
+        "은행지급 및 미지급 원장"
+      ],
+      "critical_fields": [
+        "company_code",
+        "transaction_id",
+        "document_id",
+        "asset_id",
+        "supplier_id",
+        "purchase_order_id",
+        "invoice_date",
+        "receipt_date",
+        "available_for_use_date",
+        "cost_krw",
+        "vat_krw",
+        "signed_bank_amount_krw",
+        "allocation_krw"
+      ]
+    },
+    {
+      "process": "감가/무형상각",
+      "documents": [
+        "기초·기말 자산대장과 증감표",
+        "원가/누계/비용 GL 및 독립 추출통제",
+        "내용연수·잔존가치·방법 승인/변경 근거",
+        "소프트웨어 라이선스와 활성화·계약통제 자료"
+      ],
+      "critical_fields": [
+        "opening_cost_krw",
+        "opening_accumulated_charge_krw",
+        "useful_life_months",
+        "residual_value_krw",
+        "method",
+        "available_for_use_date",
+        "disposal_date",
+        "estimate_change_date",
+        "book_current_charge_krw"
+      ]
+    },
+    {
+      "process": "토지/건물 권리",
+      "documents": [
+        "토지대장·지적도/건축물대장(표시·면적·지목)",
+        "등기사항전부증명서(표제부·갑구·을구)",
+        "매매계약·잔금지급·취득세",
+        "담보/신탁/차입약정과 후속 등기변동"
+      ],
+      "critical_fields": [
+        "asset_id",
+        "parcel_id",
+        "as_of_date",
+        "registered_owner_company_code",
+        "ownership_share",
+        "encumbrances",
+        "acquisition_allocation_krw"
+      ],
+      "judgment": "Cadastral data does not close ownership testing. Title document identity, timing, authenticity, encumbrances and underlying rights still require human assessment."
+    },
+    {
+      "process": "처분",
+      "documents": [
+        "처분 승인/매매계약",
+        "출고/인도/폐기 증명",
+        "입금·부가세",
+        "자산원가·누계액 제거 및 처분손익 전표"
+      ],
+      "critical_fields": [
+        "asset_id",
+        "disposal_date",
+        "proceeds_krw",
+        "disposal_costs_krw",
+        "derecognized_cost_krw",
+        "derecognized_accumulated_charge_krw",
+        "journal_id"
+      ],
+      "status": "request fields/stub only; no disposal gain engine implemented"
+    },
+    {
+      "process": "손상",
+      "documents": [
+        "손상징후 점검",
+        "CGU 식별/영업권 배부",
+        "승인 예산·현금흐름 및 실적비교",
+        "할인율·시장견적·처분원가",
+        "민감도/전문가 평가·추정 검토"
+      ],
+      "critical_fields": [
+        "asset_id",
+        "cgu_id",
+        "indicator_assessment",
+        "fair_value_less_costs_of_disposal_krw",
+        "value_in_use_krw",
+        "forecast_cash_flows_krw",
+        "discount_rate_basis_points",
+        "recoverable_amount_krw"
+      ],
+      "status": "missing inputs remain null; no valuation or impairment conclusion implemented"
+    }
+  ],
+  "linking": {
+    "primary_keys": [
+      "company_code",
+      "transaction_id",
+      "document_id"
+    ],
+    "other_keys": [
+      "asset_id",
+      "supplier_id",
+      "parcel_id",
+      "purchase_order_id",
+      "journal_id",
+      "journal_line_id",
+      "lead_code",
+      "workpaper_id"
+    ],
+    "evidence_locations": "fixtures.json JSON pointers in each expected result; workbook sheet/range above",
+    "allocation_rule": "Payment/invoice/asset many-to-many allocations need PM validation; no amount absorption by ID-only joins.",
+    "existing_machine_mapping": {
+      "cost_account": "1500",
+      "accumulated_account": "1590",
+      "expense_account": "5000",
+      "accumulated_gl_sign": -1
+    },
+    "new_software_land_mapping": null,
+    "mapping_status": "PM must assign/review unallocated accounts; do not reuse 1600 (existing lease ROU) or 5500 (payroll)."
+  },
+  "automated_checks": [
+    {
+      "check_id": "ASSET-ACQUISITION",
+      "implemented": "isolated JSON verifier only"
+    },
+    {
+      "check_id": "ASSET-PAYMENT",
+      "implemented": "isolated JSON verifier only"
+    },
+    {
+      "check_id": "ASSET-READY-DATE",
+      "implemented": "isolated JSON verifier only"
+    },
+    {
+      "check_id": "ASSET-DEPRECIATION",
+      "implemented": "isolated JSON verifier only"
+    },
+    {
+      "check_id": "ASSET-AMORTIZATION",
+      "implemented": "isolated JSON verifier only"
+    },
+    {
+      "check_id": "ASSET-LAND-DEPRECIATION",
+      "implemented": "isolated JSON verifier only"
+    },
+    {
+      "check_id": "ASSET-TITLE",
+      "implemented": "isolated JSON verifier only"
+    },
+    {
+      "check_id": "ASSET-REGISTER-GL",
+      "implemented": "isolated JSON verifier only"
+    },
+    {
+      "check_id": "ASSET-LEAD-RECALC",
+      "implemented": "isolated JSON verifier only"
+    }
+  ],
+  "auditor_judgment": [
+    "Asset recognition and capitalizable vs repair expense; VAT and land/building allocation",
+    "Evidence authenticity, title/control, existence and completeness",
+    "Useful life/residual/method/estimate changes and monthly convention appropriateness",
+    "Finite vs indefinite intangible life; purchased license vs SaaS or internally generated development",
+    "Disposal cutoff, unrecorded disposals, held-for-sale classification",
+    "Impairment indicators, CGU, forecasts/discount rate and recoverable amount",
+    "Materiality, explanation of differences, proposed adjustment and final conclusion"
+  ],
+  "workpaper_fields": [
+    "workpaper_id",
+    "company_code",
+    "period_start",
+    "period_end",
+    "lead_code",
+    "account_code",
+    "assertion",
+    "procedure",
+    "population_count",
+    "independent_control_reference",
+    "sample_selection_basis",
+    "transaction_id",
+    "asset_id",
+    "document_id",
+    "source_file_sha256",
+    "source_location",
+    "original_value",
+    "expected_value",
+    "difference",
+    "tolerance_krw",
+    "issue_id",
+    "follow_up",
+    "evidence_assessment",
+    "proposed_adjustment_id",
+    "adjustment_status",
+    "preparer",
+    "reviewer",
+    "review_date",
+    "conclusion"
+  ],
+  "workpaper_state": {
+    "status": "DRAFT_UNREVIEWED",
+    "preparer": null,
+    "reviewer": null,
+    "conclusion": null,
+    "posting_approved": false
+  },
+  "implementation_status": {
+    "legacy_native_inputs": "indexed, not modified",
+    "worker_json": "3 isolated test cases, not an EXE importer format",
+    "legacy_tb_integration": false,
+    "lead_and_workpaper_adapter": "not implemented",
+    "document_ocr_or_official_document_generation": false,
+    "disposal_engine": false,
+    "impairment_engine": false,
+    "partial_month_and_estimate_changes": "outside these first-of-month no-change cases"
+  },
+  "official_sources": [
+    {
+      "title": "XRB NZ IAS 16",
+      "url": "https://standards.xrb.govt.nz/standards-navigator/nz-ias-16/",
+      "scope": "paragraphs 50-55,58,67-72; available-for-use depreciation, residual/life review, land and derecognition; foreign public reference, not K-IFRS compliance certification",
+      "checked": "2026-10-23"
+    },
+    {
+      "title": "IFRS Foundation IAS 38 overview",
+      "url": "https://www.ifrs.org/issued-standards/list-of-standards/ias-38-intangible-assets/",
+      "scope": "recognition and finite/indefinite life distinction; no claim that every license qualifies",
+      "checked": "2026-10-23"
+    },
+    {
+      "title": "IFRS Foundation IAS 36 overview",
+      "url": "https://www.ifrs.org/issued-standards/list-of-standards/ias-36-impairment-of-assets/",
+      "scope": "recoverable amount and CGU; supports requested inputs, no estimate tested here",
+      "checked": "2026-10-23"
+    },
+    {
+      "title": "세종시 부동산포털 부동산 중개업무 안내",
+      "url": "https://www3.sejong.go.kr/sjrp/tradeGuide",
+      "scope": "official local-government guide explains registry title section for ownership and other rights; does not replace actual legal/evidence assessment",
+      "checked": "2026-10-23"
+    }
+  ]
+}

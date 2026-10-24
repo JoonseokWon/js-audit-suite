@@ -1,0 +1,60 @@
+{
+  "schema_version": "pm-raw-1",
+  "worker": "inventory_ap",
+  "synthetic": true,
+  "integrated": false,
+  "context": {"회사코드":"SYNTH01","시작일":"2026-01-01","기준일":"2026-12-31","통화":"KRW","연결구분":"별도"},
+  "scope": ["매입", "재고자산", "매입채무", "미기록부채 후보"],
+  "assertions": ["완전성", "실재성·발생사실", "정확성·평가", "기간귀속", "권리와 의무", "표시·공시"],
+  "source_root_relative_to_manifest": "../../../2026-10-23",
+  "source_files": [
+    {"file_id":"ledger","path":"배포/01_현재프로그램입력/01_원장_리드_합성자료.xlsx","spec_book_index":1,"sha256":"fefed80f21e464df457af9033248ebaafc3cae6f239930fbc3dcecaadcbd2ade"},
+    {"file_id":"extension","path":"배포/01_현재프로그램입력/05_확장검사_합성자료.xlsx","spec_book_index":5,"sha256":"3fd49a2d933048aa6c4d9900f8ba6a01c0759740706981dda57a4a1b079c1840"},
+    {"file_id":"valuation","path":"배포/01_현재프로그램입력/08_재고평가_합성자료.xlsx","spec_book_index":8,"sha256":"a51b80d3bd22b10b6098d56add8700c201bfa7cace906fc29275651693cdeab0"},
+    {"file_id":"raw_cycle","path":"배포/02_절차별원천자료/03_매출_매입_재고.xlsx","spec_book_index":12,"sha256":"0428323a2aab5197678c4162e25e93bc6fee1985463d3006f2ca4c94279c67c3"}
+  ],
+  "source_tables": [
+    {"source_id":"INV-SRC-PO","file_id":"extension","sheet":"발주","range":"A1:D3","spec_pointer":"/books/5/tables/발주","rows":2,"app_status":"통합 앱 v1.3 확장검사 입력 형식; 이번 워커 JSON은 직접 입력 불가"},
+    {"source_id":"INV-SRC-GR","file_id":"extension","sheet":"입고","range":"A1:C3","spec_pointer":"/books/5/tables/입고","rows":2,"app_status":"통합 앱 v1.3 확장검사 입력 형식; 날짜·소유권 조건은 추가 변환 필요"},
+    {"source_id":"INV-SRC-PI","file_id":"extension","sheet":"매입송장","range":"A1:D3","spec_pointer":"/books/5/tables/매입송장","rows":2,"app_status":"통합 앱 v1.3 확장검사 입력 형식; 세액·거래처는 원천 보강 필요"},
+    {"source_id":"INV-SRC-BOOK","file_id":"extension","sheet":"장부재고","range":"A1:D3","spec_pointer":"/books/5/tables/장부재고","rows":2,"app_status":"통합 앱 v1.3 확장검사 입력 형식"},
+    {"source_id":"INV-SRC-COUNT","file_id":"extension","sheet":"실사","range":"A1:F3","spec_pointer":"/books/5/tables/실사","rows":2,"app_status":"수량 대사 입력; 실사입회 자체를 대체하지 않음"},
+    {"source_id":"INV-SRC-COST","file_id":"valuation","sheet":"재고명세","range":"A1:I3","spec_pointer":"/books/8/tables/재고명세","rows":2,"app_status":"통합 앱 v1.3 재고평가 입력 형식"},
+    {"source_id":"INV-SRC-NRV","file_id":"valuation","sheet":"NRV근거","range":"A1:G3","spec_pointer":"/books/8/tables/NRV근거","rows":2,"app_status":"통합 앱 v1.3 재고평가 입력 형식; 견적·후속판매 문서 검증은 별도"},
+    {"source_id":"INV-SRC-VALGL","file_id":"valuation","sheet":"재고원장","range":"A1:J3","spec_pointer":"/books/8/tables/재고원장","rows":2,"app_status":"통합 앱 v1.3 재고평가 입력 형식"},
+    {"source_id":"INV-SRC-AP","file_id":"raw_cycle","sheet":"매입_송장_잔액","range":"A1:L3","spec_pointer":"/books/12/tables/매입_송장_잔액","dataset_id":"D020","rows":2,"app_status":"추가 원천자료; 기존 EXE의 직접 입력 시트 아님"},
+    {"source_id":"INV-SRC-SERVICE","file_id":"raw_cycle","sheet":"후속_미청구용역","range":"A1:K2","spec_pointer":"/books/12/tables/후속_미청구용역","dataset_id":"D021","rows":1,"app_status":"추가 원천자료; 비용 모듈 형식으로 검증된 변환 필요"},
+    {"source_id":"INV-SRC-MOVEMENT","file_id":"raw_cycle","sheet":"재고_수불","range":"A1:L7","spec_pointer":"/books/12/tables/재고_수불","dataset_id":"D022","rows":6,"app_status":"추가 원천자료; 수불 전체 대사의 EXE 연결 미구현"},
+    {"source_id":"INV-SRC-OWNERSHIP","file_id":"raw_cycle","sheet":"재고_권리_보관","range":"A1:J3","spec_pointer":"/books/12/tables/재고_권리_보관","dataset_id":"D023","rows":2,"app_status":"추가 원천자료; 계약과 보관인 확인은 감사인 판단"},
+    {"source_id":"INV-SRC-UOM","file_id":"raw_cycle","sheet":"단위_환산근거","range":"A1:H3","spec_pointer":"/books/12/tables/단위_환산근거","dataset_id":"D024","rows":2,"app_status":"추가 원천자료; 계정 간 단위환산 EXE 자동기능 아님"}
+  ],
+  "source_selection_note": "기존 CSV 폴더에는 동일 이름에 다른 D번호가 붙은 이전 파일이 남아 있다. 현행 spec.json의 D020~D024와 위 XLSX/셀을 기준으로 색인했다. 기존 파일은 수정하지 않았다. 모든 기존 통제값도 동일 합성 생성기에서 나왔으므로 독립된 실제 감사증거가 아니다.",
+  "additional_requests": [
+    {"id":"INV-PBC-01","name":"발주서·발주 변경/취소 및 승인로그 전체","fields":["회사코드","발주행ID","거래처ID","품목ID","발주일","수량","단위","단가","취소/변경일","승인근거"],"purpose":"발주·입고·송장 3자 대사와 미입고 약정 구별"},
+    {"id":"INV-PBC-02","name":"입고수령증·검수증 및 창고 입고번호 통제대장","fields":["입고ID","발주행ID","품목ID","창고ID","입고일","검수일","수량","단위","반입/반품","번호범위","취소번호"],"purpose":"원장 밖 입고 모집단에서 당기 채무·재고로 추적"},
+    {"id":"INV-PBC-03","name":"매입송장·수정세금계산서·매입세금계산서 전체","fields":["송장ID","세금계산서ID","거래처ID","입고ID","공급일","청구일","공급가액","세액","총액","수정원본ID"],"purpose":"부가세 포함 채무와 세전 재고원가 구분; 세무 공제적정성 자동 판단 안 함"},
+    {"id":"INV-PBC-04","name":"기말 매입채무 보조부와 공급자 명세·회신","fields":["거래처ID","송장ID","기말잔액","분쟁/반품","전표ID","직접회신 통제기록"],"purpose":"누락·분쟁·상계 후보 대사; 직접회신 통제는 감사인 담당"},
+    {"id":"INV-PBC-05","name":"기말 후 은행 출금·매입송장·미청구 입고/용역 전체","fields":["거래ID","송장ID","입고/용역ID","전표ID","지급일","금액","용역시작/종료","검수일","추출범위","기간별 통제합계"],"purpose":"후속지급·후속송장→수령/수행일→당기 원장 역추적. 표본기간 2027-01-01~2027-02-28은 고정 의무가 아니며 위험에 따라 조정"},
+    {"id":"INV-PBC-06","name":"계약서·납품 조건·위탁 및 제삼자 보관·미착품 명세","fields":["계약ID","소유권/위험 이전 조건","선적/도착/검수일","소유자","보관인","담보","관련 입고ID"],"purpose":"단순 송장일 기준 기간귀속을 피하고 권리·의무 판단"},
+    {"id":"INV-PBC-07","name":"기초수량·수불부·이동/반품·기말 재고대장 및 실사 원본","fields":["품목ID","로트ID","창고ID","단위","수불ID","수불일","입고/출고량","재실사","실사일","원가","원천ID"],"purpose":"수불→기말수량 및 실물→장부·장부→실물 양방향 대사; 실사일 차이는 수불 연결 필요"},
+    {"id":"INV-PBC-08","name":"기말 후 판매송장·가격표·폐기/진부화·완성 및 판매필요원가 근거","fields":["평가ID","품목ID","상태","후속판매일","판매단가","완성필요단가","판매필요단가","근거일","기말상태 관련성","예측 승인"],"purpose":"품목별 원가와 NRV 비교. 판매가능성·기말상태·원가배부 정책은 판단 필요"}
+  ],
+  "join_contract": {
+    "primary": ["회사코드","거래ID","증빙ID"],
+    "cycle": ["거래처ID","품목ID","발주행ID","입고ID","송장ID","전표ID"],
+    "inventory": ["회사코드","품목ID","창고ID","단위","로트ID"],
+    "new_id_prefix": "INV-",
+    "cross_worker_links": ["은행 워커의 지급 거래ID와 매입 송장ID 배부표", "매출 워커의 출고ID와 재고 수불 원천ID"],
+    "guard": "부분입고·분할지급·복수송장을 1:1로 임의 결합하지 않는다. 별도 금액·수량 배부표 및 중복 검사 후 PM이 연결한다."
+  },
+  "implemented_here": ["독립된 5개 JSON 사례", "발주·입고·송장 수량/세전금액·세금계산서 총액", "입고·후속출금에서 원장으로 추적하는 미기록 후보", "검수시 이전이라는 명시적 합성 계약 조건에 따른 cutoff", "부호 보존 AP·공급자 대사", "수불·실사 수량 대사", "품목별 NRV와 평가충당금 재계산", "누락·null 입력 차단", "기존 XLSX 해시·시트·셀·현행 spec 데이터 일치 확인"],
+  "not_implemented": ["실제 문서 OCR", "원본 진위·전표 승인 진위 확인", "ERP 전체 모집단 추출 독립 검증", "분할입고/지급 배부", "부분납품/Incoterms/위탁재고 자동 해석", "FIFO·평균법·제조간접비 원가 계산", "실사입회·외부조회 발송/회신", "샘플링 및 모집단 오류 투영", "v1.1 데모 또는 v1.3 통합 EXE로 이번 JSON 자동 가져오기", "통합 분개·TB·재무제표 및 조서 최종 결론 연결"],
+  "auditor_judgment": ["모집단 완전성·추출권한과 원천의 신뢰성", "입고/검수와 소유권 이전·반품/상계·분쟁", "실사 입회·테스트 카운트 및 재고 상태", "진부화와 NRV 가정·후속가격의 기말 관련성", "VAT 공제 및 원가 포함의 적정성", "예외 중복 제거·중요성·추가절차·감사 결론"],
+  "workpaper_fields": ["조서ID","회사/기간/통화","계정/경영진주장","위험과 수행절차","모집단/추출범위/통제","사례/거래ID","원본파일 SHA256/시트·셀/JSON pointer","원본값","기대값","차이 및 단위","예외 원인과 후보금액","추가 증빙 요청","감사인 판단","작성자(null)","검토자(null)","결론(null)","상태(미검토 초안)","수정분개 승인(null)"],
+  "standards": [
+    {"title":"IFRS Foundation IAS 2 overview","url":"https://www.ifrs.org/issued-standards/list-of-standards/ias-2-inventories/","checked":"2026-10-23","application":"원가와 NRV 중 낮은 금액, 예상판매가에서 완성·판매필요원가 차감 원칙을 합성 단일 품목 사례에 반영"},
+    {"title":"XRB ISA (NZ) 501","url":"https://standards.xrb.govt.nz/standards-navigator/isa-nz-501/","paragraphs":["4","5","8","A7","A8"],"checked":"2026-10-23","application":"실사 결과와 최종 기록 연결·양방향 테스트카운트 설계 참고. 프로그램 검사가 실사입회를 수행한 것으로 취급되지 않음"},
+    {"title":"XRB ISA (NZ) 500","url":"https://standards.xrb.govt.nz/standards-navigator/isa-nz-500/","paragraphs":["6","7","9","A60","A61"],"checked":"2026-10-23","application":"자료 신뢰성·정확성·완전성 평가 참고. 후속지급/입고에서 원장으로 추적하는 사례는 이에 기초한 설계자의 절차 선택이며 해당 문단의 특정 기간·규칙 의무로 주장하지 않음"}
+  ],
+  "standard_scope_limit": "공개된 IFRS 설명 및 뉴질랜드판 ISA를 참고한 설계이다. 국내 감사기준·K-IFRS 원문 전체 대조나 준수 인증, 모든 계정·업종의 충분한 감사절차 완료를 의미하지 않는다."
+}

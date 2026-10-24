@@ -1,0 +1,34 @@
+{
+  "blocking": 0,
+  "review": 0,
+  "codes": [],
+  "metrics": {
+    "은행거래수": 12,
+    "선택원장행수": 12,
+    "명시배부수": 12,
+    "잔여행수": 0,
+    "검토후보수": 0,
+    "규칙미확인수": 0,
+    "대상계좌수": 2,
+    "입금합계": 2700000,
+    "출금합계": 4350000
+  },
+  "selected_altered": {
+    "회사코드": "SYNTH01",
+    "전표ID": "J-L",
+    "행ID": "N5",
+    "계좌ID": "FAKE-CASH1000",
+    "거래처ID": "CONTRADICTING-PARTY",
+    "상대계좌": "CONTRADICTING-ACCOUNT",
+    "지급근거ID": "CONTRADICTING-PROOF",
+    "거래구분": "일회"
+  },
+  "allocation": {
+    "배부ID": "SYN-A001",
+    "회사코드": "SYNTH01",
+    "은행거래ID": "SYN-B001",
+    "전표ID": "J-L",
+    "행ID": "N5",
+    "금액": -120000
+  }
+}

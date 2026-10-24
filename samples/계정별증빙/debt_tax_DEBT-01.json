@@ -1,0 +1,158 @@
+{
+  "schema_version": "account-evidence-1",
+  "synthetic": true,
+  "ledger_joined": false,
+  "worker": "debt_tax",
+  "context": {
+    "company_code": "SYNTH01",
+    "start_date": "2026-01-01",
+    "end_date": "2026-12-31",
+    "currency": "KRW",
+    "financial_statement_scope": "별도"
+  },
+  "case_index": 0,
+  "case": {
+    "case_id": "DEBT-01",
+    "description": "합성 정상: 기초 원금 2000000, 변동 없음, 250bp, 365일, 비용 50000, 지급 30000, 미지급 20000. 기존 LN01과 별도 거래이다.",
+    "documents": [
+      {
+        "document_id": "DEBT-DOC-CONTRACT",
+        "document_type": "loan_contract",
+        "transaction_id": "DEBT-TX01",
+        "fields": {
+          "company_code": "SYNTH01",
+          "loan_id": "DEBT-LN01",
+          "lender_id": "DEBT-LENDER01",
+          "currency": "KRW",
+          "contract_start": "2025-01-01",
+          "maturity_date": "2028-12-31",
+          "interest_start": "2026-01-01",
+          "interest_end": "2026-12-31",
+          "annual_rate_basis_points": 250,
+          "day_basis": 365,
+          "end_date_inclusive": true,
+          "method": "simple_fixed_rate_no_fees",
+          "fees": 0,
+          "principal_changes_during_interest_period": false
+        }
+      },
+      {
+        "document_id": "DEBT-DOC-OPENING",
+        "document_type": "opening_principal",
+        "transaction_id": "DEBT-TX01",
+        "fields": {
+          "company_code": "SYNTH01",
+          "loan_id": "DEBT-LN01",
+          "currency": "KRW",
+          "as_of": "2025-12-31",
+          "principal": 2000000,
+          "interest_payable": 0
+        }
+      },
+      {
+        "document_id": "DEBT-DOC-MOVEMENTS",
+        "document_type": "principal_movements",
+        "transaction_id": "DEBT-TX01",
+        "fields": {
+          "company_code": "SYNTH01",
+          "loan_id": "DEBT-LN01",
+          "currency": "KRW",
+          "start_date": "2026-01-01",
+          "end_date": "2026-12-31",
+          "drawdowns": 0,
+          "repayments": 0,
+          "noncash_changes": 0,
+          "completeness": "synthetic_explicit_zero_activity"
+        }
+      },
+      {
+        "document_id": "DEBT-DOC-PAYMENT",
+        "document_type": "interest_payment",
+        "transaction_id": "DEBT-TX01",
+        "fields": {
+          "company_code": "SYNTH01",
+          "loan_id": "DEBT-LN01",
+          "currency": "KRW",
+          "payment_date": "2026-12-31",
+          "cash_movement": -30000,
+          "settlement_allocation": "interest_only",
+          "bank_transaction_id": "DEBT-BANK01"
+        }
+      },
+      {
+        "document_id": "DEBT-DOC-LEDGER",
+        "document_type": "ledger_summary",
+        "transaction_id": "DEBT-TX01",
+        "fields": {
+          "company_code": "SYNTH01",
+          "loan_id": "DEBT-LN01",
+          "currency": "KRW",
+          "start_date": "2026-01-01",
+          "end_date": "2026-12-31",
+          "principal_account": "2500",
+          "principal_closing_signed": -2000000,
+          "interest_expense_account": "5710",
+          "interest_expense_signed": 50000,
+          "interest_payable_account": "2420",
+          "interest_payable_closing_signed": -20000,
+          "journal_ids": [
+            "DEBT-J01",
+            "DEBT-J02"
+          ]
+        }
+      },
+      {
+        "document_id": "DEBT-DOC-REVIEW",
+        "document_type": "review_requests",
+        "transaction_id": "DEBT-TX01",
+        "fields": {
+          "company_code": "SYNTH01",
+          "loan_id": "DEBT-LN01",
+          "currency": "KRW",
+          "as_of": "2026-12-31",
+          "collateral_status": "요청 중",
+          "covenant_status": "검토 전",
+          "confirmation_status": "미발송·미회신",
+          "confirmation_amount": null,
+          "preparer": null,
+          "reviewer": null,
+          "conclusion": null
+        }
+      }
+    ],
+    "expected": [
+      {
+        "check_id": "DEBT-INPUT",
+        "status": "PASS",
+        "expected_value": 5,
+        "actual_value": 5,
+        "difference": 0,
+        "reason": "계산에 필요한 5종 문서와 명시 조건이 있음. 증빙의 진위·충분성 판단을 뜻하지 않음."
+      },
+      {
+        "check_id": "DEBT-PRINCIPAL",
+        "status": "PASS",
+        "expected_value": 2000000,
+        "actual_value": 2000000,
+        "difference": 0,
+        "reason": "기초+실행-상환+비현금변동과 부호를 보존한 원장 기말원금의 비교."
+      },
+      {
+        "check_id": "DEBT-INTEREST",
+        "status": "PASS",
+        "expected_value": 50000,
+        "actual_value": 50000,
+        "difference": 0,
+        "reason": "2000000×250/10000×365/365=50000."
+      },
+      {
+        "check_id": "DEBT-ACCRUAL",
+        "status": "PASS",
+        "expected_value": 20000,
+        "actual_value": 20000,
+        "difference": 0,
+        "reason": "기초미지급0+단리이자50000-지급30000=기말미지급20000."
+      }
+    ]
+  }
+}

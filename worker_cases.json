@@ -1,0 +1,4907 @@
+[
+  {
+    "worker": "cash_finance",
+    "case_id": "CASH-01",
+    "file": "samples/계정별증빙/cash_finance_CASH-01.json",
+    "expected": [
+      {
+        "check_id": "CASH_BANK_ROLLFORWARD",
+        "status": "PASS",
+        "expected_value": 990000,
+        "actual_value": 990000,
+        "difference": 0,
+        "reason": "합성 정상 자료의 고정 기대값과 일치"
+      },
+      {
+        "check_id": "CASH_BOOK_ROLLFORWARD",
+        "status": "PASS",
+        "expected_value": 1000000,
+        "actual_value": 1000000,
+        "difference": 0,
+        "reason": "합성 정상 자료의 고정 기대값과 일치"
+      },
+      {
+        "check_id": "CASH_RECONCILIATION",
+        "status": "PASS",
+        "expected_value": 1000000,
+        "actual_value": 1000000,
+        "difference": 0,
+        "reason": "합성 정상 자료의 고정 기대값과 일치"
+      },
+      {
+        "check_id": "CASH_CONFIRMATION_BALANCE",
+        "status": "PASS",
+        "expected_value": 990000,
+        "actual_value": 990000,
+        "difference": 0,
+        "reason": "합성 정상 자료의 고정 기대값과 일치"
+      },
+      {
+        "check_id": "CASH_CONFIRMATION_CONTROL",
+        "status": "PASS",
+        "expected_value": 1,
+        "actual_value": 1,
+        "difference": 0,
+        "reason": "합성 정상 자료의 고정 기대값과 일치"
+      },
+      {
+        "check_id": "CASH_INTEREST",
+        "status": "PASS",
+        "expected_value": 9100,
+        "actual_value": 9100,
+        "difference": 0,
+        "reason": "합성 정상 자료의 고정 기대값과 일치"
+      }
+    ]
+  },
+  {
+    "worker": "cash_finance",
+    "case_id": "CASH-02",
+    "file": "samples/계정별증빙/cash_finance_CASH-02.json",
+    "expected": [
+      {
+        "check_id": "CASH_BANK_ROLLFORWARD",
+        "status": "PASS",
+        "expected_value": 989500,
+        "actual_value": 989500,
+        "difference": 0,
+        "reason": "합성 정상 자료의 고정 기대값과 일치"
+      },
+      {
+        "check_id": "CASH_BOOK_ROLLFORWARD",
+        "status": "PASS",
+        "expected_value": 1000000,
+        "actual_value": 1000000,
+        "difference": 0,
+        "reason": "합성 정상 자료의 고정 기대값과 일치"
+      },
+      {
+        "check_id": "CASH_RECONCILIATION",
+        "status": "EXCEPTION",
+        "expected_value": 999500,
+        "actual_value": 1000000,
+        "difference": 500,
+        "reason": "미기록 수수료 의심 500원. 실제 원인·분개는 감사인 검토"
+      },
+      {
+        "check_id": "CASH_CONFIRMATION_BALANCE",
+        "status": "PASS",
+        "expected_value": 989500,
+        "actual_value": 989500,
+        "difference": 0,
+        "reason": "합성 정상 자료의 고정 기대값과 일치"
+      },
+      {
+        "check_id": "CASH_CONFIRMATION_CONTROL",
+        "status": "PASS",
+        "expected_value": 1,
+        "actual_value": 1,
+        "difference": 0,
+        "reason": "합성 정상 자료의 고정 기대값과 일치"
+      },
+      {
+        "check_id": "CASH_INTEREST",
+        "status": "PASS",
+        "expected_value": 9100,
+        "actual_value": 9100,
+        "difference": 0,
+        "reason": "합성 정상 자료의 고정 기대값과 일치"
+      }
+    ]
+  },
+  {
+    "worker": "cash_finance",
+    "case_id": "CASH-03",
+    "file": "samples/계정별증빙/cash_finance_CASH-03.json",
+    "expected": [
+      {
+        "check_id": "CASH_BANK_ROLLFORWARD",
+        "status": "PASS",
+        "expected_value": 990000,
+        "actual_value": 990000,
+        "difference": 0,
+        "reason": "합성 정상 자료의 고정 기대값과 일치"
+      },
+      {
+        "check_id": "CASH_BOOK_ROLLFORWARD",
+        "status": "PASS",
+        "expected_value": 1000000,
+        "actual_value": 1000000,
+        "difference": 0,
+        "reason": "합성 정상 자료의 고정 기대값과 일치"
+      },
+      {
+        "check_id": "CASH_RECONCILIATION",
+        "status": "PASS",
+        "expected_value": 1000000,
+        "actual_value": 1000000,
+        "difference": 0,
+        "reason": "합성 정상 자료의 고정 기대값과 일치"
+      },
+      {
+        "check_id": "CASH_CONFIRMATION_BALANCE",
+        "status": "PASS",
+        "expected_value": 990000,
+        "actual_value": 990000,
+        "difference": 0,
+        "reason": "합성 정상 자료의 고정 기대값과 일치"
+      },
+      {
+        "check_id": "CASH_CONFIRMATION_CONTROL",
+        "status": "PASS",
+        "expected_value": 1,
+        "actual_value": 1,
+        "difference": 0,
+        "reason": "합성 정상 자료의 고정 기대값과 일치"
+      },
+      {
+        "check_id": "CASH_INTEREST",
+        "status": "EXCEPTION",
+        "expected_value": 9100,
+        "actual_value": 9200,
+        "difference": 100,
+        "reason": "계약상 91일 이자 9100 대비 장부 9200; 허용오차 10 초과"
+      }
+    ]
+  },
+  {
+    "worker": "cash_finance",
+    "case_id": "CASH-04",
+    "file": "samples/계정별증빙/cash_finance_CASH-04.json",
+    "expected": [
+      {
+        "check_id": "CASH_BANK_ROLLFORWARD",
+        "status": "PASS",
+        "expected_value": 990000,
+        "actual_value": 990000,
+        "difference": 0,
+        "reason": "합성 정상 자료의 고정 기대값과 일치"
+      },
+      {
+        "check_id": "CASH_BOOK_ROLLFORWARD",
+        "status": "PASS",
+        "expected_value": 1000000,
+        "actual_value": 1000000,
+        "difference": 0,
+        "reason": "합성 정상 자료의 고정 기대값과 일치"
+      },
+      {
+        "check_id": "CASH_RECONCILIATION",
+        "status": "PASS",
+        "expected_value": 1000000,
+        "actual_value": 1000000,
+        "difference": 0,
+        "reason": "합성 정상 자료의 고정 기대값과 일치"
+      },
+      {
+        "check_id": "CASH_CONFIRMATION_BALANCE",
+        "status": "PASS",
+        "expected_value": 990000,
+        "actual_value": 990000,
+        "difference": 0,
+        "reason": "합성 정상 자료의 고정 기대값과 일치"
+      },
+      {
+        "check_id": "CASH_CONFIRMATION_CONTROL",
+        "status": "PASS",
+        "expected_value": 1,
+        "actual_value": 1,
+        "difference": 0,
+        "reason": "합성 정상 자료의 고정 기대값과 일치"
+      },
+      {
+        "check_id": "CASH_INTEREST",
+        "status": "EXCEPTION",
+        "expected_value": 9100,
+        "actual_value": 9101,
+        "difference": 1,
+        "reason": "허용오차 이내 1원 차이도 원본·계산·차이를 남김"
+      }
+    ]
+  },
+  {
+    "worker": "cash_finance",
+    "case_id": "CASH-05",
+    "file": "samples/계정별증빙/cash_finance_CASH-05.json",
+    "expected": [
+      {
+        "check_id": "CASH_BANK_ROLLFORWARD",
+        "status": "PASS",
+        "expected_value": 990000,
+        "actual_value": 990000,
+        "difference": 0,
+        "reason": "합성 정상 자료의 고정 기대값과 일치"
+      },
+      {
+        "check_id": "CASH_BOOK_ROLLFORWARD",
+        "status": "PASS",
+        "expected_value": 1000000,
+        "actual_value": 1000000,
+        "difference": 0,
+        "reason": "합성 정상 자료의 고정 기대값과 일치"
+      },
+      {
+        "check_id": "CASH_RECONCILIATION",
+        "status": "PASS",
+        "expected_value": 1000000,
+        "actual_value": 1000000,
+        "difference": 0,
+        "reason": "합성 정상 자료의 고정 기대값과 일치"
+      },
+      {
+        "check_id": "CASH_CONFIRMATION_BALANCE",
+        "status": "INPUT_BLOCKED",
+        "expected_value": 990000,
+        "actual_value": null,
+        "difference": null,
+        "reason": "회신 누락: 후속 요청·대체절차 및 충분성은 감사인 판단"
+      },
+      {
+        "check_id": "CASH_CONFIRMATION_CONTROL",
+        "status": "INPUT_BLOCKED",
+        "expected_value": 1,
+        "actual_value": null,
+        "difference": null,
+        "reason": "합성 조회 통제 조건 미충족"
+      },
+      {
+        "check_id": "CASH_INTEREST",
+        "status": "PASS",
+        "expected_value": 9100,
+        "actual_value": 9100,
+        "difference": 0,
+        "reason": "합성 정상 자료의 고정 기대값과 일치"
+      }
+    ]
+  },
+  {
+    "worker": "revenue_ar",
+    "case_id": "REV-C01",
+    "file": "samples/계정별증빙/revenue_ar_REV-C01.json",
+    "expected": [
+      {
+        "check_id": "DOC_LINKS",
+        "status": "PASS",
+        "expected_value": true,
+        "actual_value": true,
+        "difference": 0,
+        "reason": "회사·거래·고객·송장 식별자가 연결됨",
+        "source_references": [
+          {
+            "document_id": "REV-001-ORDER",
+            "json_pointer": "/cases/0/documents/0/fields"
+          },
+          {
+            "document_id": "REV-001-CONTRACT",
+            "json_pointer": "/cases/0/documents/1/fields"
+          },
+          {
+            "document_id": "REV-001-DELIVERY",
+            "json_pointer": "/cases/0/documents/2/fields"
+          },
+          {
+            "document_id": "REV-001-INVOICE",
+            "json_pointer": "/cases/0/documents/3/fields"
+          },
+          {
+            "document_id": "REV-001-LEDGER",
+            "json_pointer": "/cases/0/documents/4/fields"
+          },
+          {
+            "document_id": "REV-001-RETURN-SEARCH",
+            "json_pointer": "/cases/0/documents/5/fields"
+          },
+          {
+            "document_id": "REV-001-AR",
+            "json_pointer": "/cases/0/documents/6/fields"
+          },
+          {
+            "document_id": "REV-001-RECEIPT",
+            "json_pointer": "/cases/0/documents/7/fields"
+          },
+          {
+            "document_id": "REV-001-CONFIRM",
+            "json_pointer": "/cases/0/documents/8/fields"
+          },
+          {
+            "document_id": "REV-001-ECL-MODEL",
+            "json_pointer": "/cases/0/documents/9/fields"
+          },
+          {
+            "document_id": "REV-001-ECL-LEDGER",
+            "json_pointer": "/cases/0/documents/10/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "INVOICE_CALC",
+        "status": "PASS",
+        "expected_value": 110000,
+        "actual_value": 110000,
+        "difference": 0,
+        "reason": "20개×5000원 + VAT 10000원",
+        "source_references": [
+          {
+            "document_id": "REV-001-ORDER",
+            "json_pointer": "/cases/0/documents/0/fields"
+          },
+          {
+            "document_id": "REV-001-INVOICE",
+            "json_pointer": "/cases/0/documents/3/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "CUTOFF_REVENUE",
+        "status": "PASS",
+        "expected_value": 100000,
+        "actual_value": 100000,
+        "difference": 0,
+        "reason": "계약상 검수 조건을 사전에 판단했다는 합성 가정",
+        "source_references": [
+          {
+            "document_id": "REV-001-CONTRACT",
+            "json_pointer": "/cases/0/documents/1/fields"
+          },
+          {
+            "document_id": "REV-001-DELIVERY",
+            "json_pointer": "/cases/0/documents/2/fields"
+          },
+          {
+            "document_id": "REV-001-LEDGER",
+            "json_pointer": "/cases/0/documents/4/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "RETURN_POSTING",
+        "status": "PASS",
+        "expected_value": 0,
+        "actual_value": 0,
+        "difference": 0,
+        "reason": "검색 범위를 선언한 반품 검색 0건",
+        "source_references": [
+          {
+            "document_id": "REV-001-LEDGER",
+            "json_pointer": "/cases/0/documents/4/fields"
+          },
+          {
+            "document_id": "REV-001-RETURN-SEARCH",
+            "json_pointer": "/cases/0/documents/5/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "AR_TIE",
+        "status": "PASS",
+        "expected_value": 110000,
+        "actual_value": 110000,
+        "difference": 0,
+        "reason": "기장된 채권 변동과 보조원장 수치 대사",
+        "source_references": [
+          {
+            "document_id": "REV-001-LEDGER",
+            "json_pointer": "/cases/0/documents/4/fields"
+          },
+          {
+            "document_id": "REV-001-AR",
+            "json_pointer": "/cases/0/documents/6/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "RECEIPT_ALLOCATION",
+        "status": "PASS",
+        "expected_value": 60000,
+        "actual_value": 60000,
+        "difference": 0,
+        "reason": "후속입금 60000원만 해당 송장에 배부됨; 조회 회신 대체 아님",
+        "source_references": [
+          {
+            "document_id": "REV-001-AR",
+            "json_pointer": "/cases/0/documents/6/fields"
+          },
+          {
+            "document_id": "REV-001-RECEIPT",
+            "json_pointer": "/cases/0/documents/7/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "CONFIRMATION_PROTOCOL",
+        "status": "PASS",
+        "expected_value": true,
+        "actual_value": true,
+        "difference": 0,
+        "reason": "직접 회신을 가정한 통제 필드 일치만 검사; 실제 인증 아님",
+        "source_references": [
+          {
+            "document_id": "REV-001-AR",
+            "json_pointer": "/cases/0/documents/6/fields"
+          },
+          {
+            "document_id": "REV-001-CONFIRM",
+            "json_pointer": "/cases/0/documents/8/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "AGING",
+        "status": "PASS",
+        "expected_value": 1,
+        "actual_value": 1,
+        "difference": 0,
+        "reason": "2026-12-30 만기, 12-31 기준 1일 연체",
+        "source_references": [
+          {
+            "document_id": "REV-001-AR",
+            "json_pointer": "/cases/0/documents/6/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "ECL",
+        "status": "PASS",
+        "expected_value": 1430,
+        "actual_value": 1430,
+        "difference": 0,
+        "reason": "110000×(1%×70%+2%×30%)=1430원; 주어진 가정의 재계산",
+        "source_references": [
+          {
+            "document_id": "REV-001-AR",
+            "json_pointer": "/cases/0/documents/6/fields"
+          },
+          {
+            "document_id": "REV-001-ECL-MODEL",
+            "json_pointer": "/cases/0/documents/9/fields"
+          },
+          {
+            "document_id": "REV-001-ECL-LEDGER",
+            "json_pointer": "/cases/0/documents/10/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "ECL_ROLLFORWARD",
+        "status": "PASS",
+        "expected_value": 1430,
+        "actual_value": 1430,
+        "difference": 0,
+        "reason": "기초1000 + 비용430 + 기타0 = 기말1430",
+        "source_references": [
+          {
+            "document_id": "REV-001-ECL-LEDGER",
+            "json_pointer": "/cases/0/documents/10/fields"
+          }
+        ],
+        "follow_up": null
+      }
+    ]
+  },
+  {
+    "worker": "revenue_ar",
+    "case_id": "REV-C02",
+    "file": "samples/계정별증빙/revenue_ar_REV-C02.json",
+    "expected": [
+      {
+        "check_id": "DOC_LINKS",
+        "status": "PASS",
+        "expected_value": true,
+        "actual_value": true,
+        "difference": 0,
+        "reason": "회사·거래·고객·송장 식별자가 연결됨",
+        "source_references": [
+          {
+            "document_id": "REV-002-ORDER",
+            "json_pointer": "/cases/1/documents/0/fields"
+          },
+          {
+            "document_id": "REV-002-CONTRACT",
+            "json_pointer": "/cases/1/documents/1/fields"
+          },
+          {
+            "document_id": "REV-002-DELIVERY",
+            "json_pointer": "/cases/1/documents/2/fields"
+          },
+          {
+            "document_id": "REV-002-INVOICE",
+            "json_pointer": "/cases/1/documents/3/fields"
+          },
+          {
+            "document_id": "REV-002-LEDGER",
+            "json_pointer": "/cases/1/documents/4/fields"
+          },
+          {
+            "document_id": "REV-002-RETURN-SEARCH",
+            "json_pointer": "/cases/1/documents/5/fields"
+          },
+          {
+            "document_id": "REV-002-AR",
+            "json_pointer": "/cases/1/documents/6/fields"
+          },
+          {
+            "document_id": "REV-002-RECEIPT",
+            "json_pointer": "/cases/1/documents/7/fields"
+          },
+          {
+            "document_id": "REV-002-CONFIRM",
+            "json_pointer": "/cases/1/documents/8/fields"
+          },
+          {
+            "document_id": "REV-002-ECL-MODEL",
+            "json_pointer": "/cases/1/documents/9/fields"
+          },
+          {
+            "document_id": "REV-002-ECL-LEDGER",
+            "json_pointer": "/cases/1/documents/10/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "INVOICE_CALC",
+        "status": "PASS",
+        "expected_value": 110000,
+        "actual_value": 110000,
+        "difference": 0,
+        "reason": "20개×5000원 + VAT 10000원",
+        "source_references": [
+          {
+            "document_id": "REV-002-ORDER",
+            "json_pointer": "/cases/1/documents/0/fields"
+          },
+          {
+            "document_id": "REV-002-INVOICE",
+            "json_pointer": "/cases/1/documents/3/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "CUTOFF_REVENUE",
+        "status": "EXCEPTION",
+        "expected_value": 0,
+        "actual_value": 100000,
+        "difference": 100000,
+        "reason": "가정한 검수 조건 미충족: 2026년 매출 100000원 과대 가능성; 계약·통제이전 최종 판단 필요",
+        "source_references": [
+          {
+            "document_id": "REV-002-CONTRACT",
+            "json_pointer": "/cases/1/documents/1/fields"
+          },
+          {
+            "document_id": "REV-002-DELIVERY",
+            "json_pointer": "/cases/1/documents/2/fields"
+          },
+          {
+            "document_id": "REV-002-LEDGER",
+            "json_pointer": "/cases/1/documents/4/fields"
+          }
+        ],
+        "follow_up": "원본·기간·연결 및 계약 조건을 확인하고 감사인이 후속절차와 조정 여부를 판단"
+      },
+      {
+        "check_id": "RETURN_POSTING",
+        "status": "PASS",
+        "expected_value": 0,
+        "actual_value": 0,
+        "difference": 0,
+        "reason": "검색 범위를 선언한 반품 검색 0건",
+        "source_references": [
+          {
+            "document_id": "REV-002-LEDGER",
+            "json_pointer": "/cases/1/documents/4/fields"
+          },
+          {
+            "document_id": "REV-002-RETURN-SEARCH",
+            "json_pointer": "/cases/1/documents/5/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "AR_TIE",
+        "status": "PASS",
+        "expected_value": 110000,
+        "actual_value": 110000,
+        "difference": 0,
+        "reason": "기장된 채권 변동과 보조원장 수치 대사",
+        "source_references": [
+          {
+            "document_id": "REV-002-LEDGER",
+            "json_pointer": "/cases/1/documents/4/fields"
+          },
+          {
+            "document_id": "REV-002-AR",
+            "json_pointer": "/cases/1/documents/6/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "RECEIPT_ALLOCATION",
+        "status": "PASS",
+        "expected_value": 60000,
+        "actual_value": 60000,
+        "difference": 0,
+        "reason": "후속입금 60000원만 해당 송장에 배부됨; 조회 회신 대체 아님",
+        "source_references": [
+          {
+            "document_id": "REV-002-AR",
+            "json_pointer": "/cases/1/documents/6/fields"
+          },
+          {
+            "document_id": "REV-002-RECEIPT",
+            "json_pointer": "/cases/1/documents/7/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "CONFIRMATION_PROTOCOL",
+        "status": "PASS",
+        "expected_value": true,
+        "actual_value": true,
+        "difference": 0,
+        "reason": "직접 회신을 가정한 통제 필드 일치만 검사; 실제 인증 아님",
+        "source_references": [
+          {
+            "document_id": "REV-002-AR",
+            "json_pointer": "/cases/1/documents/6/fields"
+          },
+          {
+            "document_id": "REV-002-CONFIRM",
+            "json_pointer": "/cases/1/documents/8/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "AGING",
+        "status": "PASS",
+        "expected_value": 1,
+        "actual_value": 1,
+        "difference": 0,
+        "reason": "2026-12-30 만기, 12-31 기준 1일 연체",
+        "source_references": [
+          {
+            "document_id": "REV-002-AR",
+            "json_pointer": "/cases/1/documents/6/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "ECL",
+        "status": "PASS",
+        "expected_value": 1430,
+        "actual_value": 1430,
+        "difference": 0,
+        "reason": "110000×(1%×70%+2%×30%)=1430원; 주어진 가정의 재계산",
+        "source_references": [
+          {
+            "document_id": "REV-002-AR",
+            "json_pointer": "/cases/1/documents/6/fields"
+          },
+          {
+            "document_id": "REV-002-ECL-MODEL",
+            "json_pointer": "/cases/1/documents/9/fields"
+          },
+          {
+            "document_id": "REV-002-ECL-LEDGER",
+            "json_pointer": "/cases/1/documents/10/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "ECL_ROLLFORWARD",
+        "status": "PASS",
+        "expected_value": 1430,
+        "actual_value": 1430,
+        "difference": 0,
+        "reason": "기초1000 + 비용430 + 기타0 = 기말1430",
+        "source_references": [
+          {
+            "document_id": "REV-002-ECL-LEDGER",
+            "json_pointer": "/cases/1/documents/10/fields"
+          }
+        ],
+        "follow_up": null
+      }
+    ]
+  },
+  {
+    "worker": "revenue_ar",
+    "case_id": "REV-C03",
+    "file": "samples/계정별증빙/revenue_ar_REV-C03.json",
+    "expected": [
+      {
+        "check_id": "DOC_LINKS",
+        "status": "PASS",
+        "expected_value": true,
+        "actual_value": true,
+        "difference": 0,
+        "reason": "회사·거래·고객·송장 식별자가 연결됨",
+        "source_references": [
+          {
+            "document_id": "REV-003-ORDER",
+            "json_pointer": "/cases/2/documents/0/fields"
+          },
+          {
+            "document_id": "REV-003-CONTRACT",
+            "json_pointer": "/cases/2/documents/1/fields"
+          },
+          {
+            "document_id": "REV-003-DELIVERY",
+            "json_pointer": "/cases/2/documents/2/fields"
+          },
+          {
+            "document_id": "REV-003-INVOICE",
+            "json_pointer": "/cases/2/documents/3/fields"
+          },
+          {
+            "document_id": "REV-003-LEDGER",
+            "json_pointer": "/cases/2/documents/4/fields"
+          },
+          {
+            "document_id": "REV-003-RETURN-SEARCH",
+            "json_pointer": "/cases/2/documents/5/fields"
+          },
+          {
+            "document_id": "REV-003-AR",
+            "json_pointer": "/cases/2/documents/6/fields"
+          },
+          {
+            "document_id": "REV-003-RECEIPT",
+            "json_pointer": "/cases/2/documents/7/fields"
+          },
+          {
+            "document_id": "REV-003-CONFIRM",
+            "json_pointer": "/cases/2/documents/8/fields"
+          },
+          {
+            "document_id": "REV-003-ECL-MODEL",
+            "json_pointer": "/cases/2/documents/9/fields"
+          },
+          {
+            "document_id": "REV-003-ECL-LEDGER",
+            "json_pointer": "/cases/2/documents/10/fields"
+          },
+          {
+            "document_id": "REV-003-CREDIT-NOTE",
+            "json_pointer": "/cases/2/documents/11/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "INVOICE_CALC",
+        "status": "PASS",
+        "expected_value": 110000,
+        "actual_value": 110000,
+        "difference": 0,
+        "reason": "20개×5000원 + VAT 10000원",
+        "source_references": [
+          {
+            "document_id": "REV-003-ORDER",
+            "json_pointer": "/cases/2/documents/0/fields"
+          },
+          {
+            "document_id": "REV-003-INVOICE",
+            "json_pointer": "/cases/2/documents/3/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "CUTOFF_REVENUE",
+        "status": "PASS",
+        "expected_value": 100000,
+        "actual_value": 100000,
+        "difference": 0,
+        "reason": "계약상 검수 조건을 사전에 판단했다는 합성 가정",
+        "source_references": [
+          {
+            "document_id": "REV-003-CONTRACT",
+            "json_pointer": "/cases/2/documents/1/fields"
+          },
+          {
+            "document_id": "REV-003-DELIVERY",
+            "json_pointer": "/cases/2/documents/2/fields"
+          },
+          {
+            "document_id": "REV-003-LEDGER",
+            "json_pointer": "/cases/2/documents/4/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "RETURN_POSTING",
+        "status": "EXCEPTION",
+        "expected_value": 11000,
+        "actual_value": 0,
+        "difference": -11000,
+        "reason": "대변메모 총액 11000원 대비 기장된 채권 감소 0원; 매출10000원·VAT1000원도 각각 추적",
+        "source_references": [
+          {
+            "document_id": "REV-003-LEDGER",
+            "json_pointer": "/cases/2/documents/4/fields"
+          },
+          {
+            "document_id": "REV-003-RETURN-SEARCH",
+            "json_pointer": "/cases/2/documents/5/fields"
+          },
+          {
+            "document_id": "REV-003-CREDIT-NOTE",
+            "json_pointer": "/cases/2/documents/11/fields"
+          }
+        ],
+        "follow_up": "원본·기간·연결 및 계약 조건을 확인하고 감사인이 후속절차와 조정 여부를 판단"
+      },
+      {
+        "check_id": "AR_TIE",
+        "status": "PASS",
+        "expected_value": 110000,
+        "actual_value": 110000,
+        "difference": 0,
+        "reason": "기장된 채권 변동과 보조원장 수치 대사",
+        "source_references": [
+          {
+            "document_id": "REV-003-LEDGER",
+            "json_pointer": "/cases/2/documents/4/fields"
+          },
+          {
+            "document_id": "REV-003-AR",
+            "json_pointer": "/cases/2/documents/6/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "RECEIPT_ALLOCATION",
+        "status": "PASS",
+        "expected_value": 60000,
+        "actual_value": 60000,
+        "difference": 0,
+        "reason": "후속입금 60000원만 해당 송장에 배부됨; 조회 회신 대체 아님",
+        "source_references": [
+          {
+            "document_id": "REV-003-AR",
+            "json_pointer": "/cases/2/documents/6/fields"
+          },
+          {
+            "document_id": "REV-003-RECEIPT",
+            "json_pointer": "/cases/2/documents/7/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "CONFIRMATION_PROTOCOL",
+        "status": "PASS",
+        "expected_value": true,
+        "actual_value": true,
+        "difference": 0,
+        "reason": "직접 회신을 가정한 통제 필드 일치만 검사; 실제 인증 아님",
+        "source_references": [
+          {
+            "document_id": "REV-003-AR",
+            "json_pointer": "/cases/2/documents/6/fields"
+          },
+          {
+            "document_id": "REV-003-CONFIRM",
+            "json_pointer": "/cases/2/documents/8/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "AGING",
+        "status": "PASS",
+        "expected_value": 1,
+        "actual_value": 1,
+        "difference": 0,
+        "reason": "2026-12-30 만기, 12-31 기준 1일 연체",
+        "source_references": [
+          {
+            "document_id": "REV-003-AR",
+            "json_pointer": "/cases/2/documents/6/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "ECL",
+        "status": "PASS",
+        "expected_value": 1430,
+        "actual_value": 1430,
+        "difference": 0,
+        "reason": "110000×(1%×70%+2%×30%)=1430원; 주어진 가정의 재계산",
+        "source_references": [
+          {
+            "document_id": "REV-003-AR",
+            "json_pointer": "/cases/2/documents/6/fields"
+          },
+          {
+            "document_id": "REV-003-ECL-MODEL",
+            "json_pointer": "/cases/2/documents/9/fields"
+          },
+          {
+            "document_id": "REV-003-ECL-LEDGER",
+            "json_pointer": "/cases/2/documents/10/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "ECL_ROLLFORWARD",
+        "status": "PASS",
+        "expected_value": 1430,
+        "actual_value": 1430,
+        "difference": 0,
+        "reason": "기초1000 + 비용430 + 기타0 = 기말1430",
+        "source_references": [
+          {
+            "document_id": "REV-003-ECL-LEDGER",
+            "json_pointer": "/cases/2/documents/10/fields"
+          }
+        ],
+        "follow_up": null
+      }
+    ]
+  },
+  {
+    "worker": "revenue_ar",
+    "case_id": "REV-C04",
+    "file": "samples/계정별증빙/revenue_ar_REV-C04.json",
+    "expected": [
+      {
+        "check_id": "DOC_LINKS",
+        "status": "PASS",
+        "expected_value": true,
+        "actual_value": true,
+        "difference": 0,
+        "reason": "회사·거래·고객·송장 식별자가 연결됨",
+        "source_references": [
+          {
+            "document_id": "REV-004-ORDER",
+            "json_pointer": "/cases/3/documents/0/fields"
+          },
+          {
+            "document_id": "REV-004-CONTRACT",
+            "json_pointer": "/cases/3/documents/1/fields"
+          },
+          {
+            "document_id": "REV-004-DELIVERY",
+            "json_pointer": "/cases/3/documents/2/fields"
+          },
+          {
+            "document_id": "REV-004-INVOICE",
+            "json_pointer": "/cases/3/documents/3/fields"
+          },
+          {
+            "document_id": "REV-004-LEDGER",
+            "json_pointer": "/cases/3/documents/4/fields"
+          },
+          {
+            "document_id": "REV-004-RETURN-SEARCH",
+            "json_pointer": "/cases/3/documents/5/fields"
+          },
+          {
+            "document_id": "REV-004-AR",
+            "json_pointer": "/cases/3/documents/6/fields"
+          },
+          {
+            "document_id": "REV-004-RECEIPT",
+            "json_pointer": "/cases/3/documents/7/fields"
+          },
+          {
+            "document_id": "REV-004-CONFIRM",
+            "json_pointer": "/cases/3/documents/8/fields"
+          },
+          {
+            "document_id": "REV-004-ECL-MODEL",
+            "json_pointer": "/cases/3/documents/9/fields"
+          },
+          {
+            "document_id": "REV-004-ECL-LEDGER",
+            "json_pointer": "/cases/3/documents/10/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "INVOICE_CALC",
+        "status": "PASS",
+        "expected_value": 110000,
+        "actual_value": 110000,
+        "difference": 0,
+        "reason": "20개×5000원 + VAT 10000원",
+        "source_references": [
+          {
+            "document_id": "REV-004-ORDER",
+            "json_pointer": "/cases/3/documents/0/fields"
+          },
+          {
+            "document_id": "REV-004-INVOICE",
+            "json_pointer": "/cases/3/documents/3/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "CUTOFF_REVENUE",
+        "status": "PASS",
+        "expected_value": 100000,
+        "actual_value": 100000,
+        "difference": 0,
+        "reason": "계약상 검수 조건을 사전에 판단했다는 합성 가정",
+        "source_references": [
+          {
+            "document_id": "REV-004-CONTRACT",
+            "json_pointer": "/cases/3/documents/1/fields"
+          },
+          {
+            "document_id": "REV-004-DELIVERY",
+            "json_pointer": "/cases/3/documents/2/fields"
+          },
+          {
+            "document_id": "REV-004-LEDGER",
+            "json_pointer": "/cases/3/documents/4/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "RETURN_POSTING",
+        "status": "PASS",
+        "expected_value": 0,
+        "actual_value": 0,
+        "difference": 0,
+        "reason": "검색 범위를 선언한 반품 검색 0건",
+        "source_references": [
+          {
+            "document_id": "REV-004-LEDGER",
+            "json_pointer": "/cases/3/documents/4/fields"
+          },
+          {
+            "document_id": "REV-004-RETURN-SEARCH",
+            "json_pointer": "/cases/3/documents/5/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "AR_TIE",
+        "status": "PASS",
+        "expected_value": 110000,
+        "actual_value": 110000,
+        "difference": 0,
+        "reason": "기장된 채권 변동과 보조원장 수치 대사",
+        "source_references": [
+          {
+            "document_id": "REV-004-LEDGER",
+            "json_pointer": "/cases/3/documents/4/fields"
+          },
+          {
+            "document_id": "REV-004-AR",
+            "json_pointer": "/cases/3/documents/6/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "RECEIPT_ALLOCATION",
+        "status": "PASS",
+        "expected_value": 60000,
+        "actual_value": 60000,
+        "difference": 0,
+        "reason": "후속입금 60000원만 해당 송장에 배부됨; 조회 회신 대체 아님",
+        "source_references": [
+          {
+            "document_id": "REV-004-AR",
+            "json_pointer": "/cases/3/documents/6/fields"
+          },
+          {
+            "document_id": "REV-004-RECEIPT",
+            "json_pointer": "/cases/3/documents/7/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "CONFIRMATION_PROTOCOL",
+        "status": "INPUT_BLOCKED",
+        "expected_value": true,
+        "actual_value": null,
+        "difference": null,
+        "reason": "직접 서면 회신 미수령. 회신금액 null을 0으로 치환하지 않으며 후속입금은 별도 대체절차 후보",
+        "source_references": [
+          {
+            "document_id": "REV-004-AR",
+            "json_pointer": "/cases/3/documents/6/fields"
+          },
+          {
+            "document_id": "REV-004-CONFIRM",
+            "json_pointer": "/cases/3/documents/8/fields"
+          }
+        ],
+        "follow_up": "원본·기간·연결 및 계약 조건을 확인하고 감사인이 후속절차와 조정 여부를 판단"
+      },
+      {
+        "check_id": "AGING",
+        "status": "PASS",
+        "expected_value": 1,
+        "actual_value": 1,
+        "difference": 0,
+        "reason": "2026-12-30 만기, 12-31 기준 1일 연체",
+        "source_references": [
+          {
+            "document_id": "REV-004-AR",
+            "json_pointer": "/cases/3/documents/6/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "ECL",
+        "status": "PASS",
+        "expected_value": 1430,
+        "actual_value": 1430,
+        "difference": 0,
+        "reason": "110000×(1%×70%+2%×30%)=1430원; 주어진 가정의 재계산",
+        "source_references": [
+          {
+            "document_id": "REV-004-AR",
+            "json_pointer": "/cases/3/documents/6/fields"
+          },
+          {
+            "document_id": "REV-004-ECL-MODEL",
+            "json_pointer": "/cases/3/documents/9/fields"
+          },
+          {
+            "document_id": "REV-004-ECL-LEDGER",
+            "json_pointer": "/cases/3/documents/10/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "ECL_ROLLFORWARD",
+        "status": "PASS",
+        "expected_value": 1430,
+        "actual_value": 1430,
+        "difference": 0,
+        "reason": "기초1000 + 비용430 + 기타0 = 기말1430",
+        "source_references": [
+          {
+            "document_id": "REV-004-ECL-LEDGER",
+            "json_pointer": "/cases/3/documents/10/fields"
+          }
+        ],
+        "follow_up": null
+      }
+    ]
+  },
+  {
+    "worker": "revenue_ar",
+    "case_id": "REV-C05",
+    "file": "samples/계정별증빙/revenue_ar_REV-C05.json",
+    "expected": [
+      {
+        "check_id": "DOC_LINKS",
+        "status": "PASS",
+        "expected_value": true,
+        "actual_value": true,
+        "difference": 0,
+        "reason": "회사·거래·고객·송장 식별자가 연결됨",
+        "source_references": [
+          {
+            "document_id": "REV-005-ORDER",
+            "json_pointer": "/cases/4/documents/0/fields"
+          },
+          {
+            "document_id": "REV-005-CONTRACT",
+            "json_pointer": "/cases/4/documents/1/fields"
+          },
+          {
+            "document_id": "REV-005-DELIVERY",
+            "json_pointer": "/cases/4/documents/2/fields"
+          },
+          {
+            "document_id": "REV-005-INVOICE",
+            "json_pointer": "/cases/4/documents/3/fields"
+          },
+          {
+            "document_id": "REV-005-LEDGER",
+            "json_pointer": "/cases/4/documents/4/fields"
+          },
+          {
+            "document_id": "REV-005-RETURN-SEARCH",
+            "json_pointer": "/cases/4/documents/5/fields"
+          },
+          {
+            "document_id": "REV-005-AR",
+            "json_pointer": "/cases/4/documents/6/fields"
+          },
+          {
+            "document_id": "REV-005-RECEIPT",
+            "json_pointer": "/cases/4/documents/7/fields"
+          },
+          {
+            "document_id": "REV-005-CONFIRM",
+            "json_pointer": "/cases/4/documents/8/fields"
+          },
+          {
+            "document_id": "REV-005-ECL-MODEL",
+            "json_pointer": "/cases/4/documents/9/fields"
+          },
+          {
+            "document_id": "REV-005-ECL-LEDGER",
+            "json_pointer": "/cases/4/documents/10/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "INVOICE_CALC",
+        "status": "PASS",
+        "expected_value": 110000,
+        "actual_value": 110000,
+        "difference": 0,
+        "reason": "20개×5000원 + VAT 10000원",
+        "source_references": [
+          {
+            "document_id": "REV-005-ORDER",
+            "json_pointer": "/cases/4/documents/0/fields"
+          },
+          {
+            "document_id": "REV-005-INVOICE",
+            "json_pointer": "/cases/4/documents/3/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "CUTOFF_REVENUE",
+        "status": "PASS",
+        "expected_value": 100000,
+        "actual_value": 100000,
+        "difference": 0,
+        "reason": "계약상 검수 조건을 사전에 판단했다는 합성 가정",
+        "source_references": [
+          {
+            "document_id": "REV-005-CONTRACT",
+            "json_pointer": "/cases/4/documents/1/fields"
+          },
+          {
+            "document_id": "REV-005-DELIVERY",
+            "json_pointer": "/cases/4/documents/2/fields"
+          },
+          {
+            "document_id": "REV-005-LEDGER",
+            "json_pointer": "/cases/4/documents/4/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "RETURN_POSTING",
+        "status": "PASS",
+        "expected_value": 0,
+        "actual_value": 0,
+        "difference": 0,
+        "reason": "검색 범위를 선언한 반품 검색 0건",
+        "source_references": [
+          {
+            "document_id": "REV-005-LEDGER",
+            "json_pointer": "/cases/4/documents/4/fields"
+          },
+          {
+            "document_id": "REV-005-RETURN-SEARCH",
+            "json_pointer": "/cases/4/documents/5/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "AR_TIE",
+        "status": "PASS",
+        "expected_value": 110000,
+        "actual_value": 110000,
+        "difference": 0,
+        "reason": "기장된 채권 변동과 보조원장 수치 대사",
+        "source_references": [
+          {
+            "document_id": "REV-005-LEDGER",
+            "json_pointer": "/cases/4/documents/4/fields"
+          },
+          {
+            "document_id": "REV-005-AR",
+            "json_pointer": "/cases/4/documents/6/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "RECEIPT_ALLOCATION",
+        "status": "PASS",
+        "expected_value": 60000,
+        "actual_value": 60000,
+        "difference": 0,
+        "reason": "후속입금 60000원만 해당 송장에 배부됨; 조회 회신 대체 아님",
+        "source_references": [
+          {
+            "document_id": "REV-005-AR",
+            "json_pointer": "/cases/4/documents/6/fields"
+          },
+          {
+            "document_id": "REV-005-RECEIPT",
+            "json_pointer": "/cases/4/documents/7/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "CONFIRMATION_PROTOCOL",
+        "status": "PASS",
+        "expected_value": true,
+        "actual_value": true,
+        "difference": 0,
+        "reason": "직접 회신을 가정한 통제 필드 일치만 검사; 실제 인증 아님",
+        "source_references": [
+          {
+            "document_id": "REV-005-AR",
+            "json_pointer": "/cases/4/documents/6/fields"
+          },
+          {
+            "document_id": "REV-005-CONFIRM",
+            "json_pointer": "/cases/4/documents/8/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "AGING",
+        "status": "PASS",
+        "expected_value": 1,
+        "actual_value": 1,
+        "difference": 0,
+        "reason": "2026-12-30 만기, 12-31 기준 1일 연체",
+        "source_references": [
+          {
+            "document_id": "REV-005-AR",
+            "json_pointer": "/cases/4/documents/6/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "ECL",
+        "status": "EXCEPTION",
+        "expected_value": 1430,
+        "actual_value": 1000,
+        "difference": -430,
+        "reason": "가정값 재계산 대비 충당금 430원 부족; 손실률·전망·중요성 판단 및 조정 승인 별도",
+        "source_references": [
+          {
+            "document_id": "REV-005-AR",
+            "json_pointer": "/cases/4/documents/6/fields"
+          },
+          {
+            "document_id": "REV-005-ECL-MODEL",
+            "json_pointer": "/cases/4/documents/9/fields"
+          },
+          {
+            "document_id": "REV-005-ECL-LEDGER",
+            "json_pointer": "/cases/4/documents/10/fields"
+          }
+        ],
+        "follow_up": "원본·기간·연결 및 계약 조건을 확인하고 감사인이 후속절차와 조정 여부를 판단"
+      },
+      {
+        "check_id": "ECL_ROLLFORWARD",
+        "status": "PASS",
+        "expected_value": 1000,
+        "actual_value": 1000,
+        "difference": 0,
+        "reason": "내부 롤포워드만 맞아도 충당률 재계산 오류는 남음",
+        "source_references": [
+          {
+            "document_id": "REV-005-ECL-LEDGER",
+            "json_pointer": "/cases/4/documents/10/fields"
+          }
+        ],
+        "follow_up": null
+      }
+    ]
+  },
+  {
+    "worker": "inventory_ap",
+    "case_id": "INV-01-NORMAL",
+    "file": "samples/계정별증빙/inventory_ap_INV-01-NORMAL.json",
+    "expected": [
+      {
+        "check_id": "RECEIPT_QTY",
+        "status": "PASS",
+        "expected_value": 100,
+        "actual_value": 100,
+        "difference": 0,
+        "reason": "발주100개와 입고100개 일치",
+        "unit": "EA",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/0/documents/0/fields/quantity",
+            "document_id": "INV-PO-001",
+            "original_value": 100
+          },
+          {
+            "json_pointer": "/cases/0/documents/1/fields/quantity",
+            "document_id": "INV-GR-001",
+            "original_value": 100
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "INVOICE_QTY",
+        "status": "PASS",
+        "expected_value": 100,
+        "actual_value": 100,
+        "difference": 0,
+        "reason": "입고와 송장 수량 일치",
+        "unit": "EA",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/0/documents/1/fields/quantity",
+            "document_id": "INV-GR-001",
+            "original_value": 100
+          },
+          {
+            "json_pointer": "/cases/0/documents/2/fields/quantity",
+            "document_id": "INV-PI-001",
+            "original_value": 100
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "INVOICE_NET",
+        "status": "PASS",
+        "expected_value": 100000,
+        "actual_value": 100000,
+        "difference": 0,
+        "reason": "100개 × 1,000원",
+        "unit": "KRW",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/0/documents/0/fields/unit_cost",
+            "document_id": "INV-PO-001",
+            "original_value": 1000
+          },
+          {
+            "json_pointer": "/cases/0/documents/2/fields/quantity",
+            "document_id": "INV-PI-001",
+            "original_value": 100
+          },
+          {
+            "json_pointer": "/cases/0/documents/2/fields/net_amount",
+            "document_id": "INV-PI-001",
+            "original_value": 100000
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "TAX_GROSS",
+        "status": "PASS",
+        "expected_value": 110000,
+        "actual_value": 110000,
+        "difference": 0,
+        "reason": "공급가액+세액 총액; 세무 적정성 결론 아님",
+        "unit": "KRW",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/0/documents/2/fields/gross_amount",
+            "document_id": "INV-PI-001",
+            "original_value": 110000
+          },
+          {
+            "json_pointer": "/cases/0/documents/3/fields/gross_amount",
+            "document_id": "INV-TAX-001",
+            "original_value": 110000
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "CUTOFF",
+        "status": "PASS",
+        "expected_value": "2026-12-28",
+        "actual_value": "2026-12-28",
+        "difference": null,
+        "reason": "검수시 이전이라는 합성 계약 조건과 전기일 일치",
+        "unit": "ISO date / fiscal period",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/0/documents/11/fields/control_transfer_basis",
+            "document_id": "INV-TERM-001",
+            "original_value": "accepted_at_destination"
+          },
+          {
+            "json_pointer": "/cases/0/documents/1/fields/accepted_date",
+            "document_id": "INV-GR-001",
+            "original_value": "2026-12-28"
+          },
+          {
+            "json_pointer": "/cases/0/documents/6/fields/posting_date",
+            "document_id": "INV-GL-001",
+            "original_value": "2026-12-28"
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "AP_RECORD",
+        "status": "PASS",
+        "expected_value": 1,
+        "actual_value": 1,
+        "difference": 0,
+        "reason": "원장 밖 입고와 후속지급에서 당기 채무 기록 확인",
+        "unit": "record_count",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/0/documents/10/fields/receipt_ids",
+            "document_id": "INV-REG-001",
+            "original_value": [
+              "INV-GR-001"
+            ]
+          },
+          {
+            "json_pointer": "/cases/0/documents/1/fields/accepted_date",
+            "document_id": "INV-GR-001",
+            "original_value": "2026-12-28"
+          },
+          {
+            "json_pointer": "/cases/0/documents/4/fields/amount",
+            "document_id": "INV-PAY-001",
+            "original_value": -110000
+          },
+          {
+            "json_pointer": "/cases/0/documents/6/fields/posting_date",
+            "document_id": "INV-GL-001",
+            "original_value": "2026-12-28"
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "AP_BALANCE",
+        "status": "PASS",
+        "expected_value": -110000,
+        "actual_value": -110000,
+        "difference": 0,
+        "reason": "기말 미지급 채무 대변 부호 보존",
+        "unit": "KRW",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/0/documents/2/fields/gross_amount",
+            "document_id": "INV-PI-001",
+            "original_value": 110000
+          },
+          {
+            "json_pointer": "/cases/0/documents/1/fields/accepted_date",
+            "document_id": "INV-GR-001",
+            "original_value": "2026-12-28"
+          },
+          {
+            "json_pointer": "/cases/0/documents/6/fields/closing_payable_signed",
+            "document_id": "INV-GL-001",
+            "original_value": -110000
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "FOLLOWUP_PAYMENT",
+        "status": "PASS",
+        "expected_value": -110000,
+        "actual_value": -110000,
+        "difference": 0,
+        "reason": "후속 출금과 송장 총액 연결",
+        "unit": "KRW",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/0/documents/2/fields/gross_amount",
+            "document_id": "INV-PI-001",
+            "original_value": 110000
+          },
+          {
+            "json_pointer": "/cases/0/documents/4/fields/amount",
+            "document_id": "INV-PAY-001",
+            "original_value": -110000
+          },
+          {
+            "json_pointer": "/cases/0/documents/4/fields/payment_date",
+            "document_id": "INV-PAY-001",
+            "original_value": "2027-01-20"
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "SUPPLIER_TIE",
+        "status": "PASS",
+        "expected_value": -110000,
+        "actual_value": -110000,
+        "difference": 0,
+        "reason": "공급자 명세와 원장 채무 대사",
+        "unit": "KRW",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/0/documents/5/fields/payable_signed",
+            "document_id": "INV-STMT-001",
+            "original_value": -110000
+          },
+          {
+            "json_pointer": "/cases/0/documents/6/fields/closing_payable_signed",
+            "document_id": "INV-GL-001",
+            "original_value": -110000
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "STOCK_ROLL",
+        "status": "PASS",
+        "expected_value": 100,
+        "actual_value": 100,
+        "difference": 0,
+        "reason": "기초0+당기 입고100-출고0",
+        "unit": "EA",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/0/documents/7/fields/opening_quantity",
+            "document_id": "INV-STOCK-001",
+            "original_value": 0
+          },
+          {
+            "json_pointer": "/cases/0/documents/1/fields/quantity",
+            "document_id": "INV-GR-001",
+            "original_value": 100
+          },
+          {
+            "json_pointer": "/cases/0/documents/1/fields/accepted_date",
+            "document_id": "INV-GR-001",
+            "original_value": "2026-12-28"
+          },
+          {
+            "json_pointer": "/cases/0/documents/7/fields/issued_quantity",
+            "document_id": "INV-STOCK-001",
+            "original_value": 0
+          },
+          {
+            "json_pointer": "/cases/0/documents/7/fields/closing_quantity",
+            "document_id": "INV-STOCK-001",
+            "original_value": 100
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "STOCK_COUNT",
+        "status": "PASS",
+        "expected_value": 100,
+        "actual_value": 100,
+        "difference": 0,
+        "reason": "실사와 기말 장부 수량 일치; 실제 실사입회 수행 아님",
+        "unit": "EA",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/0/documents/8/fields/quantity",
+            "document_id": "INV-COUNT-001",
+            "original_value": 100
+          },
+          {
+            "json_pointer": "/cases/0/documents/7/fields/closing_quantity",
+            "document_id": "INV-STOCK-001",
+            "original_value": 100
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "NRV_ALLOWANCE",
+        "status": "PASS",
+        "expected_value": 0,
+        "actual_value": 0,
+        "difference": 0,
+        "reason": "NRV 1,100원이 원가 1,000원 이상",
+        "unit": "KRW",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/0/documents/9/fields/estimated_sale_price",
+            "document_id": "INV-NRV-001",
+            "original_value": 1200
+          },
+          {
+            "json_pointer": "/cases/0/documents/9/fields/completion_cost",
+            "document_id": "INV-NRV-001",
+            "original_value": 0
+          },
+          {
+            "json_pointer": "/cases/0/documents/9/fields/selling_cost",
+            "document_id": "INV-NRV-001",
+            "original_value": 100
+          },
+          {
+            "json_pointer": "/cases/0/documents/7/fields/unit_cost",
+            "document_id": "INV-STOCK-001",
+            "original_value": 1000
+          },
+          {
+            "json_pointer": "/cases/0/documents/7/fields/closing_quantity",
+            "document_id": "INV-STOCK-001",
+            "original_value": 100
+          },
+          {
+            "json_pointer": "/cases/0/documents/7/fields/recorded_allowance",
+            "document_id": "INV-STOCK-001",
+            "original_value": 0
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      }
+    ]
+  },
+  {
+    "worker": "inventory_ap",
+    "case_id": "INV-02-MISSING-AP",
+    "file": "samples/계정별증빙/inventory_ap_INV-02-MISSING-AP.json",
+    "expected": [
+      {
+        "check_id": "RECEIPT_QTY",
+        "status": "PASS",
+        "expected_value": 100,
+        "actual_value": 100,
+        "difference": 0,
+        "reason": "발주·입고 일치",
+        "unit": "EA",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/1/documents/0/fields/quantity",
+            "document_id": "INV-PO-001",
+            "original_value": 100
+          },
+          {
+            "json_pointer": "/cases/1/documents/1/fields/quantity",
+            "document_id": "INV-GR-001",
+            "original_value": 100
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "INVOICE_QTY",
+        "status": "PASS",
+        "expected_value": 100,
+        "actual_value": 100,
+        "difference": 0,
+        "reason": "입고·송장 일치",
+        "unit": "EA",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/1/documents/1/fields/quantity",
+            "document_id": "INV-GR-001",
+            "original_value": 100
+          },
+          {
+            "json_pointer": "/cases/1/documents/2/fields/quantity",
+            "document_id": "INV-PI-001",
+            "original_value": 100
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "INVOICE_NET",
+        "status": "PASS",
+        "expected_value": 100000,
+        "actual_value": 100000,
+        "difference": 0,
+        "reason": "세전금액 일치",
+        "unit": "KRW",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/1/documents/0/fields/unit_cost",
+            "document_id": "INV-PO-001",
+            "original_value": 1000
+          },
+          {
+            "json_pointer": "/cases/1/documents/2/fields/quantity",
+            "document_id": "INV-PI-001",
+            "original_value": 100
+          },
+          {
+            "json_pointer": "/cases/1/documents/2/fields/net_amount",
+            "document_id": "INV-PI-001",
+            "original_value": 100000
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "TAX_GROSS",
+        "status": "PASS",
+        "expected_value": 110000,
+        "actual_value": 110000,
+        "difference": 0,
+        "reason": "세금계산서 총액 일치",
+        "unit": "KRW",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/1/documents/2/fields/gross_amount",
+            "document_id": "INV-PI-001",
+            "original_value": 110000
+          },
+          {
+            "json_pointer": "/cases/1/documents/3/fields/gross_amount",
+            "document_id": "INV-TAX-001",
+            "original_value": 110000
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "CUTOFF",
+        "status": "INPUT_BLOCKED",
+        "expected_value": "2026-12-28",
+        "actual_value": null,
+        "difference": null,
+        "reason": "원장 기록 누락으로 전기일 비교 불가",
+        "unit": "ISO date / fiscal period",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/1/documents/10/fields/control_transfer_basis",
+            "document_id": "INV-TERM-001",
+            "original_value": "accepted_at_destination"
+          },
+          {
+            "json_pointer": "/cases/1/documents/1/fields/accepted_date",
+            "document_id": "INV-GR-001",
+            "original_value": "2026-12-28"
+          },
+          {
+            "json_pointer": "/cases/1/documents",
+            "document_id": null,
+            "missing_document_type": "gl_ap_record"
+          }
+        ],
+        "follow_up": "원본 납품조건·검수증·소유권 이전 및 분개 귀속일을 확인하고 공급시기 세무 검토는 따로 수행한다."
+      },
+      {
+        "check_id": "AP_RECORD",
+        "status": "EXCEPTION",
+        "expected_value": 1,
+        "actual_value": 0,
+        "difference": -1,
+        "reason": "입고·후속출금에서 역추적한 당기 채무 기록 없음. 110,000원 후보 확인 필요; 실제 금액 차이 확정 아님",
+        "unit": "record_count",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/1/documents/9/fields/receipt_ids",
+            "document_id": "INV-REG-001",
+            "original_value": [
+              "INV-GR-001"
+            ]
+          },
+          {
+            "json_pointer": "/cases/1/documents/1/fields/accepted_date",
+            "document_id": "INV-GR-001",
+            "original_value": "2026-12-28"
+          },
+          {
+            "json_pointer": "/cases/1/documents/4/fields/amount",
+            "document_id": "INV-PAY-001",
+            "original_value": -110000
+          },
+          {
+            "json_pointer": "/cases/1/documents",
+            "document_id": null,
+            "missing_document_type": "gl_ap_record"
+          }
+        ],
+        "follow_up": "입고·후속출금의 모집단 완전성 및 원장 재추출을 확인한다. 미기록 부채 후보 110,000원을 추가 조사하며 원장 누락을 0으로 확정하지 않는다."
+      },
+      {
+        "check_id": "AP_BALANCE",
+        "status": "INPUT_BLOCKED",
+        "expected_value": -110000,
+        "actual_value": null,
+        "difference": null,
+        "reason": "원장 채무를 0으로 대체하지 않음",
+        "unit": "KRW",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/1/documents/2/fields/gross_amount",
+            "document_id": "INV-PI-001",
+            "original_value": 110000
+          },
+          {
+            "json_pointer": "/cases/1/documents/1/fields/accepted_date",
+            "document_id": "INV-GR-001",
+            "original_value": "2026-12-28"
+          },
+          {
+            "json_pointer": "/cases/1/documents",
+            "document_id": null,
+            "missing_document_type": "gl_ap_record"
+          }
+        ],
+        "follow_up": "완전한 원장과 보조부를 확보한 뒤 분쟁·반품·상계·기말 이전 지급을 확인한다."
+      },
+      {
+        "check_id": "FOLLOWUP_PAYMENT",
+        "status": "PASS",
+        "expected_value": -110000,
+        "actual_value": -110000,
+        "difference": 0,
+        "reason": "후속 출금 존재",
+        "unit": "KRW",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/1/documents/2/fields/gross_amount",
+            "document_id": "INV-PI-001",
+            "original_value": 110000
+          },
+          {
+            "json_pointer": "/cases/1/documents/4/fields/amount",
+            "document_id": "INV-PAY-001",
+            "original_value": -110000
+          },
+          {
+            "json_pointer": "/cases/1/documents/4/fields/payment_date",
+            "document_id": "INV-PAY-001",
+            "original_value": "2027-01-20"
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "SUPPLIER_TIE",
+        "status": "INPUT_BLOCKED",
+        "expected_value": -110000,
+        "actual_value": null,
+        "difference": null,
+        "reason": "공급자 명세는 있으나 원장 대사 값 없음",
+        "unit": "KRW",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/1/documents/5/fields/payable_signed",
+            "document_id": "INV-STMT-001",
+            "original_value": -110000
+          },
+          {
+            "json_pointer": "/cases/1/documents",
+            "document_id": null,
+            "missing_document_type": "gl_ap_record"
+          }
+        ],
+        "follow_up": "공급자 명세의 출처·회신 통제와 미기록/기중 지급을 확인한다. 같은 거래의 채무 차이와 중복합산하지 않는다."
+      },
+      {
+        "check_id": "STOCK_ROLL",
+        "status": "PASS",
+        "expected_value": 100,
+        "actual_value": 100,
+        "difference": 0,
+        "reason": "창고 수불은 일치하지만 GL 완전성을 보장하지 않음",
+        "unit": "EA",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/1/documents/6/fields/opening_quantity",
+            "document_id": "INV-STOCK-001",
+            "original_value": 0
+          },
+          {
+            "json_pointer": "/cases/1/documents/1/fields/quantity",
+            "document_id": "INV-GR-001",
+            "original_value": 100
+          },
+          {
+            "json_pointer": "/cases/1/documents/1/fields/accepted_date",
+            "document_id": "INV-GR-001",
+            "original_value": "2026-12-28"
+          },
+          {
+            "json_pointer": "/cases/1/documents/6/fields/issued_quantity",
+            "document_id": "INV-STOCK-001",
+            "original_value": 0
+          },
+          {
+            "json_pointer": "/cases/1/documents/6/fields/closing_quantity",
+            "document_id": "INV-STOCK-001",
+            "original_value": 100
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "STOCK_COUNT",
+        "status": "PASS",
+        "expected_value": 100,
+        "actual_value": 100,
+        "difference": 0,
+        "reason": "창고 실사 수량 일치",
+        "unit": "EA",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/1/documents/7/fields/quantity",
+            "document_id": "INV-COUNT-001",
+            "original_value": 100
+          },
+          {
+            "json_pointer": "/cases/1/documents/6/fields/closing_quantity",
+            "document_id": "INV-STOCK-001",
+            "original_value": 100
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "NRV_ALLOWANCE",
+        "status": "PASS",
+        "expected_value": 0,
+        "actual_value": 0,
+        "difference": 0,
+        "reason": "창고 재고명세 기준 평가만 수행",
+        "unit": "KRW",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/1/documents/8/fields/estimated_sale_price",
+            "document_id": "INV-NRV-001",
+            "original_value": 1200
+          },
+          {
+            "json_pointer": "/cases/1/documents/8/fields/completion_cost",
+            "document_id": "INV-NRV-001",
+            "original_value": 0
+          },
+          {
+            "json_pointer": "/cases/1/documents/8/fields/selling_cost",
+            "document_id": "INV-NRV-001",
+            "original_value": 100
+          },
+          {
+            "json_pointer": "/cases/1/documents/6/fields/unit_cost",
+            "document_id": "INV-STOCK-001",
+            "original_value": 1000
+          },
+          {
+            "json_pointer": "/cases/1/documents/6/fields/closing_quantity",
+            "document_id": "INV-STOCK-001",
+            "original_value": 100
+          },
+          {
+            "json_pointer": "/cases/1/documents/6/fields/recorded_allowance",
+            "document_id": "INV-STOCK-001",
+            "original_value": 0
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      }
+    ]
+  },
+  {
+    "worker": "inventory_ap",
+    "case_id": "INV-03-CUTOFF",
+    "file": "samples/계정별증빙/inventory_ap_INV-03-CUTOFF.json",
+    "expected": [
+      {
+        "check_id": "RECEIPT_QTY",
+        "status": "PASS",
+        "expected_value": 100,
+        "actual_value": 100,
+        "difference": 0,
+        "reason": "입고 수량 자체는 일치",
+        "unit": "EA",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/2/documents/0/fields/quantity",
+            "document_id": "INV-PO-001",
+            "original_value": 100
+          },
+          {
+            "json_pointer": "/cases/2/documents/1/fields/quantity",
+            "document_id": "INV-GR-001",
+            "original_value": 100
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "INVOICE_QTY",
+        "status": "PASS",
+        "expected_value": 100,
+        "actual_value": 100,
+        "difference": 0,
+        "reason": "입고·송장 수량 일치",
+        "unit": "EA",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/2/documents/1/fields/quantity",
+            "document_id": "INV-GR-001",
+            "original_value": 100
+          },
+          {
+            "json_pointer": "/cases/2/documents/2/fields/quantity",
+            "document_id": "INV-PI-001",
+            "original_value": 100
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "INVOICE_NET",
+        "status": "PASS",
+        "expected_value": 100000,
+        "actual_value": 100000,
+        "difference": 0,
+        "reason": "세전금액 일치",
+        "unit": "KRW",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/2/documents/0/fields/unit_cost",
+            "document_id": "INV-PO-001",
+            "original_value": 1000
+          },
+          {
+            "json_pointer": "/cases/2/documents/2/fields/quantity",
+            "document_id": "INV-PI-001",
+            "original_value": 100
+          },
+          {
+            "json_pointer": "/cases/2/documents/2/fields/net_amount",
+            "document_id": "INV-PI-001",
+            "original_value": 100000
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "TAX_GROSS",
+        "status": "PASS",
+        "expected_value": 110000,
+        "actual_value": 110000,
+        "difference": 0,
+        "reason": "총액 대사만 수행; 공급시기 세무 검토는 별도",
+        "unit": "KRW",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/2/documents/2/fields/gross_amount",
+            "document_id": "INV-PI-001",
+            "original_value": 110000
+          },
+          {
+            "json_pointer": "/cases/2/documents/3/fields/gross_amount",
+            "document_id": "INV-TAX-001",
+            "original_value": 110000
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "CUTOFF",
+        "status": "EXCEPTION",
+        "expected_value": "2027-01-02",
+        "actual_value": "2026-12-28",
+        "difference": null,
+        "reason": "합성 계약상 소유권 이전 전 선계상",
+        "unit": "ISO date / fiscal period",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/2/documents/11/fields/control_transfer_basis",
+            "document_id": "INV-TERM-001",
+            "original_value": "accepted_at_destination"
+          },
+          {
+            "json_pointer": "/cases/2/documents/1/fields/accepted_date",
+            "document_id": "INV-GR-001",
+            "original_value": "2027-01-02"
+          },
+          {
+            "json_pointer": "/cases/2/documents/6/fields/posting_date",
+            "document_id": "INV-GL-001",
+            "original_value": "2026-12-28"
+          }
+        ],
+        "follow_up": "원본 납품조건·검수증·소유권 이전 및 분개 귀속일을 확인하고 공급시기 세무 검토는 따로 수행한다."
+      },
+      {
+        "check_id": "AP_RECORD",
+        "status": "EXCEPTION",
+        "expected_value": 0,
+        "actual_value": 1,
+        "difference": 1,
+        "reason": "2026년 계상 대상 아닌 거래가 당기 원장에 존재",
+        "unit": "record_count",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/2/documents/10/fields/receipt_ids",
+            "document_id": "INV-REG-001",
+            "original_value": [
+              "INV-GR-001"
+            ]
+          },
+          {
+            "json_pointer": "/cases/2/documents/1/fields/accepted_date",
+            "document_id": "INV-GR-001",
+            "original_value": "2027-01-02"
+          },
+          {
+            "json_pointer": "/cases/2/documents/4/fields/amount",
+            "document_id": "INV-PAY-001",
+            "original_value": -110000
+          },
+          {
+            "json_pointer": "/cases/2/documents/6/fields/posting_date",
+            "document_id": "INV-GL-001",
+            "original_value": "2026-12-28"
+          }
+        ],
+        "follow_up": "입고·후속출금의 모집단 완전성 및 원장 재추출을 확인한다. 미기록 부채 후보 110,000원을 추가 조사하며 원장 누락을 0으로 확정하지 않는다."
+      },
+      {
+        "check_id": "AP_BALANCE",
+        "status": "EXCEPTION",
+        "expected_value": 0,
+        "actual_value": -110000,
+        "difference": -110000,
+        "reason": "명시된 귀속 조건상 연말 채무 0; 미제공 값의 0 치환 아님",
+        "unit": "KRW",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/2/documents/2/fields/gross_amount",
+            "document_id": "INV-PI-001",
+            "original_value": 110000
+          },
+          {
+            "json_pointer": "/cases/2/documents/1/fields/accepted_date",
+            "document_id": "INV-GR-001",
+            "original_value": "2027-01-02"
+          },
+          {
+            "json_pointer": "/cases/2/documents/6/fields/closing_payable_signed",
+            "document_id": "INV-GL-001",
+            "original_value": -110000
+          }
+        ],
+        "follow_up": "완전한 원장과 보조부를 확보한 뒤 분쟁·반품·상계·기말 이전 지급을 확인한다."
+      },
+      {
+        "check_id": "FOLLOWUP_PAYMENT",
+        "status": "PASS",
+        "expected_value": -110000,
+        "actual_value": -110000,
+        "difference": 0,
+        "reason": "후속 지급 자체만으로 당기 채무를 확정할 수 없음",
+        "unit": "KRW",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/2/documents/2/fields/gross_amount",
+            "document_id": "INV-PI-001",
+            "original_value": 110000
+          },
+          {
+            "json_pointer": "/cases/2/documents/4/fields/amount",
+            "document_id": "INV-PAY-001",
+            "original_value": -110000
+          },
+          {
+            "json_pointer": "/cases/2/documents/4/fields/payment_date",
+            "document_id": "INV-PAY-001",
+            "original_value": "2027-01-20"
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "SUPPLIER_TIE",
+        "status": "EXCEPTION",
+        "expected_value": 0,
+        "actual_value": -110000,
+        "difference": -110000,
+        "reason": "공급자 연말 명세와 차이; AP_BALANCE와 중복이므로 합산 금지",
+        "unit": "KRW",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/2/documents/5/fields/payable_signed",
+            "document_id": "INV-STMT-001",
+            "original_value": 0
+          },
+          {
+            "json_pointer": "/cases/2/documents/6/fields/closing_payable_signed",
+            "document_id": "INV-GL-001",
+            "original_value": -110000
+          }
+        ],
+        "follow_up": "공급자 명세의 출처·회신 통제와 미기록/기중 지급을 확인한다. 같은 거래의 채무 차이와 중복합산하지 않는다."
+      },
+      {
+        "check_id": "STOCK_ROLL",
+        "status": "EXCEPTION",
+        "expected_value": 0,
+        "actual_value": 100,
+        "difference": 100,
+        "reason": "2026년 유효 입고는 0개",
+        "unit": "EA",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/2/documents/7/fields/opening_quantity",
+            "document_id": "INV-STOCK-001",
+            "original_value": 0
+          },
+          {
+            "json_pointer": "/cases/2/documents/1/fields/quantity",
+            "document_id": "INV-GR-001",
+            "original_value": 100
+          },
+          {
+            "json_pointer": "/cases/2/documents/1/fields/accepted_date",
+            "document_id": "INV-GR-001",
+            "original_value": "2027-01-02"
+          },
+          {
+            "json_pointer": "/cases/2/documents/7/fields/issued_quantity",
+            "document_id": "INV-STOCK-001",
+            "original_value": 0
+          },
+          {
+            "json_pointer": "/cases/2/documents/7/fields/closing_quantity",
+            "document_id": "INV-STOCK-001",
+            "original_value": 100
+          }
+        ],
+        "follow_up": "연결된 원본과 계산 결과를 감사인이 검토하고 필요한 추가 절차를 문서화한다."
+      },
+      {
+        "check_id": "STOCK_COUNT",
+        "status": "EXCEPTION",
+        "expected_value": 0,
+        "actual_value": 100,
+        "difference": 100,
+        "reason": "실사0과 장부100의 차이; 동일 cutoff 원인과 중복 검토",
+        "unit": "EA",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/2/documents/8/fields/quantity",
+            "document_id": "INV-COUNT-001",
+            "original_value": 0
+          },
+          {
+            "json_pointer": "/cases/2/documents/7/fields/closing_quantity",
+            "document_id": "INV-STOCK-001",
+            "original_value": 100
+          }
+        ],
+        "follow_up": "재실사 및 실사전후 이동·출고·입고를 확인하고 장부수량 확정 후 평가를 다시 계산한다."
+      },
+      {
+        "check_id": "NRV_ALLOWANCE",
+        "status": "PASS",
+        "expected_value": 0,
+        "actual_value": 0,
+        "difference": 0,
+        "reason": "장부 수량 기준 NRV만 일치; 기간귀속 예외는 계속 남음",
+        "unit": "KRW",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/2/documents/9/fields/estimated_sale_price",
+            "document_id": "INV-NRV-001",
+            "original_value": 1200
+          },
+          {
+            "json_pointer": "/cases/2/documents/9/fields/completion_cost",
+            "document_id": "INV-NRV-001",
+            "original_value": 0
+          },
+          {
+            "json_pointer": "/cases/2/documents/9/fields/selling_cost",
+            "document_id": "INV-NRV-001",
+            "original_value": 100
+          },
+          {
+            "json_pointer": "/cases/2/documents/7/fields/unit_cost",
+            "document_id": "INV-STOCK-001",
+            "original_value": 1000
+          },
+          {
+            "json_pointer": "/cases/2/documents/7/fields/closing_quantity",
+            "document_id": "INV-STOCK-001",
+            "original_value": 100
+          },
+          {
+            "json_pointer": "/cases/2/documents/7/fields/recorded_allowance",
+            "document_id": "INV-STOCK-001",
+            "original_value": 0
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      }
+    ]
+  },
+  {
+    "worker": "inventory_ap",
+    "case_id": "INV-04-COUNT-NRV",
+    "file": "samples/계정별증빙/inventory_ap_INV-04-COUNT-NRV.json",
+    "expected": [
+      {
+        "check_id": "RECEIPT_QTY",
+        "status": "PASS",
+        "expected_value": 100,
+        "actual_value": 100,
+        "difference": 0,
+        "reason": "발주·입고 일치",
+        "unit": "EA",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/3/documents/0/fields/quantity",
+            "document_id": "INV-PO-001",
+            "original_value": 100
+          },
+          {
+            "json_pointer": "/cases/3/documents/1/fields/quantity",
+            "document_id": "INV-GR-001",
+            "original_value": 100
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "INVOICE_QTY",
+        "status": "PASS",
+        "expected_value": 100,
+        "actual_value": 100,
+        "difference": 0,
+        "reason": "입고·송장 일치",
+        "unit": "EA",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/3/documents/1/fields/quantity",
+            "document_id": "INV-GR-001",
+            "original_value": 100
+          },
+          {
+            "json_pointer": "/cases/3/documents/2/fields/quantity",
+            "document_id": "INV-PI-001",
+            "original_value": 100
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "INVOICE_NET",
+        "status": "PASS",
+        "expected_value": 100000,
+        "actual_value": 100000,
+        "difference": 0,
+        "reason": "세전금액 일치",
+        "unit": "KRW",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/3/documents/0/fields/unit_cost",
+            "document_id": "INV-PO-001",
+            "original_value": 1000
+          },
+          {
+            "json_pointer": "/cases/3/documents/2/fields/quantity",
+            "document_id": "INV-PI-001",
+            "original_value": 100
+          },
+          {
+            "json_pointer": "/cases/3/documents/2/fields/net_amount",
+            "document_id": "INV-PI-001",
+            "original_value": 100000
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "TAX_GROSS",
+        "status": "PASS",
+        "expected_value": 110000,
+        "actual_value": 110000,
+        "difference": 0,
+        "reason": "총액 일치",
+        "unit": "KRW",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/3/documents/2/fields/gross_amount",
+            "document_id": "INV-PI-001",
+            "original_value": 110000
+          },
+          {
+            "json_pointer": "/cases/3/documents/3/fields/gross_amount",
+            "document_id": "INV-TAX-001",
+            "original_value": 110000
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "CUTOFF",
+        "status": "PASS",
+        "expected_value": "2026-12-28",
+        "actual_value": "2026-12-28",
+        "difference": null,
+        "reason": "기간귀속 일치",
+        "unit": "ISO date / fiscal period",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/3/documents/11/fields/control_transfer_basis",
+            "document_id": "INV-TERM-001",
+            "original_value": "accepted_at_destination"
+          },
+          {
+            "json_pointer": "/cases/3/documents/1/fields/accepted_date",
+            "document_id": "INV-GR-001",
+            "original_value": "2026-12-28"
+          },
+          {
+            "json_pointer": "/cases/3/documents/6/fields/posting_date",
+            "document_id": "INV-GL-001",
+            "original_value": "2026-12-28"
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "AP_RECORD",
+        "status": "PASS",
+        "expected_value": 1,
+        "actual_value": 1,
+        "difference": 0,
+        "reason": "채무 기록 존재",
+        "unit": "record_count",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/3/documents/10/fields/receipt_ids",
+            "document_id": "INV-REG-001",
+            "original_value": [
+              "INV-GR-001"
+            ]
+          },
+          {
+            "json_pointer": "/cases/3/documents/1/fields/accepted_date",
+            "document_id": "INV-GR-001",
+            "original_value": "2026-12-28"
+          },
+          {
+            "json_pointer": "/cases/3/documents/4/fields/amount",
+            "document_id": "INV-PAY-001",
+            "original_value": -110000
+          },
+          {
+            "json_pointer": "/cases/3/documents/6/fields/posting_date",
+            "document_id": "INV-GL-001",
+            "original_value": "2026-12-28"
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "AP_BALANCE",
+        "status": "PASS",
+        "expected_value": -110000,
+        "actual_value": -110000,
+        "difference": 0,
+        "reason": "채무 잔액 일치",
+        "unit": "KRW",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/3/documents/2/fields/gross_amount",
+            "document_id": "INV-PI-001",
+            "original_value": 110000
+          },
+          {
+            "json_pointer": "/cases/3/documents/1/fields/accepted_date",
+            "document_id": "INV-GR-001",
+            "original_value": "2026-12-28"
+          },
+          {
+            "json_pointer": "/cases/3/documents/6/fields/closing_payable_signed",
+            "document_id": "INV-GL-001",
+            "original_value": -110000
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "FOLLOWUP_PAYMENT",
+        "status": "PASS",
+        "expected_value": -110000,
+        "actual_value": -110000,
+        "difference": 0,
+        "reason": "후속 지급 일치",
+        "unit": "KRW",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/3/documents/2/fields/gross_amount",
+            "document_id": "INV-PI-001",
+            "original_value": 110000
+          },
+          {
+            "json_pointer": "/cases/3/documents/4/fields/amount",
+            "document_id": "INV-PAY-001",
+            "original_value": -110000
+          },
+          {
+            "json_pointer": "/cases/3/documents/4/fields/payment_date",
+            "document_id": "INV-PAY-001",
+            "original_value": "2027-01-20"
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "SUPPLIER_TIE",
+        "status": "PASS",
+        "expected_value": -110000,
+        "actual_value": -110000,
+        "difference": 0,
+        "reason": "공급자 명세 일치",
+        "unit": "KRW",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/3/documents/5/fields/payable_signed",
+            "document_id": "INV-STMT-001",
+            "original_value": -110000
+          },
+          {
+            "json_pointer": "/cases/3/documents/6/fields/closing_payable_signed",
+            "document_id": "INV-GL-001",
+            "original_value": -110000
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "STOCK_ROLL",
+        "status": "PASS",
+        "expected_value": 100,
+        "actual_value": 100,
+        "difference": 0,
+        "reason": "창고 수불 일치",
+        "unit": "EA",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/3/documents/7/fields/opening_quantity",
+            "document_id": "INV-STOCK-001",
+            "original_value": 0
+          },
+          {
+            "json_pointer": "/cases/3/documents/1/fields/quantity",
+            "document_id": "INV-GR-001",
+            "original_value": 100
+          },
+          {
+            "json_pointer": "/cases/3/documents/1/fields/accepted_date",
+            "document_id": "INV-GR-001",
+            "original_value": "2026-12-28"
+          },
+          {
+            "json_pointer": "/cases/3/documents/7/fields/issued_quantity",
+            "document_id": "INV-STOCK-001",
+            "original_value": 0
+          },
+          {
+            "json_pointer": "/cases/3/documents/7/fields/closing_quantity",
+            "document_id": "INV-STOCK-001",
+            "original_value": 100
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "STOCK_COUNT",
+        "status": "EXCEPTION",
+        "expected_value": 95,
+        "actual_value": 100,
+        "difference": 5,
+        "reason": "수량 차이5개. 재실사·실사전후 수불·분실 여부 검토",
+        "unit": "EA",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/3/documents/8/fields/quantity",
+            "document_id": "INV-COUNT-001",
+            "original_value": 95
+          },
+          {
+            "json_pointer": "/cases/3/documents/7/fields/closing_quantity",
+            "document_id": "INV-STOCK-001",
+            "original_value": 100
+          }
+        ],
+        "follow_up": "재실사 및 실사전후 이동·출고·입고를 확인하고 장부수량 확정 후 평가를 다시 계산한다."
+      },
+      {
+        "check_id": "NRV_ALLOWANCE",
+        "status": "EXCEPTION",
+        "expected_value": 40000,
+        "actual_value": 0,
+        "difference": -40000,
+        "reason": "장부수량 기준 충당금 미계상 후보. 실사 수량 확정 후 재계산; 자동 수정분개 없음",
+        "unit": "KRW",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/3/documents/9/fields/estimated_sale_price",
+            "document_id": "INV-NRV-001",
+            "original_value": 750
+          },
+          {
+            "json_pointer": "/cases/3/documents/9/fields/completion_cost",
+            "document_id": "INV-NRV-001",
+            "original_value": 50
+          },
+          {
+            "json_pointer": "/cases/3/documents/9/fields/selling_cost",
+            "document_id": "INV-NRV-001",
+            "original_value": 100
+          },
+          {
+            "json_pointer": "/cases/3/documents/7/fields/unit_cost",
+            "document_id": "INV-STOCK-001",
+            "original_value": 1000
+          },
+          {
+            "json_pointer": "/cases/3/documents/7/fields/closing_quantity",
+            "document_id": "INV-STOCK-001",
+            "original_value": 100
+          },
+          {
+            "json_pointer": "/cases/3/documents/7/fields/recorded_allowance",
+            "document_id": "INV-STOCK-001",
+            "original_value": 0
+          }
+        ],
+        "follow_up": "판매가격·완성/판매필요원가의 승인 근거와 기말 상태 관련성을 확보한다. 실사차이 해소 후 재계산하며 수정분개를 자동 승인하지 않는다."
+      }
+    ]
+  },
+  {
+    "worker": "inventory_ap",
+    "case_id": "INV-05-NULL-NRV",
+    "file": "samples/계정별증빙/inventory_ap_INV-05-NULL-NRV.json",
+    "expected": [
+      {
+        "check_id": "RECEIPT_QTY",
+        "status": "PASS",
+        "expected_value": 100,
+        "actual_value": 100,
+        "difference": 0,
+        "reason": "발주·입고 일치",
+        "unit": "EA",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/4/documents/0/fields/quantity",
+            "document_id": "INV-PO-001",
+            "original_value": 100
+          },
+          {
+            "json_pointer": "/cases/4/documents/1/fields/quantity",
+            "document_id": "INV-GR-001",
+            "original_value": 100
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "INVOICE_QTY",
+        "status": "PASS",
+        "expected_value": 100,
+        "actual_value": 100,
+        "difference": 0,
+        "reason": "입고·송장 일치",
+        "unit": "EA",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/4/documents/1/fields/quantity",
+            "document_id": "INV-GR-001",
+            "original_value": 100
+          },
+          {
+            "json_pointer": "/cases/4/documents/2/fields/quantity",
+            "document_id": "INV-PI-001",
+            "original_value": 100
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "INVOICE_NET",
+        "status": "PASS",
+        "expected_value": 100000,
+        "actual_value": 100000,
+        "difference": 0,
+        "reason": "세전금액 일치",
+        "unit": "KRW",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/4/documents/0/fields/unit_cost",
+            "document_id": "INV-PO-001",
+            "original_value": 1000
+          },
+          {
+            "json_pointer": "/cases/4/documents/2/fields/quantity",
+            "document_id": "INV-PI-001",
+            "original_value": 100
+          },
+          {
+            "json_pointer": "/cases/4/documents/2/fields/net_amount",
+            "document_id": "INV-PI-001",
+            "original_value": 100000
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "TAX_GROSS",
+        "status": "PASS",
+        "expected_value": 110000,
+        "actual_value": 110000,
+        "difference": 0,
+        "reason": "총액 일치",
+        "unit": "KRW",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/4/documents/2/fields/gross_amount",
+            "document_id": "INV-PI-001",
+            "original_value": 110000
+          },
+          {
+            "json_pointer": "/cases/4/documents/3/fields/gross_amount",
+            "document_id": "INV-TAX-001",
+            "original_value": 110000
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "CUTOFF",
+        "status": "PASS",
+        "expected_value": "2026-12-28",
+        "actual_value": "2026-12-28",
+        "difference": null,
+        "reason": "기간귀속 일치",
+        "unit": "ISO date / fiscal period",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/4/documents/11/fields/control_transfer_basis",
+            "document_id": "INV-TERM-001",
+            "original_value": "accepted_at_destination"
+          },
+          {
+            "json_pointer": "/cases/4/documents/1/fields/accepted_date",
+            "document_id": "INV-GR-001",
+            "original_value": "2026-12-28"
+          },
+          {
+            "json_pointer": "/cases/4/documents/6/fields/posting_date",
+            "document_id": "INV-GL-001",
+            "original_value": "2026-12-28"
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "AP_RECORD",
+        "status": "PASS",
+        "expected_value": 1,
+        "actual_value": 1,
+        "difference": 0,
+        "reason": "채무 기록 존재",
+        "unit": "record_count",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/4/documents/10/fields/receipt_ids",
+            "document_id": "INV-REG-001",
+            "original_value": [
+              "INV-GR-001"
+            ]
+          },
+          {
+            "json_pointer": "/cases/4/documents/1/fields/accepted_date",
+            "document_id": "INV-GR-001",
+            "original_value": "2026-12-28"
+          },
+          {
+            "json_pointer": "/cases/4/documents/4/fields/amount",
+            "document_id": "INV-PAY-001",
+            "original_value": -110000
+          },
+          {
+            "json_pointer": "/cases/4/documents/6/fields/posting_date",
+            "document_id": "INV-GL-001",
+            "original_value": "2026-12-28"
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "AP_BALANCE",
+        "status": "PASS",
+        "expected_value": -110000,
+        "actual_value": -110000,
+        "difference": 0,
+        "reason": "채무 잔액 일치",
+        "unit": "KRW",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/4/documents/2/fields/gross_amount",
+            "document_id": "INV-PI-001",
+            "original_value": 110000
+          },
+          {
+            "json_pointer": "/cases/4/documents/1/fields/accepted_date",
+            "document_id": "INV-GR-001",
+            "original_value": "2026-12-28"
+          },
+          {
+            "json_pointer": "/cases/4/documents/6/fields/closing_payable_signed",
+            "document_id": "INV-GL-001",
+            "original_value": -110000
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "FOLLOWUP_PAYMENT",
+        "status": "PASS",
+        "expected_value": -110000,
+        "actual_value": -110000,
+        "difference": 0,
+        "reason": "후속 지급 일치",
+        "unit": "KRW",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/4/documents/2/fields/gross_amount",
+            "document_id": "INV-PI-001",
+            "original_value": 110000
+          },
+          {
+            "json_pointer": "/cases/4/documents/4/fields/amount",
+            "document_id": "INV-PAY-001",
+            "original_value": -110000
+          },
+          {
+            "json_pointer": "/cases/4/documents/4/fields/payment_date",
+            "document_id": "INV-PAY-001",
+            "original_value": "2027-01-20"
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "SUPPLIER_TIE",
+        "status": "PASS",
+        "expected_value": -110000,
+        "actual_value": -110000,
+        "difference": 0,
+        "reason": "공급자 명세 일치",
+        "unit": "KRW",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/4/documents/5/fields/payable_signed",
+            "document_id": "INV-STMT-001",
+            "original_value": -110000
+          },
+          {
+            "json_pointer": "/cases/4/documents/6/fields/closing_payable_signed",
+            "document_id": "INV-GL-001",
+            "original_value": -110000
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "STOCK_ROLL",
+        "status": "PASS",
+        "expected_value": 100,
+        "actual_value": 100,
+        "difference": 0,
+        "reason": "수불 일치",
+        "unit": "EA",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/4/documents/7/fields/opening_quantity",
+            "document_id": "INV-STOCK-001",
+            "original_value": 0
+          },
+          {
+            "json_pointer": "/cases/4/documents/1/fields/quantity",
+            "document_id": "INV-GR-001",
+            "original_value": 100
+          },
+          {
+            "json_pointer": "/cases/4/documents/1/fields/accepted_date",
+            "document_id": "INV-GR-001",
+            "original_value": "2026-12-28"
+          },
+          {
+            "json_pointer": "/cases/4/documents/7/fields/issued_quantity",
+            "document_id": "INV-STOCK-001",
+            "original_value": 0
+          },
+          {
+            "json_pointer": "/cases/4/documents/7/fields/closing_quantity",
+            "document_id": "INV-STOCK-001",
+            "original_value": 100
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "STOCK_COUNT",
+        "status": "PASS",
+        "expected_value": 100,
+        "actual_value": 100,
+        "difference": 0,
+        "reason": "수량 일치",
+        "unit": "EA",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/4/documents/8/fields/quantity",
+            "document_id": "INV-COUNT-001",
+            "original_value": 100
+          },
+          {
+            "json_pointer": "/cases/4/documents/7/fields/closing_quantity",
+            "document_id": "INV-STOCK-001",
+            "original_value": 100
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "NRV_ALLOWANCE",
+        "status": "INPUT_BLOCKED",
+        "expected_value": null,
+        "actual_value": 0,
+        "difference": null,
+        "reason": "판매가 근거 null로 NRV 기대값 산정 불가. 장부 충당금0은 원본 값으로만 보존",
+        "unit": "KRW",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/4/documents/9/fields/estimated_sale_price",
+            "document_id": "INV-NRV-001",
+            "original_value": null
+          },
+          {
+            "json_pointer": "/cases/4/documents/9/fields/completion_cost",
+            "document_id": "INV-NRV-001",
+            "original_value": 0
+          },
+          {
+            "json_pointer": "/cases/4/documents/9/fields/selling_cost",
+            "document_id": "INV-NRV-001",
+            "original_value": 100
+          },
+          {
+            "json_pointer": "/cases/4/documents/7/fields/unit_cost",
+            "document_id": "INV-STOCK-001",
+            "original_value": 1000
+          },
+          {
+            "json_pointer": "/cases/4/documents/7/fields/closing_quantity",
+            "document_id": "INV-STOCK-001",
+            "original_value": 100
+          },
+          {
+            "json_pointer": "/cases/4/documents/7/fields/recorded_allowance",
+            "document_id": "INV-STOCK-001",
+            "original_value": 0
+          }
+        ],
+        "follow_up": "판매가격·완성/판매필요원가의 승인 근거와 기말 상태 관련성을 확보한다. 실사차이 해소 후 재계산하며 수정분개를 자동 승인하지 않는다."
+      }
+    ]
+  },
+  {
+    "worker": "fixed_assets",
+    "case_id": "ASSET-NORMAL",
+    "file": "samples/계정별증빙/fixed_assets_ASSET-NORMAL.json",
+    "expected": [
+      {
+        "check_id": "ASSET-ACQUISITION",
+        "status": "PASS",
+        "expected_value": 1320000,
+        "actual_value": 1320000,
+        "difference": 0,
+        "reason": "Invoice capitalizable cost equals register cost; capitalization itself remains a human assessment.",
+        "source_locations": [
+          {
+            "document_id": "ASSET-MACHINE-INVOICE",
+            "json_pointer": "/cases/0/documents/3/fields"
+          },
+          {
+            "document_id": "ASSET-MACHINE-01-REGISTER",
+            "json_pointer": "/cases/0/documents/0/fields"
+          }
+        ],
+        "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+      },
+      {
+        "check_id": "ASSET-PAYMENT",
+        "status": "PASS",
+        "expected_value": 1320000,
+        "actual_value": 1320000,
+        "difference": 0,
+        "reason": "Explicit negative bank outflow is inverted once for payable settlement comparison; no absolute value.",
+        "source_locations": [
+          {
+            "document_id": "ASSET-MACHINE-INVOICE",
+            "json_pointer": "/cases/0/documents/3/fields"
+          },
+          {
+            "document_id": "ASSET-MACHINE-PAYMENT",
+            "json_pointer": "/cases/0/documents/4/fields"
+          }
+        ],
+        "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+      },
+      {
+        "check_id": "ASSET-READY-DATE",
+        "status": "PASS",
+        "expected_value": "2026-07-01",
+        "actual_value": "2026-07-01",
+        "difference": null,
+        "reason": "Availability acceptance agrees with register; invoice/payment dates are not the depreciation start.",
+        "source_locations": [
+          {
+            "document_id": "ASSET-MACHINE-READY",
+            "json_pointer": "/cases/0/documents/5/fields"
+          },
+          {
+            "document_id": "ASSET-MACHINE-01-REGISTER",
+            "json_pointer": "/cases/0/documents/0/fields"
+          }
+        ],
+        "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+      },
+      {
+        "check_id": "ASSET-DEPRECIATION",
+        "status": "PASS",
+        "expected_value": 120000,
+        "actual_value": 120000,
+        "difference": 0,
+        "reason": "(1320000-120000)/60*6=120000 under the explicit monthly convention.",
+        "source_locations": [
+          {
+            "document_id": "ASSET-MACHINE-READY",
+            "json_pointer": "/cases/0/documents/5/fields"
+          },
+          {
+            "document_id": "ASSET-MACHINE-01-REGISTER",
+            "json_pointer": "/cases/0/documents/0/fields"
+          }
+        ],
+        "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+      },
+      {
+        "check_id": "ASSET-AMORTIZATION",
+        "status": "PASS",
+        "expected_value": 60000,
+        "actual_value": 60000,
+        "difference": 0,
+        "reason": "240000/24*6=60000 for the assumed recognized finite-life software license.",
+        "source_locations": [
+          {
+            "document_id": "ASSET-SOFTWARE-READY",
+            "json_pointer": "/cases/0/documents/7/fields"
+          },
+          {
+            "document_id": "ASSET-SOFTWARE-01-REGISTER",
+            "json_pointer": "/cases/0/documents/1/fields"
+          }
+        ],
+        "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+      },
+      {
+        "check_id": "ASSET-LAND-DEPRECIATION",
+        "status": "PASS",
+        "expected_value": 0,
+        "actual_value": 0,
+        "difference": 0,
+        "reason": "Ordinary unlimited-life land in this isolated scenario has zero depreciation.",
+        "source_locations": [
+          {
+            "document_id": "ASSET-LAND-01-REGISTER",
+            "json_pointer": "/cases/0/documents/2/fields"
+          }
+        ],
+        "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+      },
+      {
+        "check_id": "ASSET-TITLE",
+        "status": "PASS",
+        "expected_value": "SYNTH01",
+        "actual_value": "SYNTH01",
+        "difference": null,
+        "reason": "Match declared owner, parcel and reporting date; PASS only means synthetic fields agree.",
+        "source_locations": [
+          {
+            "document_id": "ASSET-LAND-CADASTRAL",
+            "json_pointer": "/cases/0/documents/8/fields"
+          },
+          {
+            "document_id": "ASSET-LAND-TITLE",
+            "json_pointer": "/cases/0/documents/9/fields"
+          },
+          {
+            "document_id": "ASSET-LAND-01-REGISTER",
+            "json_pointer": "/cases/0/documents/2/fields"
+          }
+        ],
+        "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+      },
+      {
+        "check_id": "ASSET-REGISTER-GL",
+        "status": "PASS",
+        "expected_value": 3380000,
+        "actual_value": 3380000,
+        "difference": 0,
+        "reason": "Signed GL cost plus credit accumulated charge equals register net amount.",
+        "source_locations": [
+          {
+            "document_id": "ASSET-GL-SUMMARY",
+            "json_pointer": "/cases/0/documents/10/fields"
+          },
+          {
+            "document_id": "ASSET-MACHINE-01-REGISTER",
+            "json_pointer": "/cases/0/documents/0/fields"
+          },
+          {
+            "document_id": "ASSET-SOFTWARE-01-REGISTER",
+            "json_pointer": "/cases/0/documents/1/fields"
+          },
+          {
+            "document_id": "ASSET-LAND-01-REGISTER",
+            "json_pointer": "/cases/0/documents/2/fields"
+          }
+        ],
+        "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+      },
+      {
+        "check_id": "ASSET-LEAD-RECALC",
+        "status": "PASS",
+        "expected_value": 3380000,
+        "actual_value": 3380000,
+        "difference": 0,
+        "reason": "Independently recomputed net assets 1200000+180000+2000000=3380000; compare to isolated GL.",
+        "source_locations": [
+          {
+            "document_id": "ASSET-GL-SUMMARY",
+            "json_pointer": "/cases/0/documents/10/fields"
+          },
+          {
+            "document_id": "ASSET-MACHINE-READY",
+            "json_pointer": "/cases/0/documents/5/fields"
+          },
+          {
+            "document_id": "ASSET-SOFTWARE-READY",
+            "json_pointer": "/cases/0/documents/7/fields"
+          }
+        ],
+        "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+      }
+    ]
+  },
+  {
+    "worker": "fixed_assets",
+    "case_id": "ASSET-EARLY-DEPRECIATION",
+    "file": "samples/계정별증빙/fixed_assets_ASSET-EARLY-DEPRECIATION.json",
+    "expected": [
+      {
+        "check_id": "ASSET-ACQUISITION",
+        "status": "PASS",
+        "expected_value": 1320000,
+        "actual_value": 1320000,
+        "difference": 0,
+        "reason": "Invoice capitalizable cost equals register cost; capitalization itself remains a human assessment.",
+        "source_locations": [
+          {
+            "document_id": "ASSET-MACHINE-INVOICE",
+            "json_pointer": "/cases/1/documents/3/fields"
+          },
+          {
+            "document_id": "ASSET-MACHINE-01-REGISTER",
+            "json_pointer": "/cases/1/documents/0/fields"
+          }
+        ],
+        "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+      },
+      {
+        "check_id": "ASSET-PAYMENT",
+        "status": "PASS",
+        "expected_value": 1320000,
+        "actual_value": 1320000,
+        "difference": 0,
+        "reason": "Explicit negative bank outflow is inverted once for payable settlement comparison; no absolute value.",
+        "source_locations": [
+          {
+            "document_id": "ASSET-MACHINE-INVOICE",
+            "json_pointer": "/cases/1/documents/3/fields"
+          },
+          {
+            "document_id": "ASSET-MACHINE-PAYMENT",
+            "json_pointer": "/cases/1/documents/4/fields"
+          }
+        ],
+        "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+      },
+      {
+        "check_id": "ASSET-READY-DATE",
+        "status": "PASS",
+        "expected_value": "2026-07-01",
+        "actual_value": "2026-07-01",
+        "difference": null,
+        "reason": "Availability acceptance agrees with register; invoice/payment dates are not the depreciation start.",
+        "source_locations": [
+          {
+            "document_id": "ASSET-MACHINE-READY",
+            "json_pointer": "/cases/1/documents/5/fields"
+          },
+          {
+            "document_id": "ASSET-MACHINE-01-REGISTER",
+            "json_pointer": "/cases/1/documents/0/fields"
+          }
+        ],
+        "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+      },
+      {
+        "check_id": "ASSET-DEPRECIATION",
+        "status": "EXCEPTION",
+        "expected_value": 120000,
+        "actual_value": 140000,
+        "difference": 20000,
+        "reason": "Book charge wrongly includes June acquisition month; availability is July 1. Excess expense=20000.",
+        "source_locations": [
+          {
+            "document_id": "ASSET-MACHINE-READY",
+            "json_pointer": "/cases/1/documents/5/fields"
+          },
+          {
+            "document_id": "ASSET-MACHINE-01-REGISTER",
+            "json_pointer": "/cases/1/documents/0/fields"
+          }
+        ],
+        "follow_up": "Auditor reviews original evidence, method/materiality and proposed treatment; draft only, no posting."
+      },
+      {
+        "check_id": "ASSET-AMORTIZATION",
+        "status": "PASS",
+        "expected_value": 60000,
+        "actual_value": 60000,
+        "difference": 0,
+        "reason": "240000/24*6=60000 for the assumed recognized finite-life software license.",
+        "source_locations": [
+          {
+            "document_id": "ASSET-SOFTWARE-READY",
+            "json_pointer": "/cases/1/documents/7/fields"
+          },
+          {
+            "document_id": "ASSET-SOFTWARE-01-REGISTER",
+            "json_pointer": "/cases/1/documents/1/fields"
+          }
+        ],
+        "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+      },
+      {
+        "check_id": "ASSET-LAND-DEPRECIATION",
+        "status": "PASS",
+        "expected_value": 0,
+        "actual_value": 0,
+        "difference": 0,
+        "reason": "Ordinary unlimited-life land in this isolated scenario has zero depreciation.",
+        "source_locations": [
+          {
+            "document_id": "ASSET-LAND-01-REGISTER",
+            "json_pointer": "/cases/1/documents/2/fields"
+          }
+        ],
+        "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+      },
+      {
+        "check_id": "ASSET-TITLE",
+        "status": "PASS",
+        "expected_value": "SYNTH01",
+        "actual_value": "SYNTH01",
+        "difference": null,
+        "reason": "Match declared owner, parcel and reporting date; PASS only means synthetic fields agree.",
+        "source_locations": [
+          {
+            "document_id": "ASSET-LAND-CADASTRAL",
+            "json_pointer": "/cases/1/documents/8/fields"
+          },
+          {
+            "document_id": "ASSET-LAND-TITLE",
+            "json_pointer": "/cases/1/documents/9/fields"
+          },
+          {
+            "document_id": "ASSET-LAND-01-REGISTER",
+            "json_pointer": "/cases/1/documents/2/fields"
+          }
+        ],
+        "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+      },
+      {
+        "check_id": "ASSET-REGISTER-GL",
+        "status": "PASS",
+        "expected_value": 3360000,
+        "actual_value": 3360000,
+        "difference": 0,
+        "reason": "Signed GL cost plus credit accumulated charge equals register net amount.",
+        "source_locations": [
+          {
+            "document_id": "ASSET-GL-SUMMARY",
+            "json_pointer": "/cases/1/documents/10/fields"
+          },
+          {
+            "document_id": "ASSET-MACHINE-01-REGISTER",
+            "json_pointer": "/cases/1/documents/0/fields"
+          },
+          {
+            "document_id": "ASSET-SOFTWARE-01-REGISTER",
+            "json_pointer": "/cases/1/documents/1/fields"
+          },
+          {
+            "document_id": "ASSET-LAND-01-REGISTER",
+            "json_pointer": "/cases/1/documents/2/fields"
+          }
+        ],
+        "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+      },
+      {
+        "check_id": "ASSET-LEAD-RECALC",
+        "status": "EXCEPTION",
+        "expected_value": 3380000,
+        "actual_value": 3360000,
+        "difference": -20000,
+        "reason": "Register and GL agree but both include excessive depreciation; recalculated net asset difference=-20000. Same error, not another misstatement to add.",
+        "source_locations": [
+          {
+            "document_id": "ASSET-GL-SUMMARY",
+            "json_pointer": "/cases/1/documents/10/fields"
+          },
+          {
+            "document_id": "ASSET-MACHINE-READY",
+            "json_pointer": "/cases/1/documents/5/fields"
+          },
+          {
+            "document_id": "ASSET-SOFTWARE-READY",
+            "json_pointer": "/cases/1/documents/7/fields"
+          }
+        ],
+        "follow_up": "Auditor reviews original evidence, method/materiality and proposed treatment; draft only, no posting."
+      }
+    ]
+  },
+  {
+    "worker": "fixed_assets",
+    "case_id": "ASSET-MISSING-TITLE",
+    "file": "samples/계정별증빙/fixed_assets_ASSET-MISSING-TITLE.json",
+    "expected": [
+      {
+        "check_id": "ASSET-ACQUISITION",
+        "status": "PASS",
+        "expected_value": 1320000,
+        "actual_value": 1320000,
+        "difference": 0,
+        "reason": "Invoice capitalizable cost equals register cost; capitalization itself remains a human assessment.",
+        "source_locations": [
+          {
+            "document_id": "ASSET-MACHINE-INVOICE",
+            "json_pointer": "/cases/2/documents/3/fields"
+          },
+          {
+            "document_id": "ASSET-MACHINE-01-REGISTER",
+            "json_pointer": "/cases/2/documents/0/fields"
+          }
+        ],
+        "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+      },
+      {
+        "check_id": "ASSET-PAYMENT",
+        "status": "PASS",
+        "expected_value": 1320000,
+        "actual_value": 1320000,
+        "difference": 0,
+        "reason": "Explicit negative bank outflow is inverted once for payable settlement comparison; no absolute value.",
+        "source_locations": [
+          {
+            "document_id": "ASSET-MACHINE-INVOICE",
+            "json_pointer": "/cases/2/documents/3/fields"
+          },
+          {
+            "document_id": "ASSET-MACHINE-PAYMENT",
+            "json_pointer": "/cases/2/documents/4/fields"
+          }
+        ],
+        "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+      },
+      {
+        "check_id": "ASSET-READY-DATE",
+        "status": "PASS",
+        "expected_value": "2026-07-01",
+        "actual_value": "2026-07-01",
+        "difference": null,
+        "reason": "Availability acceptance agrees with register; invoice/payment dates are not the depreciation start.",
+        "source_locations": [
+          {
+            "document_id": "ASSET-MACHINE-READY",
+            "json_pointer": "/cases/2/documents/5/fields"
+          },
+          {
+            "document_id": "ASSET-MACHINE-01-REGISTER",
+            "json_pointer": "/cases/2/documents/0/fields"
+          }
+        ],
+        "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+      },
+      {
+        "check_id": "ASSET-DEPRECIATION",
+        "status": "PASS",
+        "expected_value": 120000,
+        "actual_value": 120000,
+        "difference": 0,
+        "reason": "(1320000-120000)/60*6=120000 under the explicit monthly convention.",
+        "source_locations": [
+          {
+            "document_id": "ASSET-MACHINE-READY",
+            "json_pointer": "/cases/2/documents/5/fields"
+          },
+          {
+            "document_id": "ASSET-MACHINE-01-REGISTER",
+            "json_pointer": "/cases/2/documents/0/fields"
+          }
+        ],
+        "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+      },
+      {
+        "check_id": "ASSET-AMORTIZATION",
+        "status": "PASS",
+        "expected_value": 60000,
+        "actual_value": 60000,
+        "difference": 0,
+        "reason": "240000/24*6=60000 for the assumed recognized finite-life software license.",
+        "source_locations": [
+          {
+            "document_id": "ASSET-SOFTWARE-READY",
+            "json_pointer": "/cases/2/documents/7/fields"
+          },
+          {
+            "document_id": "ASSET-SOFTWARE-01-REGISTER",
+            "json_pointer": "/cases/2/documents/1/fields"
+          }
+        ],
+        "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+      },
+      {
+        "check_id": "ASSET-LAND-DEPRECIATION",
+        "status": "PASS",
+        "expected_value": 0,
+        "actual_value": 0,
+        "difference": 0,
+        "reason": "Ordinary unlimited-life land in this isolated scenario has zero depreciation.",
+        "source_locations": [
+          {
+            "document_id": "ASSET-LAND-01-REGISTER",
+            "json_pointer": "/cases/2/documents/2/fields"
+          }
+        ],
+        "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+      },
+      {
+        "check_id": "ASSET-TITLE",
+        "status": "INPUT_BLOCKED",
+        "expected_value": "SYNTH01",
+        "actual_value": null,
+        "difference": null,
+        "reason": "Title evidence is missing. A cadastral abstract is not substituted, ownership is not treated as false or a zero amount.",
+        "source_locations": [
+          {
+            "document_id": "ASSET-LAND-CADASTRAL",
+            "json_pointer": "/cases/2/documents/8/fields"
+          },
+          {
+            "document_id": "ASSET-LAND-01-REGISTER",
+            "json_pointer": "/cases/2/documents/2/fields"
+          }
+        ],
+        "follow_up": "Auditor reviews original evidence, method/materiality and proposed treatment; draft only, no posting."
+      },
+      {
+        "check_id": "ASSET-REGISTER-GL",
+        "status": "PASS",
+        "expected_value": 3380000,
+        "actual_value": 3380000,
+        "difference": 0,
+        "reason": "Signed GL cost plus credit accumulated charge equals register net amount.",
+        "source_locations": [
+          {
+            "document_id": "ASSET-GL-SUMMARY",
+            "json_pointer": "/cases/2/documents/9/fields"
+          },
+          {
+            "document_id": "ASSET-MACHINE-01-REGISTER",
+            "json_pointer": "/cases/2/documents/0/fields"
+          },
+          {
+            "document_id": "ASSET-SOFTWARE-01-REGISTER",
+            "json_pointer": "/cases/2/documents/1/fields"
+          },
+          {
+            "document_id": "ASSET-LAND-01-REGISTER",
+            "json_pointer": "/cases/2/documents/2/fields"
+          }
+        ],
+        "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+      },
+      {
+        "check_id": "ASSET-LEAD-RECALC",
+        "status": "PASS",
+        "expected_value": 3380000,
+        "actual_value": 3380000,
+        "difference": 0,
+        "reason": "Independently recomputed net assets 1200000+180000+2000000=3380000; compare to isolated GL.",
+        "source_locations": [
+          {
+            "document_id": "ASSET-GL-SUMMARY",
+            "json_pointer": "/cases/2/documents/9/fields"
+          },
+          {
+            "document_id": "ASSET-MACHINE-READY",
+            "json_pointer": "/cases/2/documents/5/fields"
+          },
+          {
+            "document_id": "ASSET-SOFTWARE-READY",
+            "json_pointer": "/cases/2/documents/7/fields"
+          }
+        ],
+        "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+      }
+    ]
+  },
+  {
+    "worker": "leases",
+    "case_id": "LEASE-01-NORMAL",
+    "file": "samples/계정별증빙/leases_LEASE-01-NORMAL.json",
+    "expected": [
+      {
+        "check_id": "LEASE-PV",
+        "status": "PASS",
+        "expected_value": 210000,
+        "actual_value": 210000,
+        "difference": 0,
+        "reason": "개시 부채 현재가치"
+      },
+      {
+        "check_id": "LEASE-LL-CLOSE",
+        "status": "PASS",
+        "expected_value": 110000,
+        "actual_value": 110000,
+        "difference": 0,
+        "reason": "기말 부채 재계산"
+      },
+      {
+        "check_id": "LEASE-LL-ROLL",
+        "status": "PASS",
+        "expected_value": 110000,
+        "actual_value": 110000,
+        "difference": 0,
+        "reason": "부채 롤포워드"
+      },
+      {
+        "check_id": "LEASE-INTEREST",
+        "status": "PASS",
+        "expected_value": 21000,
+        "actual_value": 21000,
+        "difference": 0,
+        "reason": "연 유효이자"
+      },
+      {
+        "check_id": "LEASE-ROU-ADDITION",
+        "status": "PASS",
+        "expected_value": 210000,
+        "actual_value": 210000,
+        "difference": 0,
+        "reason": "사용권자산 최초 인식"
+      },
+      {
+        "check_id": "LEASE-DEPRECIATION",
+        "status": "PASS",
+        "expected_value": 105000,
+        "actual_value": 105000,
+        "difference": 0,
+        "reason": "리스기간 정액 상각"
+      },
+      {
+        "check_id": "LEASE-ROU-CLOSE",
+        "status": "PASS",
+        "expected_value": 105000,
+        "actual_value": 105000,
+        "difference": 0,
+        "reason": "사용권자산 기말 순액"
+      },
+      {
+        "check_id": "LEASE-PAYMENT",
+        "status": "PASS",
+        "expected_value": -121000,
+        "actual_value": -121000,
+        "difference": 0,
+        "reason": "은행 지급 부호 보존"
+      },
+      {
+        "check_id": "LEASE-GL-LL",
+        "status": "PASS",
+        "expected_value": -110000,
+        "actual_value": -110000,
+        "difference": 0,
+        "reason": "부채 원장 대변잔액"
+      },
+      {
+        "check_id": "LEASE-GL-ROU",
+        "status": "PASS",
+        "expected_value": 105000,
+        "actual_value": 105000,
+        "difference": 0,
+        "reason": "사용권자산 원가와 누계"
+      },
+      {
+        "check_id": "LEASE-GL-INTEREST",
+        "status": "PASS",
+        "expected_value": 21000,
+        "actual_value": 21000,
+        "difference": 0,
+        "reason": "이자비용 원장 대사"
+      },
+      {
+        "check_id": "LEASE-GL-CASH",
+        "status": "PASS",
+        "expected_value": -121000,
+        "actual_value": -121000,
+        "difference": 0,
+        "reason": "은행과 원장 현금 변동"
+      },
+      {
+        "check_id": "LEASE-GL-DEPRECIATION",
+        "status": "PASS",
+        "expected_value": 105000,
+        "actual_value": 105000,
+        "difference": 0,
+        "reason": "상각비 원장 대사"
+      },
+      {
+        "check_id": "LEASE-PAYMENT-SUBLEDGER",
+        "status": "PASS",
+        "expected_value": 121000,
+        "actual_value": 121000,
+        "difference": 0,
+        "reason": "보조원장 지급 대사"
+      }
+    ]
+  },
+  {
+    "worker": "leases",
+    "case_id": "LEASE-02-LIABILITY-ERROR",
+    "file": "samples/계정별증빙/leases_LEASE-02-LIABILITY-ERROR.json",
+    "expected": [
+      {
+        "check_id": "LEASE-PV",
+        "status": "PASS",
+        "expected_value": 210000,
+        "actual_value": 210000,
+        "difference": 0,
+        "reason": "개시 부채 현재가치"
+      },
+      {
+        "check_id": "LEASE-LL-CLOSE",
+        "status": "EXCEPTION",
+        "expected_value": 110000,
+        "actual_value": 111000,
+        "difference": 1000,
+        "reason": "기말 부채 재계산"
+      },
+      {
+        "check_id": "LEASE-LL-ROLL",
+        "status": "EXCEPTION",
+        "expected_value": 110000,
+        "actual_value": 111000,
+        "difference": 1000,
+        "reason": "부채 롤포워드"
+      },
+      {
+        "check_id": "LEASE-INTEREST",
+        "status": "PASS",
+        "expected_value": 21000,
+        "actual_value": 21000,
+        "difference": 0,
+        "reason": "연 유효이자"
+      },
+      {
+        "check_id": "LEASE-ROU-ADDITION",
+        "status": "PASS",
+        "expected_value": 210000,
+        "actual_value": 210000,
+        "difference": 0,
+        "reason": "사용권자산 최초 인식"
+      },
+      {
+        "check_id": "LEASE-DEPRECIATION",
+        "status": "PASS",
+        "expected_value": 105000,
+        "actual_value": 105000,
+        "difference": 0,
+        "reason": "리스기간 정액 상각"
+      },
+      {
+        "check_id": "LEASE-ROU-CLOSE",
+        "status": "PASS",
+        "expected_value": 105000,
+        "actual_value": 105000,
+        "difference": 0,
+        "reason": "사용권자산 기말 순액"
+      },
+      {
+        "check_id": "LEASE-PAYMENT",
+        "status": "PASS",
+        "expected_value": -121000,
+        "actual_value": -121000,
+        "difference": 0,
+        "reason": "은행 지급 부호 보존"
+      },
+      {
+        "check_id": "LEASE-GL-LL",
+        "status": "EXCEPTION",
+        "expected_value": -110000,
+        "actual_value": -111000,
+        "difference": -1000,
+        "reason": "부채 원장 대변잔액"
+      },
+      {
+        "check_id": "LEASE-GL-ROU",
+        "status": "PASS",
+        "expected_value": 105000,
+        "actual_value": 105000,
+        "difference": 0,
+        "reason": "사용권자산 원가와 누계"
+      },
+      {
+        "check_id": "LEASE-GL-INTEREST",
+        "status": "PASS",
+        "expected_value": 21000,
+        "actual_value": 21000,
+        "difference": 0,
+        "reason": "이자비용 원장 대사"
+      },
+      {
+        "check_id": "LEASE-GL-CASH",
+        "status": "PASS",
+        "expected_value": -121000,
+        "actual_value": -121000,
+        "difference": 0,
+        "reason": "은행과 원장 현금 변동"
+      },
+      {
+        "check_id": "LEASE-GL-DEPRECIATION",
+        "status": "PASS",
+        "expected_value": 105000,
+        "actual_value": 105000,
+        "difference": 0,
+        "reason": "상각비 원장 대사"
+      },
+      {
+        "check_id": "LEASE-PAYMENT-SUBLEDGER",
+        "status": "PASS",
+        "expected_value": 121000,
+        "actual_value": 121000,
+        "difference": 0,
+        "reason": "보조원장 지급 대사"
+      }
+    ]
+  },
+  {
+    "worker": "leases",
+    "case_id": "LEASE-03-MISSING-RATE",
+    "file": "samples/계정별증빙/leases_LEASE-03-MISSING-RATE.json",
+    "expected": [
+      {
+        "check_id": "LEASE-INPUT",
+        "status": "INPUT_BLOCKED",
+        "expected_value": "SUPPORTED_COMPLETE_INPUT",
+        "actual_value": null,
+        "difference": null,
+        "reason": "할인율 누락: 현재가치·이자·사용권자산 계산 보류. 0%로 대체하지 않음."
+      }
+    ]
+  },
+  {
+    "worker": "payroll",
+    "case_id": "PAY-001",
+    "file": "samples/계정별증빙/payroll_PAY-001.json",
+    "expected": [
+      {
+        "check_id": "PAY-REQUIRED",
+        "status": "PASS",
+        "expected_value": "complete valid required fields",
+        "actual_value": "complete valid required fields",
+        "difference": null,
+        "reason": "필수 자료·필드가 존재한다."
+      },
+      {
+        "check_id": "PAY-UNIQUE",
+        "status": "PASS",
+        "expected_value": 1,
+        "actual_value": 1,
+        "difference": 0,
+        "reason": "동일 사번·기간 명세가 1개다."
+      },
+      {
+        "check_id": "PAY-EMPLOYMENT",
+        "status": "PASS",
+        "expected_value": 1,
+        "actual_value": 1,
+        "difference": 0,
+        "reason": "전월 재직하며 계약과 명세 귀속기간이 같다."
+      },
+      {
+        "check_id": "PAY-GROSS",
+        "status": "PASS",
+        "expected_value": 3500000,
+        "actual_value": 3500000,
+        "difference": 0,
+        "reason": "3,000,000 + 10×15,000 + 300,000 + 50,000 = 3,500,000원"
+      },
+      {
+        "check_id": "PAY-DEDUCTION",
+        "status": "PASS",
+        "expected_value": 350000,
+        "actual_value": 350000,
+        "difference": 0,
+        "reason": "승인 원천세 200,000 + 승인 사회보험 150,000 = 350,000원"
+      },
+      {
+        "check_id": "PAY-NET",
+        "status": "PASS",
+        "expected_value": 3150000,
+        "actual_value": 3150000,
+        "difference": 0,
+        "reason": "3,500,000 - 350,000 = 3,150,000원"
+      },
+      {
+        "check_id": "PAY-PAYMENT",
+        "status": "PASS",
+        "expected_value": 3150000,
+        "actual_value": 3150000,
+        "difference": 0,
+        "reason": "미지급 원장 0원, 지급액은 순급여와 같다."
+      }
+    ]
+  },
+  {
+    "worker": "payroll",
+    "case_id": "PAY-002",
+    "file": "samples/계정별증빙/payroll_PAY-002.json",
+    "expected": [
+      {
+        "check_id": "PAY-REQUIRED",
+        "status": "PASS",
+        "expected_value": "complete valid required fields",
+        "actual_value": "complete valid required fields",
+        "difference": null,
+        "reason": "필수 자료·필드가 존재한다."
+      },
+      {
+        "check_id": "PAY-UNIQUE",
+        "status": "PASS",
+        "expected_value": 1,
+        "actual_value": 1,
+        "difference": 0,
+        "reason": "동일 사번·기간 명세가 1개다."
+      },
+      {
+        "check_id": "PAY-EMPLOYMENT",
+        "status": "PASS",
+        "expected_value": 1,
+        "actual_value": 1,
+        "difference": 0,
+        "reason": "전월 재직하며 계약과 명세 귀속기간이 같다."
+      },
+      {
+        "check_id": "PAY-GROSS",
+        "status": "PASS",
+        "expected_value": 3500000,
+        "actual_value": 3500000,
+        "difference": 0,
+        "reason": "3,000,000 + 10×15,000 + 300,000 + 50,000 = 3,500,000원"
+      },
+      {
+        "check_id": "PAY-DEDUCTION",
+        "status": "PASS",
+        "expected_value": 350000,
+        "actual_value": 350000,
+        "difference": 0,
+        "reason": "승인 원천세 200,000 + 승인 사회보험 150,000 = 350,000원"
+      },
+      {
+        "check_id": "PAY-NET",
+        "status": "PASS",
+        "expected_value": 3150000,
+        "actual_value": 3150000,
+        "difference": 0,
+        "reason": "3,500,000 - 350,000 = 3,150,000원"
+      },
+      {
+        "check_id": "PAY-PAYMENT",
+        "status": "EXCEPTION",
+        "expected_value": 3150000,
+        "actual_value": 3100000,
+        "difference": -50000,
+        "reason": "원장 잔액을 포함한 지급대사에서 50,000원 부족. 원장 또는 지급자료의 후속 확인 필요; 자동 분개 없음."
+      }
+    ]
+  },
+  {
+    "worker": "payroll",
+    "case_id": "PAY-003",
+    "file": "samples/계정별증빙/payroll_PAY-003.json",
+    "expected": [
+      {
+        "check_id": "PAY-REQUIRED",
+        "status": "INPUT_BLOCKED",
+        "expected_value": "complete valid required fields",
+        "actual_value": [
+          "/documents/0/fields/base_monthly_amount"
+        ],
+        "difference": null,
+        "reason": "기본월급 필수 원천값 누락. 파생 금액 산출 중지."
+      }
+    ]
+  },
+  {
+    "worker": "debt_tax",
+    "case_id": "DEBT-01",
+    "file": "samples/계정별증빙/debt_tax_DEBT-01.json",
+    "expected": [
+      {
+        "check_id": "DEBT-INPUT",
+        "status": "PASS",
+        "expected_value": 5,
+        "actual_value": 5,
+        "difference": 0,
+        "reason": "계산에 필요한 5종 문서와 명시 조건이 있음. 증빙의 진위·충분성 판단을 뜻하지 않음."
+      },
+      {
+        "check_id": "DEBT-PRINCIPAL",
+        "status": "PASS",
+        "expected_value": 2000000,
+        "actual_value": 2000000,
+        "difference": 0,
+        "reason": "기초+실행-상환+비현금변동과 부호를 보존한 원장 기말원금의 비교."
+      },
+      {
+        "check_id": "DEBT-INTEREST",
+        "status": "PASS",
+        "expected_value": 50000,
+        "actual_value": 50000,
+        "difference": 0,
+        "reason": "2000000×250/10000×365/365=50000."
+      },
+      {
+        "check_id": "DEBT-ACCRUAL",
+        "status": "PASS",
+        "expected_value": 20000,
+        "actual_value": 20000,
+        "difference": 0,
+        "reason": "기초미지급0+단리이자50000-지급30000=기말미지급20000."
+      }
+    ]
+  },
+  {
+    "worker": "debt_tax",
+    "case_id": "DEBT-02",
+    "file": "samples/계정별증빙/debt_tax_DEBT-02.json",
+    "expected": [
+      {
+        "check_id": "DEBT-INPUT",
+        "status": "PASS",
+        "expected_value": 5,
+        "actual_value": 5,
+        "difference": 0,
+        "reason": "계산 자료 존재. 독립 조회나 약정 검토 완료를 뜻하지 않음."
+      },
+      {
+        "check_id": "DEBT-PRINCIPAL",
+        "status": "PASS",
+        "expected_value": 2000000,
+        "actual_value": 2000000,
+        "difference": 0,
+        "reason": "원금은 변동 없이 일치."
+      },
+      {
+        "check_id": "DEBT-INTEREST",
+        "status": "EXCEPTION",
+        "expected_value": 50000,
+        "actual_value": 30000,
+        "difference": -20000,
+        "reason": "원장 이자비용 20000 과소. 계약과 후속 지급을 추가 검토."
+      },
+      {
+        "check_id": "DEBT-ACCRUAL",
+        "status": "EXCEPTION",
+        "expected_value": 20000,
+        "actual_value": 0,
+        "difference": -20000,
+        "reason": "원장 미지급이자 20000 과소. 이자비용 차이와 같은 원인의 양면이므로 합산 금지."
+      }
+    ]
+  },
+  {
+    "worker": "debt_tax",
+    "case_id": "DEBT-03",
+    "file": "samples/계정별증빙/debt_tax_DEBT-03.json",
+    "expected": [
+      {
+        "check_id": "DEBT-INPUT",
+        "status": "INPUT_BLOCKED",
+        "expected_value": 5,
+        "actual_value": 4,
+        "difference": -1,
+        "reason": "loan_contract 누락. 원금·이자·미지급 계산 미수행, 결측을 0으로 대체하지 않음."
+      }
+    ]
+  },
+  {
+    "worker": "equity_disclosure",
+    "case_id": "EQUITY-CASE01",
+    "file": "samples/계정별증빙/equity_disclosure_EQUITY-CASE01.json",
+    "expected": [
+      {
+        "check_id": "EQUITY-MINUTES_PRESENT",
+        "status": "PASS",
+        "expected_value": 1,
+        "actual_value": 1,
+        "difference": 0,
+        "reason": "합성 승인 의사록 요약이 존재한다. 법적 효력은 미판단."
+      },
+      {
+        "check_id": "EQUITY-RELATED_LIST_PRESENT",
+        "status": "PASS",
+        "expected_value": 1,
+        "actual_value": 1,
+        "difference": 0,
+        "reason": "합성 관계자 목록이 존재한다. 목록 전체성은 미판단."
+      },
+      {
+        "check_id": "EQUITY-SHARE_COUNT",
+        "status": "PASS",
+        "expected_value": 7000,
+        "actual_value": 7000,
+        "difference": 0,
+        "reason": "6000+1000=7000주"
+      },
+      {
+        "check_id": "EQUITY-CAPITAL",
+        "status": "PASS",
+        "expected_value": 7000000,
+        "actual_value": 7000000,
+        "difference": 0,
+        "reason": "6000000+1000*1000=7000000원"
+      },
+      {
+        "check_id": "EQUITY-PREMIUM",
+        "status": "PASS",
+        "expected_value": 400000,
+        "actual_value": 400000,
+        "difference": 0,
+        "reason": "0+1000*(1400-1000)=400000원"
+      },
+      {
+        "check_id": "EQUITY-ISSUE_TERMS",
+        "status": "PASS",
+        "expected_value": [
+          1000,
+          1400
+        ],
+        "actual_value": [
+          1000,
+          1400
+        ],
+        "difference": null,
+        "reason": "합성 승인 신주수·발행가가 명세와 일치"
+      },
+      {
+        "check_id": "EQUITY-ISSUE_CASH",
+        "status": "PASS",
+        "expected_value": 1400000,
+        "actual_value": 1400000,
+        "difference": 0,
+        "reason": "1000*1400=입금1400000원"
+      },
+      {
+        "check_id": "EQUITY-REGISTRATION",
+        "status": "PASS",
+        "expected_value": [
+          1000,
+          7000000
+        ],
+        "actual_value": [
+          1000,
+          7000000
+        ],
+        "difference": null,
+        "reason": "합성 등기 요약의 신주수·자본금이 명세와 일치"
+      },
+      {
+        "check_id": "EQUITY-RELATED_PARTY",
+        "status": "PASS",
+        "expected_value": true,
+        "actual_value": true,
+        "difference": null,
+        "reason": "제공 목록 내 거래 상대방 식별. 미공개 관계자는 별도 검색."
+      },
+      {
+        "check_id": "EQUITY-RELATED_BALANCE",
+        "status": "PASS",
+        "expected_value": 100000,
+        "actual_value": 100000,
+        "difference": 0,
+        "reason": "0+100000-0=100000원"
+      },
+      {
+        "check_id": "EQUITY-RELATED_NOTE",
+        "status": "PASS",
+        "expected_value": 100000,
+        "actual_value": 100000,
+        "difference": 0,
+        "reason": "합성 거래잔액과 주석 발췌 금액 일치"
+      }
+    ]
+  },
+  {
+    "worker": "equity_disclosure",
+    "case_id": "EQUITY-CASE02",
+    "file": "samples/계정별증빙/equity_disclosure_EQUITY-CASE02.json",
+    "expected": [
+      {
+        "check_id": "EQUITY-MINUTES_PRESENT",
+        "status": "PASS",
+        "expected_value": 1,
+        "actual_value": 1,
+        "difference": 0,
+        "reason": "합성 승인 의사록 요약이 존재한다. 법적 효력은 미판단."
+      },
+      {
+        "check_id": "EQUITY-RELATED_LIST_PRESENT",
+        "status": "PASS",
+        "expected_value": 1,
+        "actual_value": 1,
+        "difference": 0,
+        "reason": "합성 관계자 목록이 존재한다. 목록 전체성은 미판단."
+      },
+      {
+        "check_id": "EQUITY-SHARE_COUNT",
+        "status": "PASS",
+        "expected_value": 7000,
+        "actual_value": 7000,
+        "difference": 0,
+        "reason": "6000+1000=7000주"
+      },
+      {
+        "check_id": "EQUITY-CAPITAL",
+        "status": "PASS",
+        "expected_value": 7000000,
+        "actual_value": 7000000,
+        "difference": 0,
+        "reason": "6000000+1000*1000=7000000원"
+      },
+      {
+        "check_id": "EQUITY-PREMIUM",
+        "status": "PASS",
+        "expected_value": 400000,
+        "actual_value": 400000,
+        "difference": 0,
+        "reason": "0+1000*(1400-1000)=400000원"
+      },
+      {
+        "check_id": "EQUITY-ISSUE_TERMS",
+        "status": "PASS",
+        "expected_value": [
+          1000,
+          1400
+        ],
+        "actual_value": [
+          1000,
+          1400
+        ],
+        "difference": null,
+        "reason": "합성 승인 신주수·발행가가 명세와 일치"
+      },
+      {
+        "check_id": "EQUITY-ISSUE_CASH",
+        "status": "EXCEPTION",
+        "expected_value": 1400000,
+        "actual_value": 1300000,
+        "difference": -100000,
+        "reason": "승인액1400000 대비 합성 입금1300000: -100000원, 자동 수정분개 없음"
+      },
+      {
+        "check_id": "EQUITY-REGISTRATION",
+        "status": "PASS",
+        "expected_value": [
+          1000,
+          7000000
+        ],
+        "actual_value": [
+          1000,
+          7000000
+        ],
+        "difference": null,
+        "reason": "합성 등기 요약의 신주수·자본금이 명세와 일치"
+      },
+      {
+        "check_id": "EQUITY-RELATED_PARTY",
+        "status": "PASS",
+        "expected_value": true,
+        "actual_value": true,
+        "difference": null,
+        "reason": "제공 목록 내 거래 상대방 식별. 미공개 관계자는 별도 검색."
+      },
+      {
+        "check_id": "EQUITY-RELATED_BALANCE",
+        "status": "PASS",
+        "expected_value": 100000,
+        "actual_value": 100000,
+        "difference": 0,
+        "reason": "0+100000-0=100000원"
+      },
+      {
+        "check_id": "EQUITY-RELATED_NOTE",
+        "status": "EXCEPTION",
+        "expected_value": 100000,
+        "actual_value": 95000,
+        "difference": -5000,
+        "reason": "합성 원장100000 대비 주석95000: -5000원, 관계자 공시 검토 필요"
+      }
+    ]
+  },
+  {
+    "worker": "equity_disclosure",
+    "case_id": "EQUITY-CASE03",
+    "file": "samples/계정별증빙/equity_disclosure_EQUITY-CASE03.json",
+    "expected": [
+      {
+        "check_id": "EQUITY-MINUTES_PRESENT",
+        "status": "INPUT_BLOCKED",
+        "expected_value": 1,
+        "actual_value": null,
+        "difference": null,
+        "reason": "필수 자료 누락, 실제 값과 차이는 null. 존재 수0으로 금액을 대체하지 않음"
+      },
+      {
+        "check_id": "EQUITY-RELATED_LIST_PRESENT",
+        "status": "INPUT_BLOCKED",
+        "expected_value": 1,
+        "actual_value": null,
+        "difference": null,
+        "reason": "필수 자료 누락, 실제 값과 차이는 null. 존재 수0으로 금액을 대체하지 않음"
+      },
+      {
+        "check_id": "EQUITY-SHARE_COUNT",
+        "status": "PASS",
+        "expected_value": 7000,
+        "actual_value": 7000,
+        "difference": 0,
+        "reason": "6000+1000=7000주"
+      },
+      {
+        "check_id": "EQUITY-CAPITAL",
+        "status": "PASS",
+        "expected_value": 7000000,
+        "actual_value": 7000000,
+        "difference": 0,
+        "reason": "6000000+1000*1000=7000000원"
+      },
+      {
+        "check_id": "EQUITY-PREMIUM",
+        "status": "PASS",
+        "expected_value": 400000,
+        "actual_value": 400000,
+        "difference": 0,
+        "reason": "0+1000*(1400-1000)=400000원"
+      },
+      {
+        "check_id": "EQUITY-ISSUE_TERMS",
+        "status": "INPUT_BLOCKED",
+        "expected_value": null,
+        "actual_value": null,
+        "difference": null,
+        "reason": "필수 합성 원천 누락으로 의존 검사를 차단. 나머지 산식 일치가 이를 해소하지 않음"
+      },
+      {
+        "check_id": "EQUITY-ISSUE_CASH",
+        "status": "INPUT_BLOCKED",
+        "expected_value": null,
+        "actual_value": null,
+        "difference": null,
+        "reason": "필수 합성 원천 누락으로 의존 검사를 차단. 나머지 산식 일치가 이를 해소하지 않음"
+      },
+      {
+        "check_id": "EQUITY-REGISTRATION",
+        "status": "PASS",
+        "expected_value": [
+          1000,
+          7000000
+        ],
+        "actual_value": [
+          1000,
+          7000000
+        ],
+        "difference": null,
+        "reason": "합성 등기 요약의 신주수·자본금이 명세와 일치"
+      },
+      {
+        "check_id": "EQUITY-RELATED_PARTY",
+        "status": "INPUT_BLOCKED",
+        "expected_value": null,
+        "actual_value": null,
+        "difference": null,
+        "reason": "필수 합성 원천 누락으로 의존 검사를 차단. 나머지 산식 일치가 이를 해소하지 않음"
+      },
+      {
+        "check_id": "EQUITY-RELATED_BALANCE",
+        "status": "PASS",
+        "expected_value": 100000,
+        "actual_value": 100000,
+        "difference": 0,
+        "reason": "0+100000-0=100000원"
+      },
+      {
+        "check_id": "EQUITY-RELATED_NOTE",
+        "status": "PASS",
+        "expected_value": 100000,
+        "actual_value": 100000,
+        "difference": 0,
+        "reason": "합성 거래잔액과 주석 발췌 금액 일치"
+      }
+    ]
+  },
+  {
+    "worker": "financial_reporting",
+    "case_id": "FS-01",
+    "file": "samples/계정별증빙/financial_reporting_FS-01.json",
+    "expected": [
+      {
+        "check_id": "FS_REQUIRED_EVIDENCE",
+        "status": "PASS",
+        "expected_value": 12,
+        "actual_value": 12,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_EXTRACTION_CONTROL",
+        "status": "PASS",
+        "expected_value": 0,
+        "actual_value": 0,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_GL_JOURNAL_BALANCE",
+        "status": "PASS",
+        "expected_value": 0,
+        "actual_value": 0,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_TB_BALANCE",
+        "status": "PASS",
+        "expected_value": 0,
+        "actual_value": 0,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_TB_GL",
+        "status": "PASS",
+        "expected_value": 0,
+        "actual_value": 0,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_BODY_TB_MAPPING",
+        "status": "PASS",
+        "expected_value": 0,
+        "actual_value": 0,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_BODY_SUM",
+        "status": "PASS",
+        "expected_value": 0,
+        "actual_value": 0,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_BS_EQUATION",
+        "status": "PASS",
+        "expected_value": 60000,
+        "actual_value": 60000,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_PL_PROFIT",
+        "status": "PASS",
+        "expected_value": 12000,
+        "actual_value": 12000,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_NOTE_CASH",
+        "status": "PASS",
+        "expected_value": 17000,
+        "actual_value": 17000,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_NOTE_PPE",
+        "status": "PASS",
+        "expected_value": 33000,
+        "actual_value": 33000,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_CF_MAPPING",
+        "status": "PASS",
+        "expected_value": 0,
+        "actual_value": 0,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_CF_OPERATING",
+        "status": "PASS",
+        "expected_value": 8000,
+        "actual_value": 8000,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_CF_INVESTING",
+        "status": "PASS",
+        "expected_value": -5000,
+        "actual_value": -5000,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_CF_FINANCING",
+        "status": "PASS",
+        "expected_value": 4000,
+        "actual_value": 4000,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_CF_ROLL",
+        "status": "PASS",
+        "expected_value": 17000,
+        "actual_value": 17000,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_CF_BS_CASH",
+        "status": "PASS",
+        "expected_value": 17000,
+        "actual_value": 17000,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_EQUITY_ROLL",
+        "status": "PASS",
+        "expected_value": 29000,
+        "actual_value": 29000,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_RETAINED_EARNINGS_ROLL",
+        "status": "PASS",
+        "expected_value": 14000,
+        "actual_value": 14000,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_NONCASH_ASSET",
+        "status": "PASS",
+        "expected_value": 4000,
+        "actual_value": 4000,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_NONCASH_DEPN",
+        "status": "PASS",
+        "expected_value": 6000,
+        "actual_value": 6000,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_DEBT_ROLL",
+        "status": "PASS",
+        "expected_value": 31000,
+        "actual_value": 31000,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_AJE_AMOUNT",
+        "status": "PASS",
+        "expected_value": 6000,
+        "actual_value": 6000,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      }
+    ]
+  },
+  {
+    "worker": "financial_reporting",
+    "case_id": "FS-02",
+    "file": "samples/계정별증빙/financial_reporting_FS-02.json",
+    "expected": [
+      {
+        "check_id": "FS_REQUIRED_EVIDENCE",
+        "status": "PASS",
+        "expected_value": 12,
+        "actual_value": 12,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_EXTRACTION_CONTROL",
+        "status": "PASS",
+        "expected_value": 0,
+        "actual_value": 0,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_GL_JOURNAL_BALANCE",
+        "status": "PASS",
+        "expected_value": 0,
+        "actual_value": 0,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_TB_BALANCE",
+        "status": "PASS",
+        "expected_value": 0,
+        "actual_value": 0,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_TB_GL",
+        "status": "PASS",
+        "expected_value": 0,
+        "actual_value": 0,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_BODY_TB_MAPPING",
+        "status": "PASS",
+        "expected_value": 0,
+        "actual_value": 0,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_BODY_SUM",
+        "status": "PASS",
+        "expected_value": 0,
+        "actual_value": 0,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_BS_EQUATION",
+        "status": "PASS",
+        "expected_value": 60000,
+        "actual_value": 60000,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_PL_PROFIT",
+        "status": "PASS",
+        "expected_value": 12000,
+        "actual_value": 12000,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_NOTE_CASH",
+        "status": "EXCEPTION",
+        "expected_value": 17000,
+        "actual_value": 17250,
+        "difference": 250,
+        "reason": "원천 대비 불일치. 차이는 합산하지 않고 개별 대사 항목으로 추적하며 작성자에게 근거·수정본 요청."
+      },
+      {
+        "check_id": "FS_NOTE_PPE",
+        "status": "PASS",
+        "expected_value": 33000,
+        "actual_value": 33000,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_CF_MAPPING",
+        "status": "PASS",
+        "expected_value": 0,
+        "actual_value": 0,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_CF_OPERATING",
+        "status": "PASS",
+        "expected_value": 8000,
+        "actual_value": 8000,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_CF_INVESTING",
+        "status": "PASS",
+        "expected_value": -5000,
+        "actual_value": -5000,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_CF_FINANCING",
+        "status": "PASS",
+        "expected_value": 4000,
+        "actual_value": 4000,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_CF_ROLL",
+        "status": "EXCEPTION",
+        "expected_value": 17000,
+        "actual_value": 17400,
+        "difference": 400,
+        "reason": "원천 대비 불일치. 차이는 합산하지 않고 개별 대사 항목으로 추적하며 작성자에게 근거·수정본 요청."
+      },
+      {
+        "check_id": "FS_CF_BS_CASH",
+        "status": "EXCEPTION",
+        "expected_value": 17000,
+        "actual_value": 17400,
+        "difference": 400,
+        "reason": "원천 대비 불일치. 차이는 합산하지 않고 개별 대사 항목으로 추적하며 작성자에게 근거·수정본 요청."
+      },
+      {
+        "check_id": "FS_EQUITY_ROLL",
+        "status": "PASS",
+        "expected_value": 29000,
+        "actual_value": 29000,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_RETAINED_EARNINGS_ROLL",
+        "status": "PASS",
+        "expected_value": 14000,
+        "actual_value": 14000,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_NONCASH_ASSET",
+        "status": "PASS",
+        "expected_value": 4000,
+        "actual_value": 4000,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_NONCASH_DEPN",
+        "status": "PASS",
+        "expected_value": 6000,
+        "actual_value": 6000,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_DEBT_ROLL",
+        "status": "PASS",
+        "expected_value": 31000,
+        "actual_value": 31000,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      },
+      {
+        "check_id": "FS_AJE_AMOUNT",
+        "status": "PASS",
+        "expected_value": 6000,
+        "actual_value": 6000,
+        "difference": 0,
+        "reason": "고정 기대값과 합성 자료의 산술 결과 일치"
+      }
+    ]
+  },
+  {
+    "worker": "financial_reporting",
+    "case_id": "FS-03",
+    "file": "samples/계정별증빙/financial_reporting_FS-03.json",
+    "expected": [
+      {
+        "check_id": "FS_REQUIRED_EVIDENCE",
+        "status": "INPUT_BLOCKED",
+        "expected_value": 12,
+        "actual_value": null,
+        "difference": null,
+        "reason": "필수 FS-AJEAPPROVAL 부재. 조정 포함 여부 및 승인 자료 확인 전 금액 비교를 중단한다."
+      }
+    ]
+  }
+]

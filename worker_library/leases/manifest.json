@@ -1,0 +1,264 @@
+{
+  "schema_version": "pm-raw-1",
+  "worker": "leases",
+  "synthetic": true,
+  "integrated": false,
+  "context": {
+    "company_code": "SYNTH01",
+    "start_date": "2026-01-01",
+    "end_date": "2026-12-31",
+    "currency": "KRW",
+    "financial_statement_scope": "별도"
+  },
+  "accounts": [
+    "리스부채",
+    "사용권자산",
+    "사용권자산감가상각누계액",
+    "리스이자비용",
+    "사용권자산상각비",
+    "리스관련현금지급"
+  ],
+  "management_assertions": [
+    "완전성",
+    "실재성",
+    "권리와 의무",
+    "정확성·평가와 배분",
+    "기간귀속",
+    "분류·표시 및 공시"
+  ],
+  "existing_catalog": {
+    "file": "../../../2026-10-23/spec.json",
+    "sha256": "47bc21d4e9045f0e22efde1e4fc46a38adb13306119ec8dc07ddfdf6bde76919"
+  },
+  "existing_sources": [
+    {
+      "dataset_id": "D082",
+      "catalog_pointer": "/datasets/81",
+      "catalog_row_pointer": "/datasets/81/rows/0",
+      "file": "../../../2026-10-23/배포/01_현재프로그램입력/06_리스_합성자료.xlsx",
+      "sheet": "리스계약",
+      "range": "A1:P2",
+      "data_rows": 1,
+      "sha256": "0ec5cdadc9c92394404af3a52144fd67cc156131f80bd24597392bd3785e6033",
+      "status": "기존 입력 재사용 후보",
+      "note": "기존 월효율 1%·24개월 L01. 새 연효율 사례와 별개. 기존 고정 헤더 직접 입력 자료."
+    },
+    {
+      "dataset_id": "D083",
+      "catalog_pointer": "/datasets/82",
+      "catalog_row_pointer": "/datasets/82/rows/0",
+      "file": "../../../2026-10-23/배포/01_현재프로그램입력/06_리스_합성자료.xlsx",
+      "sheet": "리스원장",
+      "range": "A1:I2",
+      "data_rows": 1,
+      "sha256": "0ec5cdadc9c92394404af3a52144fd67cc156131f80bd24597392bd3785e6033",
+      "status": "기존 입력 재사용 후보",
+      "note": "기말부채 112551, 순사용권자산 106217, 이자 20117, 상각 106217. 새 JSON에 합산하지 않음."
+    },
+    {
+      "dataset_id": "D028",
+      "catalog_pointer": "/datasets/27",
+      "catalog_row_pointer": "/datasets/27/rows",
+      "file": "../../../2026-10-23/배포/02_절차별원천자료/04_자산_비용_손상.xlsx",
+      "sheet": "리스_지급명세",
+      "range": "A1:G13",
+      "data_rows": 12,
+      "sha256": "74a1214a5d25a1dc3138ae02dbf4675572317059b49542437c46635e6a89e469",
+      "status": "추가 원천자료·변환 필요",
+      "note": "월별 계약 예정일 12개. 은행 J-L은 합산 가정이며 월별 실제 이체 증거가 아님. CSV D025/D027/D028 중 파일명으로 선택하지 않고 실제 XLSX 시트를 정본으로 지정."
+    }
+  ],
+  "source_verification": "2026-10-23 표준 라이브러리 zip/XML로 실제 XLSX 시트명·헤더·행수·첫 데이터 행 확인. 파일 SHA256 기록. 기존 자료 수정 없음.",
+  "additional_requested_data": [
+    {
+      "document_type": "lease_contract_and_amendments",
+      "fields": [
+        "계약ID",
+        "기초자산ID",
+        "계약체결일",
+        "사용가능 개시일",
+        "해지불능기간",
+        "연장·해지·매수 옵션",
+        "고정·변동지급",
+        "인센티브",
+        "잔존가치보증",
+        "변경 유효일"
+      ],
+      "purpose": "리스 식별·기간·현금흐름 및 변경 완전성",
+      "implementation": "단순 계약 필드만 fixtures 구현; 수정·재측정은 미구현"
+    },
+    {
+      "document_type": "commencement_acceptance",
+      "fields": [
+        "자산 인도·사용가능일",
+        "검수 확인",
+        "관련 계약ID"
+      ],
+      "purpose": "계약일과 개시일 구분·기간귀속",
+      "implementation": "추가 요청; 실제 외부증거 검사는 미구현"
+    },
+    {
+      "document_type": "discount_rate_support",
+      "fields": [
+        "내재이자율 산정가능 여부",
+        "증분차입이자율",
+        "유효·명목 및 주기",
+        "관찰일",
+        "통화",
+        "기간",
+        "담보",
+        "유사 자산가치",
+        "경제환경",
+        "검토기록"
+      ],
+      "purpose": "명시된 연 유효율 근거 및 적정성 검토",
+      "implementation": "고정 합성 메모와 계약의 일치만 구현; 시장금리 적정성 판단 미구현"
+    },
+    {
+      "document_type": "bank_payments_and_supplier_statements",
+      "fields": [
+        "실제 지급일",
+        "금액",
+        "은행거래ID",
+        "수취 거래처ID",
+        "분할·합산 충당표"
+      ],
+      "purpose": "실제 지급·미지급 대사와 현금흐름 연결",
+      "implementation": "신규 2026 지급 1건 원장대사 구현; 실제 조회·다건 충당 미구현"
+    },
+    {
+      "document_type": "lease_gl_tb_and_rou_register",
+      "fields": [
+        "계정ID",
+        "전표ID",
+        "기초",
+        "증가",
+        "이자",
+        "상각",
+        "지급",
+        "기말",
+        "유동·비유동",
+        "작성·승인자"
+      ],
+      "purpose": "사용권자산·부채 롤포워드와 GL/TB 연결",
+      "implementation": "분리된 합성 GL 잔액 대사만 구현; 통합 TB·전표 편입 미구현"
+    }
+  ],
+  "joining_keys": [
+    "company_code",
+    "transaction_id",
+    "document_id",
+    "lease_id",
+    "asset_id",
+    "counterparty_id",
+    "payment_id",
+    "bank_reference",
+    "account_id"
+  ],
+  "automatic_checks": [
+    {
+      "check_id": "LEASE-PV",
+      "scope": "개시 부채 현재가치"
+    },
+    {
+      "check_id": "LEASE-LL-CLOSE",
+      "scope": "기말 부채 재계산"
+    },
+    {
+      "check_id": "LEASE-LL-ROLL",
+      "scope": "부채 롤포워드"
+    },
+    {
+      "check_id": "LEASE-INTEREST",
+      "scope": "연 유효이자"
+    },
+    {
+      "check_id": "LEASE-ROU-ADDITION",
+      "scope": "사용권자산 최초 인식"
+    },
+    {
+      "check_id": "LEASE-DEPRECIATION",
+      "scope": "리스기간 정액 상각"
+    },
+    {
+      "check_id": "LEASE-ROU-CLOSE",
+      "scope": "사용권자산 기말 순액"
+    },
+    {
+      "check_id": "LEASE-PAYMENT",
+      "scope": "은행 지급 부호 보존"
+    },
+    {
+      "check_id": "LEASE-GL-LL",
+      "scope": "부채 원장 대변잔액"
+    },
+    {
+      "check_id": "LEASE-GL-ROU",
+      "scope": "사용권자산 원가와 누계"
+    },
+    {
+      "check_id": "LEASE-GL-INTEREST",
+      "scope": "이자비용 원장 대사"
+    },
+    {
+      "check_id": "LEASE-GL-CASH",
+      "scope": "은행과 원장 현금 변동"
+    },
+    {
+      "check_id": "LEASE-GL-DEPRECIATION",
+      "scope": "상각비 원장 대사"
+    },
+    {
+      "check_id": "LEASE-PAYMENT-SUBLEDGER",
+      "scope": "보조원장 지급 대사"
+    },
+    {
+      "check_id": "LEASE-INPUT",
+      "scope": "할인율 null 및 명시 범위 밖 조건 차단"
+    }
+  ],
+  "auditor_judgments": [
+    "계약 모집단·완전성 및 숨은 리스 식별",
+    "실질적 사용권 통제·리스/비리스 구성요소",
+    "옵션 행사 가능성과 집행가능 기간",
+    "내재이자율·증분차입이자율의 근거와 적정성",
+    "사용가능 개시일·유효 조건·사용권자산 손상",
+    "수정·재측정·복구 의무·세금·유동성 분류·공시 판단",
+    "증거의 진위·신뢰성, 최종 결론·수정분개 승인"
+  ],
+  "workpaper_fields": [
+    "회사·기간·통화·계정",
+    "계약ID와 증빙ID",
+    "계약 개시·종료·옵션·지급조건",
+    "할인율 출처와 근거",
+    "PV·이자·상각 산식",
+    "부채·사용권 롤포워드",
+    "원장/TB 연결",
+    "원본·기대·차이",
+    "JSON 원천 위치",
+    "추가 요청·예외 후속절차",
+    "작성자·검토자·결론·수정 승인(모두 미확정)"
+  ],
+  "implementation_status": {
+    "new_fixtures": "3 isolated JSON cases",
+    "verifier": "standard library Decimal PV and 2026 rollforward; zero tolerance",
+    "existing_exe_import": "NOT_IMPLEMENTED",
+    "shared_gl_tb_adapter": "NOT_IMPLEMENTED",
+    "workpaper_export": "NOT_IMPLEMENTED; fields and traceable result design only",
+    "modification_remeasurement_restoration_tax": "NOT_IMPLEMENTED; unsupported terms blocked"
+  },
+  "official_references": [
+    {
+      "title": "IASB IFRS 16 Post-implementation Review Request for Information, June 2025",
+      "url": "https://www.ifrs.org/content/dam/ifrs/project/pir-ifrs-16/rfi-iasb-2025-1-pir-ifrs-16.pdf",
+      "pages": "9, 15",
+      "application": "공식 공개 요약에서 개시일 미지급 지급액 현재가치·내재이자율/증분차입이자율 및 기간 중 이자·상각 개념 확인. 전문 준수 인증 아님."
+    },
+    {
+      "title": "GPF November 2024 Staff paper AP2, PIR of IFRS 16",
+      "url": "https://www.ifrs.org/content/dam/ifrs/meetings/2024/november/gpf/ap2-pir-ifrs-16.pdf",
+      "pages": "24-25",
+      "application": "최초·후속 측정의 개념도만 참고. Staff paper는 기준 제정 또는 해석 결론이 아님."
+    }
+  ]
+}

@@ -1,0 +1,200 @@
+{
+  "schema_version": "fia-cases-1",
+  "normal": "FIA_01_정상마감전후속입력.xlsx",
+  "cases": [
+    {
+      "id": "FIA_01_정상마감전후속입력",
+      "file": "FIA_01_정상마감전후속입력.xlsx",
+      "blocking": false,
+      "review": false,
+      "required_codes": []
+    },
+    {
+      "id": "FIA_02_마감후과거기간전기",
+      "file": "FIA_02_마감후과거기간전기.xlsx",
+      "blocking": false,
+      "review": true,
+      "required_codes": [
+        "FIA_POST_CLOSE"
+      ]
+    },
+    {
+      "id": "FIA_03_자기승인",
+      "file": "FIA_03_자기승인.xlsx",
+      "blocking": false,
+      "review": true,
+      "required_codes": [
+        "FIA_SELF_APPROVAL"
+      ]
+    },
+    {
+      "id": "FIA_04_추출후미래입력",
+      "file": "FIA_04_추출후미래입력.xlsx",
+      "blocking": false,
+      "review": true,
+      "required_codes": [
+        "FIA_TIMESTAMP_ORDER",
+        "FIA_POST_CLOSE"
+      ]
+    },
+    {
+      "id": "FIA_05_업무시간밖",
+      "file": "FIA_05_업무시간밖.xlsx",
+      "blocking": false,
+      "review": true,
+      "required_codes": [
+        "FIA_OUTSIDE_HOURS"
+      ]
+    },
+    {
+      "id": "FIA_06_수동전표집중",
+      "file": "FIA_06_수동전표집중.xlsx",
+      "blocking": false,
+      "review": true,
+      "required_codes": [
+        "FIA_MANUAL_CONCENTRATION"
+      ]
+    },
+    {
+      "id": "FIA_07_정상유사마감전입력",
+      "file": "FIA_07_정상유사마감전입력.xlsx",
+      "blocking": false,
+      "review": false,
+      "required_codes": []
+    },
+    {
+      "id": "FIA_08_메타누락",
+      "file": "FIA_08_메타누락.xlsx",
+      "blocking": true,
+      "review": false,
+      "required_codes": [
+        "FIA_INPUT"
+      ]
+    },
+    {
+      "id": "FIA_09_메타중복",
+      "file": "FIA_09_메타중복.xlsx",
+      "blocking": true,
+      "review": false,
+      "required_codes": [
+        "FIA_INPUT"
+      ]
+    },
+    {
+      "id": "FIA_10_타회사",
+      "file": "FIA_10_타회사.xlsx",
+      "blocking": true,
+      "review": false,
+      "required_codes": [
+        "FIA_INPUT"
+      ]
+    },
+    {
+      "id": "FIA_11_기간불일치",
+      "file": "FIA_11_기간불일치.xlsx",
+      "blocking": true,
+      "review": false,
+      "required_codes": [
+        "AN_SCOPE"
+      ]
+    },
+    {
+      "id": "FIA_12_현재원장불일치",
+      "file": "FIA_12_현재원장불일치.xlsx",
+      "blocking": true,
+      "review": false,
+      "required_codes": [
+        "AN_LEDGER_DIFF"
+      ]
+    },
+    {
+      "id": "FIA_13_유형미확인",
+      "file": "FIA_13_유형미확인.xlsx",
+      "blocking": false,
+      "review": true,
+      "required_codes": [
+        "FIA_UNCONFIRMED"
+      ]
+    },
+    {
+      "id": "FIA_14_선승인금지시각역전",
+      "file": "FIA_14_선승인금지시각역전.xlsx",
+      "blocking": false,
+      "review": true,
+      "required_codes": [
+        "FIA_TIMESTAMP_ORDER"
+      ]
+    },
+    {
+      "id": "FIA_15_정상허용선승인",
+      "file": "FIA_15_정상허용선승인.xlsx",
+      "blocking": false,
+      "review": false,
+      "required_codes": []
+    },
+    {
+      "id": "FIA_16_승인필수시각누락",
+      "file": "FIA_16_승인필수시각누락.xlsx",
+      "blocking": true,
+      "review": false,
+      "required_codes": [
+        "FIA_INPUT"
+      ]
+    },
+    {
+      "id": "FIA_17_명시반복재분류",
+      "file": "FIA_17_명시반복재분류.xlsx",
+      "blocking": false,
+      "review": true,
+      "required_codes": [
+        "FIA_RECLASS_REPEAT"
+      ]
+    },
+    {
+      "id": "FIA_18_수동승인대기",
+      "file": "FIA_18_수동승인대기.xlsx",
+      "blocking": false,
+      "review": true,
+      "required_codes": [
+        "FIA_APPROVAL_STATUS"
+      ]
+    },
+    {
+      "id": "FIA_19_부서시스템미확인",
+      "file": "FIA_19_부서시스템미확인.xlsx",
+      "blocking": false,
+      "review": true,
+      "required_codes": [
+        "FIA_UNCONFIRMED"
+      ]
+    },
+    {
+      "id": "FIA_20_시간대누락",
+      "file": "FIA_20_시간대누락.xlsx",
+      "blocking": true,
+      "review": false,
+      "required_codes": [
+        "FIA_INPUT"
+      ]
+    },
+    {
+      "id": "FIA_21_승인미확인",
+      "file": "FIA_21_승인미확인.xlsx",
+      "blocking": false,
+      "review": true,
+      "required_codes": [
+        "FIA_UNCONFIRMED"
+      ]
+    },
+    {
+      "id": "FIA_22_같은전표메타충돌",
+      "file": "FIA_22_같은전표메타충돌.xlsx",
+      "blocking": true,
+      "review": false,
+      "required_codes": [
+        "FIA_INPUT"
+      ]
+    }
+  ],
+  "scope": "독립 합성 메타 변형. 기대 결과는 검사기 입력으로 사용하지 않음."
+}

@@ -1,0 +1,1390 @@
+{
+  "schema_version": "pm-raw-1",
+  "synthetic": true,
+  "integrated": false,
+  "context": {
+    "company_code": "SYNTH01",
+    "start_date": "2026-01-01",
+    "end_date": "2026-12-31",
+    "currency": "KRW",
+    "financial_statement_scope": "별도"
+  },
+  "scope_note": "Three isolated counterfactuals of the same invented transactions. Never combine them or add them to the existing TB. No official document images, seals or real identifiers. Disposal/impairment inputs are request stubs, not executed procedures.",
+  "calculation_policy": {
+    "method": "straight_line_monthly",
+    "availability_convention": "First day of July; exactly six complete months. No partial-month or rounding policy is inferred from IAS 16.",
+    "tolerance_krw": 0,
+    "difference": "actual minus expected; repeated manifestations are not added",
+    "opening_balances": "zero in this new isolated example only"
+  },
+  "cases": [
+    {
+      "case_id": "ASSET-NORMAL",
+      "description": "Fixed monthly recomputation and declared evidence consistency; not a completed audit.",
+      "documents": [
+        {
+          "document_id": "ASSET-MACHINE-01-REGISTER",
+          "document_type": "asset_register",
+          "transaction_id": "ASSET-MACHINE-01-ACQ",
+          "fields": {
+            "company_code": "SYNTH01",
+            "synthetic_notice": "합성 테스트 자료 / 법적 효력 없음",
+            "asset_id": "ASSET-MACHINE-01",
+            "asset_class": "machinery",
+            "cost_krw": 1320000,
+            "residual_value_krw": 120000,
+            "useful_life_months": 60,
+            "method": "straight_line_monthly",
+            "ordinary_unlimited_life_land": false,
+            "acquisition_date": "2026-06-15",
+            "available_for_use_date": "2026-07-01",
+            "opening_cost_krw": 0,
+            "opening_accumulated_charge_krw": 0,
+            "book_current_charge_krw": 120000,
+            "book_accumulated_charge_krw": 120000,
+            "parcel_id": null,
+            "disposal_date": null,
+            "source_version": "counterfactual-1"
+          }
+        },
+        {
+          "document_id": "ASSET-SOFTWARE-01-REGISTER",
+          "document_type": "asset_register",
+          "transaction_id": "ASSET-SOFTWARE-01-ACQ",
+          "fields": {
+            "company_code": "SYNTH01",
+            "synthetic_notice": "합성 테스트 자료 / 법적 효력 없음",
+            "asset_id": "ASSET-SOFTWARE-01",
+            "asset_class": "finite_life_software",
+            "cost_krw": 240000,
+            "residual_value_krw": 0,
+            "useful_life_months": 24,
+            "method": "straight_line_monthly",
+            "ordinary_unlimited_life_land": false,
+            "acquisition_date": "2026-06-15",
+            "available_for_use_date": "2026-07-01",
+            "opening_cost_krw": 0,
+            "opening_accumulated_charge_krw": 0,
+            "book_current_charge_krw": 60000,
+            "book_accumulated_charge_krw": 60000,
+            "parcel_id": null,
+            "disposal_date": null,
+            "source_version": "counterfactual-1"
+          }
+        },
+        {
+          "document_id": "ASSET-LAND-01-REGISTER",
+          "document_type": "asset_register",
+          "transaction_id": "ASSET-LAND-01-ACQ",
+          "fields": {
+            "company_code": "SYNTH01",
+            "synthetic_notice": "합성 테스트 자료 / 법적 효력 없음",
+            "asset_id": "ASSET-LAND-01",
+            "asset_class": "land",
+            "cost_krw": 2000000,
+            "residual_value_krw": 0,
+            "useful_life_months": null,
+            "method": "not_depreciated",
+            "ordinary_unlimited_life_land": true,
+            "acquisition_date": "2026-01-02",
+            "available_for_use_date": "2026-01-02",
+            "opening_cost_krw": 0,
+            "opening_accumulated_charge_krw": 0,
+            "book_current_charge_krw": 0,
+            "book_accumulated_charge_krw": 0,
+            "parcel_id": "ASSET-PARCEL-TEST-01",
+            "disposal_date": null,
+            "source_version": "counterfactual-1"
+          }
+        },
+        {
+          "document_id": "ASSET-MACHINE-INVOICE",
+          "document_type": "purchase_invoice",
+          "transaction_id": "ASSET-MACHINE-01-ACQ",
+          "fields": {
+            "company_code": "SYNTH01",
+            "synthetic_notice": "합성 테스트 자료 / 법적 효력 없음",
+            "asset_id": "ASSET-MACHINE-01",
+            "supplier_id": "ASSET-SUPPLIER-01",
+            "invoice_date": "2026-06-15",
+            "capitalizable_cost_krw": 1320000,
+            "gross_payable_krw": 1320000,
+            "vat_krw": 0,
+            "vat_assumption": "VAT allocation is outside this isolated example; zero does not establish tax treatment",
+            "purchase_order_id": "ASSET-PO-01"
+          }
+        },
+        {
+          "document_id": "ASSET-MACHINE-PAYMENT",
+          "document_type": "payment",
+          "transaction_id": "ASSET-MACHINE-01-ACQ",
+          "fields": {
+            "company_code": "SYNTH01",
+            "synthetic_notice": "합성 테스트 자료 / 법적 효력 없음",
+            "asset_id": "ASSET-MACHINE-01",
+            "payment_date": "2026-06-20",
+            "signed_bank_amount_krw": -1320000,
+            "bank_reference": "ASSET-BANK-TXN-01",
+            "invoice_document_id": "ASSET-MACHINE-INVOICE",
+            "allocation_krw": 1320000
+          }
+        },
+        {
+          "document_id": "ASSET-MACHINE-READY",
+          "document_type": "available_for_use_acceptance",
+          "transaction_id": "ASSET-MACHINE-01-ACQ",
+          "fields": {
+            "company_code": "SYNTH01",
+            "synthetic_notice": "합성 테스트 자료 / 법적 효력 없음",
+            "asset_id": "ASSET-MACHINE-01",
+            "receipt_date": "2026-06-25",
+            "installation_complete_date": "2026-06-30",
+            "available_for_use_date": "2026-07-01",
+            "acceptance_status": "synthetic approved for intended use",
+            "approver_id": "ASSET-ROLE-01"
+          }
+        },
+        {
+          "document_id": "ASSET-SOFTWARE-LICENSE",
+          "document_type": "license_contract_abstract",
+          "transaction_id": "ASSET-SOFTWARE-01-ACQ",
+          "fields": {
+            "company_code": "SYNTH01",
+            "synthetic_notice": "합성 테스트 자료 / 법적 효력 없음",
+            "asset_id": "ASSET-SOFTWARE-01",
+            "supplier_id": "ASSET-SUPPLIER-02",
+            "contract_cost_krw": 240000,
+            "license_start_date": "2026-07-01",
+            "contract_months": 24,
+            "license_type": "synthetic separately acquired on-premise license",
+            "capitalization_assessment_status": "human review required; recognition is an assumption for the fixture"
+          }
+        },
+        {
+          "document_id": "ASSET-SOFTWARE-READY",
+          "document_type": "available_for_use_acceptance",
+          "transaction_id": "ASSET-SOFTWARE-01-ACQ",
+          "fields": {
+            "company_code": "SYNTH01",
+            "synthetic_notice": "합성 테스트 자료 / 법적 효력 없음",
+            "asset_id": "ASSET-SOFTWARE-01",
+            "receipt_date": "2026-06-25",
+            "available_for_use_date": "2026-07-01",
+            "acceptance_status": "synthetic activation complete"
+          }
+        },
+        {
+          "document_id": "ASSET-LAND-CADASTRAL",
+          "document_type": "cadastral_abstract",
+          "transaction_id": "ASSET-LAND-01-ACQ",
+          "fields": {
+            "company_code": "SYNTH01",
+            "synthetic_notice": "합성 테스트 자료 / 법적 효력 없음",
+            "asset_id": "ASSET-LAND-01",
+            "parcel_id": "ASSET-PARCEL-TEST-01",
+            "fictitious_location": "가상 테스트구역 / 실제 주소 아님",
+            "land_category": "대",
+            "area_square_metres": 200,
+            "as_of_date": "2026-12-31",
+            "scope": "physical/cadastral identity only; does not conclude ownership"
+          }
+        },
+        {
+          "document_id": "ASSET-LAND-TITLE",
+          "document_type": "title_registry_abstract",
+          "transaction_id": "ASSET-LAND-01-ACQ",
+          "fields": {
+            "company_code": "SYNTH01",
+            "synthetic_notice": "합성 테스트 자료 / 법적 효력 없음",
+            "asset_id": "ASSET-LAND-01",
+            "parcel_id": "ASSET-PARCEL-TEST-01",
+            "registered_owner_company_code": "SYNTH01",
+            "as_of_date": "2026-12-31",
+            "ownership_section": "synthetic owner-company field",
+            "encumbrance_section": "no encumbrance in this fictional extract",
+            "authenticity_verified": false,
+            "scope": "plain JSON invented for tests; not an official certificate or legal opinion"
+          }
+        },
+        {
+          "document_id": "ASSET-GL-SUMMARY",
+          "document_type": "isolated_gl_asset_summary",
+          "transaction_id": "ASSET-SUMMARY-2026",
+          "fields": {
+            "company_code": "SYNTH01",
+            "synthetic_notice": "합성 테스트 자료 / 법적 효력 없음",
+            "balances": [
+              {
+                "asset_id": "ASSET-MACHINE-01",
+                "cost_debit_balance_krw": 1320000,
+                "accumulated_credit_signed_krw": -120000
+              },
+              {
+                "asset_id": "ASSET-SOFTWARE-01",
+                "cost_debit_balance_krw": 240000,
+                "accumulated_credit_signed_krw": -60000
+              },
+              {
+                "asset_id": "ASSET-LAND-01",
+                "cost_debit_balance_krw": 2000000,
+                "accumulated_credit_signed_krw": 0
+              }
+            ],
+            "independent_erp_control": false,
+            "existing_tb_included": false,
+            "account_mapping_status": "PM mapping pending; no posting"
+          }
+        },
+        {
+          "document_id": "ASSET-DISPOSAL-SEARCH",
+          "document_type": "disposal_search_inputs",
+          "transaction_id": "ASSET-REVIEW-2026",
+          "fields": {
+            "company_code": "SYNTH01",
+            "synthetic_notice": "합성 테스트 자료 / 법적 효력 없음",
+            "asset_ids": [
+              "ASSET-MACHINE-01",
+              "ASSET-SOFTWARE-01",
+              "ASSET-LAND-01"
+            ],
+            "period_start": "2026-01-01",
+            "period_end": "2026-12-31",
+            "recorded_disposals_count": 0,
+            "bank_disposal_proceeds_search": "not performed",
+            "sale_contract_register_search": "not performed",
+            "physical_inspection_status": "not performed",
+            "unrecorded_disposals_conclusion": null,
+            "required_if_found": [
+              "approved disposal request",
+              "sale agreement",
+              "delivery/return evidence",
+              "proceeds bank entry",
+              "cost/accumulated charge derecognition",
+              "gain/loss recomputation"
+            ]
+          }
+        },
+        {
+          "document_id": "ASSET-IMPAIRMENT-INPUTS",
+          "document_type": "impairment_assessment_inputs",
+          "transaction_id": "ASSET-REVIEW-2026",
+          "fields": {
+            "company_code": "SYNTH01",
+            "synthetic_notice": "합성 테스트 자료 / 법적 효력 없음",
+            "asset_ids": [
+              "ASSET-MACHINE-01",
+              "ASSET-SOFTWARE-01",
+              "ASSET-LAND-01"
+            ],
+            "assessment_date": "2026-12-31",
+            "indicator_screening_sources": [
+              "operating forecast",
+              "idle/damage report",
+              "market price",
+              "legal/technology change"
+            ],
+            "indicator_screening_status": "not performed",
+            "cgu_boundary": null,
+            "fair_value_less_costs_of_disposal_krw": null,
+            "value_in_use_krw": null,
+            "forecast_cash_flows_krw": null,
+            "discount_rate_basis_points": null,
+            "indefinite_life_asset_included": false,
+            "recoverable_amount_krw": null,
+            "conclusion": null
+          }
+        }
+      ],
+      "expected": [
+        {
+          "check_id": "ASSET-ACQUISITION",
+          "status": "PASS",
+          "expected_value": 1320000,
+          "actual_value": 1320000,
+          "difference": 0,
+          "reason": "Invoice capitalizable cost equals register cost; capitalization itself remains a human assessment.",
+          "source_locations": [
+            {
+              "document_id": "ASSET-MACHINE-INVOICE",
+              "json_pointer": "/cases/0/documents/3/fields"
+            },
+            {
+              "document_id": "ASSET-MACHINE-01-REGISTER",
+              "json_pointer": "/cases/0/documents/0/fields"
+            }
+          ],
+          "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+        },
+        {
+          "check_id": "ASSET-PAYMENT",
+          "status": "PASS",
+          "expected_value": 1320000,
+          "actual_value": 1320000,
+          "difference": 0,
+          "reason": "Explicit negative bank outflow is inverted once for payable settlement comparison; no absolute value.",
+          "source_locations": [
+            {
+              "document_id": "ASSET-MACHINE-INVOICE",
+              "json_pointer": "/cases/0/documents/3/fields"
+            },
+            {
+              "document_id": "ASSET-MACHINE-PAYMENT",
+              "json_pointer": "/cases/0/documents/4/fields"
+            }
+          ],
+          "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+        },
+        {
+          "check_id": "ASSET-READY-DATE",
+          "status": "PASS",
+          "expected_value": "2026-07-01",
+          "actual_value": "2026-07-01",
+          "difference": null,
+          "reason": "Availability acceptance agrees with register; invoice/payment dates are not the depreciation start.",
+          "source_locations": [
+            {
+              "document_id": "ASSET-MACHINE-READY",
+              "json_pointer": "/cases/0/documents/5/fields"
+            },
+            {
+              "document_id": "ASSET-MACHINE-01-REGISTER",
+              "json_pointer": "/cases/0/documents/0/fields"
+            }
+          ],
+          "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+        },
+        {
+          "check_id": "ASSET-DEPRECIATION",
+          "status": "PASS",
+          "expected_value": 120000,
+          "actual_value": 120000,
+          "difference": 0,
+          "reason": "(1320000-120000)/60*6=120000 under the explicit monthly convention.",
+          "source_locations": [
+            {
+              "document_id": "ASSET-MACHINE-READY",
+              "json_pointer": "/cases/0/documents/5/fields"
+            },
+            {
+              "document_id": "ASSET-MACHINE-01-REGISTER",
+              "json_pointer": "/cases/0/documents/0/fields"
+            }
+          ],
+          "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+        },
+        {
+          "check_id": "ASSET-AMORTIZATION",
+          "status": "PASS",
+          "expected_value": 60000,
+          "actual_value": 60000,
+          "difference": 0,
+          "reason": "240000/24*6=60000 for the assumed recognized finite-life software license.",
+          "source_locations": [
+            {
+              "document_id": "ASSET-SOFTWARE-READY",
+              "json_pointer": "/cases/0/documents/7/fields"
+            },
+            {
+              "document_id": "ASSET-SOFTWARE-01-REGISTER",
+              "json_pointer": "/cases/0/documents/1/fields"
+            }
+          ],
+          "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+        },
+        {
+          "check_id": "ASSET-LAND-DEPRECIATION",
+          "status": "PASS",
+          "expected_value": 0,
+          "actual_value": 0,
+          "difference": 0,
+          "reason": "Ordinary unlimited-life land in this isolated scenario has zero depreciation.",
+          "source_locations": [
+            {
+              "document_id": "ASSET-LAND-01-REGISTER",
+              "json_pointer": "/cases/0/documents/2/fields"
+            }
+          ],
+          "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+        },
+        {
+          "check_id": "ASSET-TITLE",
+          "status": "PASS",
+          "expected_value": "SYNTH01",
+          "actual_value": "SYNTH01",
+          "difference": null,
+          "reason": "Match declared owner, parcel and reporting date; PASS only means synthetic fields agree.",
+          "source_locations": [
+            {
+              "document_id": "ASSET-LAND-CADASTRAL",
+              "json_pointer": "/cases/0/documents/8/fields"
+            },
+            {
+              "document_id": "ASSET-LAND-TITLE",
+              "json_pointer": "/cases/0/documents/9/fields"
+            },
+            {
+              "document_id": "ASSET-LAND-01-REGISTER",
+              "json_pointer": "/cases/0/documents/2/fields"
+            }
+          ],
+          "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+        },
+        {
+          "check_id": "ASSET-REGISTER-GL",
+          "status": "PASS",
+          "expected_value": 3380000,
+          "actual_value": 3380000,
+          "difference": 0,
+          "reason": "Signed GL cost plus credit accumulated charge equals register net amount.",
+          "source_locations": [
+            {
+              "document_id": "ASSET-GL-SUMMARY",
+              "json_pointer": "/cases/0/documents/10/fields"
+            },
+            {
+              "document_id": "ASSET-MACHINE-01-REGISTER",
+              "json_pointer": "/cases/0/documents/0/fields"
+            },
+            {
+              "document_id": "ASSET-SOFTWARE-01-REGISTER",
+              "json_pointer": "/cases/0/documents/1/fields"
+            },
+            {
+              "document_id": "ASSET-LAND-01-REGISTER",
+              "json_pointer": "/cases/0/documents/2/fields"
+            }
+          ],
+          "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+        },
+        {
+          "check_id": "ASSET-LEAD-RECALC",
+          "status": "PASS",
+          "expected_value": 3380000,
+          "actual_value": 3380000,
+          "difference": 0,
+          "reason": "Independently recomputed net assets 1200000+180000+2000000=3380000; compare to isolated GL.",
+          "source_locations": [
+            {
+              "document_id": "ASSET-GL-SUMMARY",
+              "json_pointer": "/cases/0/documents/10/fields"
+            },
+            {
+              "document_id": "ASSET-MACHINE-READY",
+              "json_pointer": "/cases/0/documents/5/fields"
+            },
+            {
+              "document_id": "ASSET-SOFTWARE-READY",
+              "json_pointer": "/cases/0/documents/7/fields"
+            }
+          ],
+          "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+        }
+      ]
+    },
+    {
+      "case_id": "ASSET-EARLY-DEPRECIATION",
+      "description": "Same acquisition; book register and GL both incorrectly charge June-Dec before July availability.",
+      "documents": [
+        {
+          "document_id": "ASSET-MACHINE-01-REGISTER",
+          "document_type": "asset_register",
+          "transaction_id": "ASSET-MACHINE-01-ACQ",
+          "fields": {
+            "company_code": "SYNTH01",
+            "synthetic_notice": "합성 테스트 자료 / 법적 효력 없음",
+            "asset_id": "ASSET-MACHINE-01",
+            "asset_class": "machinery",
+            "cost_krw": 1320000,
+            "residual_value_krw": 120000,
+            "useful_life_months": 60,
+            "method": "straight_line_monthly",
+            "ordinary_unlimited_life_land": false,
+            "acquisition_date": "2026-06-15",
+            "available_for_use_date": "2026-07-01",
+            "opening_cost_krw": 0,
+            "opening_accumulated_charge_krw": 0,
+            "book_current_charge_krw": 140000,
+            "book_accumulated_charge_krw": 140000,
+            "parcel_id": null,
+            "disposal_date": null,
+            "source_version": "counterfactual-1"
+          }
+        },
+        {
+          "document_id": "ASSET-SOFTWARE-01-REGISTER",
+          "document_type": "asset_register",
+          "transaction_id": "ASSET-SOFTWARE-01-ACQ",
+          "fields": {
+            "company_code": "SYNTH01",
+            "synthetic_notice": "합성 테스트 자료 / 법적 효력 없음",
+            "asset_id": "ASSET-SOFTWARE-01",
+            "asset_class": "finite_life_software",
+            "cost_krw": 240000,
+            "residual_value_krw": 0,
+            "useful_life_months": 24,
+            "method": "straight_line_monthly",
+            "ordinary_unlimited_life_land": false,
+            "acquisition_date": "2026-06-15",
+            "available_for_use_date": "2026-07-01",
+            "opening_cost_krw": 0,
+            "opening_accumulated_charge_krw": 0,
+            "book_current_charge_krw": 60000,
+            "book_accumulated_charge_krw": 60000,
+            "parcel_id": null,
+            "disposal_date": null,
+            "source_version": "counterfactual-1"
+          }
+        },
+        {
+          "document_id": "ASSET-LAND-01-REGISTER",
+          "document_type": "asset_register",
+          "transaction_id": "ASSET-LAND-01-ACQ",
+          "fields": {
+            "company_code": "SYNTH01",
+            "synthetic_notice": "합성 테스트 자료 / 법적 효력 없음",
+            "asset_id": "ASSET-LAND-01",
+            "asset_class": "land",
+            "cost_krw": 2000000,
+            "residual_value_krw": 0,
+            "useful_life_months": null,
+            "method": "not_depreciated",
+            "ordinary_unlimited_life_land": true,
+            "acquisition_date": "2026-01-02",
+            "available_for_use_date": "2026-01-02",
+            "opening_cost_krw": 0,
+            "opening_accumulated_charge_krw": 0,
+            "book_current_charge_krw": 0,
+            "book_accumulated_charge_krw": 0,
+            "parcel_id": "ASSET-PARCEL-TEST-01",
+            "disposal_date": null,
+            "source_version": "counterfactual-1"
+          }
+        },
+        {
+          "document_id": "ASSET-MACHINE-INVOICE",
+          "document_type": "purchase_invoice",
+          "transaction_id": "ASSET-MACHINE-01-ACQ",
+          "fields": {
+            "company_code": "SYNTH01",
+            "synthetic_notice": "합성 테스트 자료 / 법적 효력 없음",
+            "asset_id": "ASSET-MACHINE-01",
+            "supplier_id": "ASSET-SUPPLIER-01",
+            "invoice_date": "2026-06-15",
+            "capitalizable_cost_krw": 1320000,
+            "gross_payable_krw": 1320000,
+            "vat_krw": 0,
+            "vat_assumption": "VAT allocation is outside this isolated example; zero does not establish tax treatment",
+            "purchase_order_id": "ASSET-PO-01"
+          }
+        },
+        {
+          "document_id": "ASSET-MACHINE-PAYMENT",
+          "document_type": "payment",
+          "transaction_id": "ASSET-MACHINE-01-ACQ",
+          "fields": {
+            "company_code": "SYNTH01",
+            "synthetic_notice": "합성 테스트 자료 / 법적 효력 없음",
+            "asset_id": "ASSET-MACHINE-01",
+            "payment_date": "2026-06-20",
+            "signed_bank_amount_krw": -1320000,
+            "bank_reference": "ASSET-BANK-TXN-01",
+            "invoice_document_id": "ASSET-MACHINE-INVOICE",
+            "allocation_krw": 1320000
+          }
+        },
+        {
+          "document_id": "ASSET-MACHINE-READY",
+          "document_type": "available_for_use_acceptance",
+          "transaction_id": "ASSET-MACHINE-01-ACQ",
+          "fields": {
+            "company_code": "SYNTH01",
+            "synthetic_notice": "합성 테스트 자료 / 법적 효력 없음",
+            "asset_id": "ASSET-MACHINE-01",
+            "receipt_date": "2026-06-25",
+            "installation_complete_date": "2026-06-30",
+            "available_for_use_date": "2026-07-01",
+            "acceptance_status": "synthetic approved for intended use",
+            "approver_id": "ASSET-ROLE-01"
+          }
+        },
+        {
+          "document_id": "ASSET-SOFTWARE-LICENSE",
+          "document_type": "license_contract_abstract",
+          "transaction_id": "ASSET-SOFTWARE-01-ACQ",
+          "fields": {
+            "company_code": "SYNTH01",
+            "synthetic_notice": "합성 테스트 자료 / 법적 효력 없음",
+            "asset_id": "ASSET-SOFTWARE-01",
+            "supplier_id": "ASSET-SUPPLIER-02",
+            "contract_cost_krw": 240000,
+            "license_start_date": "2026-07-01",
+            "contract_months": 24,
+            "license_type": "synthetic separately acquired on-premise license",
+            "capitalization_assessment_status": "human review required; recognition is an assumption for the fixture"
+          }
+        },
+        {
+          "document_id": "ASSET-SOFTWARE-READY",
+          "document_type": "available_for_use_acceptance",
+          "transaction_id": "ASSET-SOFTWARE-01-ACQ",
+          "fields": {
+            "company_code": "SYNTH01",
+            "synthetic_notice": "합성 테스트 자료 / 법적 효력 없음",
+            "asset_id": "ASSET-SOFTWARE-01",
+            "receipt_date": "2026-06-25",
+            "available_for_use_date": "2026-07-01",
+            "acceptance_status": "synthetic activation complete"
+          }
+        },
+        {
+          "document_id": "ASSET-LAND-CADASTRAL",
+          "document_type": "cadastral_abstract",
+          "transaction_id": "ASSET-LAND-01-ACQ",
+          "fields": {
+            "company_code": "SYNTH01",
+            "synthetic_notice": "합성 테스트 자료 / 법적 효력 없음",
+            "asset_id": "ASSET-LAND-01",
+            "parcel_id": "ASSET-PARCEL-TEST-01",
+            "fictitious_location": "가상 테스트구역 / 실제 주소 아님",
+            "land_category": "대",
+            "area_square_metres": 200,
+            "as_of_date": "2026-12-31",
+            "scope": "physical/cadastral identity only; does not conclude ownership"
+          }
+        },
+        {
+          "document_id": "ASSET-LAND-TITLE",
+          "document_type": "title_registry_abstract",
+          "transaction_id": "ASSET-LAND-01-ACQ",
+          "fields": {
+            "company_code": "SYNTH01",
+            "synthetic_notice": "합성 테스트 자료 / 법적 효력 없음",
+            "asset_id": "ASSET-LAND-01",
+            "parcel_id": "ASSET-PARCEL-TEST-01",
+            "registered_owner_company_code": "SYNTH01",
+            "as_of_date": "2026-12-31",
+            "ownership_section": "synthetic owner-company field",
+            "encumbrance_section": "no encumbrance in this fictional extract",
+            "authenticity_verified": false,
+            "scope": "plain JSON invented for tests; not an official certificate or legal opinion"
+          }
+        },
+        {
+          "document_id": "ASSET-GL-SUMMARY",
+          "document_type": "isolated_gl_asset_summary",
+          "transaction_id": "ASSET-SUMMARY-2026",
+          "fields": {
+            "company_code": "SYNTH01",
+            "synthetic_notice": "합성 테스트 자료 / 법적 효력 없음",
+            "balances": [
+              {
+                "asset_id": "ASSET-MACHINE-01",
+                "cost_debit_balance_krw": 1320000,
+                "accumulated_credit_signed_krw": -140000
+              },
+              {
+                "asset_id": "ASSET-SOFTWARE-01",
+                "cost_debit_balance_krw": 240000,
+                "accumulated_credit_signed_krw": -60000
+              },
+              {
+                "asset_id": "ASSET-LAND-01",
+                "cost_debit_balance_krw": 2000000,
+                "accumulated_credit_signed_krw": 0
+              }
+            ],
+            "independent_erp_control": false,
+            "existing_tb_included": false,
+            "account_mapping_status": "PM mapping pending; no posting"
+          }
+        },
+        {
+          "document_id": "ASSET-DISPOSAL-SEARCH",
+          "document_type": "disposal_search_inputs",
+          "transaction_id": "ASSET-REVIEW-2026",
+          "fields": {
+            "company_code": "SYNTH01",
+            "synthetic_notice": "합성 테스트 자료 / 법적 효력 없음",
+            "asset_ids": [
+              "ASSET-MACHINE-01",
+              "ASSET-SOFTWARE-01",
+              "ASSET-LAND-01"
+            ],
+            "period_start": "2026-01-01",
+            "period_end": "2026-12-31",
+            "recorded_disposals_count": 0,
+            "bank_disposal_proceeds_search": "not performed",
+            "sale_contract_register_search": "not performed",
+            "physical_inspection_status": "not performed",
+            "unrecorded_disposals_conclusion": null,
+            "required_if_found": [
+              "approved disposal request",
+              "sale agreement",
+              "delivery/return evidence",
+              "proceeds bank entry",
+              "cost/accumulated charge derecognition",
+              "gain/loss recomputation"
+            ]
+          }
+        },
+        {
+          "document_id": "ASSET-IMPAIRMENT-INPUTS",
+          "document_type": "impairment_assessment_inputs",
+          "transaction_id": "ASSET-REVIEW-2026",
+          "fields": {
+            "company_code": "SYNTH01",
+            "synthetic_notice": "합성 테스트 자료 / 법적 효력 없음",
+            "asset_ids": [
+              "ASSET-MACHINE-01",
+              "ASSET-SOFTWARE-01",
+              "ASSET-LAND-01"
+            ],
+            "assessment_date": "2026-12-31",
+            "indicator_screening_sources": [
+              "operating forecast",
+              "idle/damage report",
+              "market price",
+              "legal/technology change"
+            ],
+            "indicator_screening_status": "not performed",
+            "cgu_boundary": null,
+            "fair_value_less_costs_of_disposal_krw": null,
+            "value_in_use_krw": null,
+            "forecast_cash_flows_krw": null,
+            "discount_rate_basis_points": null,
+            "indefinite_life_asset_included": false,
+            "recoverable_amount_krw": null,
+            "conclusion": null
+          }
+        }
+      ],
+      "expected": [
+        {
+          "check_id": "ASSET-ACQUISITION",
+          "status": "PASS",
+          "expected_value": 1320000,
+          "actual_value": 1320000,
+          "difference": 0,
+          "reason": "Invoice capitalizable cost equals register cost; capitalization itself remains a human assessment.",
+          "source_locations": [
+            {
+              "document_id": "ASSET-MACHINE-INVOICE",
+              "json_pointer": "/cases/1/documents/3/fields"
+            },
+            {
+              "document_id": "ASSET-MACHINE-01-REGISTER",
+              "json_pointer": "/cases/1/documents/0/fields"
+            }
+          ],
+          "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+        },
+        {
+          "check_id": "ASSET-PAYMENT",
+          "status": "PASS",
+          "expected_value": 1320000,
+          "actual_value": 1320000,
+          "difference": 0,
+          "reason": "Explicit negative bank outflow is inverted once for payable settlement comparison; no absolute value.",
+          "source_locations": [
+            {
+              "document_id": "ASSET-MACHINE-INVOICE",
+              "json_pointer": "/cases/1/documents/3/fields"
+            },
+            {
+              "document_id": "ASSET-MACHINE-PAYMENT",
+              "json_pointer": "/cases/1/documents/4/fields"
+            }
+          ],
+          "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+        },
+        {
+          "check_id": "ASSET-READY-DATE",
+          "status": "PASS",
+          "expected_value": "2026-07-01",
+          "actual_value": "2026-07-01",
+          "difference": null,
+          "reason": "Availability acceptance agrees with register; invoice/payment dates are not the depreciation start.",
+          "source_locations": [
+            {
+              "document_id": "ASSET-MACHINE-READY",
+              "json_pointer": "/cases/1/documents/5/fields"
+            },
+            {
+              "document_id": "ASSET-MACHINE-01-REGISTER",
+              "json_pointer": "/cases/1/documents/0/fields"
+            }
+          ],
+          "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+        },
+        {
+          "check_id": "ASSET-DEPRECIATION",
+          "status": "EXCEPTION",
+          "expected_value": 120000,
+          "actual_value": 140000,
+          "difference": 20000,
+          "reason": "Book charge wrongly includes June acquisition month; availability is July 1. Excess expense=20000.",
+          "source_locations": [
+            {
+              "document_id": "ASSET-MACHINE-READY",
+              "json_pointer": "/cases/1/documents/5/fields"
+            },
+            {
+              "document_id": "ASSET-MACHINE-01-REGISTER",
+              "json_pointer": "/cases/1/documents/0/fields"
+            }
+          ],
+          "follow_up": "Auditor reviews original evidence, method/materiality and proposed treatment; draft only, no posting."
+        },
+        {
+          "check_id": "ASSET-AMORTIZATION",
+          "status": "PASS",
+          "expected_value": 60000,
+          "actual_value": 60000,
+          "difference": 0,
+          "reason": "240000/24*6=60000 for the assumed recognized finite-life software license.",
+          "source_locations": [
+            {
+              "document_id": "ASSET-SOFTWARE-READY",
+              "json_pointer": "/cases/1/documents/7/fields"
+            },
+            {
+              "document_id": "ASSET-SOFTWARE-01-REGISTER",
+              "json_pointer": "/cases/1/documents/1/fields"
+            }
+          ],
+          "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+        },
+        {
+          "check_id": "ASSET-LAND-DEPRECIATION",
+          "status": "PASS",
+          "expected_value": 0,
+          "actual_value": 0,
+          "difference": 0,
+          "reason": "Ordinary unlimited-life land in this isolated scenario has zero depreciation.",
+          "source_locations": [
+            {
+              "document_id": "ASSET-LAND-01-REGISTER",
+              "json_pointer": "/cases/1/documents/2/fields"
+            }
+          ],
+          "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+        },
+        {
+          "check_id": "ASSET-TITLE",
+          "status": "PASS",
+          "expected_value": "SYNTH01",
+          "actual_value": "SYNTH01",
+          "difference": null,
+          "reason": "Match declared owner, parcel and reporting date; PASS only means synthetic fields agree.",
+          "source_locations": [
+            {
+              "document_id": "ASSET-LAND-CADASTRAL",
+              "json_pointer": "/cases/1/documents/8/fields"
+            },
+            {
+              "document_id": "ASSET-LAND-TITLE",
+              "json_pointer": "/cases/1/documents/9/fields"
+            },
+            {
+              "document_id": "ASSET-LAND-01-REGISTER",
+              "json_pointer": "/cases/1/documents/2/fields"
+            }
+          ],
+          "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+        },
+        {
+          "check_id": "ASSET-REGISTER-GL",
+          "status": "PASS",
+          "expected_value": 3360000,
+          "actual_value": 3360000,
+          "difference": 0,
+          "reason": "Signed GL cost plus credit accumulated charge equals register net amount.",
+          "source_locations": [
+            {
+              "document_id": "ASSET-GL-SUMMARY",
+              "json_pointer": "/cases/1/documents/10/fields"
+            },
+            {
+              "document_id": "ASSET-MACHINE-01-REGISTER",
+              "json_pointer": "/cases/1/documents/0/fields"
+            },
+            {
+              "document_id": "ASSET-SOFTWARE-01-REGISTER",
+              "json_pointer": "/cases/1/documents/1/fields"
+            },
+            {
+              "document_id": "ASSET-LAND-01-REGISTER",
+              "json_pointer": "/cases/1/documents/2/fields"
+            }
+          ],
+          "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+        },
+        {
+          "check_id": "ASSET-LEAD-RECALC",
+          "status": "EXCEPTION",
+          "expected_value": 3380000,
+          "actual_value": 3360000,
+          "difference": -20000,
+          "reason": "Register and GL agree but both include excessive depreciation; recalculated net asset difference=-20000. Same error, not another misstatement to add.",
+          "source_locations": [
+            {
+              "document_id": "ASSET-GL-SUMMARY",
+              "json_pointer": "/cases/1/documents/10/fields"
+            },
+            {
+              "document_id": "ASSET-MACHINE-READY",
+              "json_pointer": "/cases/1/documents/5/fields"
+            },
+            {
+              "document_id": "ASSET-SOFTWARE-READY",
+              "json_pointer": "/cases/1/documents/7/fields"
+            }
+          ],
+          "follow_up": "Auditor reviews original evidence, method/materiality and proposed treatment; draft only, no posting."
+        }
+      ]
+    },
+    {
+      "case_id": "ASSET-MISSING-TITLE",
+      "description": "Same acquisition; cadastral data is present but title registry evidence is absent.",
+      "documents": [
+        {
+          "document_id": "ASSET-MACHINE-01-REGISTER",
+          "document_type": "asset_register",
+          "transaction_id": "ASSET-MACHINE-01-ACQ",
+          "fields": {
+            "company_code": "SYNTH01",
+            "synthetic_notice": "합성 테스트 자료 / 법적 효력 없음",
+            "asset_id": "ASSET-MACHINE-01",
+            "asset_class": "machinery",
+            "cost_krw": 1320000,
+            "residual_value_krw": 120000,
+            "useful_life_months": 60,
+            "method": "straight_line_monthly",
+            "ordinary_unlimited_life_land": false,
+            "acquisition_date": "2026-06-15",
+            "available_for_use_date": "2026-07-01",
+            "opening_cost_krw": 0,
+            "opening_accumulated_charge_krw": 0,
+            "book_current_charge_krw": 120000,
+            "book_accumulated_charge_krw": 120000,
+            "parcel_id": null,
+            "disposal_date": null,
+            "source_version": "counterfactual-1"
+          }
+        },
+        {
+          "document_id": "ASSET-SOFTWARE-01-REGISTER",
+          "document_type": "asset_register",
+          "transaction_id": "ASSET-SOFTWARE-01-ACQ",
+          "fields": {
+            "company_code": "SYNTH01",
+            "synthetic_notice": "합성 테스트 자료 / 법적 효력 없음",
+            "asset_id": "ASSET-SOFTWARE-01",
+            "asset_class": "finite_life_software",
+            "cost_krw": 240000,
+            "residual_value_krw": 0,
+            "useful_life_months": 24,
+            "method": "straight_line_monthly",
+            "ordinary_unlimited_life_land": false,
+            "acquisition_date": "2026-06-15",
+            "available_for_use_date": "2026-07-01",
+            "opening_cost_krw": 0,
+            "opening_accumulated_charge_krw": 0,
+            "book_current_charge_krw": 60000,
+            "book_accumulated_charge_krw": 60000,
+            "parcel_id": null,
+            "disposal_date": null,
+            "source_version": "counterfactual-1"
+          }
+        },
+        {
+          "document_id": "ASSET-LAND-01-REGISTER",
+          "document_type": "asset_register",
+          "transaction_id": "ASSET-LAND-01-ACQ",
+          "fields": {
+            "company_code": "SYNTH01",
+            "synthetic_notice": "합성 테스트 자료 / 법적 효력 없음",
+            "asset_id": "ASSET-LAND-01",
+            "asset_class": "land",
+            "cost_krw": 2000000,
+            "residual_value_krw": 0,
+            "useful_life_months": null,
+            "method": "not_depreciated",
+            "ordinary_unlimited_life_land": true,
+            "acquisition_date": "2026-01-02",
+            "available_for_use_date": "2026-01-02",
+            "opening_cost_krw": 0,
+            "opening_accumulated_charge_krw": 0,
+            "book_current_charge_krw": 0,
+            "book_accumulated_charge_krw": 0,
+            "parcel_id": "ASSET-PARCEL-TEST-01",
+            "disposal_date": null,
+            "source_version": "counterfactual-1"
+          }
+        },
+        {
+          "document_id": "ASSET-MACHINE-INVOICE",
+          "document_type": "purchase_invoice",
+          "transaction_id": "ASSET-MACHINE-01-ACQ",
+          "fields": {
+            "company_code": "SYNTH01",
+            "synthetic_notice": "합성 테스트 자료 / 법적 효력 없음",
+            "asset_id": "ASSET-MACHINE-01",
+            "supplier_id": "ASSET-SUPPLIER-01",
+            "invoice_date": "2026-06-15",
+            "capitalizable_cost_krw": 1320000,
+            "gross_payable_krw": 1320000,
+            "vat_krw": 0,
+            "vat_assumption": "VAT allocation is outside this isolated example; zero does not establish tax treatment",
+            "purchase_order_id": "ASSET-PO-01"
+          }
+        },
+        {
+          "document_id": "ASSET-MACHINE-PAYMENT",
+          "document_type": "payment",
+          "transaction_id": "ASSET-MACHINE-01-ACQ",
+          "fields": {
+            "company_code": "SYNTH01",
+            "synthetic_notice": "합성 테스트 자료 / 법적 효력 없음",
+            "asset_id": "ASSET-MACHINE-01",
+            "payment_date": "2026-06-20",
+            "signed_bank_amount_krw": -1320000,
+            "bank_reference": "ASSET-BANK-TXN-01",
+            "invoice_document_id": "ASSET-MACHINE-INVOICE",
+            "allocation_krw": 1320000
+          }
+        },
+        {
+          "document_id": "ASSET-MACHINE-READY",
+          "document_type": "available_for_use_acceptance",
+          "transaction_id": "ASSET-MACHINE-01-ACQ",
+          "fields": {
+            "company_code": "SYNTH01",
+            "synthetic_notice": "합성 테스트 자료 / 법적 효력 없음",
+            "asset_id": "ASSET-MACHINE-01",
+            "receipt_date": "2026-06-25",
+            "installation_complete_date": "2026-06-30",
+            "available_for_use_date": "2026-07-01",
+            "acceptance_status": "synthetic approved for intended use",
+            "approver_id": "ASSET-ROLE-01"
+          }
+        },
+        {
+          "document_id": "ASSET-SOFTWARE-LICENSE",
+          "document_type": "license_contract_abstract",
+          "transaction_id": "ASSET-SOFTWARE-01-ACQ",
+          "fields": {
+            "company_code": "SYNTH01",
+            "synthetic_notice": "합성 테스트 자료 / 법적 효력 없음",
+            "asset_id": "ASSET-SOFTWARE-01",
+            "supplier_id": "ASSET-SUPPLIER-02",
+            "contract_cost_krw": 240000,
+            "license_start_date": "2026-07-01",
+            "contract_months": 24,
+            "license_type": "synthetic separately acquired on-premise license",
+            "capitalization_assessment_status": "human review required; recognition is an assumption for the fixture"
+          }
+        },
+        {
+          "document_id": "ASSET-SOFTWARE-READY",
+          "document_type": "available_for_use_acceptance",
+          "transaction_id": "ASSET-SOFTWARE-01-ACQ",
+          "fields": {
+            "company_code": "SYNTH01",
+            "synthetic_notice": "합성 테스트 자료 / 법적 효력 없음",
+            "asset_id": "ASSET-SOFTWARE-01",
+            "receipt_date": "2026-06-25",
+            "available_for_use_date": "2026-07-01",
+            "acceptance_status": "synthetic activation complete"
+          }
+        },
+        {
+          "document_id": "ASSET-LAND-CADASTRAL",
+          "document_type": "cadastral_abstract",
+          "transaction_id": "ASSET-LAND-01-ACQ",
+          "fields": {
+            "company_code": "SYNTH01",
+            "synthetic_notice": "합성 테스트 자료 / 법적 효력 없음",
+            "asset_id": "ASSET-LAND-01",
+            "parcel_id": "ASSET-PARCEL-TEST-01",
+            "fictitious_location": "가상 테스트구역 / 실제 주소 아님",
+            "land_category": "대",
+            "area_square_metres": 200,
+            "as_of_date": "2026-12-31",
+            "scope": "physical/cadastral identity only; does not conclude ownership"
+          }
+        },
+        {
+          "document_id": "ASSET-GL-SUMMARY",
+          "document_type": "isolated_gl_asset_summary",
+          "transaction_id": "ASSET-SUMMARY-2026",
+          "fields": {
+            "company_code": "SYNTH01",
+            "synthetic_notice": "합성 테스트 자료 / 법적 효력 없음",
+            "balances": [
+              {
+                "asset_id": "ASSET-MACHINE-01",
+                "cost_debit_balance_krw": 1320000,
+                "accumulated_credit_signed_krw": -120000
+              },
+              {
+                "asset_id": "ASSET-SOFTWARE-01",
+                "cost_debit_balance_krw": 240000,
+                "accumulated_credit_signed_krw": -60000
+              },
+              {
+                "asset_id": "ASSET-LAND-01",
+                "cost_debit_balance_krw": 2000000,
+                "accumulated_credit_signed_krw": 0
+              }
+            ],
+            "independent_erp_control": false,
+            "existing_tb_included": false,
+            "account_mapping_status": "PM mapping pending; no posting"
+          }
+        },
+        {
+          "document_id": "ASSET-DISPOSAL-SEARCH",
+          "document_type": "disposal_search_inputs",
+          "transaction_id": "ASSET-REVIEW-2026",
+          "fields": {
+            "company_code": "SYNTH01",
+            "synthetic_notice": "합성 테스트 자료 / 법적 효력 없음",
+            "asset_ids": [
+              "ASSET-MACHINE-01",
+              "ASSET-SOFTWARE-01",
+              "ASSET-LAND-01"
+            ],
+            "period_start": "2026-01-01",
+            "period_end": "2026-12-31",
+            "recorded_disposals_count": 0,
+            "bank_disposal_proceeds_search": "not performed",
+            "sale_contract_register_search": "not performed",
+            "physical_inspection_status": "not performed",
+            "unrecorded_disposals_conclusion": null,
+            "required_if_found": [
+              "approved disposal request",
+              "sale agreement",
+              "delivery/return evidence",
+              "proceeds bank entry",
+              "cost/accumulated charge derecognition",
+              "gain/loss recomputation"
+            ]
+          }
+        },
+        {
+          "document_id": "ASSET-IMPAIRMENT-INPUTS",
+          "document_type": "impairment_assessment_inputs",
+          "transaction_id": "ASSET-REVIEW-2026",
+          "fields": {
+            "company_code": "SYNTH01",
+            "synthetic_notice": "합성 테스트 자료 / 법적 효력 없음",
+            "asset_ids": [
+              "ASSET-MACHINE-01",
+              "ASSET-SOFTWARE-01",
+              "ASSET-LAND-01"
+            ],
+            "assessment_date": "2026-12-31",
+            "indicator_screening_sources": [
+              "operating forecast",
+              "idle/damage report",
+              "market price",
+              "legal/technology change"
+            ],
+            "indicator_screening_status": "not performed",
+            "cgu_boundary": null,
+            "fair_value_less_costs_of_disposal_krw": null,
+            "value_in_use_krw": null,
+            "forecast_cash_flows_krw": null,
+            "discount_rate_basis_points": null,
+            "indefinite_life_asset_included": false,
+            "recoverable_amount_krw": null,
+            "conclusion": null
+          }
+        }
+      ],
+      "expected": [
+        {
+          "check_id": "ASSET-ACQUISITION",
+          "status": "PASS",
+          "expected_value": 1320000,
+          "actual_value": 1320000,
+          "difference": 0,
+          "reason": "Invoice capitalizable cost equals register cost; capitalization itself remains a human assessment.",
+          "source_locations": [
+            {
+              "document_id": "ASSET-MACHINE-INVOICE",
+              "json_pointer": "/cases/2/documents/3/fields"
+            },
+            {
+              "document_id": "ASSET-MACHINE-01-REGISTER",
+              "json_pointer": "/cases/2/documents/0/fields"
+            }
+          ],
+          "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+        },
+        {
+          "check_id": "ASSET-PAYMENT",
+          "status": "PASS",
+          "expected_value": 1320000,
+          "actual_value": 1320000,
+          "difference": 0,
+          "reason": "Explicit negative bank outflow is inverted once for payable settlement comparison; no absolute value.",
+          "source_locations": [
+            {
+              "document_id": "ASSET-MACHINE-INVOICE",
+              "json_pointer": "/cases/2/documents/3/fields"
+            },
+            {
+              "document_id": "ASSET-MACHINE-PAYMENT",
+              "json_pointer": "/cases/2/documents/4/fields"
+            }
+          ],
+          "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+        },
+        {
+          "check_id": "ASSET-READY-DATE",
+          "status": "PASS",
+          "expected_value": "2026-07-01",
+          "actual_value": "2026-07-01",
+          "difference": null,
+          "reason": "Availability acceptance agrees with register; invoice/payment dates are not the depreciation start.",
+          "source_locations": [
+            {
+              "document_id": "ASSET-MACHINE-READY",
+              "json_pointer": "/cases/2/documents/5/fields"
+            },
+            {
+              "document_id": "ASSET-MACHINE-01-REGISTER",
+              "json_pointer": "/cases/2/documents/0/fields"
+            }
+          ],
+          "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+        },
+        {
+          "check_id": "ASSET-DEPRECIATION",
+          "status": "PASS",
+          "expected_value": 120000,
+          "actual_value": 120000,
+          "difference": 0,
+          "reason": "(1320000-120000)/60*6=120000 under the explicit monthly convention.",
+          "source_locations": [
+            {
+              "document_id": "ASSET-MACHINE-READY",
+              "json_pointer": "/cases/2/documents/5/fields"
+            },
+            {
+              "document_id": "ASSET-MACHINE-01-REGISTER",
+              "json_pointer": "/cases/2/documents/0/fields"
+            }
+          ],
+          "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+        },
+        {
+          "check_id": "ASSET-AMORTIZATION",
+          "status": "PASS",
+          "expected_value": 60000,
+          "actual_value": 60000,
+          "difference": 0,
+          "reason": "240000/24*6=60000 for the assumed recognized finite-life software license.",
+          "source_locations": [
+            {
+              "document_id": "ASSET-SOFTWARE-READY",
+              "json_pointer": "/cases/2/documents/7/fields"
+            },
+            {
+              "document_id": "ASSET-SOFTWARE-01-REGISTER",
+              "json_pointer": "/cases/2/documents/1/fields"
+            }
+          ],
+          "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+        },
+        {
+          "check_id": "ASSET-LAND-DEPRECIATION",
+          "status": "PASS",
+          "expected_value": 0,
+          "actual_value": 0,
+          "difference": 0,
+          "reason": "Ordinary unlimited-life land in this isolated scenario has zero depreciation.",
+          "source_locations": [
+            {
+              "document_id": "ASSET-LAND-01-REGISTER",
+              "json_pointer": "/cases/2/documents/2/fields"
+            }
+          ],
+          "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+        },
+        {
+          "check_id": "ASSET-TITLE",
+          "status": "INPUT_BLOCKED",
+          "expected_value": "SYNTH01",
+          "actual_value": null,
+          "difference": null,
+          "reason": "Title evidence is missing. A cadastral abstract is not substituted, ownership is not treated as false or a zero amount.",
+          "source_locations": [
+            {
+              "document_id": "ASSET-LAND-CADASTRAL",
+              "json_pointer": "/cases/2/documents/8/fields"
+            },
+            {
+              "document_id": "ASSET-LAND-01-REGISTER",
+              "json_pointer": "/cases/2/documents/2/fields"
+            }
+          ],
+          "follow_up": "Auditor reviews original evidence, method/materiality and proposed treatment; draft only, no posting."
+        },
+        {
+          "check_id": "ASSET-REGISTER-GL",
+          "status": "PASS",
+          "expected_value": 3380000,
+          "actual_value": 3380000,
+          "difference": 0,
+          "reason": "Signed GL cost plus credit accumulated charge equals register net amount.",
+          "source_locations": [
+            {
+              "document_id": "ASSET-GL-SUMMARY",
+              "json_pointer": "/cases/2/documents/9/fields"
+            },
+            {
+              "document_id": "ASSET-MACHINE-01-REGISTER",
+              "json_pointer": "/cases/2/documents/0/fields"
+            },
+            {
+              "document_id": "ASSET-SOFTWARE-01-REGISTER",
+              "json_pointer": "/cases/2/documents/1/fields"
+            },
+            {
+              "document_id": "ASSET-LAND-01-REGISTER",
+              "json_pointer": "/cases/2/documents/2/fields"
+            }
+          ],
+          "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+        },
+        {
+          "check_id": "ASSET-LEAD-RECALC",
+          "status": "PASS",
+          "expected_value": 3380000,
+          "actual_value": 3380000,
+          "difference": 0,
+          "reason": "Independently recomputed net assets 1200000+180000+2000000=3380000; compare to isolated GL.",
+          "source_locations": [
+            {
+              "document_id": "ASSET-GL-SUMMARY",
+              "json_pointer": "/cases/2/documents/9/fields"
+            },
+            {
+              "document_id": "ASSET-MACHINE-READY",
+              "json_pointer": "/cases/2/documents/5/fields"
+            },
+            {
+              "document_id": "ASSET-SOFTWARE-READY",
+              "json_pointer": "/cases/2/documents/7/fields"
+            }
+          ],
+          "follow_up": "Retain trace and perform substantive evidence assessment; no automatic audit conclusion."
+        }
+      ]
+    }
+  ]
+}

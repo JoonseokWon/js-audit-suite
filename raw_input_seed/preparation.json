@@ -1,0 +1,122 @@
+{
+  "schema_version": "raw-seed-preparation-1",
+  "baseline": {
+    "path": "testdata/raw_source_baseline",
+    "workbooks": 16,
+    "tables": 114,
+    "spec_sha256": "47bc21d4e9045f0e22efde1e4fc46a38adb13306119ec8dc07ddfdf6bde76919"
+  },
+  "seed": {
+    "path": "raw_input_seed",
+    "workbooks": 16,
+    "tables": 114,
+    "spec_sha256": "b969f02f28779bf31b8ce998b3b1b700b50fd8d54d2df1c0c08201466648d563",
+    "unchanged_workbooks": 15,
+    "tb_rows": 59,
+    "gl_rows": 82
+  },
+  "provenance": {
+    "purpose": "현재 통합업무 v1.3 원장과 원천증빙 카탈로그의 동일 원장 대사",
+    "baseline_spec_sha256": "47bc21d4e9045f0e22efde1e4fc46a38adb13306119ec8dc07ddfdf6bde76919",
+    "replaced_source": "배포/01_현재프로그램입력/01_원장_리드_합성자료.xlsx",
+    "original_xlsx_sha256": "fefed80f21e464df457af9033248ebaafc3cae6f239930fbc3dcecaadcbd2ade",
+    "replacement": "samples/통합/통합_v1.3_원장_리드.xlsx",
+    "replacement_xlsx_sha256": "18765d8ad479bf36452500871a52b840f665799ce8a9aa8833272d87c1436388",
+    "scope": "원장·리드 1권만 교체. 나머지 15권은 baseline 원문 그대로. 합성자료이며 독립 감사증거 아님."
+  },
+  "files": [
+    {
+      "path": "sources/01_현재프로그램입력/01_원장_리드_합성자료.xlsx",
+      "bytes": 20329,
+      "sha256": "18765d8ad479bf36452500871a52b840f665799ce8a9aa8833272d87c1436388"
+    },
+    {
+      "path": "sources/01_현재프로그램입력/02_금융상품_합성자료.xlsx",
+      "bytes": 8969,
+      "sha256": "46f12b28865e49a8449dc9afbacc46ed6fc7a1ae3a67deee718338677b2df308"
+    },
+    {
+      "path": "sources/01_현재프로그램입력/03_매출_합성자료.xlsx",
+      "bytes": 7710,
+      "sha256": "e93e145984dd2a441b4d7952497e92b8ba5f43daf20099cbdb752d7793b2acae"
+    },
+    {
+      "path": "sources/01_현재프로그램입력/04_감가상각_합성자료.xlsx",
+      "bytes": 8565,
+      "sha256": "860c6a74f61ab2fbb4534cb1c0b381db5191d4327a2f01b89f64d77b1d66a441"
+    },
+    {
+      "path": "sources/01_현재프로그램입력/05_확장검사_합성자료.xlsx",
+      "bytes": 12344,
+      "sha256": "3fd49a2d933048aa6c4d9900f8ba6a01c0759740706981dda57a4a1b079c1840"
+    },
+    {
+      "path": "sources/01_현재프로그램입력/06_리스_합성자료.xlsx",
+      "bytes": 7904,
+      "sha256": "0ec5cdadc9c92394404af3a52144fd67cc156131f80bd24597392bd3785e6033"
+    },
+    {
+      "path": "sources/01_현재프로그램입력/07_대손충당금_합성자료.xlsx",
+      "bytes": 10654,
+      "sha256": "2325e481d513d1f9f0b842ecc8ac3affd275d85c2bab651a0ddbca267f6d4b5a"
+    },
+    {
+      "path": "sources/01_현재프로그램입력/08_재고평가_합성자료.xlsx",
+      "bytes": 9821,
+      "sha256": "a51b80d3bd22b10b6098d56add8700c201bfa7cace906fc29275651693cdeab0"
+    },
+    {
+      "path": "sources/01_현재프로그램입력/09_종업원급여_합성자료.xlsx",
+      "bytes": 13340,
+      "sha256": "a0fae12e126c8601703f915629b4d439f1785fa483e8e683f06d6a21331ed00c"
+    },
+    {
+      "path": "sources/02_절차별원천자료/01_공통_계획_통제.xlsx",
+      "bytes": 18042,
+      "sha256": "7b5438ff6325de47f1f584c43ac3a48737dfd80a8144782fa165eb68c3e60366"
+    },
+    {
+      "path": "sources/02_절차별원천자료/02_자금_금융_차입.xlsx",
+      "bytes": 8136,
+      "sha256": "d4cb630f2125da0ebb465260054b9e3c61627d8b6bd78d08f220d411f007d135"
+    },
+    {
+      "path": "sources/02_절차별원천자료/03_매출_매입_재고.xlsx",
+      "bytes": 11849,
+      "sha256": "0428323a2aab5197678c4162e25e93bc6fee1985463d3006f2ca4c94279c67c3"
+    },
+    {
+      "path": "sources/02_절차별원천자료/04_자산_비용_손상.xlsx",
+      "bytes": 8622,
+      "sha256": "74a1214a5d25a1dc3138ae02dbf4675572317059b49542437c46635e6a89e469"
+    },
+    {
+      "path": "sources/02_절차별원천자료/05_인사_급여_DB.xlsx",
+      "bytes": 7221,
+      "sha256": "132e1cbd210dd5e5ba452d2c0848d42b7da0fe1195fd8af0e0453cd0be7cf5fc"
+    },
+    {
+      "path": "sources/02_절차별원천자료/06_세무_자본_연결.xlsx",
+      "bytes": 13709,
+      "sha256": "edc8e819ede72e7a47fb1ec4ec05c58a3a470240f2068a5c6ae5f6029951e227"
+    },
+    {
+      "path": "sources/02_절차별원천자료/07_결산_공시_종결.xlsx",
+      "bytes": 16835,
+      "sha256": "f95b6577a797c4b5b56effa4e576d236c2d6c9f2adac4595b61a1bafba2c5d82"
+    },
+    {
+      "path": "sources/spec.json",
+      "bytes": 946894,
+      "sha256": "b969f02f28779bf31b8ce998b3b1b700b50fd8d54d2df1c0c08201466648d563"
+    }
+  ],
+  "pack": {
+    "filename": "정상원천증빙.auditpack",
+    "bytes": 274967,
+    "sha256": "5456d04e9c5db2796be163ea61318a96b0807dc163a95dea61eb9a2a43ea7612",
+    "path": "raw_input_seed/정상원천증빙.auditpack",
+    "populations": 12,
+    "allocations": 32
+  }
+}

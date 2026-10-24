@@ -1,0 +1,231 @@
+{
+  "schema_version": "account-evidence-1",
+  "synthetic": true,
+  "ledger_joined": false,
+  "worker": "equity_disclosure",
+  "context": {
+    "company_code": "SYNTH01",
+    "start_date": "2026-01-01",
+    "end_date": "2026-12-31",
+    "currency": "KRW",
+    "financial_statement_scope": "별도"
+  },
+  "case_index": 0,
+  "case": {
+    "case_id": "EQUITY-CASE01",
+    "description": "독립 정상 합성 통제 사례. 실제 증자/관계자 공시 결론 아님.",
+    "documents": [
+      {
+        "document_id": "EQUITY-DOC-01",
+        "document_type": "share_capital_rollforward",
+        "transaction_id": "EQUITY-TXN-ISSUE01",
+        "fields": {
+          "company_code": "SYNTH01",
+          "currency": "KRW",
+          "as_of_date": "2026-12-31",
+          "shareholder_id": "EQUITY-SH01",
+          "opening_shares": 6000,
+          "issued_shares": 1000,
+          "closing_shares": 7000,
+          "par_value": 1000,
+          "issue_price": 1400,
+          "opening_capital_amount": 6000000,
+          "closing_capital_amount": 7000000,
+          "opening_premium_amount": 0,
+          "closing_premium_amount": 400000
+        }
+      },
+      {
+        "document_id": "EQUITY-DOC-02",
+        "document_type": "approval_minutes",
+        "transaction_id": "EQUITY-TXN-ISSUE01",
+        "fields": {
+          "company_code": "SYNTH01",
+          "currency": "KRW",
+          "meeting_date": "2026-09-15",
+          "meeting_type": "합성 이사회·주총 결의 요약",
+          "resolution_id": "EQUITY-RES01",
+          "approved_shares": 1000,
+          "approved_price": 1400,
+          "legal_effect_review": null
+        }
+      },
+      {
+        "document_id": "EQUITY-DOC-03",
+        "document_type": "issue_bank_receipt",
+        "transaction_id": "EQUITY-TXN-ISSUE01",
+        "fields": {
+          "company_code": "SYNTH01",
+          "currency": "KRW",
+          "receipt_date": "2026-10-01",
+          "bank_transaction_id": "EQUITY-BANK01",
+          "received_amount": 1400000,
+          "payer_party_id": "EQUITY-SH01",
+          "external_authenticity_verified": false
+        }
+      },
+      {
+        "document_id": "EQUITY-DOC-04",
+        "document_type": "synthetic_registration_summary",
+        "transaction_id": "EQUITY-TXN-ISSUE01",
+        "fields": {
+          "company_code": "SYNTH01",
+          "currency": "KRW",
+          "registration_date": "2026-10-05",
+          "registered_new_shares": 1000,
+          "registered_capital_amount": 7000000,
+          "status": "합성 요약·공적 증명서 아님",
+          "legal_effect_review": null
+        }
+      },
+      {
+        "document_id": "EQUITY-DOC-05",
+        "document_type": "related_party_list",
+        "transaction_id": "EQUITY-TXN-RP01",
+        "fields": {
+          "company_code": "SYNTH01",
+          "currency": "KRW",
+          "as_of_date": "2026-12-31",
+          "parties": [
+            {
+              "party_id": "EQUITY-PARTY01",
+              "relationship": "합성 종속기업"
+            }
+          ],
+          "complete_population_assessed": false
+        }
+      },
+      {
+        "document_id": "EQUITY-DOC-06",
+        "document_type": "related_party_ledger",
+        "transaction_id": "EQUITY-TXN-RP01",
+        "fields": {
+          "company_code": "SYNTH01",
+          "currency": "KRW",
+          "as_of_date": "2026-12-31",
+          "party_id": "EQUITY-PARTY01",
+          "opening_amount": 0,
+          "advance_amount": 100000,
+          "repayment_amount": 0,
+          "closing_amount": 100000,
+          "contract_document_id": null
+        }
+      },
+      {
+        "document_id": "EQUITY-DOC-07",
+        "document_type": "related_party_note",
+        "transaction_id": "EQUITY-TXN-RP01",
+        "fields": {
+          "company_code": "SYNTH01",
+          "currency": "KRW",
+          "as_of_date": "2026-12-31",
+          "party_id": "EQUITY-PARTY01",
+          "closing_amount": 100000,
+          "note_status": "금액만 비교하는 합성 발췌·공시 전체 미검토"
+        }
+      }
+    ],
+    "expected": [
+      {
+        "check_id": "EQUITY-MINUTES_PRESENT",
+        "status": "PASS",
+        "expected_value": 1,
+        "actual_value": 1,
+        "difference": 0,
+        "reason": "합성 승인 의사록 요약이 존재한다. 법적 효력은 미판단."
+      },
+      {
+        "check_id": "EQUITY-RELATED_LIST_PRESENT",
+        "status": "PASS",
+        "expected_value": 1,
+        "actual_value": 1,
+        "difference": 0,
+        "reason": "합성 관계자 목록이 존재한다. 목록 전체성은 미판단."
+      },
+      {
+        "check_id": "EQUITY-SHARE_COUNT",
+        "status": "PASS",
+        "expected_value": 7000,
+        "actual_value": 7000,
+        "difference": 0,
+        "reason": "6000+1000=7000주"
+      },
+      {
+        "check_id": "EQUITY-CAPITAL",
+        "status": "PASS",
+        "expected_value": 7000000,
+        "actual_value": 7000000,
+        "difference": 0,
+        "reason": "6000000+1000*1000=7000000원"
+      },
+      {
+        "check_id": "EQUITY-PREMIUM",
+        "status": "PASS",
+        "expected_value": 400000,
+        "actual_value": 400000,
+        "difference": 0,
+        "reason": "0+1000*(1400-1000)=400000원"
+      },
+      {
+        "check_id": "EQUITY-ISSUE_TERMS",
+        "status": "PASS",
+        "expected_value": [
+          1000,
+          1400
+        ],
+        "actual_value": [
+          1000,
+          1400
+        ],
+        "difference": null,
+        "reason": "합성 승인 신주수·발행가가 명세와 일치"
+      },
+      {
+        "check_id": "EQUITY-ISSUE_CASH",
+        "status": "PASS",
+        "expected_value": 1400000,
+        "actual_value": 1400000,
+        "difference": 0,
+        "reason": "1000*1400=입금1400000원"
+      },
+      {
+        "check_id": "EQUITY-REGISTRATION",
+        "status": "PASS",
+        "expected_value": [
+          1000,
+          7000000
+        ],
+        "actual_value": [
+          1000,
+          7000000
+        ],
+        "difference": null,
+        "reason": "합성 등기 요약의 신주수·자본금이 명세와 일치"
+      },
+      {
+        "check_id": "EQUITY-RELATED_PARTY",
+        "status": "PASS",
+        "expected_value": true,
+        "actual_value": true,
+        "difference": null,
+        "reason": "제공 목록 내 거래 상대방 식별. 미공개 관계자는 별도 검색."
+      },
+      {
+        "check_id": "EQUITY-RELATED_BALANCE",
+        "status": "PASS",
+        "expected_value": 100000,
+        "actual_value": 100000,
+        "difference": 0,
+        "reason": "0+100000-0=100000원"
+      },
+      {
+        "check_id": "EQUITY-RELATED_NOTE",
+        "status": "PASS",
+        "expected_value": 100000,
+        "actual_value": 100000,
+        "difference": 0,
+        "reason": "합성 거래잔액과 주석 발췌 금액 일치"
+      }
+    ]
+  }
+}

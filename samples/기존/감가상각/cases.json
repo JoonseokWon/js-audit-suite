@@ -1,0 +1,279 @@
+[
+  {
+    "name": "01_정상_5방법",
+    "expected": {
+      "population": "PASS",
+      "matched": 8,
+      "errors": 0,
+      "differences": 0,
+      "amounts": {
+        "A01": {
+          "전기말원가": 1200000,
+          "전기말누계": 240000,
+          "당기상각": 240000,
+          "기말원가": 1200000,
+          "기말누계": 480000
+        },
+        "A02": {
+          "전기말원가": 1200000,
+          "전기말누계": 240000,
+          "당기상각": 192000,
+          "기말원가": 1200000,
+          "기말누계": 432000
+        },
+        "A03": {
+          "전기말원가": 1200000,
+          "전기말누계": 480000,
+          "당기상각": 288000,
+          "기말원가": 1200000,
+          "기말누계": 768000
+        },
+        "A04": {
+          "전기말원가": 1800000,
+          "전기말누계": 600000,
+          "당기상각": 480000,
+          "기말원가": 1800000,
+          "기말누계": 1080000
+        },
+        "A05": {
+          "전기말원가": 0,
+          "전기말누계": 0,
+          "당기상각": 600000,
+          "기말원가": 1200000,
+          "기말누계": 600000
+        },
+        "A06": {
+          "전기말원가": 0,
+          "전기말누계": 0,
+          "당기상각": 120000,
+          "기말원가": 1200000,
+          "기말누계": 120000
+        },
+        "A07": {
+          "전기말원가": 1200000,
+          "전기말누계": 240000,
+          "당기상각": 120000,
+          "기말원가": 0,
+          "기말누계": 0
+        },
+        "A08": {
+          "전기말원가": 1200000,
+          "전기말누계": 240000,
+          "당기상각": 243999,
+          "기말원가": 1380000,
+          "기말누계": 483999
+        }
+      },
+      "disposal_gain": 60000
+    }
+  },
+  {
+    "name": "02_상각차이",
+    "expected": {
+      "population": "PASS",
+      "matched": 7,
+      "errors": 0,
+      "differences": 1,
+      "review": 1
+    }
+  },
+  {
+    "name": "03_원장금액차이",
+    "expected": {
+      "population": "PASS",
+      "matched": 7,
+      "differences": 1,
+      "review": 1
+    }
+  },
+  {
+    "name": "04_원장누락",
+    "expected": {
+      "population": "FAIL",
+      "matched": 0,
+      "min_errors": 1
+    }
+  },
+  {
+    "name": "05_공통누락",
+    "expected": {
+      "population": "FAIL",
+      "matched": 0,
+      "min_errors": 1
+    }
+  },
+  {
+    "name": "06_자산중복",
+    "expected": {
+      "population": "PASS",
+      "matched": 7,
+      "min_errors": 1
+    }
+  },
+  {
+    "name": "07_원장중복",
+    "expected": {
+      "population": "FAIL",
+      "matched": 0,
+      "min_errors": 1
+    }
+  },
+  {
+    "name": "08_사용가능일누락",
+    "expected": {
+      "population": "PASS",
+      "matched": 7,
+      "min_errors": 1
+    }
+  },
+  {
+    "name": "09_생산량누락",
+    "expected": {
+      "population": "PASS",
+      "matched": 7,
+      "min_errors": 1
+    }
+  },
+  {
+    "name": "10_생산량초과",
+    "expected": {
+      "population": "PASS",
+      "matched": 7,
+      "min_errors": 1
+    }
+  },
+  {
+    "name": "11_미지원방법",
+    "expected": {
+      "population": "PASS",
+      "matched": 7,
+      "min_errors": 1
+    }
+  },
+  {
+    "name": "12_정률률누락",
+    "expected": {
+      "population": "PASS",
+      "matched": 7,
+      "min_errors": 1
+    }
+  },
+  {
+    "name": "13_변경근거누락",
+    "expected": {
+      "population": "PASS",
+      "matched": 7,
+      "min_errors": 1
+    }
+  },
+  {
+    "name": "14_변경중복",
+    "expected": {
+      "population": "PASS",
+      "matched": 7,
+      "min_errors": 1
+    }
+  },
+  {
+    "name": "15_처분일오류",
+    "expected": {
+      "population": "PASS",
+      "matched": 7,
+      "min_errors": 1
+    }
+  },
+  {
+    "name": "16_1원차이보존",
+    "expected": {
+      "population": "PASS",
+      "matched": 7,
+      "errors": 0,
+      "differences": 1,
+      "review": 1,
+      "rounding": 1
+    }
+  },
+  {
+    "name": "17_상계차이",
+    "expected": {
+      "population": "PASS",
+      "matched": 6,
+      "errors": 0,
+      "differences": 2,
+      "review": 2,
+      "signed": 0,
+      "absolute": 20000
+    }
+  },
+  {
+    "name": "18_빈모집단",
+    "expected": {
+      "population": "FAIL",
+      "matched": 0,
+      "min_errors": 1
+    }
+  },
+  {
+    "name": "19_잔존원가이상",
+    "expected": {
+      "population": "PASS",
+      "matched": 0,
+      "errors": 0,
+      "review": 1,
+      "differences": 0,
+      "amounts": {
+        "R01": {
+          "당기상각": 0
+        }
+      }
+    }
+  },
+  {
+    "name": "20_완전상각계속보유",
+    "expected": {
+      "population": "PASS",
+      "matched": 0,
+      "errors": 0,
+      "review": 1,
+      "differences": 0
+    }
+  },
+  {
+    "name": "21_익월개시",
+    "expected": {
+      "population": "PASS",
+      "matched": 1,
+      "errors": 0,
+      "differences": 0,
+      "amounts": {
+        "M01": {
+          "당기상각": 120000
+        }
+      }
+    }
+  },
+  {
+    "name": "22_처분월제외",
+    "expected": {
+      "population": "PASS",
+      "matched": 1,
+      "errors": 0,
+      "differences": 0,
+      "disposal_gain": 40000
+    }
+  },
+  {
+    "name": "23_월말아님",
+    "expected": {
+      "input_error": "월말"
+    }
+  },
+  {
+    "name": "24_통제근거누락",
+    "expected": {
+      "population": "FAIL",
+      "matched": 0,
+      "min_errors": 1
+    }
+  }
+]

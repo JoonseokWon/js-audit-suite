@@ -1,0 +1,113 @@
+{
+  "schema_version": "account-evidence-1",
+  "synthetic": true,
+  "ledger_joined": false,
+  "worker": "debt_tax",
+  "context": {
+    "company_code": "SYNTH01",
+    "start_date": "2026-01-01",
+    "end_date": "2026-12-31",
+    "currency": "KRW",
+    "financial_statement_scope": "별도"
+  },
+  "case_index": 2,
+  "case": {
+    "case_id": "DEBT-03",
+    "description": "동일 거래의 대안 누락: 차입계약 없음. 약정 이율이나 기간을 다른 사례에서 복사하지 않고 계산 차단.",
+    "documents": [
+      {
+        "document_id": "DEBT-DOC-OPENING",
+        "document_type": "opening_principal",
+        "transaction_id": "DEBT-TX01",
+        "fields": {
+          "company_code": "SYNTH01",
+          "loan_id": "DEBT-LN01",
+          "currency": "KRW",
+          "as_of": "2025-12-31",
+          "principal": 2000000,
+          "interest_payable": 0
+        }
+      },
+      {
+        "document_id": "DEBT-DOC-MOVEMENTS",
+        "document_type": "principal_movements",
+        "transaction_id": "DEBT-TX01",
+        "fields": {
+          "company_code": "SYNTH01",
+          "loan_id": "DEBT-LN01",
+          "currency": "KRW",
+          "start_date": "2026-01-01",
+          "end_date": "2026-12-31",
+          "drawdowns": 0,
+          "repayments": 0,
+          "noncash_changes": 0,
+          "completeness": "synthetic_explicit_zero_activity"
+        }
+      },
+      {
+        "document_id": "DEBT-DOC-PAYMENT",
+        "document_type": "interest_payment",
+        "transaction_id": "DEBT-TX01",
+        "fields": {
+          "company_code": "SYNTH01",
+          "loan_id": "DEBT-LN01",
+          "currency": "KRW",
+          "payment_date": "2026-12-31",
+          "cash_movement": -30000,
+          "settlement_allocation": "interest_only",
+          "bank_transaction_id": "DEBT-BANK01"
+        }
+      },
+      {
+        "document_id": "DEBT-DOC-LEDGER",
+        "document_type": "ledger_summary",
+        "transaction_id": "DEBT-TX01",
+        "fields": {
+          "company_code": "SYNTH01",
+          "loan_id": "DEBT-LN01",
+          "currency": "KRW",
+          "start_date": "2026-01-01",
+          "end_date": "2026-12-31",
+          "principal_account": "2500",
+          "principal_closing_signed": -2000000,
+          "interest_expense_account": "5710",
+          "interest_expense_signed": 50000,
+          "interest_payable_account": "2420",
+          "interest_payable_closing_signed": -20000,
+          "journal_ids": [
+            "DEBT-J01",
+            "DEBT-J02"
+          ]
+        }
+      },
+      {
+        "document_id": "DEBT-DOC-REVIEW",
+        "document_type": "review_requests",
+        "transaction_id": "DEBT-TX01",
+        "fields": {
+          "company_code": "SYNTH01",
+          "loan_id": "DEBT-LN01",
+          "currency": "KRW",
+          "as_of": "2026-12-31",
+          "collateral_status": "요청 중",
+          "covenant_status": "검토 전",
+          "confirmation_status": "미발송·미회신",
+          "confirmation_amount": null,
+          "preparer": null,
+          "reviewer": null,
+          "conclusion": null
+        }
+      }
+    ],
+    "expected": [
+      {
+        "check_id": "DEBT-INPUT",
+        "status": "INPUT_BLOCKED",
+        "expected_value": 5,
+        "actual_value": 4,
+        "difference": -1,
+        "reason": "loan_contract 누락. 원금·이자·미지급 계산 미수행, 결측을 0으로 대체하지 않음."
+      }
+    ]
+  }
+}

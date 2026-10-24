@@ -1,0 +1,47 @@
+{
+  "company_code": "JS",
+  "company_name": "JS",
+  "kind": "parent",
+  "sector": "업종 없음 · 모회사",
+  "items": [],
+  "assets": [],
+  "investments": [
+    {
+      "company_code": "JS_ELEC",
+      "company_name": "JS전자",
+      "scenario_amount": 2000000,
+      "ownership_percentage": null,
+      "control_assessment": null
+    },
+    {
+      "company_code": "JS_AUTO",
+      "company_name": "JS자동차",
+      "scenario_amount": 2000000,
+      "ownership_percentage": null,
+      "control_assessment": null
+    },
+    {
+      "company_code": "JS_SEMI",
+      "company_name": "JS반도체",
+      "scenario_amount": 2000000,
+      "ownership_percentage": null,
+      "control_assessment": null
+    },
+    {
+      "company_code": "JS_BIO",
+      "company_name": "JS바이오",
+      "scenario_amount": 2000000,
+      "ownership_percentage": null,
+      "control_assessment": null
+    }
+  ],
+  "currency": "KRW",
+  "profile_file": "profile.json",
+  "scenario_is_arbitrary": true,
+  "limitations": [
+    "실제 독립 감사증거가 아닌 가상 선택 시나리오",
+    "가상 자본납입 10000000원, 가상 투자 2000000원씩 4건, 가상 기말현금 2000000원",
+    "실제 지분율·지배력·투자취득 근거·투자주식 평가·금융기관 조회·연결계산은 미검사",
+    "JS 모회사의 업종·매출·재고·제조·유형자산 자료는 생성하지 않음. 미제공을 0으로 대체하지 않음"
+  ]
+}

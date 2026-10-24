@@ -1,0 +1,390 @@
+{
+  "schema_version": "pm-raw-1",
+  "worker": "cash_finance",
+  "synthetic": true,
+  "integrated": false,
+  "context": {
+    "company_code": "SYNTH01",
+    "start_date": "2026-01-01",
+    "end_date": "2026-12-31",
+    "currency": "KRW",
+    "financial_statement_scope": "별도"
+  },
+  "scope": [
+    "현금및현금성자산",
+    "예금·미수이자",
+    "은행거래 대사·은행조정표",
+    "금융기관 조회 통제 설계"
+  ],
+  "assertions": [
+    "실재성",
+    "권리와 의무",
+    "완전성",
+    "정확성·평가",
+    "기간귀속",
+    "분류와 표시"
+  ],
+  "source_root": "../../../2026-10-23 (각 워커 폴더 기준)",
+  "existing_sources": [
+    {
+      "source_id": "CASH-SOURCE01",
+      "relative_path": "배포/01_현재프로그램입력/02_금융상품_합성자료.xlsx",
+      "sha256": "46f12b28865e49a8449dc9afbacc46ed6fc7a1ae3a67deee718338677b2df308",
+      "spec_book_index": 2,
+      "spec_pointer": "/books/2",
+      "locations": [
+        {
+          "sheet": "명세",
+          "range": "A1:G2",
+          "data_rows": 1,
+          "spec_tables_pointer_suffix": "/tables/명세"
+        },
+        {
+          "sheet": "조건",
+          "range": "A1:T2",
+          "data_rows": 1,
+          "spec_tables_pointer_suffix": "/tables/조건"
+        },
+        {
+          "sheet": "원장",
+          "range": "A1:G2",
+          "data_rows": 1,
+          "spec_tables_pointer_suffix": "/tables/원장"
+        },
+        {
+          "sheet": "회신",
+          "range": "A1:G2",
+          "data_rows": 1,
+          "spec_tables_pointer_suffix": "/tables/회신"
+        },
+        {
+          "sheet": "이자기준",
+          "range": "A1:G2",
+          "data_rows": 1,
+          "spec_tables_pointer_suffix": "/tables/이자기준"
+        },
+        {
+          "sheet": "이자구간",
+          "range": "A1:G2",
+          "data_rows": 1,
+          "spec_tables_pointer_suffix": "/tables/이자구간"
+        }
+      ],
+      "existing_app_status": "기존 통합 앱 v1.3 금융상품 모듈의 직접 입력 양식. 이 manifest 생성은 EXE 재실행/새 연결 검증이 아님.",
+      "data_interpretation": "D001 고정원금 1000000, 연이율 3.65%, 2026-01-01 제외~12-31 포함 364일, 이자 36400. 기존 회신은 합성이며 실제 외부조회 아님."
+    },
+    {
+      "source_id": "CASH-SOURCE02",
+      "relative_path": "배포/01_현재프로그램입력/05_확장검사_합성자료.xlsx",
+      "sha256": "3fd49a2d933048aa6c4d9900f8ba6a01c0759740706981dda57a4a1b079c1840",
+      "spec_book_index": 5,
+      "spec_pointer": "/books/5",
+      "locations": [
+        {
+          "sheet": "은행장부",
+          "range": "A1:E13",
+          "data_rows": 12,
+          "spec_tables_pointer_suffix": "/tables/은행장부"
+        },
+        {
+          "sheet": "은행거래",
+          "range": "A1:E13",
+          "data_rows": 12,
+          "spec_tables_pointer_suffix": "/tables/은행거래"
+        },
+        {
+          "sheet": "독립통제",
+          "range": "A1:E10",
+          "data_rows": 9,
+          "spec_tables_pointer_suffix": "/tables/독립통제"
+        }
+      ],
+      "existing_app_status": "기존 통합 앱 v1.3 확장검사 모듈 양식. 은행 거래 대사는 존재하지만 이번 은행조정/조회통제 JSON은 미연결.",
+      "data_interpretation": "거래ID는 장부 L1~L12, 은행 B1~B12로 서로 다름. 계좌+참조+금액/일자를 검토한 뒤 공통 거래ID 연결표가 필요. 독립통제 시트는 동일 생성기의 합성 통제임."
+    },
+    {
+      "source_id": "CASH-SOURCE03",
+      "relative_path": "배포/02_절차별원천자료/02_자금_금융_차입.xlsx",
+      "sha256": "d4cb630f2125da0ebb465260054b9e3c61627d8b6bd78d08f220d411f007d135",
+      "spec_book_index": 11,
+      "spec_pointer": "/books/11",
+      "locations": [
+        {
+          "sheet": "은행_잔액",
+          "range": "A1:I3",
+          "data_rows": 2,
+          "spec_tables_pointer_suffix": "/tables/은행_잔액"
+        },
+        {
+          "sheet": "조회_통제대장",
+          "range": "A1:K4",
+          "data_rows": 3,
+          "spec_tables_pointer_suffix": "/tables/조회_통제대장"
+        },
+        {
+          "sheet": "차입_조건",
+          "range": "A1:M2",
+          "data_rows": 1,
+          "spec_tables_pointer_suffix": "/tables/차입_조건"
+        },
+        {
+          "sheet": "약정_조건",
+          "range": "A1:J2",
+          "data_rows": 1,
+          "spec_tables_pointer_suffix": "/tables/약정_조건"
+        },
+        {
+          "sheet": "금융자산_시가",
+          "range": "A1:K2",
+          "data_rows": 1,
+          "spec_tables_pointer_suffix": "/tables/금융자산_시가"
+        }
+      ],
+      "existing_app_status": "보충 원천자료·조서 설계용. 이 파일을 직접 처리하는 EXE 가져오기 기능은 이번 작업 범위에 없음.",
+      "data_interpretation": "CONF01은 은행, CONF02는 매출채권, CONF03은 차입금. 미수행/미확인·null 발송일/회신일을 실제 조회 수행으로 읽으면 안 됨. 차입/약정/시가는 후속 워커와 공동 검토 필요."
+    }
+  ],
+  "additional_data_requests": [
+    {
+      "request_id": "CASH-PBC01",
+      "name": "계좌 전체 모집단·개설/해지 내역",
+      "required_fields": [
+        "회사코드",
+        "계좌ID(마스킹)",
+        "은행ID",
+        "개설일",
+        "해지일",
+        "계좌유형",
+        "통화",
+        "사용제한",
+        "담보·질권",
+        "계정코드",
+        "조회대상 여부"
+      ],
+      "reason": "0원·휴면·해지 계좌와 사용제한 완전성은 거래 매칭만으로 확인 불가",
+      "implementation": "설계만; 실제 자료/모집단 검증 미구현"
+    },
+    {
+      "request_id": "CASH-PBC02",
+      "name": "원본 은행 명세와 ERP 장부·독립 추출통제",
+      "required_fields": [
+        "회사코드",
+        "거래ID",
+        "증빙ID",
+        "계좌ID",
+        "거래일",
+        "기장일",
+        "금액(부호 보존)",
+        "통화",
+        "참조번호",
+        "상대방ID",
+        "기초·기말잔액",
+        "추출시각",
+        "필터",
+        "행수",
+        "부호합계",
+        "절대합계",
+        "원본해시"
+      ],
+      "reason": "은행과 ERP는 독립 경로 추출; 합성 생성 통제는 대체 증거 아님",
+      "implementation": "기존 거래 파일 재사용 가능; 실제 원본 추출 어댑터·독립통제 미구현"
+    },
+    {
+      "request_id": "CASH-PBC03",
+      "name": "은행조정표·미결제 항목과 후속 결제 근거",
+      "required_fields": [
+        "회사코드",
+        "거래ID",
+        "증빙ID",
+        "계좌ID",
+        "조정항목ID",
+        "유형",
+        "원기장일",
+        "금액",
+        "후속결제일",
+        "은행거래ID",
+        "근거문서ID",
+        "작성·검토 상태"
+      ],
+      "reason": "미입금·미결제 지급·은행 수수료·장부 오류를 구분하고 장기 미결제 원인 검토",
+      "implementation": "fixtures.json 5사례의 작은 계산기만 구현; 기존 EXE 미연결"
+    },
+    {
+      "request_id": "CASH-PBC04",
+      "name": "금융기관 조회 요청·회신 및 통제 기록",
+      "required_fields": [
+        "조회ID",
+        "대상ID",
+        "조회범위",
+        "확인대상 권리·담보·보증",
+        "발송일",
+        "수신 경로",
+        "회신일",
+        "회신 문서ID",
+        "원본해시",
+        "감사인 직접 발송/수신 통제",
+        "회신 신원 검토",
+        "미회신 후속조치"
+      ],
+      "reason": "금액 일치가 조회의 신뢰성이나 모집단 완전성을 입증하지 않음",
+      "implementation": "합성 플래그·누락 차단만 구현; 실제 발송·회신 수집/신원인증 미구현"
+    },
+    {
+      "request_id": "CASH-PBC05",
+      "name": "정기예금 계약·이율/원금 변경·이자 지급·원천징수 내역",
+      "required_fields": [
+        "계약ID",
+        "원금",
+        "계약기간",
+        "이자기산일",
+        "이자끝",
+        "일수계산방식",
+        "초일/말일 포함",
+        "연이율과 단위",
+        "원금/금리 변경일",
+        "복리",
+        "수수료·할인할증",
+        "반올림 정책",
+        "이자 지급일",
+        "세전 이자",
+        "세금",
+        "실수령액",
+        "원장 계정코드"
+      ],
+      "reason": "이자기간과 세전/세후·명목/유효이자 구분. 모든 상품에 단리 계산을 적용하면 안 됨",
+      "implementation": "이번 JSON은 고정원금·고정금리 단리 ACT/365F만; 다른 상품은 입력차단"
+    }
+  ],
+  "linking_contract": {
+    "primary_keys": [
+      "company_code",
+      "transaction_id",
+      "document_id"
+    ],
+    "cash_account_key": [
+      "company_code",
+      "account_id",
+      "currency"
+    ],
+    "deposit_key": [
+      "company_code",
+      "contract_id",
+      "as_of_date"
+    ],
+    "entry_key": [
+      "company_code",
+      "entry_id"
+    ],
+    "legacy_crosswalk_needed": [
+      "SYNBANK+D001 -> 새로운 금융 계약키",
+      "FAKE-BANK01+J-* 참조 -> 공통 거래키",
+      "EV06 등 증거ID -> 증빙ID"
+    ],
+    "cross_worker_links": [
+      "매출 워커의 채권 회수ID/고객ID ↔ 은행 입금 entry_id",
+      "매입·재고 워커의 지급ID/거래처ID ↔ 은행 출금 entry_id",
+      "리스·급여·세금 워커의 지급ID ↔ 은행 출금 entry_id"
+    ],
+    "rules": [
+      "기존 거래ID와 CASH- 독립 사례를 합산하지 않음",
+      "as_of_date는 2026 감사대상 기준일; 후속 거래 coverage/date는 2027 별도",
+      "원본 값과 null을 보존; 금액은 정수 원, 거래액 부호 보존"
+    ]
+  },
+  "automatic_checks": [
+    {
+      "check_id": "CASH_BANK_ROLLFORWARD",
+      "rule": "은행 기초+부호 있는 거래합계=은행 기말",
+      "implemented": "이 워커 검증기"
+    },
+    {
+      "check_id": "CASH_BOOK_ROLLFORWARD",
+      "rule": "장부 기초+부호 있는 거래합계=장부 기말",
+      "implemented": "이 워커 검증기"
+    },
+    {
+      "check_id": "CASH_RECONCILIATION",
+      "rule": "은행 기말+미입금-미결제지급=장부 기말; 조정항목과 후속 은행거래 연결",
+      "implemented": "이 워커 검증기, 지원 유형 2개로 제한"
+    },
+    {
+      "check_id": "CASH_CONFIRMATION_BALANCE",
+      "rule": "조회 회신과 은행 명세 기말잔액 대사; 회신 없으면 INPUT_BLOCKED",
+      "implemented": "합성 구조 검증만"
+    },
+    {
+      "check_id": "CASH_CONFIRMATION_CONTROL",
+      "rule": "조회 요청·회신 ID/일자와 감사인 통제 플래그 확인",
+      "implemented": "합성 플래그 검증만, 통제의 실제 수행 증명 아님"
+    },
+    {
+      "check_id": "CASH_INTEREST",
+      "rule": "계약상 91일 ACT/365F 단리=9100; 허용오차 내 1원도 EXCEPTION",
+      "implemented": "단리 제한 계산기; 중요성/수정분개 자동판단 없음"
+    }
+  ],
+  "auditor_judgments": [
+    "계좌·금융기관 모집단 완전성과 사용제한/담보/보증 범위",
+    "독립 원본 추출 및 데이터 신뢰성·계약 원문 진위",
+    "조회 발송/회신 통제와 신원·전송경로 신뢰성",
+    "미회신 시 대체절차 설계 및 충분한 증거 확보 여부",
+    "미결제 항목의 실재성·장기 미결제·기간귀속과 부정위험",
+    "계약에 적합한 이자 방법, 유효이자·상각후원가/공정가치·분류 공시 판단",
+    "차이의 원인과 중요성·수정분개 승인 및 감사 결론"
+  ],
+  "workpaper_fields": [
+    "조서ID",
+    "계정/주장",
+    "위험과 절차ID",
+    "대상 모집단·추출통제",
+    "검사ID",
+    "사례ID",
+    "공통 거래ID",
+    "증빙ID·원천 JSON pointer/파일·시트·셀",
+    "원본금액",
+    "기대금액",
+    "차이",
+    "허용오차와 근거",
+    "후속절차",
+    "작성자=null",
+    "검토자=null",
+    "결론=null",
+    "분개승인=null",
+    "전기상태=미전기"
+  ],
+  "implementation_status": {
+    "existing_integrated_v13": "위의 native=true 양식에 한해 기존 지원; 이번 작업은 해당 EXE 재검증 아님",
+    "portfolio_v11": "재무제표 대사 별도 데모; 이번 JSON을 직접 읽는 기능 없음",
+    "worker_fixtures": "표준 라이브러리 Python 검증기 5개 독립 합성 사례",
+    "source_document_import": "새 JSON/원본 은행PDF/OCR/조회 회신 직접 가져오기 미구현",
+    "workpaper": "필드 명세와 예외 추적 정보만; 기존 조서 UI/EXE 미연결",
+    "publishing": "PM 담당; 이 워커는 EXE·GitHub를 수정하지 않음"
+  },
+  "references": [
+    {
+      "source": "XRB ISA (NZ) 500",
+      "url": "https://standards.xrb.govt.nz/standards-navigator/isa-nz-500/",
+      "paragraphs": [
+        "9",
+        "A23"
+      ],
+      "application": "기업 작성 정보의 정확성·완전성과 재계산 설계 근거",
+      "limit": "뉴질랜드 공개 기준 참고; 대한민국 적용 기준/계약에 대한 준수 인증 아님",
+      "checked_on": "2026-10-23"
+    },
+    {
+      "source": "XRB ISA (NZ) 505, Compiled June 2021",
+      "url": "https://standards.xrb.govt.nz/assets/Uploads/ISA-NZ-505-Dec-21.pdf",
+      "paragraphs": [
+        "7",
+        "10",
+        "12",
+        "13",
+        "14"
+      ],
+      "application": "감사인 조회 통제, 회신 신뢰성·미회신·차이 후속조치 설계 참고",
+      "limit": "2026-01-01 시작 사례는 2021 적용판 참고. 2026 개정판은 2026-12-15 이후 시작기간 적용이므로 이번 사례에 일괄 소급하지 않음. 한국판 적용 여부는 PM·감사인 확인",
+      "checked_on": "2026-10-23"
+    }
+  ]
+}

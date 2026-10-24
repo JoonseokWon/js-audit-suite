@@ -1,0 +1,528 @@
+{
+  "schema_version": "account-evidence-1",
+  "synthetic": true,
+  "ledger_joined": false,
+  "worker": "inventory_ap",
+  "context": {
+    "회사코드": "SYNTH01",
+    "시작일": "2026-01-01",
+    "기준일": "2026-12-31",
+    "통화": "KRW",
+    "연결구분": "별도",
+    "후속검색종료": "2027-02-28"
+  },
+  "case_index": 4,
+  "case": {
+    "case_id": "INV-05-NULL-NRV",
+    "description": "NRV 근거 판매단가가 null. 누락을 0원으로 대체하거나 평가손실0으로 정상 표시하지 않고 평가 비교 차단.",
+    "documents": [
+      {
+        "document_id": "INV-PO-001",
+        "document_type": "purchase_order",
+        "transaction_id": "INV-TXN-001",
+        "fields": {
+          "company_code": "SYNTH01",
+          "vendor_id": "INV-VENDOR-001",
+          "product_id": "INV-PRODUCT-001",
+          "quantity": 100,
+          "unit": "EA",
+          "unit_cost": 1000,
+          "control_transfer_basis": "accepted_at_destination",
+          "terms_evidence": "INV-TERM-001"
+        }
+      },
+      {
+        "document_id": "INV-GR-001",
+        "document_type": "goods_receipt",
+        "transaction_id": "INV-TXN-001",
+        "fields": {
+          "company_code": "SYNTH01",
+          "purchase_order_id": "INV-PO-001",
+          "product_id": "INV-PRODUCT-001",
+          "quantity": 100,
+          "unit": "EA",
+          "accepted_date": "2026-12-28",
+          "warehouse_id": "INV-WH-001",
+          "owner_id": "SYNTH01"
+        }
+      },
+      {
+        "document_id": "INV-PI-001",
+        "document_type": "purchase_invoice",
+        "transaction_id": "INV-TXN-001",
+        "fields": {
+          "company_code": "SYNTH01",
+          "purchase_order_id": "INV-PO-001",
+          "receipt_id": "INV-GR-001",
+          "vendor_id": "INV-VENDOR-001",
+          "quantity": 100,
+          "unit": "EA",
+          "net_amount": 100000,
+          "tax_amount": 10000,
+          "gross_amount": 110000,
+          "invoice_date": "2026-12-28"
+        }
+      },
+      {
+        "document_id": "INV-TAX-001",
+        "document_type": "tax_invoice",
+        "transaction_id": "INV-TXN-001",
+        "fields": {
+          "company_code": "SYNTH01",
+          "invoice_id": "INV-PI-001",
+          "net_amount": 100000,
+          "tax_amount": 10000,
+          "gross_amount": 110000,
+          "supply_date": "2026-12-28"
+        }
+      },
+      {
+        "document_id": "INV-PAY-001",
+        "document_type": "bank_payment",
+        "transaction_id": "INV-TXN-001",
+        "fields": {
+          "company_code": "SYNTH01",
+          "invoice_id": "INV-PI-001",
+          "vendor_id": "INV-VENDOR-001",
+          "payment_date": "2027-01-20",
+          "amount": -110000,
+          "source_scope": "SYNTHETIC bank outflow population 2027-01-01..2027-02-28"
+        }
+      },
+      {
+        "document_id": "INV-STMT-001",
+        "document_type": "supplier_statement",
+        "transaction_id": "INV-TXN-001",
+        "fields": {
+          "company_code": "SYNTH01",
+          "vendor_id": "INV-VENDOR-001",
+          "invoice_id": "INV-PI-001",
+          "balance_date": "2026-12-31",
+          "payable_signed": -110000
+        }
+      },
+      {
+        "document_id": "INV-GL-001",
+        "document_type": "gl_ap_record",
+        "transaction_id": "INV-TXN-001",
+        "fields": {
+          "company_code": "SYNTH01",
+          "journal_id": "INV-JE-001",
+          "invoice_id": "INV-PI-001",
+          "posting_date": "2026-12-28",
+          "inventory_debit": 100000,
+          "input_vat_debit": 10000,
+          "ap_credit": 110000,
+          "closing_payable_signed": -110000
+        }
+      },
+      {
+        "document_id": "INV-STOCK-001",
+        "document_type": "stock_ledger",
+        "transaction_id": "INV-TXN-001",
+        "fields": {
+          "company_code": "SYNTH01",
+          "product_id": "INV-PRODUCT-001",
+          "warehouse_id": "INV-WH-001",
+          "unit": "EA",
+          "balance_date": "2026-12-31",
+          "opening_quantity": 0,
+          "issued_quantity": 0,
+          "closing_quantity": 100,
+          "unit_cost": 1000,
+          "recorded_allowance": 0
+        }
+      },
+      {
+        "document_id": "INV-COUNT-001",
+        "document_type": "physical_count",
+        "transaction_id": "INV-TXN-001",
+        "fields": {
+          "company_code": "SYNTH01",
+          "product_id": "INV-PRODUCT-001",
+          "warehouse_id": "INV-WH-001",
+          "unit": "EA",
+          "count_date": "2026-12-31",
+          "quantity": 100,
+          "direction": "floor_to_sheet_and_sheet_to_floor",
+          "attendance_status": "synthetic example only"
+        }
+      },
+      {
+        "document_id": "INV-NRV-001",
+        "document_type": "nrv_evidence",
+        "transaction_id": "INV-TXN-001",
+        "fields": {
+          "company_code": "SYNTH01",
+          "product_id": "INV-PRODUCT-001",
+          "evidence_date": "2027-01-05",
+          "estimated_sale_price": null,
+          "completion_cost": 0,
+          "selling_cost": 100,
+          "year_end_condition_basis": "missing sale evidence; auditor follow-up required"
+        }
+      },
+      {
+        "document_id": "INV-REG-001",
+        "document_type": "warehouse_receipt_register",
+        "transaction_id": "INV-TXN-001",
+        "fields": {
+          "company_code": "SYNTH01",
+          "receipt_ids": [
+            "INV-GR-001"
+          ],
+          "receipt_count": 1,
+          "scope_start": "2026-12-01",
+          "scope_end": "2027-01-31",
+          "cancelled_receipts": [],
+          "source_note": "SYNTHETIC independent-of-ledger population design; same fixture author, no real independent assurance"
+        }
+      },
+      {
+        "document_id": "INV-TERM-001",
+        "document_type": "purchase_terms",
+        "transaction_id": "INV-TXN-001",
+        "fields": {
+          "company_code": "SYNTH01",
+          "vendor_id": "INV-VENDOR-001",
+          "control_transfer_basis": "accepted_at_destination",
+          "approval_status": "synthetic_declared",
+          "terms_text": "합성 계약: 지정 창고에서 검수 완료 시 소유권·위험 이전. 선급금·위탁·반품 조건 없음. 실제 계약 해석 아님."
+        }
+      }
+    ],
+    "expected": [
+      {
+        "check_id": "RECEIPT_QTY",
+        "status": "PASS",
+        "expected_value": 100,
+        "actual_value": 100,
+        "difference": 0,
+        "reason": "발주·입고 일치",
+        "unit": "EA",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/4/documents/0/fields/quantity",
+            "document_id": "INV-PO-001",
+            "original_value": 100
+          },
+          {
+            "json_pointer": "/cases/4/documents/1/fields/quantity",
+            "document_id": "INV-GR-001",
+            "original_value": 100
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "INVOICE_QTY",
+        "status": "PASS",
+        "expected_value": 100,
+        "actual_value": 100,
+        "difference": 0,
+        "reason": "입고·송장 일치",
+        "unit": "EA",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/4/documents/1/fields/quantity",
+            "document_id": "INV-GR-001",
+            "original_value": 100
+          },
+          {
+            "json_pointer": "/cases/4/documents/2/fields/quantity",
+            "document_id": "INV-PI-001",
+            "original_value": 100
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "INVOICE_NET",
+        "status": "PASS",
+        "expected_value": 100000,
+        "actual_value": 100000,
+        "difference": 0,
+        "reason": "세전금액 일치",
+        "unit": "KRW",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/4/documents/0/fields/unit_cost",
+            "document_id": "INV-PO-001",
+            "original_value": 1000
+          },
+          {
+            "json_pointer": "/cases/4/documents/2/fields/quantity",
+            "document_id": "INV-PI-001",
+            "original_value": 100
+          },
+          {
+            "json_pointer": "/cases/4/documents/2/fields/net_amount",
+            "document_id": "INV-PI-001",
+            "original_value": 100000
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "TAX_GROSS",
+        "status": "PASS",
+        "expected_value": 110000,
+        "actual_value": 110000,
+        "difference": 0,
+        "reason": "총액 일치",
+        "unit": "KRW",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/4/documents/2/fields/gross_amount",
+            "document_id": "INV-PI-001",
+            "original_value": 110000
+          },
+          {
+            "json_pointer": "/cases/4/documents/3/fields/gross_amount",
+            "document_id": "INV-TAX-001",
+            "original_value": 110000
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "CUTOFF",
+        "status": "PASS",
+        "expected_value": "2026-12-28",
+        "actual_value": "2026-12-28",
+        "difference": null,
+        "reason": "기간귀속 일치",
+        "unit": "ISO date / fiscal period",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/4/documents/11/fields/control_transfer_basis",
+            "document_id": "INV-TERM-001",
+            "original_value": "accepted_at_destination"
+          },
+          {
+            "json_pointer": "/cases/4/documents/1/fields/accepted_date",
+            "document_id": "INV-GR-001",
+            "original_value": "2026-12-28"
+          },
+          {
+            "json_pointer": "/cases/4/documents/6/fields/posting_date",
+            "document_id": "INV-GL-001",
+            "original_value": "2026-12-28"
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "AP_RECORD",
+        "status": "PASS",
+        "expected_value": 1,
+        "actual_value": 1,
+        "difference": 0,
+        "reason": "채무 기록 존재",
+        "unit": "record_count",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/4/documents/10/fields/receipt_ids",
+            "document_id": "INV-REG-001",
+            "original_value": [
+              "INV-GR-001"
+            ]
+          },
+          {
+            "json_pointer": "/cases/4/documents/1/fields/accepted_date",
+            "document_id": "INV-GR-001",
+            "original_value": "2026-12-28"
+          },
+          {
+            "json_pointer": "/cases/4/documents/4/fields/amount",
+            "document_id": "INV-PAY-001",
+            "original_value": -110000
+          },
+          {
+            "json_pointer": "/cases/4/documents/6/fields/posting_date",
+            "document_id": "INV-GL-001",
+            "original_value": "2026-12-28"
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "AP_BALANCE",
+        "status": "PASS",
+        "expected_value": -110000,
+        "actual_value": -110000,
+        "difference": 0,
+        "reason": "채무 잔액 일치",
+        "unit": "KRW",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/4/documents/2/fields/gross_amount",
+            "document_id": "INV-PI-001",
+            "original_value": 110000
+          },
+          {
+            "json_pointer": "/cases/4/documents/1/fields/accepted_date",
+            "document_id": "INV-GR-001",
+            "original_value": "2026-12-28"
+          },
+          {
+            "json_pointer": "/cases/4/documents/6/fields/closing_payable_signed",
+            "document_id": "INV-GL-001",
+            "original_value": -110000
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "FOLLOWUP_PAYMENT",
+        "status": "PASS",
+        "expected_value": -110000,
+        "actual_value": -110000,
+        "difference": 0,
+        "reason": "후속 지급 일치",
+        "unit": "KRW",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/4/documents/2/fields/gross_amount",
+            "document_id": "INV-PI-001",
+            "original_value": 110000
+          },
+          {
+            "json_pointer": "/cases/4/documents/4/fields/amount",
+            "document_id": "INV-PAY-001",
+            "original_value": -110000
+          },
+          {
+            "json_pointer": "/cases/4/documents/4/fields/payment_date",
+            "document_id": "INV-PAY-001",
+            "original_value": "2027-01-20"
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "SUPPLIER_TIE",
+        "status": "PASS",
+        "expected_value": -110000,
+        "actual_value": -110000,
+        "difference": 0,
+        "reason": "공급자 명세 일치",
+        "unit": "KRW",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/4/documents/5/fields/payable_signed",
+            "document_id": "INV-STMT-001",
+            "original_value": -110000
+          },
+          {
+            "json_pointer": "/cases/4/documents/6/fields/closing_payable_signed",
+            "document_id": "INV-GL-001",
+            "original_value": -110000
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "STOCK_ROLL",
+        "status": "PASS",
+        "expected_value": 100,
+        "actual_value": 100,
+        "difference": 0,
+        "reason": "수불 일치",
+        "unit": "EA",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/4/documents/7/fields/opening_quantity",
+            "document_id": "INV-STOCK-001",
+            "original_value": 0
+          },
+          {
+            "json_pointer": "/cases/4/documents/1/fields/quantity",
+            "document_id": "INV-GR-001",
+            "original_value": 100
+          },
+          {
+            "json_pointer": "/cases/4/documents/1/fields/accepted_date",
+            "document_id": "INV-GR-001",
+            "original_value": "2026-12-28"
+          },
+          {
+            "json_pointer": "/cases/4/documents/7/fields/issued_quantity",
+            "document_id": "INV-STOCK-001",
+            "original_value": 0
+          },
+          {
+            "json_pointer": "/cases/4/documents/7/fields/closing_quantity",
+            "document_id": "INV-STOCK-001",
+            "original_value": 100
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "STOCK_COUNT",
+        "status": "PASS",
+        "expected_value": 100,
+        "actual_value": 100,
+        "difference": 0,
+        "reason": "수량 일치",
+        "unit": "EA",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/4/documents/8/fields/quantity",
+            "document_id": "INV-COUNT-001",
+            "original_value": 100
+          },
+          {
+            "json_pointer": "/cases/4/documents/7/fields/closing_quantity",
+            "document_id": "INV-STOCK-001",
+            "original_value": 100
+          }
+        ],
+        "follow_up": "합성 검사 결과 일치. 실제 원본의 진위·모집단 완전성 및 감사 결론은 별도 검토한다."
+      },
+      {
+        "check_id": "NRV_ALLOWANCE",
+        "status": "INPUT_BLOCKED",
+        "expected_value": null,
+        "actual_value": 0,
+        "difference": null,
+        "reason": "판매가 근거 null로 NRV 기대값 산정 불가. 장부 충당금0은 원본 값으로만 보존",
+        "unit": "KRW",
+        "source_refs": [
+          {
+            "json_pointer": "/cases/4/documents/9/fields/estimated_sale_price",
+            "document_id": "INV-NRV-001",
+            "original_value": null
+          },
+          {
+            "json_pointer": "/cases/4/documents/9/fields/completion_cost",
+            "document_id": "INV-NRV-001",
+            "original_value": 0
+          },
+          {
+            "json_pointer": "/cases/4/documents/9/fields/selling_cost",
+            "document_id": "INV-NRV-001",
+            "original_value": 100
+          },
+          {
+            "json_pointer": "/cases/4/documents/7/fields/unit_cost",
+            "document_id": "INV-STOCK-001",
+            "original_value": 1000
+          },
+          {
+            "json_pointer": "/cases/4/documents/7/fields/closing_quantity",
+            "document_id": "INV-STOCK-001",
+            "original_value": 100
+          },
+          {
+            "json_pointer": "/cases/4/documents/7/fields/recorded_allowance",
+            "document_id": "INV-STOCK-001",
+            "original_value": 0
+          }
+        ],
+        "follow_up": "판매가격·완성/판매필요원가의 승인 근거와 기말 상태 관련성을 확보한다. 실사차이 해소 후 재계산하며 수정분개를 자동 승인하지 않는다."
+      }
+    ]
+  }
+}

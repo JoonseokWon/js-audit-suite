@@ -1,0 +1,64 @@
+{
+  "schema_version": "pm-raw-1",
+  "worker": "debt_tax",
+  "synthetic": true,
+  "integrated": false,
+  "context": {"company_code":"SYNTH01","start_date":"2026-01-01","end_date":"2026-12-31","currency":"KRW","financial_statement_scope":"별도"},
+  "implementation_status": {
+    "loan_recalculation": "작은 합성 3사례의 원금 롤포워드·단리·미지급이자 비교만 구현",
+    "tax": "기존 자료 색인과 요청자료·판단·조서 필드 설계. 신규 세액 계산 미구현",
+    "covenants_and_classification": "요청자료 설계. 유동성 분류와 약정 준수 판단 미구현",
+    "confirmation": "합성 통제대장만 색인. 실제 발송·회신·독립성 검증 미수행",
+    "exe_input": "신규 JSON은 현재 EXE 가져오기 대상이 아님. PM 어댑터 및 통합 검증 필요",
+    "journal_posting": "미구현. 수정분개 승인·전기 자동 수행 없음"
+  },
+  "accounts_and_assertions": [
+    {"accounts":["2500 차입금","2420 미지급이자","5710 차입이자비용"],"assertions":["완전성","실재·의무","정확성·평가","기간귀속","분류·표시"],"procedures":["A03"]},
+    {"accounts":["2800 이연법인세부채","5760 이연법인세비용","당기법인세자산·부채·비용(계정 미배정)"],"assertions":["완전성","정확성·평가","권리·의무","분류·표시"],"procedures":["A18"]}
+  ],
+  "existing_sources_root": "../../../2026-10-23",
+  "existing_sources": [
+    {"dataset_id":"D007","catalog_pointer":"/datasets/6","file":"배포/02_절차별원천자료/01_공통_계획_통제.xlsx","sheet":"IT_IPE_추출기록","range":"A1:J3","purpose":"회사·기간·추출 조건과 IPE 검증 상태 확인용. 독립 통제의 대체가 아님","input_status":"설계·색인 자료","transport_note":"G2/G3의 XLSX 원문에는 타임스탬프 앞에 작은따옴표가 있음. 카탈로그와 비교할 때만 명시적으로 해석하고 원본 값은 결과에 보존"},
+    {"dataset_id":"D012","catalog_pointer":"/datasets/11","file":"배포/02_절차별원천자료/02_자금_금융_차입.xlsx","sheet":"조회_통제대장","range":"A1:K4","purpose":"CONF03/LN01 차입 조회통제. 미수행·미회신이라는 원상태 보존","input_status":"설계·색인 자료"},
+    {"dataset_id":"D013","catalog_pointer":"/datasets/12","file":"배포/02_절차별원천자료/02_자금_금융_차입.xlsx","sheet":"차입_조건","range":"A1:M2","purpose":"기존 LN01 원금2000000·약정이자50000·지급30000·미지급20000","input_status":"추가 원천자료, 직접 계산 입력 미연결"},
+    {"dataset_id":"D014","catalog_pointer":"/datasets/13","file":"배포/02_절차별원천자료/02_자금_금융_차입.xlsx","sheet":"약정_조건","range":"A1:J2","purpose":"약정 측정일·임계값·면제서·미검토 상태의 요청·교차참조","input_status":"추가 원천자료, 자동 분류 미구현"},
+    {"dataset_id":"D042","catalog_pointer":"/datasets/41","file":"배포/02_절차별원천자료/06_세무_자본_연결.xlsx","sheet":"세무_일시적차이","range":"A1:K2","purpose":"기계 장부가720000·세무가620000·더미20%·기말DTL20000 가정","input_status":"추가 원천자료, 세율 유효성·인식 판단 미검토"},
+    {"dataset_id":"D043","catalog_pointer":"/datasets/42","file":"배포/02_절차별원천자료/06_세무_자본_연결.xlsx","sheet":"세무_당기조정","range":"A1:F4","purpose":"일시적차이 및 미인식DTA 가정의 조정 초안","input_status":"세무신고 자료 아님, 계산 연결 미구현"},
+    {"dataset_id":"D044","catalog_pointer":"/datasets/43","file":"배포/02_절차별원천자료/06_세무_자본_연결.xlsx","sheet":"당기법인세_가정","range":"A1:J2","purpose":"과세손실·당기세액0이라는 합성 가정의 색인","input_status":"실제 세법 미검토, 신규 계산 미구현"},
+    {"dataset_id":"D054","catalog_pointer":"/datasets/53","file":"배포/01_현재프로그램입력/01_원장_리드_합성자료.xlsx","sheet":"시산표","range":"A1:G59","purpose":"기존 부채는 차변-대변 음수. 2500·2420·2800 및 5710·5760 연결","input_status":"기존 통합 앱 원장 입력. 신규 DEBT 사례는 편입 금지"},
+    {"dataset_id":"D055","catalog_pointer":"/datasets/54","file":"배포/01_현재프로그램입력/01_원장_리드_합성자료.xlsx","sheet":"총계정원장","range":"A1:I83","purpose":"J-LOAN·J-INT·J-DTL 원장 원천. 전표ID+행ID를 유지","input_status":"기존 통합 앱 원장 입력. 신규 DEBT 사례는 편입 금지"},
+    {"dataset_id":"D056","catalog_pointer":"/datasets/55","file":"배포/01_현재프로그램입력/01_원장_리드_합성자료.xlsx","sheet":"계정매핑","range":"A1:D59","purpose":"리드와 본문·주석의 계정 매핑 후보","input_status":"기존 원장 입력. 신규 계정은 PM 승인 필요"},
+    {"dataset_id":"D057","catalog_pointer":"/datasets/56","file":"배포/01_현재프로그램입력/01_원장_리드_합성자료.xlsx","sheet":"감사조정","range":"A1:G2","purpose":"현재 데이터 0행. 2행은 서식만 있는 빈 행. 승인된 조정 없이 차이를 자동 편입하지 않음","input_status":"기존 원장 입력. 승인·전기와 분리"},
+    {"dataset_id":"D058","catalog_pointer":"/datasets/57","file":"배포/01_현재프로그램입력/01_원장_리드_합성자료.xlsx","sheet":"모듈연결","range":"A1:E29","purpose":"기존 모듈 연결표 재사용 후보. 차입·세금 신규 연결은 미승인","input_status":"기존 원장 입력. 신규 계산 편입 미구현"}
+  ],
+  "additional_requests": [
+    {"request_id":"DEBT-PBC01","category":"차입계약","request_from":"자금·재무팀","documents":["원계약·실행통지·모든 변경계약","원금·실행일·만기·이자율과 변경 이력","수수료·할인발행·중도상환·비현금변경 조건","사용 가능 한도와 미사용 약정"],"join_keys":["company_code","loan_id","contract_id","version","document_id"],"workpaper":"DEBT-WP01 차입 롤포워드"},
+    {"request_id":"DEBT-PBC02","category":"원금·이자 지급","request_from":"자금·회계팀","documents":["기초 차입명세·기말 차입보조부","당기 실행·상환·차환·비현금변경 내역","은행거래·지급요청·정산명세","이자율·일수·지급주기·미지급 계산표","후속 지급 자료(2027 자료는 별도 표시)"],"join_keys":["company_code","loan_id","transaction_id","bank_transaction_id","journal_id","line_id","document_id"],"workpaper":"DEBT-WP02 이자·미지급 대사"},
+    {"request_id":"DEBT-PBC03","category":"담보·약정·외부조회","request_from":"자금·법무·감사팀","documents":["담보목록·등기/등록·질권설정·보증·제한예금 내역","재무약정 원문·측정일·준수 계산 근거","위반통지·채권자 면제/유예 문서와 효력 발생일","독립적으로 통제된 금융조회 요청·회신·미회신 대체절차 기록","계속기업·유동성 및 차입 주석 초안"],"join_keys":["company_code","loan_id","asset_id","covenant_id","confirmation_id","document_id"],"workpaper":"DEBT-WP03 약정·담보·분류 검토"},
+    {"request_id":"DEBT-PBC04","category":"당기법인세","request_from":"세무·회계팀","documents":["당기 법인세 계산·세무조정·과세표준·공제감면 명세","전기 신고서·당기 중간예납·원천납부·납부영수증","신고·결정·경정·세무조사·불복·불확실한 세무처리 내역","회계 세전손익에서 세무상 소득까지 조정표","세율·세법 제정/실질적 제정 및 적용기간의 근거"],"join_keys":["company_code","tax_jurisdiction_id","tax_return_id","tax_year","transaction_id","journal_id","document_id"],"workpaper":"DEBT-WP04 당기법인세·미납세액 대사"},
+    {"request_id":"DEBT-PBC05","category":"이연법인세","request_from":"세무·회계·경영계획팀","documents":["자산·부채별 기초·기말 장부가와 세무기준액","일시적차이 발생·소멸·기타변동 명세 및 관련 분개","결손금·세액공제 발생연도·만료·공제한도·사용내역","미래 과세소득 예측·가정·회수방법·실적 비교","미인식 DTA·인식 예외·상계·세율·관할 구분 근거","손익·OCI·자본·사업결합 세효과 구분 및 세율차이 조정 주석"],"join_keys":["company_code","tax_jurisdiction_id","temporary_difference_id","asset_id","account_code","journal_id","document_id"],"workpaper":"DEBT-WP05 이연법인세 변동·인식 검토"}
+  ],
+  "joining": {
+    "fixture_key":["case_id","company_code","transaction_id","document_id"],
+    "loan_subkey":"loan_id",
+    "existing_key":"D013 차입ID LN01와 D014 차입ID, D012 대상ID, D055 전표ID·행ID의 PM 승인 연결표",
+    "separation":"DEBT-LN01/DEBT-TX01은 기존 LN01/J-LOAN/J-INT와 별도 합성 거래. 숫자가 같아도 자동 결합하지 않음",
+    "cash_allocation":"원금·이자·수수료가 섞인 지급은 PM이 금액 배분표를 승인한 뒤 연결",
+    "tax_allocation":"계정별 세무기준액과 세무조정·손익/OCI/자본 배분은 별도 연결표 필요"
+  },
+  "automated_checks": [
+    {"check_id":"DEBT-INPUT","rule":"필수5종 문서·회사/차입/기간/통화·정수원·정해진 단리 조건 검증. 누락은 INPUT_BLOCKED","implemented":true},
+    {"check_id":"DEBT-PRINCIPAL","rule":"기초원금+실행-상환+비현금변동과 -원장차입금기말잔액 비교. 부호 원본 보존","implemented":true},
+    {"check_id":"DEBT-INTEREST","rule":"변동 없는 원금×bp/10000×포함 일수/365와 차입이자비용 비교. 차이=원장-재계산","implemented":true},
+    {"check_id":"DEBT-ACCRUAL","rule":"기초미지급+재계산이자+현금지급(음수)와 -원장미지급잔액 비교","implemented":true},
+    {"check_id":"DEBT-TAX","rule":"당기·이연세액/신고·납부·주석 대사","implemented":false}
+  ],
+  "auditor_judgments": ["IPE 모집단의 독립적 완전성·정확성과 증빙 진위·신뢰성","차입 약정 해석·기준일 현재 결제 연기 권리·유동/비유동 분류와 공시","담보·보증·제한과 조회통제·회신/대체절차 충분성","유효이자율·수수료·조건변경·제거·외화·자본화 판단","적용세율·세법·불확실한 세무처리·DTA 실현가능성과 예외·상계·OCI/자본 배분","수정분개 제안·중요성·최종 조서 결론과 검토 승인"],
+  "workpaper_fields": ["workpaper_id","case_id","company_code","period_start","period_end","account_code","loan_id/temporary_difference_id","assertion","procedure","source_file","sheet/range/json_pointer","source_sha256","transaction_id","document_id","original_value","expected_value","actual_value","difference","exception_cause_id","follow_up","proposed_adjustment_id","preparer=null","reviewer=null","conclusion=null","review_status=미검토"],
+  "limitations": ["PASS는 시험 계산의 일치만 뜻함. 감사의견·실제 감사절차 완료·공식 기준 준수 인증 아님","원금 변동·복리·변동금리·수수료·조건변경·유효이자율·외화·자본화 계산 미구현","원천5종은 동일 합성 생성자가 만든 자료. 독립 ERP/은행 증거가 아님","이자비용과 미지급이자의 동일 차이를 총 왜곡금액으로 합산하지 않음","수집한 계약/조회/세무 정보만으로 약정 분류나 세금 인식 판정하지 않음"],
+  "official_sources": [
+    {"title":"IFRS Foundation IAS 12 Income Taxes 공개 개요","url":"https://www.ifrs.org/issued-standards/list-of-standards/ias-12-income-taxes/","accessed":"2026-10-23","use":"당기세금 및 장부가·세무기준액의 일시적차이와 조건부 DTA 인식이라는 요청자료 범위만 참고. 한국 세율·세법 판단 근거 아님"},
+    {"title":"IFRS Foundation IAS 1 Presentation of Financial Statements 공개 개요","url":"https://www.ifrs.org/issued-standards/list-of-standards/ias-1-presentation-of-financial-statements/","accessed":"2026-10-23","use":"차입 약정과 결제 연기 권리에 따른 분류·공시 판단이 별도 필요하다는 범위. 자동 판정 없음"},
+    {"title":"IFRS Foundation IFRS 9 Financial Instruments 공개 개요","url":"https://www.ifrs.org/issued-standards/list-of-standards/ifrs-9-financial-instruments/","accessed":"2026-10-23","use":"계약에 따른 금융부채 인식·측정과 거래원가 검토 필요성. 본 단리 시험이 전체 IFRS9 측정 구현을 뜻하지 않음"}
+  ]
+}

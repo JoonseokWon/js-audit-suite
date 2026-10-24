@@ -1,0 +1,632 @@
+{
+  "schema_version": "pm-raw-1",
+  "synthetic": true,
+  "integrated": false,
+  "worker": "payroll",
+  "context": {
+    "company_code": "SYNTH01",
+    "start_date": "2026-01-01",
+    "end_date": "2026-12-31",
+    "currency": "KRW",
+    "financial_statement_scope": "별도",
+    "subsequent_period_start": "2027-01-01",
+    "subsequent_search_end": "2027-01-31"
+  },
+  "accounts": [
+    "급여·상여·수당 비용",
+    "미지급급여",
+    "원천세·사회보험 예수금",
+    "연차부채",
+    "확정기여형 퇴직급여·미지급 기여금"
+  ],
+  "assertions": [
+    "발생·존재",
+    "완전성",
+    "정확성·평가",
+    "기간귀속",
+    "의무",
+    "표시·공시"
+  ],
+  "legacy_base": "../../../2026-10-23",
+  "legacy_catalog": "spec.json",
+  "existing_sources": [
+    {
+      "path": "배포/01_현재프로그램입력/09_종업원급여_합성자료.xlsx",
+      "sha256": "a0fae12e126c8601703f915629b4d439f1785fa483e8e683f06d6a21331ed00c",
+      "spec_book_index": 9,
+      "legacy_native_input": true,
+      "status": "기존 통합 앱 양식 색인; 이번 워커가 EXE 실행을 재검증한 것은 아님",
+      "sheets": [
+        {
+          "sheet": "설정",
+          "headers": [
+            "항목",
+            "값"
+          ],
+          "catalog_row_count": 10,
+          "spec_json_pointer": "/books/9/tables/설정",
+          "scope": "SYNTH01 합성 자료 색인"
+        },
+        {
+          "sheet": "인사명부",
+          "headers": [
+            "회사코드",
+            "사번",
+            "입사일",
+            "퇴사일",
+            "급여계좌",
+            "퇴직제도",
+            "DC계좌",
+            "인사근거"
+          ],
+          "catalog_row_count": 2,
+          "spec_json_pointer": "/books/9/tables/인사명부",
+          "scope": "SYNTH01 합성 자료 색인"
+        },
+        {
+          "sheet": "급여명세",
+          "headers": [
+            "회사코드",
+            "급여ID",
+            "사번",
+            "귀속월",
+            "월기준급여",
+            "무급일수",
+            "시간외시간",
+            "시간단가",
+            "가산배수",
+            "상여",
+            "기타수당",
+            "공제액",
+            "DC율",
+            "급여자산배부율",
+            "DC자산배부율",
+            "급여근거",
+            "상여근거",
+            "공제근거",
+            "배부근거"
+          ],
+          "catalog_row_count": 2,
+          "spec_json_pointer": "/books/9/tables/급여명세",
+          "scope": "SYNTH01 합성 자료 색인"
+        },
+        {
+          "sheet": "급여원장",
+          "headers": [
+            "회사코드",
+            "급여ID",
+            "총급여",
+            "실지급대상",
+            "공제액",
+            "급여비용",
+            "급여배부원가",
+            "DC발생액",
+            "DC비용",
+            "DC배부원가",
+            "원장근거"
+          ],
+          "catalog_row_count": 2,
+          "spec_json_pointer": "/books/9/tables/급여원장",
+          "scope": "SYNTH01 합성 자료 색인"
+        },
+        {
+          "sheet": "급여지급",
+          "headers": [
+            "이체ID",
+            "사번",
+            "급여ID",
+            "유형",
+            "지급일",
+            "수취계좌",
+            "지급액",
+            "이체근거"
+          ],
+          "catalog_row_count": 4,
+          "spec_json_pointer": "/books/9/tables/급여지급",
+          "scope": "SYNTH01 합성 자료 색인"
+        },
+        {
+          "sheet": "연차명세",
+          "headers": [
+            "회사코드",
+            "사번",
+            "기초일수",
+            "발생일수",
+            "사용일수",
+            "소멸일수",
+            "예상정산비율",
+            "일단가",
+            "연차자산배부율",
+            "권리구분",
+            "정산예정일",
+            "연차근거",
+            "배부근거"
+          ],
+          "catalog_row_count": 2,
+          "spec_json_pointer": "/books/9/tables/연차명세",
+          "scope": "SYNTH01 합성 자료 색인"
+        },
+        {
+          "sheet": "급여잔액",
+          "headers": [
+            "회사코드",
+            "사번",
+            "기초미지급급여",
+            "기말미지급급여",
+            "기초DC미지급",
+            "기말DC미지급",
+            "기초연차부채",
+            "기말연차부채",
+            "당기연차비용",
+            "당기연차배부원가",
+            "원장근거"
+          ],
+          "catalog_row_count": 2,
+          "spec_json_pointer": "/books/9/tables/급여잔액",
+          "scope": "SYNTH01 합성 자료 색인"
+        },
+        {
+          "sheet": "독립통제",
+          "headers": [
+            "자료",
+            "지표",
+            "기대값",
+            "추출근거",
+            "추출일시",
+            "작성자"
+          ],
+          "catalog_row_count": 66,
+          "spec_json_pointer": "/books/9/tables/독립통제",
+          "scope": "SYNTH01 합성 자료 색인"
+        }
+      ]
+    },
+    {
+      "path": "배포/02_절차별원천자료/05_인사_급여_DB.xlsx",
+      "sha256": "132e1cbd210dd5e5ba452d2c0848d42b7da0fe1195fd8af0e0453cd0be7cf5fc",
+      "spec_book_index": 14,
+      "legacy_native_input": false,
+      "status": "추가 원천자료, 기존 EXE 직접 입력 미지원",
+      "sheets": [
+        {
+          "sheet": "근태_수당승인",
+          "headers": [
+            "근태ID",
+            "회사코드",
+            "사번",
+            "귀속월",
+            "입사일",
+            "기본월급",
+            "무급일수",
+            "연장시간",
+            "시급",
+            "가산배수",
+            "상여",
+            "기타수당",
+            "공제승인액",
+            "증거ID"
+          ],
+          "catalog_row_count": 2,
+          "spec_json_pointer": "/books/14/tables/근태_수당승인",
+          "scope": "SYNTH01 합성 자료 색인"
+        },
+        {
+          "sheet": "종속회사_DB가입자",
+          "headers": [
+            "사번",
+            "회사코드",
+            "생년",
+            "입사일",
+            "정년나이",
+            "평가급여",
+            "급여상승률",
+            "할인율",
+            "제도",
+            "계리보고서ID"
+          ],
+          "catalog_row_count": 1,
+          "spec_json_pointer": "/books/14/tables/종속회사_DB가입자",
+          "scope": "SYNTH_SUB 별도 외부 참고, 이번 사례 합산 금지"
+        },
+        {
+          "sheet": "DB_계리변동",
+          "headers": [
+            "평가ID",
+            "회사코드",
+            "기초DBO",
+            "당기근무원가",
+            "DBO이자",
+            "보험수리손실OCI",
+            "급여지급",
+            "기말DBO",
+            "기초사외적립",
+            "운용이자",
+            "기업기여",
+            "자산재측정",
+            "자산급여지급",
+            "기말사외적립",
+            "기말순부채",
+            "증거ID"
+          ],
+          "catalog_row_count": 1,
+          "spec_json_pointer": "/books/14/tables/DB_계리변동",
+          "scope": "SYNTH_SUB 별도 외부 참고, 이번 사례 합산 금지"
+        },
+        {
+          "sheet": "DC_연차정책",
+          "headers": [
+            "정책ID",
+            "회사코드",
+            "대상",
+            "정책",
+            "기준값",
+            "효력일",
+            "근거ID",
+            "상태"
+          ],
+          "catalog_row_count": 2,
+          "spec_json_pointer": "/books/14/tables/DC_연차정책",
+          "scope": "SYNTH01 합성 자료 색인"
+        }
+      ]
+    },
+    {
+      "path": "배포/03_오류시나리오/현재EXE/04_급여중복.xlsx",
+      "sha256": "5f5b03da1763dff81131fbbce77084dcb2721cce225e2b80cccf06f6be42b8d9",
+      "spec_book_index": 20,
+      "legacy_native_input": true,
+      "status": "기존 통합 앱 양식 색인; 이번 워커가 EXE 실행을 재검증한 것은 아님",
+      "sheets": [
+        {
+          "sheet": "설정",
+          "headers": [
+            "항목",
+            "값"
+          ],
+          "catalog_row_count": 10,
+          "spec_json_pointer": "/books/20/tables/설정",
+          "scope": "SYNTH01 합성 자료 색인"
+        },
+        {
+          "sheet": "인사명부",
+          "headers": [
+            "회사코드",
+            "사번",
+            "입사일",
+            "퇴사일",
+            "급여계좌",
+            "퇴직제도",
+            "DC계좌",
+            "인사근거"
+          ],
+          "catalog_row_count": 2,
+          "spec_json_pointer": "/books/20/tables/인사명부",
+          "scope": "SYNTH01 합성 자료 색인"
+        },
+        {
+          "sheet": "급여명세",
+          "headers": [
+            "회사코드",
+            "급여ID",
+            "사번",
+            "귀속월",
+            "월기준급여",
+            "무급일수",
+            "시간외시간",
+            "시간단가",
+            "가산배수",
+            "상여",
+            "기타수당",
+            "공제액",
+            "DC율",
+            "급여자산배부율",
+            "DC자산배부율",
+            "급여근거",
+            "상여근거",
+            "공제근거",
+            "배부근거"
+          ],
+          "catalog_row_count": 3,
+          "spec_json_pointer": "/books/20/tables/급여명세",
+          "scope": "SYNTH01 합성 자료 색인"
+        },
+        {
+          "sheet": "급여원장",
+          "headers": [
+            "회사코드",
+            "급여ID",
+            "총급여",
+            "실지급대상",
+            "공제액",
+            "급여비용",
+            "급여배부원가",
+            "DC발생액",
+            "DC비용",
+            "DC배부원가",
+            "원장근거"
+          ],
+          "catalog_row_count": 2,
+          "spec_json_pointer": "/books/20/tables/급여원장",
+          "scope": "SYNTH01 합성 자료 색인"
+        },
+        {
+          "sheet": "급여지급",
+          "headers": [
+            "이체ID",
+            "사번",
+            "급여ID",
+            "유형",
+            "지급일",
+            "수취계좌",
+            "지급액",
+            "이체근거"
+          ],
+          "catalog_row_count": 4,
+          "spec_json_pointer": "/books/20/tables/급여지급",
+          "scope": "SYNTH01 합성 자료 색인"
+        },
+        {
+          "sheet": "연차명세",
+          "headers": [
+            "회사코드",
+            "사번",
+            "기초일수",
+            "발생일수",
+            "사용일수",
+            "소멸일수",
+            "예상정산비율",
+            "일단가",
+            "연차자산배부율",
+            "권리구분",
+            "정산예정일",
+            "연차근거",
+            "배부근거"
+          ],
+          "catalog_row_count": 2,
+          "spec_json_pointer": "/books/20/tables/연차명세",
+          "scope": "SYNTH01 합성 자료 색인"
+        },
+        {
+          "sheet": "급여잔액",
+          "headers": [
+            "회사코드",
+            "사번",
+            "기초미지급급여",
+            "기말미지급급여",
+            "기초DC미지급",
+            "기말DC미지급",
+            "기초연차부채",
+            "기말연차부채",
+            "당기연차비용",
+            "당기연차배부원가",
+            "원장근거"
+          ],
+          "catalog_row_count": 2,
+          "spec_json_pointer": "/books/20/tables/급여잔액",
+          "scope": "SYNTH01 합성 자료 색인"
+        },
+        {
+          "sheet": "독립통제",
+          "headers": [
+            "자료",
+            "지표",
+            "기대값",
+            "추출근거",
+            "추출일시",
+            "작성자"
+          ],
+          "catalog_row_count": 66,
+          "spec_json_pointer": "/books/20/tables/독립통제",
+          "scope": "SYNTH01 합성 자료 색인"
+        }
+      ]
+    }
+  ],
+  "reuse_notes": [
+    "기존 파일은 수정하지 않고 실제 XLSX 시트명·머리글·SHA256과 spec.json 위치를 검증한다.",
+    "CSV 이름에 오래된 중복본이 있으므로 이번 색인은 XLSX와 실제 시트를 기준으로 한다.",
+    "기존 E01/E02 자료와 신규 PAY-EMP-001 사례는 독립 모집단이다. 같은 TB에 합산하지 않는다.",
+    "SYNTH_SUB DB 가입자·계리변동은 SYNTH01 별도 범위 밖이므로 색인만 하고 산식과 평가금액을 합치지 않는다."
+  ],
+  "additional_requested_documents": [
+    {
+      "document_type": "employment_contract",
+      "description": "가상 사번·입퇴사일·월 고정급·정산정책·승인 근거",
+      "joins": [
+        "company_code",
+        "employee_id"
+      ],
+      "initial_fixture": true
+    },
+    {
+      "document_type": "attendance_approval",
+      "description": "근태·시간외근로·상여·수당 승인. 시간당 승인금액은 법정 가산율과 구분",
+      "joins": [
+        "company_code",
+        "employee_id",
+        "transaction_id"
+      ],
+      "initial_fixture": true
+    },
+    {
+      "document_type": "payroll_statement",
+      "description": "사번·귀속기간·급여ID·총급여·공제·실지급액",
+      "joins": [
+        "company_code",
+        "employee_id",
+        "payroll_id",
+        "transaction_id"
+      ],
+      "initial_fixture": true
+    },
+    {
+      "document_type": "withholding_approval",
+      "description": "승인 원천세 금액. 실제 신고서·납부영수증·차이조정표는 후속 요청",
+      "joins": [
+        "company_code",
+        "employee_id",
+        "transaction_id"
+      ],
+      "initial_fixture": true
+    },
+    {
+      "document_type": "social_insurance_approval",
+      "description": "승인 본인부담 사회보험 금액. 고지·납입·사업주부담 분리는 후속 요청",
+      "joins": [
+        "company_code",
+        "employee_id",
+        "transaction_id"
+      ],
+      "initial_fixture": true
+    },
+    {
+      "document_type": "bank_payment",
+      "description": "가상 지급 증빙ID·급여ID·지급일·지급액. 은행 계좌번호 없음",
+      "joins": [
+        "company_code",
+        "employee_id",
+        "payroll_id",
+        "transaction_id"
+      ],
+      "initial_fixture": true
+    },
+    {
+      "document_type": "payroll_ledger",
+      "description": "귀속월 급여원장·미지급액·분개ID. 이번 사례는 당기 단일 지급만 비교",
+      "joins": [
+        "company_code",
+        "employee_id",
+        "payroll_id",
+        "transaction_id"
+      ],
+      "initial_fixture": true
+    },
+    {
+      "document_type": "leave_record",
+      "description": "권리의 가정·기초/발생/사용/소멸/잔여일·정산예정일·승인 및 추정 근거",
+      "joins": [
+        "company_code",
+        "employee_id",
+        "transaction_id"
+      ],
+      "initial_fixture": true,
+      "automatic_status": "원천필드 예시만; 법정 권리·부채 측정 미구현"
+    },
+    {
+      "document_type": "dc_contribution_approval",
+      "description": "DC 제도 문서·승인 기여금·납입기한·미납입 잔액",
+      "joins": [
+        "company_code",
+        "employee_id",
+        "transaction_id"
+      ],
+      "initial_fixture": true,
+      "automatic_status": "원천필드 예시만; 법정 기여율 계산 없음"
+    },
+    {
+      "document_type": "dc_payment",
+      "description": "DC 납입일·납입액·수탁기관 합성 참조. 2027 후속자료 구분",
+      "joins": [
+        "company_code",
+        "employee_id",
+        "transaction_id"
+      ],
+      "initial_fixture": true,
+      "automatic_status": "납입 증거 예시만; 후속지급·미지급 자동 대사 미구현"
+    },
+    {
+      "document_type": "db_actuarial_report",
+      "description": "제도규약·계리보고서·원천 가입자 완전성·사외적립자산 확인·가정·전기/당기 변동·OCI/손익 조정",
+      "joins": [
+        "company_code",
+        "valuation_date",
+        "plan_id",
+        "document_id"
+      ],
+      "initial_fixture": false,
+      "automatic_status": "별도 전문가 판단 및 데이터 검증 필요; DB 계리평가 구현 안 함"
+    }
+  ],
+  "joining_keys": {
+    "case_isolation": "case_id; 대안 사례끼리 합산 금지",
+    "company": "company_code",
+    "transaction": "company_code + transaction_id",
+    "evidence": "company_code + transaction_id + document_id",
+    "payroll": "company_code + employee_id + pay_period_start + pay_period_end + payroll_id",
+    "cross_worker": "PM이 PAY 지급과 CASH 거래를 명시적 금액 배분표로 연결해야 한다. 이번에는 없음"
+  },
+  "implemented_checks": [
+    {
+      "check_id": "PAY-REQUIRED",
+      "procedure": "필수 문서·필드·정수 금액·ISO 날짜·회사/사번/거래 연결키 확인; 누락은 INPUT_BLOCKED"
+    },
+    {
+      "check_id": "PAY-UNIQUE",
+      "procedure": "동일 사번·기간 복수 급여명세 감지; 중복 금액 합산 중단"
+    },
+    {
+      "check_id": "PAY-EMPLOYMENT",
+      "procedure": "고정 전월 급여 대상 입퇴사일·귀속기간 비교; 중도 입퇴사면 일할 계산하지 않고 예외"
+    },
+    {
+      "check_id": "PAY-GROSS",
+      "procedure": "합성 계약월급+승인시간×승인단가+승인 상여+기타수당"
+    },
+    {
+      "check_id": "PAY-DEDUCTION",
+      "procedure": "독립 승인 원천세와 사회보험 금액 합계 비교; 법정세액/요율 산출 없음"
+    },
+    {
+      "check_id": "PAY-NET",
+      "procedure": "재계산 총급여-승인공제와 실지급대상 비교"
+    },
+    {
+      "check_id": "PAY-PAYMENT",
+      "procedure": "동일기간 단일 은행지급 대 순급여-원장 미지급잔액; 원천 위치와 차이 유지"
+    }
+  ],
+  "auditor_judgments": [
+    "종업원의 실제 존재·용역 제공 및 계약 승인 진위",
+    "모집단 추출의 독립 통제·완전성·회계장부/TB 연결",
+    "최저임금·가산수당·세법·사회보험 적용 및 실제 공제 적법성",
+    "상여 지급 의무·성과조건·기간귀속·비용/자산 배부",
+    "연차 누적권리·정산시점·추정·할인 여부·장단기 분류",
+    "DC/DB 실질 분류, DC 의무금액, DB 가정·계리평가·전문가 활용",
+    "특수관계자·경영진 보상·공시 범위",
+    "차이의 중요성·왜곡표시·수정분개 및 최종 결론"
+  ],
+  "workpaper_fields": [
+    "회사·기간·통화·범위",
+    "모집단·추출통제 및 해시",
+    "경영진 주장·감사목적",
+    "급여ID·사번·거래ID·증빙ID",
+    "원천 위치·원본 값·재계산 값·차이",
+    "미지급·후속 지급 구분",
+    "예외 원인·후속 절차·책임자·기한",
+    "감사기준/회계기준 참고와 적용 판단",
+    "작성자 null",
+    "검토자 null",
+    "결론 null",
+    "수정분개 승인 null",
+    "상태 미검토 초안"
+  ],
+  "implementation_status": {
+    "fixtures": "초기 독립 JSON 3개 사례",
+    "verifier": "표준 라이브러리로 고정 산식·금액 대사와 입력 차단만",
+    "legacy_exe_adapter": "미구현",
+    "shared_ledger_tb_integration": "미구현",
+    "workpaper_export": "필드 설계만, 워커의 조서 생성 기능 없음",
+    "legal_payroll_engine": "미구현",
+    "leave_valuation": "미구현",
+    "dc_legal_rate_engine": "미구현",
+    "db_actuarial_valuation": "미구현"
+  },
+  "references": [
+    {
+      "title": "IFRS Foundation: IAS 19 Employee Benefits 공식 개요",
+      "url": "https://www.ifrs.org/issued-standards/list-of-standards/ias-19-employee-benefits/",
+      "accessed": "2026-10-23",
+      "scope": "용역에 따른 급여 의무/비용, 단기급여 및 DC/DB 구분을 위한 공개 개요 참고. 한국 노동·세무 규정이나 K-IFRS/한국감사기준 준수 인증 아님."
+    }
+  ]
+}

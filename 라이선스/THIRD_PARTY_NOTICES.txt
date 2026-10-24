@@ -1,0 +1,14 @@
+CPython 3.14.8 and Tcl/Tk 9.0.4: Python-LICENSE.txt and Tcl/Tk terms.
+{
+  "openpyxl": "3.1.5",
+  "defusedxml": "0.7.1",
+  "et_xmlfile": "2.0.0",
+  "PyInstaller": "6.22.3",
+  "pyinstaller-hooks-contrib": "2026.8",
+  "altgraph": "0.17.5",
+  "packaging": "26.3",
+  "pefile": "2023.2.7",
+  "pywin32-ctypes": "0.2.3",
+  "setuptools": "84.0.0"
+}
+PyInstaller is a build tool; its bootloader exception permits bundled applications.

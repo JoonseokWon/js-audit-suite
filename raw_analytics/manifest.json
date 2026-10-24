@@ -1,0 +1,2401 @@
+{
+  "schema_version": "raw-analytics-1",
+  "context": {
+    "회사코드": "SYNTH01",
+    "시작일": "2026-01-01",
+    "기준일": "2026-12-31",
+    "통화": "KRW"
+  },
+  "kind": "synthetic-input-decomposition",
+  "independent_evidence": false,
+  "source_statement": "기존 정상 분석용 합성 XLSX를 분해한 재배치 자료. ERP·은행에서 새로 수집한 원천 또는 독립 감사증거가 아님.",
+  "baseline_reference": {
+    "file": "samples/통합/통합_v1.3_원장_리드.xlsx",
+    "sha256": "18765d8ad479bf36452500871a52b840f665799ce8a9aa8833272d87c1436388",
+    "nonblank_cells_types_row_order_match": true,
+    "format_only_blank_row_differences": [
+      {
+        "sheet": "감사조정",
+        "baseline_blank_physical_rows": [
+          2
+        ],
+        "analysis_blank_physical_rows": [],
+        "policy": "기존 원본은 변경하지 않음. 분해본은 정상 GLA 결합입력의 공통 7시트를 그대로 보존하여 분석 입력과 정확 재구성."
+      }
+    ]
+  },
+  "hash_policy": "SHA256. 각 행의 Excel 셀형식·Python 값타입·값과 물리행순서를 포함한 UTF-8 canonical JSON. 헤더 별도, 데이터행 Excel 2행부터.",
+  "files": [
+    {
+      "file": "01_GL_TB_합성원천.xlsx",
+      "sha256": "9a07c486624360954746de8cde279ae312caee38c5f5210b589c17118b8f4d22",
+      "bytes": 21653,
+      "mother_input": "samples/통합/통합_v1.5_GLA.xlsx",
+      "mother_sha256": "e48f246bc74e938a5252f991a2f3b81bd846e492439271591b403da34474e420",
+      "analysis_targets": [
+        {
+          "module": "GLA",
+          "file": "samples/통합/통합_v1.5_GLA.xlsx",
+          "sha256": "e48f246bc74e938a5252f991a2f3b81bd846e492439271591b403da34474e420"
+        },
+        {
+          "module": "FIA",
+          "file": "samples/통합/통합_v1.5_FIA.xlsx",
+          "sha256": "28bcb1b432d5e3a844d8e64cd4d6ee2423842b36f2020001a23533943f97861a"
+        },
+        {
+          "module": "현금분석",
+          "file": "samples/통합/통합_v1.5_현금분석.xlsx",
+          "sha256": "a2f887de18f9d56ff1ba35d308975d99cdd7b3bfa1444568490099884be20be2"
+        }
+      ],
+      "sheets": [
+        {
+          "sheet": "설정",
+          "headers": [
+            "항목",
+            "값"
+          ],
+          "columns": 2,
+          "physical_rows_including_header": 6,
+          "data_rows": 5,
+          "header_sha256": "4939bfde766847b7d81f24500fbe20d8e3b207ff2f4fa311714d9d9e074361ea",
+          "row_values_sha256": "5ca673bb6c1418e466a2f28eac2ad1c3f4d1b5a6ac54c8adbb923c3cc0fe7aeb",
+          "row_hashes": [
+            {
+              "excel_row": 2,
+              "sha256": "d40c34b4ae9d46ce4b75a2e28de2f4d41e00993dde01cdf3ce76c56befd47a63"
+            },
+            {
+              "excel_row": 3,
+              "sha256": "4b52e76a9b55d8bc1db7980873a2865c259c8bc28ffed25b96b9357c170e5664"
+            },
+            {
+              "excel_row": 4,
+              "sha256": "6db0f3feb677a22f414043cf66946b8c3b2b95f1b1534b24d23845252ba0455c"
+            },
+            {
+              "excel_row": 5,
+              "sha256": "5d1ced1b26e723d18bfcc2cd57c9292a06d7210027dc6416ecf19024af123f2d"
+            },
+            {
+              "excel_row": 6,
+              "sha256": "46d995bfcbcb5beca6026ce581b6d78890bd323cb6a43378aad18475c81e1d0f"
+            }
+          ]
+        },
+        {
+          "sheet": "시산표",
+          "headers": [
+            "회사코드",
+            "계정코드",
+            "계정명",
+            "기초잔액",
+            "당기차변",
+            "당기대변",
+            "기말잔액"
+          ],
+          "columns": 7,
+          "physical_rows_including_header": 60,
+          "data_rows": 59,
+          "header_sha256": "3dec8e3fed68dd5294b24fd7b6937716bacbc7320a8871b49b4b357b4e9083a3",
+          "row_values_sha256": "14aab82b3bed2ea86c2d289408b4e71d220009c22b24fb0e8c75ed21dcf9dd9f",
+          "row_hashes": [
+            {
+              "excel_row": 2,
+              "sha256": "6099937b36aae5e83904db228e30b4a3590096d54b2bf7152c54e3b81fd7f5f7"
+            },
+            {
+              "excel_row": 3,
+              "sha256": "55e71529d4b0bcc403f89f2c47f163e5d406f20d5f4c47342d5a0f822225ed56"
+            },
+            {
+              "excel_row": 4,
+              "sha256": "30bf90f4e6565cb1398eedfb2c8c3e58cf2c6e8f2a61f128a5d17c23549b7bc1"
+            },
+            {
+              "excel_row": 5,
+              "sha256": "88811e4f5b39d6852a3a35f4e0c55c97fe36dd8a77500c3a3c4c326902240e33"
+            },
+            {
+              "excel_row": 6,
+              "sha256": "ae33be8a21dbb37e5a16d7e851926108c6ee9734c35e98a4edc69d0a3bb3f281"
+            },
+            {
+              "excel_row": 7,
+              "sha256": "5151f933daf49aad2dd720c194cc642b5967cfdc052229c7fbc5d2ed4f2839cf"
+            },
+            {
+              "excel_row": 8,
+              "sha256": "799c75383a3dc41ae958ce4a653d738551d5373919807474dc83b5dcdc24df12"
+            },
+            {
+              "excel_row": 9,
+              "sha256": "0b93ae228ddc4d39e68cd54aab09f1950b79222edc0e0dd789027ea0fa1d18c9"
+            },
+            {
+              "excel_row": 10,
+              "sha256": "c5a72b71df923c1eda7ca0c0414be8613704537278b6390f188238e8dc512e41"
+            },
+            {
+              "excel_row": 11,
+              "sha256": "501088a588b098d9df337250d30ca3df732c1bc2bdeaef7f0be6cc331888f4c6"
+            },
+            {
+              "excel_row": 12,
+              "sha256": "dc61b038e402fd84bee9e1162d080bf468b2bf193da0af9b21d9ba8bde4ee113"
+            },
+            {
+              "excel_row": 13,
+              "sha256": "f2cc030f8e889cc25647da0adfbc69c6e29330e2a7fb00e3c45fa17c36b63546"
+            },
+            {
+              "excel_row": 14,
+              "sha256": "d7f8a30013ee20e06f54ea4a60ede817e5376732b3c027b1fd505dcb1533fd80"
+            },
+            {
+              "excel_row": 15,
+              "sha256": "20d485a5b0a300df205b45a1f4c359ab19a6ddec399ded961f7a0467db2adf64"
+            },
+            {
+              "excel_row": 16,
+              "sha256": "2ea77e1f70eb800387cc2391b16caff64af5e0b7b56577c498e60e6e4db6b745"
+            },
+            {
+              "excel_row": 17,
+              "sha256": "96cab22660840e5eb92e9eab0dbd556f2c8e76800490e447eb04367df8a54af1"
+            },
+            {
+              "excel_row": 18,
+              "sha256": "1e8372a50cf576cba743d9a712dd46d443539a9eb65d4a3e9c4f3962deebecf4"
+            },
+            {
+              "excel_row": 19,
+              "sha256": "bddbdb928d9a045916723a949316e1fb1c99fa86396198e4dffba700b16299d9"
+            },
+            {
+              "excel_row": 20,
+              "sha256": "db2699568065248ceeff927c3b0fd13462af2e4dca802e14db2b13d4301ac5a8"
+            },
+            {
+              "excel_row": 21,
+              "sha256": "3e9b93132a50c40e5ac883ed28dab834b431803079914342b48b2f4792e4540f"
+            },
+            {
+              "excel_row": 22,
+              "sha256": "c47b8e98a0af13098602957499164f50f3b7fefbdf427ffa7e0560e277371715"
+            },
+            {
+              "excel_row": 23,
+              "sha256": "a4ebd691caff4a87e6370d37c3e81fc26db483f30ebed5cb74d12e0419f05a7e"
+            },
+            {
+              "excel_row": 24,
+              "sha256": "4935b4d56ea0b807cb2254a33e72cf098619561e38becc92ac15cfd34a9d1c59"
+            },
+            {
+              "excel_row": 25,
+              "sha256": "3d814cffa262467f1438de80a7c6017c8f9c488c9737a39bf84d7f884969d1df"
+            },
+            {
+              "excel_row": 26,
+              "sha256": "aa9fdac626d588b199b2130d27add6c03a5f447e7af580cbaebd2824dca1098c"
+            },
+            {
+              "excel_row": 27,
+              "sha256": "91a5376789d9c5bb6e4d185f396e5f512d813c6609889ac1b3e7619586390198"
+            },
+            {
+              "excel_row": 28,
+              "sha256": "9e656068e5c618ed59f9579816458db4f98475c814c6f965951f785ce96c9d2b"
+            },
+            {
+              "excel_row": 29,
+              "sha256": "8e90979ade28abcf9e32f28e8e18f337402e785f9e92e8172bffdbf00924fa37"
+            },
+            {
+              "excel_row": 30,
+              "sha256": "dcbca9da3cc62c4145c80f2767a9c163a8622cf34ab6d1ac3f3f1aca93fadba4"
+            },
+            {
+              "excel_row": 31,
+              "sha256": "39f892f80e529056c0c7e0b8a82a8d00b568975382ce5d6f909f10e3c47ebd8d"
+            },
+            {
+              "excel_row": 32,
+              "sha256": "fdec950a69a384269958d6ca01fa5839cff3b9438749e158d7d3ad376d146920"
+            },
+            {
+              "excel_row": 33,
+              "sha256": "abeb7ee2a1ff42d00ffb91074ee0a20196ec0fdd3d3c2dc304830cee0e39e88c"
+            },
+            {
+              "excel_row": 34,
+              "sha256": "ef759f0a3cc1f76b5dcd81d5e85240855a9cac410c2a695f7d4cd604b5dda591"
+            },
+            {
+              "excel_row": 35,
+              "sha256": "dcfac61a36293d6ac692c52b83ae431067460f6a5e4d57f6b1ec3bcaf67ff7e9"
+            },
+            {
+              "excel_row": 36,
+              "sha256": "5eb3dfcd9bdca94d922ffb6f86259ff960eb58270a59cbac869a0f7e312d92a4"
+            },
+            {
+              "excel_row": 37,
+              "sha256": "514374f4fd75d2793b45c1b112a34fd10f9c1116ed75022f079f02a999a0f0d2"
+            },
+            {
+              "excel_row": 38,
+              "sha256": "93b10e1f16e3657bfbb61ded703863149343b70c076f5da46e77a1df2e7ac997"
+            },
+            {
+              "excel_row": 39,
+              "sha256": "e8d00c10c6dc57b00190f571578eca93df5af76f593c0d4aaa9461dd0742d5d6"
+            },
+            {
+              "excel_row": 40,
+              "sha256": "74a59d005f35fc449bcb25f09822b306827c9af1744320ad7d7ebf0ca3fd191e"
+            },
+            {
+              "excel_row": 41,
+              "sha256": "5862840458613596a6fccb6bd291dde91e115a008df1203347a58bdbf435bfd4"
+            },
+            {
+              "excel_row": 42,
+              "sha256": "a9a225485816abbdcb8ff26e39f6a40877155593f9d68798d5898f1958ec369d"
+            },
+            {
+              "excel_row": 43,
+              "sha256": "566b46938fa20adb8c0715e7e102c523fa52eeb1cc1a0c52fad9dff408cb2637"
+            },
+            {
+              "excel_row": 44,
+              "sha256": "2c220afc08aaae57d7c8ccb34cee04f9b6317bc08e28ca4829b33484320e5a73"
+            },
+            {
+              "excel_row": 45,
+              "sha256": "d84d1c58a2778288d267422e38edae639bcadf00db8b844cbdc2383f4cc084f5"
+            },
+            {
+              "excel_row": 46,
+              "sha256": "6b5b2f291269adb0c466af4042e7af0ffe84d225601dc64f4a6187adda57e050"
+            },
+            {
+              "excel_row": 47,
+              "sha256": "7fe6fa3f4b01c6885f991c6168cc3ce59913029661d8474aa1a71826fdd6d620"
+            },
+            {
+              "excel_row": 48,
+              "sha256": "a4530ceed730fd64474b67158959445124014a6ed845181935dac758de90a377"
+            },
+            {
+              "excel_row": 49,
+              "sha256": "5e01abc3cdad0e7039777f1cd1a975eff6722456842c8590749efe64ef07527c"
+            },
+            {
+              "excel_row": 50,
+              "sha256": "f13a26c6b1e1cb33235672f8bebfb4ce74b44ce1d12749a205971af5416d5732"
+            },
+            {
+              "excel_row": 51,
+              "sha256": "8a01d0859a62235addc4da1b1eb0a989f5069118ee639729b0af8fbb744b3d5e"
+            },
+            {
+              "excel_row": 52,
+              "sha256": "6ce91e28d92bef9ada23702c40ed049f6e69bc7696b7f367472ad5b9abc77010"
+            },
+            {
+              "excel_row": 53,
+              "sha256": "c0076933297060dae12c3701b2c2eb24240471f11666be14159af4bbba5b44cf"
+            },
+            {
+              "excel_row": 54,
+              "sha256": "004900913777fa78271b6cb86e8bafc5e23338291b1d24fae5587ec07c09720f"
+            },
+            {
+              "excel_row": 55,
+              "sha256": "b1c65c806ff5007b9e4a2b9cf15ca3e651f4b3698d320e94c541cc432e74b832"
+            },
+            {
+              "excel_row": 56,
+              "sha256": "7c71d738ba4999d0c52968243bb7dccb3dfae257acff8be5f0e4ae89f4e5d128"
+            },
+            {
+              "excel_row": 57,
+              "sha256": "50b79ba23f40407b24a37adb499948f4e10fb2e37212be84ad08e04414df89a0"
+            },
+            {
+              "excel_row": 58,
+              "sha256": "a05427571e1f9effbd70598a0b8b9b06410c8fd98b62eef8c661109d1eb3f25e"
+            },
+            {
+              "excel_row": 59,
+              "sha256": "2fb951c8b158cf735250bb10873af148b259ebe45a5f7382a65dd5bf99ebec35"
+            },
+            {
+              "excel_row": 60,
+              "sha256": "926617748332a696cd70ef954e971f9058d324590c2060797473d7157441760a"
+            }
+          ]
+        },
+        {
+          "sheet": "총계정원장",
+          "headers": [
+            "회사코드",
+            "전표ID",
+            "행ID",
+            "전기일",
+            "계정코드",
+            "차변",
+            "대변",
+            "적요",
+            "작성자"
+          ],
+          "columns": 9,
+          "physical_rows_including_header": 83,
+          "data_rows": 82,
+          "header_sha256": "e2c4a467bfcf707fe090e866f0d31c572a1c179dc1ae57ee209f083d4566b808",
+          "row_values_sha256": "a349d45474fe633bfe53f9945b4712cd7a9fe53cdf915ee9ffe06e0b5e71ba10",
+          "row_hashes": [
+            {
+              "excel_row": 2,
+              "sha256": "85faf521bd037d5ba6b7257ab98581bf95a8ab7d9e3269e6d794cd50ff9093f5"
+            },
+            {
+              "excel_row": 3,
+              "sha256": "4e97d456f335983433f76dd685de5506c61fd3cf8d8fcd9399b7617a2b7ab35f"
+            },
+            {
+              "excel_row": 4,
+              "sha256": "3490ab16f3c145a9e08ff002fc4c11f694c0bb990ce9305ada04286ed2819745"
+            },
+            {
+              "excel_row": 5,
+              "sha256": "598a737e23bc0b5a76241c04103f260a37c8de4e296ece0353ae07193722d3b7"
+            },
+            {
+              "excel_row": 6,
+              "sha256": "615dec86a67e83dc0f383e47e373287a3fe456b8b96a1e105ab9e140241d7387"
+            },
+            {
+              "excel_row": 7,
+              "sha256": "17a68442305d1636410aa102e8329309d5072f6959e30a243afe082ea5947032"
+            },
+            {
+              "excel_row": 8,
+              "sha256": "b202a274f9321893bf26893e4db954a8cb4890d357b353e6116d4c73f4b8cef6"
+            },
+            {
+              "excel_row": 9,
+              "sha256": "0372da60260b6d3982f8fe69dafa3cd7c641e3f63fd5ebb353af006d723cc3b3"
+            },
+            {
+              "excel_row": 10,
+              "sha256": "ee3b3cbca5f9c35a7d1931c3ebd982cb49476185d1395d77df6b1457d917b5ec"
+            },
+            {
+              "excel_row": 11,
+              "sha256": "98ebcb6f8a99a39499cb044a516d3c5d18db6615c84db66fca2db3ad6d7c18f1"
+            },
+            {
+              "excel_row": 12,
+              "sha256": "db8e44e5e2ecef965ec3be6f8c85e0cfafa9bb683f1bcf09515bfbb06c12731a"
+            },
+            {
+              "excel_row": 13,
+              "sha256": "603bc948ffd94b3f805260a8665bd7496e7b898a84da130a5183d4935eb90ff3"
+            },
+            {
+              "excel_row": 14,
+              "sha256": "69b5d898516d0b73f1f1307cd87b43fb9ed8a5e689f5e14b90d17b854e580347"
+            },
+            {
+              "excel_row": 15,
+              "sha256": "cf4b4635d440687ca8fd18e26a2f55cd15d8685b70c146fd982b566ca777af36"
+            },
+            {
+              "excel_row": 16,
+              "sha256": "e239c924ce9f630ea0bdf3eff7b96b72dc21bb612e83290c4755d5002af6e009"
+            },
+            {
+              "excel_row": 17,
+              "sha256": "14831d21be1f1e01248f64607d441c24f5bb82a046b31cc8318af78ace11544d"
+            },
+            {
+              "excel_row": 18,
+              "sha256": "f94aceef232bcafc62f35deb2a6624aafdbbaebe9f06e1d65d81ad98b3addbc2"
+            },
+            {
+              "excel_row": 19,
+              "sha256": "129f92da0fc530b6ce60f72e5bef7fc0eefcbfd55376c264cead3a5b84f9765c"
+            },
+            {
+              "excel_row": 20,
+              "sha256": "86c39615bfc4c684d5351623d14aa175b1924a9f66965fb62f4c086a0b4f5aee"
+            },
+            {
+              "excel_row": 21,
+              "sha256": "f94959847bcd5adbd42893712e0e5aeeb5afcfceafbee937158372382cdb9534"
+            },
+            {
+              "excel_row": 22,
+              "sha256": "b28311ceb32b86bdeb4c7bb9b8a9f0a3bf5620aa9bf5b8146fba0173ee66bb6b"
+            },
+            {
+              "excel_row": 23,
+              "sha256": "5cf131d703deb5db8e9879d9dc40f8cbdc7d097ec992564f00614fde4b59f580"
+            },
+            {
+              "excel_row": 24,
+              "sha256": "ab9369aa7649f3cfcb788cf81125234bcd3b62f5d21a5f07cfd69427ba281135"
+            },
+            {
+              "excel_row": 25,
+              "sha256": "3c7d610b45e972fd9556ad82ec6a5c72317bf3084d2e6978d0243164e9f1dd61"
+            },
+            {
+              "excel_row": 26,
+              "sha256": "4132b93e9000687988f4ceb479d89b7f697cdc6cdbfac25054792c350874f4eb"
+            },
+            {
+              "excel_row": 27,
+              "sha256": "795db39218c9e6f6bf3ea6f2c534d0419b44ff7de6c8d273e1646ffbb2c1a560"
+            },
+            {
+              "excel_row": 28,
+              "sha256": "56f0ae5a6904897da1dc19c91c35f8d053594787ef1bfbb04d961507a71a077c"
+            },
+            {
+              "excel_row": 29,
+              "sha256": "a2d66f61fd2ce62cb9d74a2357edc5b6f9b3f7d2e08003c76e496bb6a79320f1"
+            },
+            {
+              "excel_row": 30,
+              "sha256": "cd031ca07682e399eac34a0af308bc0efeea22f171f5aace7c42613985b11d27"
+            },
+            {
+              "excel_row": 31,
+              "sha256": "4f3710a83572a928f6aa54e5e64734e12c15a18bc9f6a6126e380c3b2e9d6003"
+            },
+            {
+              "excel_row": 32,
+              "sha256": "8451c0e2c7011ce2dbcafac5cd2a2e81209b9ab35643ac5b0089fa6d0eef5b6a"
+            },
+            {
+              "excel_row": 33,
+              "sha256": "1696d10759504942f8a200423f8aac625a23f44a685335ce7c22610e1da954fb"
+            },
+            {
+              "excel_row": 34,
+              "sha256": "ac51594660a48eb632432c38f56f75b53fc5bd2931611bf7735e35efe84d31fb"
+            },
+            {
+              "excel_row": 35,
+              "sha256": "8c8cd1f88756b9c3cc447569ab99c6a8b84810d4e09fcc719da38798a50c596c"
+            },
+            {
+              "excel_row": 36,
+              "sha256": "a4cefd914781266768cfa122a1404d06b1b857ebc26b8836e92c4ef2b412d786"
+            },
+            {
+              "excel_row": 37,
+              "sha256": "3780ae4b00f74970edf9e92de8cc7e7c03368582b284af2816f26e5da4087716"
+            },
+            {
+              "excel_row": 38,
+              "sha256": "a4db2426f14e7eaee3e151787ac9429f8a47fd3ef5192ddd4a6da9aadf381990"
+            },
+            {
+              "excel_row": 39,
+              "sha256": "8f977458ad826e3e9411ace76d4779c0fb2789d477a1f8bdab905f2663d443f5"
+            },
+            {
+              "excel_row": 40,
+              "sha256": "15278040842ec9384a58b2ee1597827f6b26eeae491e880d27c1e32d6fcfe5d3"
+            },
+            {
+              "excel_row": 41,
+              "sha256": "c6fd48ca78164f0152add21b63cadcf8379c0358ade5a2d995325328b3dd5052"
+            },
+            {
+              "excel_row": 42,
+              "sha256": "2337bf173ce2d38e8ad177e1d02e2e2ad59841b2a26e8610afd024db2bc1f4a7"
+            },
+            {
+              "excel_row": 43,
+              "sha256": "f4f9860f34a39c9b65c83fe144020a0e8b162986ab5adc6770aa543a1644213f"
+            },
+            {
+              "excel_row": 44,
+              "sha256": "8dce8a1b38ae90e8d6386d04b05476048fb2f6bea6e28f3fa20c5c46670fb5b1"
+            },
+            {
+              "excel_row": 45,
+              "sha256": "bd3e9b58521da27dcc94533adabf78bf572d06ce10344f4fc10d071f460fddea"
+            },
+            {
+              "excel_row": 46,
+              "sha256": "796c4a0650dfa6c5c43b8f067172bb0e28235da649a70b7148a1469ba9eb16cd"
+            },
+            {
+              "excel_row": 47,
+              "sha256": "2799639e755314f04acc8dc6569ca3b305e8b1252a3d092684f95a66cd1811fe"
+            },
+            {
+              "excel_row": 48,
+              "sha256": "738e3ccf5ed4418d5476c22bb33a755b421ebe37747f5ce1940895a4f9756829"
+            },
+            {
+              "excel_row": 49,
+              "sha256": "8c29100e26e9bb41d18ceb3130027678e6888fbf8a1b6cfcc4b3d8056a643253"
+            },
+            {
+              "excel_row": 50,
+              "sha256": "674b8dbd7358f60defd87d2c82834e91dcfd800d182911ed5407e0097ab28287"
+            },
+            {
+              "excel_row": 51,
+              "sha256": "b0e04102b08cd7c0e871561594037cc212bc6d65bc697119a0687ef35af6f7be"
+            },
+            {
+              "excel_row": 52,
+              "sha256": "b7c4974f77e6582715513f9e423b4b3d7dfacbab3fb5d6cc0b7731d361df3d4e"
+            },
+            {
+              "excel_row": 53,
+              "sha256": "0d33e80fb4e201144238569e22a6324185fd5e6d7a54deb16cf6fd25ffd2b178"
+            },
+            {
+              "excel_row": 54,
+              "sha256": "658ebec0e6d8e1bea9db4277583769c119e6ee11c8f2587544a2a5c988b398fe"
+            },
+            {
+              "excel_row": 55,
+              "sha256": "0c6a9b1f2f9e69d294318b70bc9391f853453eec30448f1228e201afc4f19cf5"
+            },
+            {
+              "excel_row": 56,
+              "sha256": "0684d28032624a66da45752b1aa9ed5a787267360fe1685707bc1080612ac0b6"
+            },
+            {
+              "excel_row": 57,
+              "sha256": "0faf4af69c587c7c81517a3ab6fd789f4cd803c5a46b7cfedabb70c7f4bf683e"
+            },
+            {
+              "excel_row": 58,
+              "sha256": "fc4e0927d122ea798b18c5b53fa7654930d342f315f0830558441a1ab4317459"
+            },
+            {
+              "excel_row": 59,
+              "sha256": "6cf7662c22aa1814f70894b89f98f1481340c672f7533a8f66d5504ae5e06b66"
+            },
+            {
+              "excel_row": 60,
+              "sha256": "61f15f7f80b1f5e6396d72cd5eb33d11483d21744fd4c3592bc82c3b4f623333"
+            },
+            {
+              "excel_row": 61,
+              "sha256": "00d633aceabbfff7dd0de8112c50c29c7608c8d381424c0265e5c324a4e23c56"
+            },
+            {
+              "excel_row": 62,
+              "sha256": "0eb2989cf7c44b3b6631963c8095d31a99e6913896c8513190b9241b026331ec"
+            },
+            {
+              "excel_row": 63,
+              "sha256": "c76949282e230d80153b7b0775974518a561134d30092b76eaa743b78a7ec5dc"
+            },
+            {
+              "excel_row": 64,
+              "sha256": "a33effaf4bc46eb791367c47108944e15890b200affa6974093c078421db7a7f"
+            },
+            {
+              "excel_row": 65,
+              "sha256": "7a0f4ef87f3e4ab8fe2103ab8a2869d6bd466b329ee1f5e6b3265ef14e015b92"
+            },
+            {
+              "excel_row": 66,
+              "sha256": "c78132c157db9dbe38261a0cf623cf28c23cc1e6b2bc5d592c1e83e654ac9e24"
+            },
+            {
+              "excel_row": 67,
+              "sha256": "b810870fe5a7cdfc12495530e6d73cc32b47814fcf2d5a7b03163101204105b1"
+            },
+            {
+              "excel_row": 68,
+              "sha256": "b08971da58d9eab23361aa0ea826672b2b9f22939c730744adb279ead5e7559e"
+            },
+            {
+              "excel_row": 69,
+              "sha256": "cd04875bce16c54290b83a92c350a9387fa601b222dfa66ab7351086c7ea859e"
+            },
+            {
+              "excel_row": 70,
+              "sha256": "7bd50f424d6b04f390db50446c873e596ec9a8a8d8e0750ecfb2a6cb815d3c6c"
+            },
+            {
+              "excel_row": 71,
+              "sha256": "36ed3c4ffac3a2c14df60071c4066a52d626c7c28eacafdfbae9c2ffee637854"
+            },
+            {
+              "excel_row": 72,
+              "sha256": "46b985e29c7a39b8036c7ee270aa7495b057f38ac0c2448e89a143d7c19271ff"
+            },
+            {
+              "excel_row": 73,
+              "sha256": "5ab76fb871bc7089550157612c4d164eaa4e425990cc715b9ee030299b62c542"
+            },
+            {
+              "excel_row": 74,
+              "sha256": "0a1cb582a89dca9173cdf71a2144bf9b20bb8ace492679188f0815e3e1d8c2cb"
+            },
+            {
+              "excel_row": 75,
+              "sha256": "41d9d9374e3006722cd8b2b9ea14627bdecadcd2a1f3cd50e82711446e73f419"
+            },
+            {
+              "excel_row": 76,
+              "sha256": "9461f3faa346fb5cab1ad9b3f335baad62b1f21cdd93c1ceb76acf382e8970bd"
+            },
+            {
+              "excel_row": 77,
+              "sha256": "e43742e61455ae411a2f90843fd8e04ec188199ee73210cccc6d5e815965f238"
+            },
+            {
+              "excel_row": 78,
+              "sha256": "bddb48eef4478e45c71c7cdb35a9b79a7e60cf24b339fbe44954c7fc2a6e50b1"
+            },
+            {
+              "excel_row": 79,
+              "sha256": "032ed4c6e4fabb289dc437463f70d5c73bb5a5b418ba3fc5fa10b20c40026691"
+            },
+            {
+              "excel_row": 80,
+              "sha256": "abdb492cf937e06e3bea698e665e7ebfca1a97203ebc32bfce39b690c2764544"
+            },
+            {
+              "excel_row": 81,
+              "sha256": "2e775a959fc7e2b11a796996079e5c8a7bbfffcb324bfde6c0dd972010376447"
+            },
+            {
+              "excel_row": 82,
+              "sha256": "62087cdbda73bce3e902027f7f495192fc3da77f808ab2d4b2c088f95a20c132"
+            },
+            {
+              "excel_row": 83,
+              "sha256": "ed26e1e6d249421348ff96974e636c376c59ececa319cc72594f7b21c218b708"
+            }
+          ]
+        },
+        {
+          "sheet": "계정매핑",
+          "headers": [
+            "계정코드",
+            "리드코드",
+            "리드명",
+            "표시구분"
+          ],
+          "columns": 4,
+          "physical_rows_including_header": 60,
+          "data_rows": 59,
+          "header_sha256": "5c135742a76e5bbe310d1cdeb92640507c0efe46df1c7ab2f946bbb2b578ce09",
+          "row_values_sha256": "2f2b9f73356555ef0a89852a5c1f79e0e88c92c6019cf63eeedc9d4eead5fbff",
+          "row_hashes": [
+            {
+              "excel_row": 2,
+              "sha256": "298133e655bfcbbcbd34b63fdcd6fe73d4c41c80613e01d25536597ec3c27b82"
+            },
+            {
+              "excel_row": 3,
+              "sha256": "76f6e926d2c9cb22a5b9f8dce5039e3976626c0f4001d2c1f643e7a93531ee5a"
+            },
+            {
+              "excel_row": 4,
+              "sha256": "ac852e58b6e0d425fcd9fd2c1e1517459180525f6f92d40dda0d4c4034a700d5"
+            },
+            {
+              "excel_row": 5,
+              "sha256": "d7860dc6cc0ebaf3b50f601e6d06fffdb35bb57148ad0c4161fee0f2f5b47f93"
+            },
+            {
+              "excel_row": 6,
+              "sha256": "dedfba63f377d4a39d591cac5754d03203bc5f4caf92eef64fbd7cb05d7cfa73"
+            },
+            {
+              "excel_row": 7,
+              "sha256": "8a3ffdf765aaedce70cf66036ec413fb07a08034ce5deb69a4c33f630295cf53"
+            },
+            {
+              "excel_row": 8,
+              "sha256": "ae046bee2cbacee24e209816730e2fa9aeaf986e5cc13c567bbe8e9166c0286e"
+            },
+            {
+              "excel_row": 9,
+              "sha256": "d1dfa97ca192c965dfebb8443edf2e4b4904a017237903288ba3b46febf69544"
+            },
+            {
+              "excel_row": 10,
+              "sha256": "7d428aeb5b0f68d00f71b724683a70961b7840175a1bbfeeae04f24e865b226d"
+            },
+            {
+              "excel_row": 11,
+              "sha256": "6d1b91b557944baadb80e1933b0053544adeec9af32241cfd8505ff9d078fbaf"
+            },
+            {
+              "excel_row": 12,
+              "sha256": "21abe45b3d937b1496795f4124703d9077914047502c1de8a6bd21db5831f321"
+            },
+            {
+              "excel_row": 13,
+              "sha256": "10ab08c335ac34541ace553ac6eea22f0353a33e3624efec34b6cdbf5b86b345"
+            },
+            {
+              "excel_row": 14,
+              "sha256": "181538be0304d1c0264a4b347b54b487ca5af0da8ca6a8e85d5fd1a8e4c7e635"
+            },
+            {
+              "excel_row": 15,
+              "sha256": "4a38de1d64e833437f724940e310a69dbb0d59fe1dedb52b459c4e2263aef115"
+            },
+            {
+              "excel_row": 16,
+              "sha256": "00a359b069f08d72858fe5c563b7ee2776a6358a4af019d1f3d920933ed6c02d"
+            },
+            {
+              "excel_row": 17,
+              "sha256": "61ed8c32641fac3e63eaf02bb1e69212e76caab6ff6a984f832083d1b530b143"
+            },
+            {
+              "excel_row": 18,
+              "sha256": "bd2d10519362206cba88562330f7ca0d9acba0703f06e98776ed12dac5ef9037"
+            },
+            {
+              "excel_row": 19,
+              "sha256": "ac838ec617ea7b04d3f0f13a429cb0696901bb9fe9316a9d58434ed330fdbbe8"
+            },
+            {
+              "excel_row": 20,
+              "sha256": "45a702162716434393ea05d3459199aef9ef4f1c2629ebff2d9754c59a143a2a"
+            },
+            {
+              "excel_row": 21,
+              "sha256": "4190096b499d2dbd4cbd93b7d26b85fcc9b802e0afd484c5491a398b08f2687a"
+            },
+            {
+              "excel_row": 22,
+              "sha256": "0b45a27b3580572873923b039a291c8e6bfcf68695b855d843cbaf0da3d4ed2c"
+            },
+            {
+              "excel_row": 23,
+              "sha256": "f56c7a2ae1861b58a349e3a839fdd4889588bd4f3ee84d7ee4f099192873d712"
+            },
+            {
+              "excel_row": 24,
+              "sha256": "65e316a043c4856ada386ab0f02635a788bca60c89fe9239ef2fca0b65abe60f"
+            },
+            {
+              "excel_row": 25,
+              "sha256": "d197a1351d4d05861ff1d86169c47e8a6b576331ffcd7c7c3d29a96dde4698ea"
+            },
+            {
+              "excel_row": 26,
+              "sha256": "88237d119efd64b0e039f218b23d8f474224ceb1a8c80ac70e2ee92605a68165"
+            },
+            {
+              "excel_row": 27,
+              "sha256": "20c789605be0244ae5fcac752ab828fb02c810b5e2447d691ef264e409b32874"
+            },
+            {
+              "excel_row": 28,
+              "sha256": "644e4d1d2bca97178eba354764335ef0116bcf153dc9a3458470f7e19f4f21e4"
+            },
+            {
+              "excel_row": 29,
+              "sha256": "4727a29c4471c08f2d4abde6a03ed691a186f1ead0b1ae4bf6fa07372523665f"
+            },
+            {
+              "excel_row": 30,
+              "sha256": "8e3c3a306879c8fe7ce9d70a57f9ec469b9866e2fd3f3b997ff4420ac227728a"
+            },
+            {
+              "excel_row": 31,
+              "sha256": "71d746c582e8fd05ffd7606f3faddc961c6dad72a9be5b512b14e513015367d2"
+            },
+            {
+              "excel_row": 32,
+              "sha256": "5f9bcfeab19c7a1eb5fa4f78dea08272231fc03654ce57a4fad1e583768211d5"
+            },
+            {
+              "excel_row": 33,
+              "sha256": "d2c3a56b6a98513c120fe0613bb90c3f386568e3250b9a99fdcee8f232db1a60"
+            },
+            {
+              "excel_row": 34,
+              "sha256": "35ed6727802dd00164c74c3798315b4190b0bc38c7fba457c65b327a0f82c412"
+            },
+            {
+              "excel_row": 35,
+              "sha256": "87cf78be41800aa1222e9a45f02ae223b9093cadaa3929df60d7a59280880dd4"
+            },
+            {
+              "excel_row": 36,
+              "sha256": "fa9a2f8a316ae12458b9781f9f40961260e72cf326458763d825ea36ced6e4e0"
+            },
+            {
+              "excel_row": 37,
+              "sha256": "38ef26e9a52b507236ebfa346eccc985a15c6461b8ee40666ad6ca1740daf1ab"
+            },
+            {
+              "excel_row": 38,
+              "sha256": "33d9c78781cc2c6af7e9a57adc770a85a1b1ee6c12007390a1f2d80ef1659837"
+            },
+            {
+              "excel_row": 39,
+              "sha256": "7605b6a8aac599340a9bc1542cb154642c0e4a47e93310cfceee8177b652a946"
+            },
+            {
+              "excel_row": 40,
+              "sha256": "02832c741a3c10adc96fa9d3fd95984f903f3d48dd696f18972e2521a13b4e4f"
+            },
+            {
+              "excel_row": 41,
+              "sha256": "4ba902dc07ee97c451ee99ad6690d5ff883c127f676bd02e0c41a68546afbf8f"
+            },
+            {
+              "excel_row": 42,
+              "sha256": "6662811d5b49afc4112579516daf62f7109d4a7f0f3fbcd1abb1aa9e4ab94b95"
+            },
+            {
+              "excel_row": 43,
+              "sha256": "4e19a57444bdbc7a0e7de1bec0e2fbfa7d13fea1d83dbc68c0480f495c427f03"
+            },
+            {
+              "excel_row": 44,
+              "sha256": "d60ae80c33c65b15df87fdbec9dd26dc44415ea773ce22264794e00170434bed"
+            },
+            {
+              "excel_row": 45,
+              "sha256": "1298d8308d6d0c241160815e7cdbb25adcea8abb9d2d3454ea444ac39b10430c"
+            },
+            {
+              "excel_row": 46,
+              "sha256": "96224c65d931fa83e48863119bbd586acbfe3e7090830d8caf12047eaa9391aa"
+            },
+            {
+              "excel_row": 47,
+              "sha256": "8fd08807cdd29c3ba4fbadfc0cf8646ab6f7cf54d6d261f3c469b4ad849c3e8e"
+            },
+            {
+              "excel_row": 48,
+              "sha256": "66f11fbaa51e7c7079a750a91365c230bb21bcf4439e40717a763e9150cce11b"
+            },
+            {
+              "excel_row": 49,
+              "sha256": "c450a09a20fd2afc7b6a09ba73598fc03e06addda502902e251103548c547b88"
+            },
+            {
+              "excel_row": 50,
+              "sha256": "cf103519023f09d9ca828b72d1e216f5f60bb48e5bfce5d14eeb39f7bc3c90c4"
+            },
+            {
+              "excel_row": 51,
+              "sha256": "07e37ba1179505938bcb0bf2fac2fc2ac7b26346803ce8204cbcae600aa4e19c"
+            },
+            {
+              "excel_row": 52,
+              "sha256": "529cee3b345c71033af8f48e7f16682d721b1b69bd03403ce3e6dab9b9452547"
+            },
+            {
+              "excel_row": 53,
+              "sha256": "edddf1a6d3eed3b6870a3fd552a1488c1afa4a0bc9f94de4380eacd0c3e59f52"
+            },
+            {
+              "excel_row": 54,
+              "sha256": "4f2eff68a06428f32b393e124897cedac00557c0a776c8006308459f070116a3"
+            },
+            {
+              "excel_row": 55,
+              "sha256": "e2eb324249bafebef7f5a16c4544b03f2345a6214310cd21d2f2a7182770a632"
+            },
+            {
+              "excel_row": 56,
+              "sha256": "99f2328ad4b2ad02b8c94157cbf3ea287aa0c613a760bbef6fd9cbcfebff9b54"
+            },
+            {
+              "excel_row": 57,
+              "sha256": "1ea4b8e416082c93861fe42b52cb9a3a8cfad1c1f70ca737c0fcd4a3d2a58962"
+            },
+            {
+              "excel_row": 58,
+              "sha256": "61a654885e2c264406a00743550d79642acb8eb10c3cd4a76bde29cf766e8e86"
+            },
+            {
+              "excel_row": 59,
+              "sha256": "80ecd1b30e21ff1c1145aec5962f19ba142c38e2f53108e15bc65201e2b3a420"
+            },
+            {
+              "excel_row": 60,
+              "sha256": "ebfeca21c1f4c829d9a345e51d031142e5a14b0b861a62d17d883aaf5a214494"
+            }
+          ]
+        },
+        {
+          "sheet": "독립통제",
+          "headers": [
+            "회사코드",
+            "시작일",
+            "기준일",
+            "계정코드",
+            "원장행수",
+            "차변합계",
+            "대변합계",
+            "기초잔액",
+            "기말잔액",
+            "추출근거",
+            "추출일시",
+            "작성자"
+          ],
+          "columns": 12,
+          "physical_rows_including_header": 60,
+          "data_rows": 59,
+          "header_sha256": "c7ad1bb0674dbfb6e554581b95a2011bf7b161ce2d734f5ba0e3c63fcdf0c1dd",
+          "row_values_sha256": "0b040f50cccb3ceae8e77d2d5a8b71020c3c5a4a7194ccddc9fe2c59ab733b30",
+          "row_hashes": [
+            {
+              "excel_row": 2,
+              "sha256": "831befa240ec205acbd7737e0b6c7c0d8c4a424b23ade14a866f5933329bd2d4"
+            },
+            {
+              "excel_row": 3,
+              "sha256": "4054def3f3a9019c09cb661814f6621907f0c307ef2c866839af6a794b91a331"
+            },
+            {
+              "excel_row": 4,
+              "sha256": "cc16a9c09c22b84ee097cc2b0925f0f8bb5bddf3f0908292c1dd31ef27019cfd"
+            },
+            {
+              "excel_row": 5,
+              "sha256": "9f478205271af4c03c1489754d7f7ffed113c092100f090a43d49a57c906d234"
+            },
+            {
+              "excel_row": 6,
+              "sha256": "2d0720d3b7b20f35389abc764b89dae5e522cad07d83d9dbbde7442e2c33706c"
+            },
+            {
+              "excel_row": 7,
+              "sha256": "c60a33e81fc2c901996abf318f42b2b9e3eec9c4fa8028516b86d760bae49d8b"
+            },
+            {
+              "excel_row": 8,
+              "sha256": "208a30f0e439f33f76e83b0f71a7d99b5c15ae6ac123a2b4836b2a55eba3bea1"
+            },
+            {
+              "excel_row": 9,
+              "sha256": "55be6f3b3e17232f8b81ef450773346e3f5c85efab1bc6dcaf79b1f7dee2efa4"
+            },
+            {
+              "excel_row": 10,
+              "sha256": "0e7414ba7bed67aee5436f6291c1704d3f106e5be88fb40077d5dd7a44cc4bce"
+            },
+            {
+              "excel_row": 11,
+              "sha256": "745cccf815e37828a56c1fc36f5915c2b04b222ea81069caa5167e93768f7e53"
+            },
+            {
+              "excel_row": 12,
+              "sha256": "b625b5d46f790a924fc443092134afe4146dcdc2328407b94a49cfcb49fb5536"
+            },
+            {
+              "excel_row": 13,
+              "sha256": "56dd539c8388db561e27eae2e46936f4e96ebce9aabc9a8ebc9be3670d2ba780"
+            },
+            {
+              "excel_row": 14,
+              "sha256": "67d41f7480497a655e0be92d07fa6c1e91bb3bd1897b43298a17cf46a44ba80a"
+            },
+            {
+              "excel_row": 15,
+              "sha256": "106f145f27f6c1781ddaf0936f9ee37a6d4e2520ba8fc3d1656b35dac389fef7"
+            },
+            {
+              "excel_row": 16,
+              "sha256": "fb2cf81c5d4d4c4fad4cd55ed48b4bd07f6b16e8a02590a05c0293b6d66eae79"
+            },
+            {
+              "excel_row": 17,
+              "sha256": "d4ec39e8c7e5127f7a4960a16dca0d2fe8ba9e9cb8183feba02991b825fc27e1"
+            },
+            {
+              "excel_row": 18,
+              "sha256": "454081ed5098162c4458c277e1512cc0e3ec772e3c85341feb25a77587b05561"
+            },
+            {
+              "excel_row": 19,
+              "sha256": "34df1017c15cd18e5da23bc03cbbe3de6c32341a12ab008356db62b7ae3dd9b9"
+            },
+            {
+              "excel_row": 20,
+              "sha256": "523e0fd217da7f2f48f98d86965b85ddceee1f91d4707e73fe4f0a46b6bef4cc"
+            },
+            {
+              "excel_row": 21,
+              "sha256": "9af5550953151b33e9cab34238ca2c21c39a4b4bcbd6def2ba7b389554c1d7d6"
+            },
+            {
+              "excel_row": 22,
+              "sha256": "03f99f3ceec08b269696bef406cae32f7766856930f08896828db93b606be34c"
+            },
+            {
+              "excel_row": 23,
+              "sha256": "1d415f88bacd55d8207eef3e975afea76eafb107e814c6136ca0b9de06653538"
+            },
+            {
+              "excel_row": 24,
+              "sha256": "30f58687d77dbd50fd18f3908f9d9ee7c2c0c45b88b20d8703d02b3ca2265d94"
+            },
+            {
+              "excel_row": 25,
+              "sha256": "f4bb1093f1481c156821c3bad266c2c46707fc0d492bc0fc35e6791949550226"
+            },
+            {
+              "excel_row": 26,
+              "sha256": "8be3b0e1c96de703e45886d2f618a6611e47c7d654ffec917d671c67f8f38dee"
+            },
+            {
+              "excel_row": 27,
+              "sha256": "109cc7f1f839ef159f388cbd23a467a48d4d153e6474759dc38e239d0415f2f9"
+            },
+            {
+              "excel_row": 28,
+              "sha256": "f6b3ef6fb3ff0871c3ea3b510943df5fc16c8de3225834983f67efce00e222ba"
+            },
+            {
+              "excel_row": 29,
+              "sha256": "8d37def210ac254e36f951cd59302f94160dc865d13dac1e4baceebdd57b9734"
+            },
+            {
+              "excel_row": 30,
+              "sha256": "189bf9802d8f60ec39f62a687a108721586bc2bb6d303c1a95e1051c68f3ba5a"
+            },
+            {
+              "excel_row": 31,
+              "sha256": "04a215c835e8bd5538ed45594fb937a6d1d0f1d1a703390f13facaee7c450866"
+            },
+            {
+              "excel_row": 32,
+              "sha256": "ff46d6a490325328a1e3874a3cc1702d8a115233ca65b07fcedbbb9feb7d4bda"
+            },
+            {
+              "excel_row": 33,
+              "sha256": "fb9bc671a067b4fefab68411226b6246a6c8e1ab21257f49ee855dec902d96ff"
+            },
+            {
+              "excel_row": 34,
+              "sha256": "0201efac5407c599c063c1e2a35c448b721c26a5c55d53d6a20601e99901fa4f"
+            },
+            {
+              "excel_row": 35,
+              "sha256": "e396777e67ada4cc95d8bbb91a28c9ca2550e969bec335e73d08fe687f52ca2f"
+            },
+            {
+              "excel_row": 36,
+              "sha256": "3bbb39acc51a2f155f1feab9dee0c0769e5e6db84d6e33bd42d36e0d2ec4b080"
+            },
+            {
+              "excel_row": 37,
+              "sha256": "9a6e48e10f69c05afd4882869b1a6f176b3b9495d08ac487126c26c0232f1ce6"
+            },
+            {
+              "excel_row": 38,
+              "sha256": "03d13f3b12251484c0a6a3515f782770c3ba1c7cf2287672f2b41785e190d585"
+            },
+            {
+              "excel_row": 39,
+              "sha256": "00695868e5a46b2e7cc68d864aed3c2bd0ffed793d5cbf80addd99bfd32edfd0"
+            },
+            {
+              "excel_row": 40,
+              "sha256": "98d9853ffc2376cdbfd17e07525ac9434e78f1f0667bbaff01719718992d32b7"
+            },
+            {
+              "excel_row": 41,
+              "sha256": "c80e735a6ccf1a06295dda3516467957d290e5ac90a7d3028dabf85e1f18c787"
+            },
+            {
+              "excel_row": 42,
+              "sha256": "05d9b8652e816b570ef65af3dad307ef392c2d274de557451463ba026ef5ec23"
+            },
+            {
+              "excel_row": 43,
+              "sha256": "bbc936c6fc8feddeab31c38364c760f891bd69bcd0638082cf7830207f0545fa"
+            },
+            {
+              "excel_row": 44,
+              "sha256": "e19c191c091f67e06cc444b1b4d7060b2778460589cf0b5880c78b9f34d4a306"
+            },
+            {
+              "excel_row": 45,
+              "sha256": "df6f10c5a8cac70ace637998b5fcdf89a52cbf615c1102fb580ea9e1f5653cce"
+            },
+            {
+              "excel_row": 46,
+              "sha256": "08985fbcab3abb82d9edb03f0a80f2ff7b52617756e33452466a9e8e9543f844"
+            },
+            {
+              "excel_row": 47,
+              "sha256": "ea3045360fb14dc3d2fe08fc5d3088e39135d9078693b3f1a8668ffb603e4d05"
+            },
+            {
+              "excel_row": 48,
+              "sha256": "636d5e96ef94d8c6765abec0d119772fa2ced1579518c361be7204b8711b485b"
+            },
+            {
+              "excel_row": 49,
+              "sha256": "f1736b8bcecfa1aef79713cd1da15d0477c9ea9092190c0c1b9d65e7bf43991c"
+            },
+            {
+              "excel_row": 50,
+              "sha256": "ffa68b9c25b6eb604d1c24c22a51f4b440263da3ad1d26b314019074fc25bc23"
+            },
+            {
+              "excel_row": 51,
+              "sha256": "012d36b47615e062a124fcde6d2465badbaebc75ae355a12a132fd2a210b24b5"
+            },
+            {
+              "excel_row": 52,
+              "sha256": "ebf59e558153200307c4069bb255c56599966210a820c3509101ef2ed92ffb42"
+            },
+            {
+              "excel_row": 53,
+              "sha256": "a6aec21f0c19b1bf39656169f2f5f853380cbc658fcfceecee2fbbe15ad2f9d4"
+            },
+            {
+              "excel_row": 54,
+              "sha256": "f0b44acbc45356a99d0276c81236e1a7e2af061731411d12f7d0eacd067b6e54"
+            },
+            {
+              "excel_row": 55,
+              "sha256": "aa7e70a68eaf110b64a6388bd98c5102bd3dea3e92ec44819f10ef926ae2a5d7"
+            },
+            {
+              "excel_row": 56,
+              "sha256": "6764c24496fb9ea729c1999e2ced782d75d770619c470bb85523d61e47261b60"
+            },
+            {
+              "excel_row": 57,
+              "sha256": "d44b716a59f065d608db1c46e2dfa9cca29232bd57b517592d30fab4e401b939"
+            },
+            {
+              "excel_row": 58,
+              "sha256": "77fbe3f5ee238ef6e2d8a83b7e6664364201ae1d0b11ee905e29c8d074bf3b69"
+            },
+            {
+              "excel_row": 59,
+              "sha256": "59efa2abf7b06801a82ead24bb152ef20a162e7625c24499321d68a4c3282983"
+            },
+            {
+              "excel_row": 60,
+              "sha256": "77ebe6bc538f7742b4a89298583ee0020ecda5bdf178d1eb9573d89e0d9d978d"
+            }
+          ]
+        },
+        {
+          "sheet": "감사조정",
+          "headers": [
+            "조정ID",
+            "행ID",
+            "계정코드",
+            "차변",
+            "대변",
+            "근거",
+            "상태"
+          ],
+          "columns": 7,
+          "physical_rows_including_header": 1,
+          "data_rows": 0,
+          "header_sha256": "0690d03686516957765c9b9dc25031da4904bc69f4d354834f74497bab1b8e6b",
+          "row_values_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "row_hashes": []
+        },
+        {
+          "sheet": "모듈연결",
+          "headers": [
+            "모듈",
+            "지표",
+            "계정코드",
+            "비교기준",
+            "부호"
+          ],
+          "columns": 5,
+          "physical_rows_including_header": 33,
+          "data_rows": 32,
+          "header_sha256": "46cedf9ef6c5c5f86da22c6b5ff6e3a4c6ed748faae8db5e1bac7f99e3ded86e",
+          "row_values_sha256": "aec68e84ea047f7b1c68456564bdddbd2f78d263aec3e55bcf7f2cd4a65262e4",
+          "row_hashes": [
+            {
+              "excel_row": 2,
+              "sha256": "2a41fc854fff4943622b4ff20273b00b2990eeb087b74a382b0a9598d006c0ef"
+            },
+            {
+              "excel_row": 3,
+              "sha256": "4c90f6778ddaa7b7d71836915973fd5d16af085fe80b6fdc9737da20a10815dc"
+            },
+            {
+              "excel_row": 4,
+              "sha256": "cbae224e0043aced7183819c7c96891fd8de1c77a6e02f4f52c9ac009daba2ed"
+            },
+            {
+              "excel_row": 5,
+              "sha256": "8fb59ea7455c7113760d9f7b64d462e72d1b3ebaa467058ab4b4d565eed7e982"
+            },
+            {
+              "excel_row": 6,
+              "sha256": "787fcebe1f6c38788ada99a485138a153996fcfbe64863b45690f0a31e52ac31"
+            },
+            {
+              "excel_row": 7,
+              "sha256": "0d1b7dae17f3bf099687866e980d71930ef75b6ce29561d9d8bb128655a92e2c"
+            },
+            {
+              "excel_row": 8,
+              "sha256": "81d415edf16185c00557fa4b48802c3332648bba8b1fb6b783bb61a9bd65427e"
+            },
+            {
+              "excel_row": 9,
+              "sha256": "cee6aa749312c4d068dc28bcae0db6854f947c2fb3d8ef4d5a86fdf9ded9d141"
+            },
+            {
+              "excel_row": 10,
+              "sha256": "79a370ea2a450c39bc889f53c6c0bb21b657accf0d1b0774d770628990962d87"
+            },
+            {
+              "excel_row": 11,
+              "sha256": "0ef637ef33e9e0b5322e42e4e01408ee8ca0cad72f7f54922782f1887c95ec41"
+            },
+            {
+              "excel_row": 12,
+              "sha256": "7a21c41ef5f011a2ab4ea12c800feb705dcd07346511377f1d6cf4f3d6cbd303"
+            },
+            {
+              "excel_row": 13,
+              "sha256": "722124b3cca6bb4298c204b00527001065dcb0cfc3458eabf3cf9632c6d80bb0"
+            },
+            {
+              "excel_row": 14,
+              "sha256": "e52a9b3f64cd6a104017fe50858894e7ea2b1e1ab69fe1b18db45942e357c98b"
+            },
+            {
+              "excel_row": 15,
+              "sha256": "f2cf85cf65d3d504b95e2f821863b855f3a5b0f584c2d25c76e94c2ee30d612a"
+            },
+            {
+              "excel_row": 16,
+              "sha256": "1242f34721fb05c4f82df79ea8c9c2e728d1c4f3c8167397591bf50c5e237b9c"
+            },
+            {
+              "excel_row": 17,
+              "sha256": "8e74e16121c95632f9ac39a96aceee6265e4e842081b3105a6b87c80bb04daca"
+            },
+            {
+              "excel_row": 18,
+              "sha256": "92a194095e4973a71f6e97382367eba19eac798c2db679f2883a8a422d2fb4e9"
+            },
+            {
+              "excel_row": 19,
+              "sha256": "46850501c2b299966b613f65d18858f704708a8b1f15cc6a418db254d7bd748e"
+            },
+            {
+              "excel_row": 20,
+              "sha256": "816925047e8e933fbd8bdc1d3553a3485fef36c5dff4979872e1d4194256ca1b"
+            },
+            {
+              "excel_row": 21,
+              "sha256": "f46904410fcb2c0da3896fd44e1a083c32f053db708709a59d0c3cd56652c0da"
+            },
+            {
+              "excel_row": 22,
+              "sha256": "335f2b44c33ac083718190a87a04c111471c84ee26006b13cad97192ce979f81"
+            },
+            {
+              "excel_row": 23,
+              "sha256": "851ad9108853b3a8386b976d2a3c74bffa1dea84fecabf6d40b60816b096db7b"
+            },
+            {
+              "excel_row": 24,
+              "sha256": "ae6ea03b4757a0f0b715abed277502edc156cf411f59efe2e071f2c9f6ffa16d"
+            },
+            {
+              "excel_row": 25,
+              "sha256": "fcd17b3898f2be746ce9792b6b5bc11b9cd8e6143a9b80cf0d556b4df03f9e7b"
+            },
+            {
+              "excel_row": 26,
+              "sha256": "710ff6002bf74c1f0ff93798ef3ad3830296c1b3c65838a3c4ca039593af3ba8"
+            },
+            {
+              "excel_row": 27,
+              "sha256": "b83c6fa5cabb5475b28fc3b64a9ca8ac83ccd4a3c346d7ab3830d61cead1dd84"
+            },
+            {
+              "excel_row": 28,
+              "sha256": "d16406052556520efcdfc2b07877147b6f16a3eae956e6b50df82ef31c1f6c73"
+            },
+            {
+              "excel_row": 29,
+              "sha256": "745bd5c8bb3804ff03753b48d926426ba6350b9d00d9ba5450eb13de649490a4"
+            },
+            {
+              "excel_row": 30,
+              "sha256": "beb41b30a82dcb014e5b83d85a965e891d31434788187f6782883aa7ec65c102"
+            },
+            {
+              "excel_row": 31,
+              "sha256": "f0bff6e558469ce598b9f0a283e82cd3bbc7b7a2f84176f2c5569b3e6564d80d"
+            },
+            {
+              "excel_row": 32,
+              "sha256": "cfe6a8d8f7a3dde57d65ebca03d70248c06fbdc875ec69efce9fb65ab2e12aba"
+            },
+            {
+              "excel_row": 33,
+              "sha256": "66c6763d3ab8ede28d808549f2fc58b0f6a1892a63be95f97ad54f4e27c0b6e9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "02_ERP전표로그_합성.xlsx",
+      "sha256": "c20d3625943371c216d474ebfed6819122af771f890ae9b477572b436ca8c4f5",
+      "bytes": 10297,
+      "mother_input": "samples/통합/통합_v1.5_FIA.xlsx",
+      "mother_sha256": "28bcb1b432d5e3a844d8e64cd4d6ee2423842b36f2020001a23533943f97861a",
+      "analysis_targets": [
+        {
+          "module": "FIA",
+          "file": "samples/통합/통합_v1.5_FIA.xlsx",
+          "sha256": "28bcb1b432d5e3a844d8e64cd4d6ee2423842b36f2020001a23533943f97861a"
+        }
+      ],
+      "sheets": [
+        {
+          "sheet": "FIA설정",
+          "headers": [
+            "항목",
+            "값"
+          ],
+          "columns": 2,
+          "physical_rows_including_header": 13,
+          "data_rows": 12,
+          "header_sha256": "4939bfde766847b7d81f24500fbe20d8e3b207ff2f4fa311714d9d9e074361ea",
+          "row_values_sha256": "18c4c58dfa6082376b3f8d5e495ccb2e9397fead228b7605892e11b9c8a65363",
+          "row_hashes": [
+            {
+              "excel_row": 2,
+              "sha256": "169461498bcc07f5389c0bf3a127059e7d246f65a244e331a8c8bdeed024c39c"
+            },
+            {
+              "excel_row": 3,
+              "sha256": "413d8373304d5228d47b2bd7bdc446f07f4c78e4cad79268a33b72274d0029cb"
+            },
+            {
+              "excel_row": 4,
+              "sha256": "64a103471644250e6633f80a4cdb426e7662323a7c64c0a8060bbccbb85dbbc9"
+            },
+            {
+              "excel_row": 5,
+              "sha256": "9861c0fe05719c929cd849e124e7eef549ceafd783652d13262952ae6c87fd0c"
+            },
+            {
+              "excel_row": 6,
+              "sha256": "8266bf328ac5d324554d5d8ae24864f4b3ff7f40816e3497c8ee6cf12b65ac9e"
+            },
+            {
+              "excel_row": 7,
+              "sha256": "ef3dc1bdbb9256729ff8591b3f0e02c3196ad21a9e1f6236ee4d1d78a18ef994"
+            },
+            {
+              "excel_row": 8,
+              "sha256": "84b779c036aa36a3afb38c0f5a20ccec5cce746070740bd67bf45ca0b4ec267f"
+            },
+            {
+              "excel_row": 9,
+              "sha256": "dfe4658ff257ccfa7fc32d7eb9962df1db603290f15ad9a0da4509154378c043"
+            },
+            {
+              "excel_row": 10,
+              "sha256": "4c94e7330d5d26ff966d424908ff93bc138c0fbafe99f2d625001dae782d815f"
+            },
+            {
+              "excel_row": 11,
+              "sha256": "ab079a8646bca9c82c1f2aa1c7f4c4fd97710311fc444ed3accb96d3a9618d1e"
+            },
+            {
+              "excel_row": 12,
+              "sha256": "299453a228810714363c6ee36b55162fd677f955d31bee0d0b8ed4a2a3beecf3"
+            },
+            {
+              "excel_row": 13,
+              "sha256": "3a2816f4100c4efc0a94229ba40fb03b92549a8350a2a6524dcf215e9402151f"
+            }
+          ]
+        },
+        {
+          "sheet": "전표메타",
+          "headers": [
+            "회사코드",
+            "전표ID",
+            "행ID",
+            "입력시각",
+            "입력자",
+            "전표유형",
+            "승인상태",
+            "승인자",
+            "승인시각",
+            "부서",
+            "원천시스템",
+            "재분류그룹"
+          ],
+          "columns": 12,
+          "physical_rows_including_header": 83,
+          "data_rows": 82,
+          "header_sha256": "5f37ef5921d9e325c6cf17771205dae0e29108e00ac2eadcdd4e003f62d3f414",
+          "row_values_sha256": "3b3327d39c7a5d32be7542d3c5e4ab44b7bfbf0bf680636c7b0bf9276459dffa",
+          "row_hashes": [
+            {
+              "excel_row": 2,
+              "sha256": "b58896fd16297254876967630f06bc445c8ae0f53e3660104c511bc414e3e202"
+            },
+            {
+              "excel_row": 3,
+              "sha256": "43f235e25c360719c146f22c395a6b813f790834b456fa68e879d8ac6d29c214"
+            },
+            {
+              "excel_row": 4,
+              "sha256": "96f938a69db8f80f30847a4a0e0dd4a5111acb039abcbd0ad2363b765b6c0009"
+            },
+            {
+              "excel_row": 5,
+              "sha256": "bb1a070f9e30686f78d3430ee819139e2be8276c1f5a97e523f77d4086e27c78"
+            },
+            {
+              "excel_row": 6,
+              "sha256": "13d80817b5e050a2081f041b9a88ba601aa40b2c0166b6efc0ce45a4e928fd9a"
+            },
+            {
+              "excel_row": 7,
+              "sha256": "28605ca889cc7904c5131b30fa9262cb53b3f061ebe09e119caecf4c2a1d827b"
+            },
+            {
+              "excel_row": 8,
+              "sha256": "914211f86a2d8eca158b48f216df04088831c9920b9ea51839462de242b3345b"
+            },
+            {
+              "excel_row": 9,
+              "sha256": "5ea9d3569d134b92d5372143634d0f55399867bda85f5e129975a92ded70a050"
+            },
+            {
+              "excel_row": 10,
+              "sha256": "8be2d549b548a9950af6dfc03e57ebb848faaf0d84458a0967cb9525fb1a6c46"
+            },
+            {
+              "excel_row": 11,
+              "sha256": "927789c6db4e06715c6677104e55137ace09bd9a32f9dfb9e808c3218d7e865b"
+            },
+            {
+              "excel_row": 12,
+              "sha256": "5ab205694fc94766a52d396de2cb97e3af197636ec5306ae6bddc943e7f1db53"
+            },
+            {
+              "excel_row": 13,
+              "sha256": "f8463208215dc4d8a1522b53d7e54e0f179d53333933a33d412cbc1f84530d3a"
+            },
+            {
+              "excel_row": 14,
+              "sha256": "86fe9b4feaefcaf5d13c7ee6c6d97a54b5285c35ecf5c1276a9b7c757e9302f1"
+            },
+            {
+              "excel_row": 15,
+              "sha256": "4063561ba5a66c4897b0bfb36bf44bd5e0befe39b43d140a1415cc9adf378c9f"
+            },
+            {
+              "excel_row": 16,
+              "sha256": "2a2470cdf793d547362c04d4a0cc7b358fbbdc6673b73a04e94e274608d0c194"
+            },
+            {
+              "excel_row": 17,
+              "sha256": "151adeb9781a54b3be184e09b63d1aeda4bc6fd070dc7028cca64aff223d3b16"
+            },
+            {
+              "excel_row": 18,
+              "sha256": "55a35df07073616e36553ae8a4425bd1510fbae5842e03a859b326338f4b4eee"
+            },
+            {
+              "excel_row": 19,
+              "sha256": "14e83f48687d1ccf215ad4801f24b78bb5d670efb031bcfac1a484d3804913d4"
+            },
+            {
+              "excel_row": 20,
+              "sha256": "7c606a223d688b37fc76c75024c1fcd4c12301b9a0265ca591d0da155f3b2b8e"
+            },
+            {
+              "excel_row": 21,
+              "sha256": "3c22bacec0d017950361fb35250311757f3a3cdcaf2692e281c2189887c305fb"
+            },
+            {
+              "excel_row": 22,
+              "sha256": "869f337c43d0489df3e182bc158a31dd66b325bea81fcdddbf2df0ac1c08a8fa"
+            },
+            {
+              "excel_row": 23,
+              "sha256": "13b031f97844387e7334bda7a2fd124f5ef054ccddadc1a84262bab444d3dc50"
+            },
+            {
+              "excel_row": 24,
+              "sha256": "10cb486f979d944eff004218d03e4b5c3d16c6b8bad6298f25657fd6b64b25e8"
+            },
+            {
+              "excel_row": 25,
+              "sha256": "e76675d3931cebab8ca046dc293412f234005fa9a00831b902773145057eb3e5"
+            },
+            {
+              "excel_row": 26,
+              "sha256": "f5780e0cdecb2fbbd24b7acd1a4e54da654714f4384429813590769aabc64717"
+            },
+            {
+              "excel_row": 27,
+              "sha256": "eaf13003be5d7236099c9657f222b413c0104e07afe23f031c41d4ac26a048b0"
+            },
+            {
+              "excel_row": 28,
+              "sha256": "81ef1a143e0ffb573860ea9b5ae2b2e023b9ab125e6d3b65580a5a4d2f687c06"
+            },
+            {
+              "excel_row": 29,
+              "sha256": "46ab9d9e3d9028997320f3b08cf65ec5d311a8085a3ec2a4911c690c29181fe6"
+            },
+            {
+              "excel_row": 30,
+              "sha256": "891a8ba0e6548e87b7c3705cb59feadd9b35261d24cbb44f79333d0574be4da8"
+            },
+            {
+              "excel_row": 31,
+              "sha256": "7b342e9443880c9e86e0168ea3eec24029e90244e63e9d6463d02c3aeee499cc"
+            },
+            {
+              "excel_row": 32,
+              "sha256": "416f54a7d0e18dae421b0b791ce333e0a87f5fa268b75347568a5515772690a7"
+            },
+            {
+              "excel_row": 33,
+              "sha256": "814f7e028ccebc8decc2547c8f55b5fb4ef9619e21a8b853c3f1de1f7ee4d9c2"
+            },
+            {
+              "excel_row": 34,
+              "sha256": "ee44a5437205dba868a5faf58d36ea4e1aa76c392562dcc0b15c7a1dc5fee487"
+            },
+            {
+              "excel_row": 35,
+              "sha256": "b674ad3a20994475fae251ebb57815e14cef633d9b5148d2916a8f988bcb5faf"
+            },
+            {
+              "excel_row": 36,
+              "sha256": "6a34549102d0a62064d13edc18b21c022d7fa6f1982deb19f12c783e99c4a148"
+            },
+            {
+              "excel_row": 37,
+              "sha256": "18ba27d3b5b5756250fd8aa9713c6f6184dfdf365a8b0ed6b7d0cb2c7b631805"
+            },
+            {
+              "excel_row": 38,
+              "sha256": "2ff8bc8211d461595ed98cb127c8688d5aba0d06182e2fe82e22dbaeec908a00"
+            },
+            {
+              "excel_row": 39,
+              "sha256": "10cb8aaa9f9669e85d01a3b0371c0a81bc9867d944540be8ed8e5fd6fe1b7aad"
+            },
+            {
+              "excel_row": 40,
+              "sha256": "013702b60abdfa153e59e0598c2339f824e84efc630532e77ef35fc55b0c4083"
+            },
+            {
+              "excel_row": 41,
+              "sha256": "97a64c3e365f8a4e9743b2b1696efc6a29bb84d4a6dc5f131c76ea8c7ba8f89e"
+            },
+            {
+              "excel_row": 42,
+              "sha256": "f63edd71ae7e7eeb9ae85a71266b22641409dbb7c80d02f4e694d5958f71e64a"
+            },
+            {
+              "excel_row": 43,
+              "sha256": "bb7acebe8c1671cff041c102da8a368ed90a3e036c5d7909d5498b2fb6599c50"
+            },
+            {
+              "excel_row": 44,
+              "sha256": "57bbcaab4ad2d27a93eddaa44e1918b65ea1daf5cbe294a64ec8becf0e63cc09"
+            },
+            {
+              "excel_row": 45,
+              "sha256": "f4eb59de3f67a39d824cd058be81ebe010368d8efbaaaf9ede29c5f9d8956685"
+            },
+            {
+              "excel_row": 46,
+              "sha256": "e7d97184921c3ddf3f602f3e0073fa78a9b53b00f21acc667321c737ab406870"
+            },
+            {
+              "excel_row": 47,
+              "sha256": "839727c743bb53853d92c0512232d091bfdd5ad23244cb8adee40b5424d1a0e1"
+            },
+            {
+              "excel_row": 48,
+              "sha256": "4b606c3f64b4167eefb751b961b2fd6275a34131b10d86c260df53b2759a1566"
+            },
+            {
+              "excel_row": 49,
+              "sha256": "d79b6f10f09acfdb55a67f201325a8734f02fcd08ebe6465842ff854ba3cfd46"
+            },
+            {
+              "excel_row": 50,
+              "sha256": "138d816cbfbb101f1fd330d89fccd1ee57b95346922fad59af931c89cb7b4e32"
+            },
+            {
+              "excel_row": 51,
+              "sha256": "0e96ded042b94d1c2212910381160f9992cd750d6641dff76bed4c0248e01d0d"
+            },
+            {
+              "excel_row": 52,
+              "sha256": "4b869f21a9dfb532eaa008e7550ef0b03636bb4c94fe394258abefd3551f2550"
+            },
+            {
+              "excel_row": 53,
+              "sha256": "efc1eff7369dfaa7773aca81caf445286291258914294f92d737a07cfea3025e"
+            },
+            {
+              "excel_row": 54,
+              "sha256": "a8e4ab0cbb7cb321722faaaac8d63dd197bb6a765d4b379f49f20e63e6dc4017"
+            },
+            {
+              "excel_row": 55,
+              "sha256": "f6c93c0f446a138335a55b16cec3f74e3d744bd60aa1a92ca87bbeffe606ac50"
+            },
+            {
+              "excel_row": 56,
+              "sha256": "6975e93e14f2a8902e20380b65d071f573ff26ad5604cf187432dc0a7b974471"
+            },
+            {
+              "excel_row": 57,
+              "sha256": "6046ebbd4ad16e11df846977fd3822ee9b02594978c63f06e633d9ff10776ba4"
+            },
+            {
+              "excel_row": 58,
+              "sha256": "82ae1c87c4c1e6f0afc1456fcde4b958a28305c1d22103f84d7eefd73e5c76c2"
+            },
+            {
+              "excel_row": 59,
+              "sha256": "f829b3766c50b33a8d7c5c9c0564712fcc3338ccc1a2e0d6ee5d170b072d80df"
+            },
+            {
+              "excel_row": 60,
+              "sha256": "9522480ec703b859bb51ad8e73d607d892a6ae5b4a3ff2b00df35eed55ee5012"
+            },
+            {
+              "excel_row": 61,
+              "sha256": "bebaff70e0bd3c8e1ec474621fcdd84a6cebe976db1c6a17b0f8a4b09967e76b"
+            },
+            {
+              "excel_row": 62,
+              "sha256": "0130faa67c7693e2fe5110616cd8ccf507be07545722fca50482171e77ba7cbd"
+            },
+            {
+              "excel_row": 63,
+              "sha256": "912993150a3de71248a12badfc83e2c3eef4b28850559651bf75ec6fc244687e"
+            },
+            {
+              "excel_row": 64,
+              "sha256": "efbdbe629a65026a8f39c46686201dbf943db38766e5ed435b17d33255c84ccc"
+            },
+            {
+              "excel_row": 65,
+              "sha256": "e5d0326b3d9773bfeb3c3135093e4ad617b4f1481892365b78a661f94dd19ea7"
+            },
+            {
+              "excel_row": 66,
+              "sha256": "3e225510bd797d510c4b6d90bd205fc89ad81d9ec38a33b26ed559e667acfb10"
+            },
+            {
+              "excel_row": 67,
+              "sha256": "d17582261c2af32eebc409070dfedece55101cc3a70c4861afbcfbe7170de360"
+            },
+            {
+              "excel_row": 68,
+              "sha256": "0c642856970799513a1eea325b7b8dd6e2843f67b46bbe298ea4ff998625d169"
+            },
+            {
+              "excel_row": 69,
+              "sha256": "de3f5cba6ca71ff175a153fb1496c7cdb7ef4c53760d7abe678cd2e135755ed0"
+            },
+            {
+              "excel_row": 70,
+              "sha256": "5bf7c539fe902e5296eda28f6b0027baf36fd49b0d64b5dfc67780986f5c1a64"
+            },
+            {
+              "excel_row": 71,
+              "sha256": "8653e2bfe018764ca4ff5c1573e1a7bf5574ee795e82e3c48e938a2e408098c7"
+            },
+            {
+              "excel_row": 72,
+              "sha256": "b589cddc28b8e76ecebe40076dabb8814c7844da1c004dee28dbf73cc6ba0ea7"
+            },
+            {
+              "excel_row": 73,
+              "sha256": "fb2e3eedc231c13cb1bf92d320e9493c0561e84ec4bb068de05107705a4c432c"
+            },
+            {
+              "excel_row": 74,
+              "sha256": "57ddaf04998fcaee27eac819f08a7651943ecf22a8c3ef785864bb6fd1915470"
+            },
+            {
+              "excel_row": 75,
+              "sha256": "bbc8432d0ad3fcd97a484e47944d1ac4791555c65f43e7ed91f36dd80cf96fa7"
+            },
+            {
+              "excel_row": 76,
+              "sha256": "9319f24597f78d5eac073bb094980e187e58b85bd9d6a8b3a4c2fd922f296301"
+            },
+            {
+              "excel_row": 77,
+              "sha256": "9f69daa7062d8b8dee838ffedde356eec449eb3d34f1df79d10ac9b89de58ad0"
+            },
+            {
+              "excel_row": 78,
+              "sha256": "7bfa60bea96ce45566d38191730538b1543b5d82f16658767effecd7231fa270"
+            },
+            {
+              "excel_row": 79,
+              "sha256": "73ac71338ad86a3963233f6fc154a6edba40f04d2b790acaa38e491d5252aa13"
+            },
+            {
+              "excel_row": 80,
+              "sha256": "74284e4daa0abf5bf3b37dfb95ce6d4b6d732e29d8a9043d719014a7e644a885"
+            },
+            {
+              "excel_row": 81,
+              "sha256": "a6e3ac2e6ee061e3d0de355562ea62aae671fa1664b6360186b5d04c3e5a7d8e"
+            },
+            {
+              "excel_row": 82,
+              "sha256": "6d248e92bb0865a99bc18196a6659f48f4fe84e916812e7140be6d23b42f8f74"
+            },
+            {
+              "excel_row": 83,
+              "sha256": "37473062f365fb7c943a867978c6134e4a99b695b14fdcabf58cf0b6680b12f2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "03_은행현금_합성원천.xlsx",
+      "sha256": "3f767f41ff29517d55908211e8534360fcd10aa9298aa44e4d35584af882993d",
+      "bytes": 14368,
+      "mother_input": "samples/통합/통합_v1.5_현금분석.xlsx",
+      "mother_sha256": "a2f887de18f9d56ff1ba35d308975d99cdd7b3bfa1444568490099884be20be2",
+      "analysis_targets": [
+        {
+          "module": "현금분석",
+          "file": "samples/통합/통합_v1.5_현금분석.xlsx",
+          "sha256": "a2f887de18f9d56ff1ba35d308975d99cdd7b3bfa1444568490099884be20be2"
+        }
+      ],
+      "sheets": [
+        {
+          "sheet": "분석설정",
+          "headers": [
+            "항목",
+            "값"
+          ],
+          "columns": 2,
+          "physical_rows_including_header": 6,
+          "data_rows": 5,
+          "header_sha256": "4939bfde766847b7d81f24500fbe20d8e3b207ff2f4fa311714d9d9e074361ea",
+          "row_values_sha256": "9ad8f6c700b4003a586f05e7f7e72339879b2054cee69cb14777c1f41b48e97f",
+          "row_hashes": [
+            {
+              "excel_row": 2,
+              "sha256": "1aa98fc693057ca4f992f0a3b3cf3f6b9e9894633be461e227a3e8c9774e9c57"
+            },
+            {
+              "excel_row": 3,
+              "sha256": "a4965576a050cab3ca4b2a9dab89ba596bb7d398cc9f0c336f28b71e21ee6af5"
+            },
+            {
+              "excel_row": 4,
+              "sha256": "6276c92b4e3185346a7756f31c31ac2202441be9970383379157c3efdeef8126"
+            },
+            {
+              "excel_row": 5,
+              "sha256": "15eaec839a01f93a85b74f00a124efb09b482aa09a28b750bc772eb32c51d1bd"
+            },
+            {
+              "excel_row": 6,
+              "sha256": "3b17d6c3ff4e2a1f64f5b190124cd67513220cebfc713680835ef2e74b2cede1"
+            }
+          ]
+        },
+        {
+          "sheet": "현금계좌",
+          "headers": [
+            "회사코드",
+            "계좌ID",
+            "계정코드",
+            "통화",
+            "기초잔액",
+            "기말잔액"
+          ],
+          "columns": 6,
+          "physical_rows_including_header": 3,
+          "data_rows": 2,
+          "header_sha256": "0f6f37ae5ad6e18e2615dae4d6a88bea3eb0cb4c32d7bf753ad75ff924a091ec",
+          "row_values_sha256": "afd718506333ad0ebad81515d55ef7eaa6f378e6ee14477c804ccae4556074ba",
+          "row_hashes": [
+            {
+              "excel_row": 2,
+              "sha256": "952d7cce19b5ecd449743c46e5e7a91d4cd43bd40f26149691f97f7ddd60efa9"
+            },
+            {
+              "excel_row": 3,
+              "sha256": "104843417007acfea3726e432b640114974c71a9496e8f655547692d77d1b089"
+            }
+          ]
+        },
+        {
+          "sheet": "은행거래",
+          "headers": [
+            "회사코드",
+            "은행거래ID",
+            "계좌ID",
+            "거래일",
+            "입금",
+            "출금",
+            "거래처ID",
+            "상대계좌",
+            "지급근거ID",
+            "거래구분"
+          ],
+          "columns": 10,
+          "physical_rows_including_header": 13,
+          "data_rows": 12,
+          "header_sha256": "5dca30aa46847b815075a4cebc80511db4b96b3b026b43762dde30971ca92f06",
+          "row_values_sha256": "53d506379f29d7aa6f51550846467a8cff7a57d1fec9a9dad4cb6d9972cce58c",
+          "row_hashes": [
+            {
+              "excel_row": 2,
+              "sha256": "9fcfb23d561849fbcd135ad174ad80d2c2d45477198af035d59d9b136ad5cfad"
+            },
+            {
+              "excel_row": 3,
+              "sha256": "503c62d72fd2e319d9a3f2105b319944da1bfc1ca48aad03e119c9b9cd7da99c"
+            },
+            {
+              "excel_row": 4,
+              "sha256": "5f27789785f2c1f597c30d619df2d82d04c223f037e17bd99b3ade2c339f5b8f"
+            },
+            {
+              "excel_row": 5,
+              "sha256": "1d4ef88e8f941f026cb2ec3ac39f83e0a7f0911b4bbeec620d37a95fc70931ae"
+            },
+            {
+              "excel_row": 6,
+              "sha256": "fac999c842fe4532613402a698afd5dc0400076b32798abd7c0a4d49fcf45f5e"
+            },
+            {
+              "excel_row": 7,
+              "sha256": "d6664857183461a841c41ff3d4b73badfad710ff636e1deeacda0e45ade65ebf"
+            },
+            {
+              "excel_row": 8,
+              "sha256": "b62b96efb8fb13f2b09a0460abf480631a99eaed765a87f703e0da6a033316fd"
+            },
+            {
+              "excel_row": 9,
+              "sha256": "3fd6e9d386a3afb55fbd9b373b66a7a56dd65015430c60630923ab472a073a3e"
+            },
+            {
+              "excel_row": 10,
+              "sha256": "67be24672bc163a6eaf5da3337ffc6bb85b36759c5b0de7e31bfdd27a54c3b41"
+            },
+            {
+              "excel_row": 11,
+              "sha256": "7ddc7834d1af9f25f1839233285d961dcd662c5dcc04641b14a73429a3c7e8d9"
+            },
+            {
+              "excel_row": 12,
+              "sha256": "e23f3582020a9b6cb15c9b5c6544cde30b08d90d7da55055b658dd7afe40780c"
+            },
+            {
+              "excel_row": 13,
+              "sha256": "b00515afc3385453e8dbe5c4c7747dd657d7c9e40459c9534fa4a3e7ac645add"
+            }
+          ]
+        },
+        {
+          "sheet": "은행독립통제",
+          "headers": [
+            "회사코드",
+            "계좌ID",
+            "시작일",
+            "기준일",
+            "행수",
+            "입금합계",
+            "출금합계",
+            "추출근거",
+            "추출일시",
+            "작성자"
+          ],
+          "columns": 10,
+          "physical_rows_including_header": 3,
+          "data_rows": 2,
+          "header_sha256": "a2a5d91e6b348fb82a52eafc78061c4587b93dcc99b2dd8b1d80f5ca3cb6e909",
+          "row_values_sha256": "7ad6a3eaa95cdf2e895e39b923a0518970f475f4993f06fed4110dec2d138b54",
+          "row_hashes": [
+            {
+              "excel_row": 2,
+              "sha256": "3c78a988babb9194c948378e891668906324355ef592e02773c3af1dda005556"
+            },
+            {
+              "excel_row": 3,
+              "sha256": "95e978069737d77a244fa4a4202131092d67ee4bf204b3409ab80ecea07fb49b"
+            }
+          ]
+        },
+        {
+          "sheet": "현금원장선택",
+          "headers": [
+            "회사코드",
+            "전표ID",
+            "행ID",
+            "계좌ID",
+            "거래처ID",
+            "상대계좌",
+            "지급근거ID",
+            "거래구분"
+          ],
+          "columns": 8,
+          "physical_rows_including_header": 13,
+          "data_rows": 12,
+          "header_sha256": "a78a4fe1fd0036546484ad713adb50d243a4c9a866e777dd06d1e76d1382089a",
+          "row_values_sha256": "e3a89e177fb73fa8f6e0723856cef020f236a6bd8dbdae141c5a024c05312f47",
+          "row_hashes": [
+            {
+              "excel_row": 2,
+              "sha256": "ed2e0f2a42841a226d31c206ad5cd7df5f89311d6f4870426881e6204512e8ee"
+            },
+            {
+              "excel_row": 3,
+              "sha256": "245d0790d5e2eab5349ce12d679b6a1776f4603145784d07da037aa5066a91a9"
+            },
+            {
+              "excel_row": 4,
+              "sha256": "99cd2a3308a8a5541106fc7302eddf3b0db77236898a7d84434052bb789558ad"
+            },
+            {
+              "excel_row": 5,
+              "sha256": "1ac4c0e8711883de4ebc51c7bec58323aec13d6fb151618526b7ebe8b610163d"
+            },
+            {
+              "excel_row": 6,
+              "sha256": "d17d3633029791e96e10cfb53e5acd5675780cc4f239684c27b3e4a0659868aa"
+            },
+            {
+              "excel_row": 7,
+              "sha256": "31aa4809f0d74908c4f6264970f12de46b50ded1630cab93f00c97ebb68e5f77"
+            },
+            {
+              "excel_row": 8,
+              "sha256": "75d80d76e547ebc60310545f04b48d662c112ac8a3bb1a4968f71f68e59b6958"
+            },
+            {
+              "excel_row": 9,
+              "sha256": "5bf75c8e292666b62b677c5c1107b670e3936a86005fde093fb97560f2d4cf93"
+            },
+            {
+              "excel_row": 10,
+              "sha256": "91c0fa3c6f8ba29fbffe8d67019497f1514262ee7446be633ac203e5f70fbb2a"
+            },
+            {
+              "excel_row": 11,
+              "sha256": "b009dfeceaf8b2db2339c822d2bd5a6cd8414895ad65fd6ea0e6563e0c739b63"
+            },
+            {
+              "excel_row": 12,
+              "sha256": "a625d700582d8f16067ad424b739b27ab00673f0544984e8d93ab7eb664c17eb"
+            },
+            {
+              "excel_row": 13,
+              "sha256": "f222e4c03e30c1c9560571014ea3ef1401d3b8aa860e21cf35befbd286e8fc7f"
+            }
+          ]
+        },
+        {
+          "sheet": "현금배부",
+          "headers": [
+            "배부ID",
+            "회사코드",
+            "은행거래ID",
+            "전표ID",
+            "행ID",
+            "금액"
+          ],
+          "columns": 6,
+          "physical_rows_including_header": 13,
+          "data_rows": 12,
+          "header_sha256": "2ae0d06b777c71aa7f6d17eae284731309a47aea08db7b85e7cc44fdf957f2f2",
+          "row_values_sha256": "6bae8bf3574abccf2ee8c4b63ae3b6e18fde1e94e3beb16f5dfba2dc91dd1f4f",
+          "row_hashes": [
+            {
+              "excel_row": 2,
+              "sha256": "8b1a61205b1f7156f70d9828b431f86e81ec3104c17207d904ee09c0aa370deb"
+            },
+            {
+              "excel_row": 3,
+              "sha256": "838bd59f8e312a3c8c7f3a393cb4d05d019a777bed8f526db7d59a3a6bfb5a47"
+            },
+            {
+              "excel_row": 4,
+              "sha256": "088a24ca4fe1d1901b488cab7eb549f255ae7d4ec8441eb83661822ef7d42acf"
+            },
+            {
+              "excel_row": 5,
+              "sha256": "b57da2458284616762fb5e15dd830f7c330e45fa30acdde01fbf842ee9de8e9a"
+            },
+            {
+              "excel_row": 6,
+              "sha256": "84c3d6d07fc05d05e906a6bc4c85b0c9862ef088f0e11f5e5fab939752705fc7"
+            },
+            {
+              "excel_row": 7,
+              "sha256": "8ae97a720a196e7dd007f3972392fc427d19bb1e35b60485e4d75927c4f21d60"
+            },
+            {
+              "excel_row": 8,
+              "sha256": "08ed57a59fcf9b161441b24e696db9f676efbb9d845988036078759e4785554e"
+            },
+            {
+              "excel_row": 9,
+              "sha256": "4573fb49f319cbd6b59f269134677ac861676efd2efa12a7e46d449cef6ba821"
+            },
+            {
+              "excel_row": 10,
+              "sha256": "fcc6596a6cade920128e6c0aa8cfc78b11b45efcebc08ca11176622d2ace9f61"
+            },
+            {
+              "excel_row": 11,
+              "sha256": "5e579df0ff8b1ca46b405da2b621dca8cb233ff1c89d509d17443802740e99b0"
+            },
+            {
+              "excel_row": 12,
+              "sha256": "4ef3215c62264d8b6ff1bc7732d208fe035519c2f3f01bf6e1b19e2c2f3ca063"
+            },
+            {
+              "excel_row": 13,
+              "sha256": "7a5233c47f3ad710d904b1553a3d19277e34a22220c2bef7902848afc9644d2e"
+            }
+          ]
+        },
+        {
+          "sheet": "거래처계좌",
+          "headers": [
+            "회사코드",
+            "거래처ID",
+            "상대계좌",
+            "소유구분",
+            "근거"
+          ],
+          "columns": 5,
+          "physical_rows_including_header": 11,
+          "data_rows": 10,
+          "header_sha256": "872014589004cd9b86db5ecb820e41813238371376f0f964b7d720ebd4a1087e",
+          "row_values_sha256": "7a61a5c1ef6781eebd496e55159bd7d5b7a5e0fa7af3f27fd2bdd645f235addf",
+          "row_hashes": [
+            {
+              "excel_row": 2,
+              "sha256": "4686345ffe18f19d63d12edba85066ef64cdf9de10f592d920b9d643c8f72cb2"
+            },
+            {
+              "excel_row": 3,
+              "sha256": "b584d4cbfc14cd4507e901d9fa7933fe6f65c922119874c009f26142bfdabecd"
+            },
+            {
+              "excel_row": 4,
+              "sha256": "08516835f0ced1c7d24beeed30051d881ae726060305ab99c272b03cd8783a65"
+            },
+            {
+              "excel_row": 5,
+              "sha256": "978edb5f14458fbba254ed5d1e13afcd406f10bf2886bab48ff63a5891c7ebd7"
+            },
+            {
+              "excel_row": 6,
+              "sha256": "0cead34c9bc6d3a0522658bd9177a5c2a3a83fa7b3300412d06ce24a08d055f5"
+            },
+            {
+              "excel_row": 7,
+              "sha256": "37d307ea8780e3fec7d15bcac4130e85f55e462afd20d9a47cb6c7b61e72d03b"
+            },
+            {
+              "excel_row": 8,
+              "sha256": "2f9fdfd1bb9945c4c7adb4330b6c2812187df4a507aae02bf7b331e75e10c726"
+            },
+            {
+              "excel_row": 9,
+              "sha256": "a724d95f6f54ba4955c4aac06851f9297cd0a954fe373145a969d8458c15d5ba"
+            },
+            {
+              "excel_row": 10,
+              "sha256": "6b29f36a1926c39cf774a117926770d5cc4d96b9e3acf89bd4abac83ad5ef1bb"
+            },
+            {
+              "excel_row": 11,
+              "sha256": "c643b7f26774a9c379cac48080559ecb0fccaa57a797118918892729fb04750a"
+            }
+          ]
+        },
+        {
+          "sheet": "계좌변경",
+          "headers": [
+            "변경ID",
+            "회사코드",
+            "거래처ID",
+            "이전계좌",
+            "신규계좌",
+            "효력일",
+            "승인일",
+            "근거"
+          ],
+          "columns": 8,
+          "physical_rows_including_header": 2,
+          "data_rows": 1,
+          "header_sha256": "f8e486cbfac59e36f8826c05103e3f90f3c2d90245352bc00515bdae218b6119",
+          "row_values_sha256": "588de0abd707010bd7532b8e080e45669b819c1b6a3b2900994e86ce366cf681",
+          "row_hashes": [
+            {
+              "excel_row": 2,
+              "sha256": "e9faddcb70cf28cf250213f18e03c493189989fc0e0e63fbf857c3a10d6de3e9"
+            }
+          ]
+        },
+        {
+          "sheet": "지급근거",
+          "headers": [
+            "회사코드",
+            "지급근거ID",
+            "거래처ID",
+            "승인총액",
+            "통화",
+            "지급유형",
+            "근거"
+          ],
+          "columns": 7,
+          "physical_rows_including_header": 11,
+          "data_rows": 10,
+          "header_sha256": "a2b31f112f3e4c64ba37adbcf17853c6c5b9206a20846bc9315a9dc38947be28",
+          "row_values_sha256": "4ca3ca45abd09ba05f25193b8390e6be5439ca7e7f623a2036ab33fd438647c4",
+          "row_hashes": [
+            {
+              "excel_row": 2,
+              "sha256": "b0a1989ff9b5057d3208cbc9332281b3848b8dc7a817b669a86f5f1b5e72ba2d"
+            },
+            {
+              "excel_row": 3,
+              "sha256": "e3a9469cbf65e831194c4fd6ce5dacf78d589e30b0ae30d81481b17affd2c5b0"
+            },
+            {
+              "excel_row": 4,
+              "sha256": "d6a42a0f1b2685a4017881e721c599a2bd8cbc5ce9dec11b39442c6b7b4beafb"
+            },
+            {
+              "excel_row": 5,
+              "sha256": "0ff37c868f3c2e0e2329b699b8e7fe4b4b1c938c6fe351ecbe11ba6953b3d695"
+            },
+            {
+              "excel_row": 6,
+              "sha256": "8d51f23e13d183003e42ed2c72de66486c5c3bdff701824bb86651175e354680"
+            },
+            {
+              "excel_row": 7,
+              "sha256": "36bd57beae96ac86cc42c9ff374f8210fd1ff27b2580d5b2a051f3193b928067"
+            },
+            {
+              "excel_row": 8,
+              "sha256": "9d106f6585063e263e57d162e99dbd22c0d26137a3968bc756b06df5cd1f0f2d"
+            },
+            {
+              "excel_row": 9,
+              "sha256": "0c9448c9df608e9793e4ccab30ee6917f6750ebf28ede0bf6e977c0ca674d31f"
+            },
+            {
+              "excel_row": 10,
+              "sha256": "9dc078f96bae82dc37bdff67ada5d8680525156633cc9fe16b0a6119c27041e1"
+            },
+            {
+              "excel_row": 11,
+              "sha256": "a828b80869ea79b4cb0f06ff5983b9ba1eb79229f4d80f977430d1444625c480"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "04_GLA_정책.xlsx",
+      "sha256": "f95c37fdc46c6f705e897f050ec98092c7ef470f7004eac2a9db0cf308fbdd6a",
+      "bytes": 5336,
+      "mother_input": "samples/통합/통합_v1.5_GLA.xlsx",
+      "mother_sha256": "e48f246bc74e938a5252f991a2f3b81bd846e492439271591b403da34474e420",
+      "analysis_targets": [
+        {
+          "module": "GLA",
+          "file": "samples/통합/통합_v1.5_GLA.xlsx",
+          "sha256": "e48f246bc74e938a5252f991a2f3b81bd846e492439271591b403da34474e420"
+        }
+      ],
+      "sheets": [
+        {
+          "sheet": "GLA설정",
+          "headers": [
+            "항목",
+            "값"
+          ],
+          "columns": 2,
+          "physical_rows_including_header": 9,
+          "data_rows": 8,
+          "header_sha256": "4939bfde766847b7d81f24500fbe20d8e3b207ff2f4fa311714d9d9e074361ea",
+          "row_values_sha256": "7edf972c96af60fdf44d88abe71bbed727f3208de48a20d2062b38a1cec72303",
+          "row_hashes": [
+            {
+              "excel_row": 2,
+              "sha256": "5df8ba20e85fa6bb60feb5e3baa12c561774c9485bc0f03120b4f8309884d278"
+            },
+            {
+              "excel_row": 3,
+              "sha256": "0bf18df1b48a86023353c538eea6ab7a7c1fcaaca323a1130d563295680d8971"
+            },
+            {
+              "excel_row": 4,
+              "sha256": "bf947b7a8a3a9119fdff83484bae450cf78fad142a9dcc2fe44b3992f8a1baaf"
+            },
+            {
+              "excel_row": 5,
+              "sha256": "4dba277214bdcaa5c6fda027cff0bfc88b89751905c8332e893e51ab4c2dedcd"
+            },
+            {
+              "excel_row": 6,
+              "sha256": "d4f8c932ffa2f8f6030a41d5c2f2640df6f4ff01d263336c7854b9624eead8bd"
+            },
+            {
+              "excel_row": 7,
+              "sha256": "8d3ad1e11c055c2abd1a9320471f2242f73584f3052e5c2c8653773a0fb55c4c"
+            },
+            {
+              "excel_row": 8,
+              "sha256": "68d377d180a99190727622758e23debc7ea6fe034827d9acf3b911e4649631d2"
+            },
+            {
+              "excel_row": 9,
+              "sha256": "dc785cc4d88aa917eb017c469a45977dd8047a7cc5b565ae2a25496fa0cd4744"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "pbc": {
+    "file": "00_분석자료요청목록.xlsx",
+    "sha256": "b3042dd00161ffbbba0511c95c3db889ae2743bf8d35579a67377d2dc83ef25f",
+    "bytes": 8328,
+    "data_rows": 19
+  },
+  "analysis_inputs": [
+    {
+      "module": "GLA",
+      "file": "samples/통합/통합_v1.5_GLA.xlsx",
+      "sha256": "e48f246bc74e938a5252f991a2f3b81bd846e492439271591b403da34474e420"
+    },
+    {
+      "module": "FIA",
+      "file": "samples/통합/통합_v1.5_FIA.xlsx",
+      "sha256": "28bcb1b432d5e3a844d8e64cd4d6ee2423842b36f2020001a23533943f97861a"
+    },
+    {
+      "module": "현금분석",
+      "file": "samples/통합/통합_v1.5_현금분석.xlsx",
+      "sha256": "a2f887de18f9d56ff1ba35d308975d99cdd7b3bfa1444568490099884be20be2"
+    }
+  ],
+  "verification": {
+    "source_workbooks": 4,
+    "source_sheets": 19,
+    "data_rows": 464,
+    "reconstructed_analysis_workbooks": 3,
+    "missing_rows": 0,
+    "changed_cells": 0,
+    "original_analysis_inputs_unchanged": true,
+    "checks": [
+      {
+        "file": "01_GL_TB_합성원천.xlsx",
+        "sheets": 7,
+        "data_rows": 296,
+        "exact_values_types_row_order": true,
+        "missing_rows": 0,
+        "changed_cells": 0
+      },
+      {
+        "file": "02_ERP전표로그_합성.xlsx",
+        "sheets": 2,
+        "data_rows": 94,
+        "exact_values_types_row_order": true,
+        "missing_rows": 0,
+        "changed_cells": 0
+      },
+      {
+        "file": "03_은행현금_합성원천.xlsx",
+        "sheets": 9,
+        "data_rows": 66,
+        "exact_values_types_row_order": true,
+        "missing_rows": 0,
+        "changed_cells": 0
+      },
+      {
+        "file": "04_GLA_정책.xlsx",
+        "sheets": 1,
+        "data_rows": 8,
+        "exact_values_types_row_order": true,
+        "missing_rows": 0,
+        "changed_cells": 0
+      },
+      {
+        "module": "GLA",
+        "reconstructed_sheets": 8,
+        "all_values_types_row_order_exact": true,
+        "missing_rows": 0,
+        "changed_cells": 0,
+        "analysis_input_sha256": "e48f246bc74e938a5252f991a2f3b81bd846e492439271591b403da34474e420"
+      },
+      {
+        "module": "FIA",
+        "reconstructed_sheets": 9,
+        "all_values_types_row_order_exact": true,
+        "missing_rows": 0,
+        "changed_cells": 0,
+        "analysis_input_sha256": "28bcb1b432d5e3a844d8e64cd4d6ee2423842b36f2020001a23533943f97861a"
+      },
+      {
+        "module": "현금분석",
+        "reconstructed_sheets": 16,
+        "all_values_types_row_order_exact": true,
+        "missing_rows": 0,
+        "changed_cells": 0,
+        "analysis_input_sha256": "a2f887de18f9d56ff1ba35d308975d99cdd7b3bfa1444568490099884be20be2"
+      }
+    ]
+  }
+}

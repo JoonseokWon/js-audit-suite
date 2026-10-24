@@ -1,0 +1,276 @@
+{
+  "schema_version": "account-evidence-1",
+  "synthetic": true,
+  "ledger_joined": false,
+  "worker": "cash_finance",
+  "context": {
+    "company_code": "SYNTH01",
+    "start_date": "2026-01-01",
+    "end_date": "2026-12-31",
+    "currency": "KRW",
+    "financial_statement_scope": "별도"
+  },
+  "case_index": 1,
+  "case": {
+    "case_id": "CASH-02",
+    "description": "오류: 은행 수수료 500원이 은행에는 있으나 장부·은행조정표에 미기록. 은행/조회 일치만으로 정상 판단하면 놓치는 사례.",
+    "documents": [
+      {
+        "document_id": "CASH-DOC-BANK",
+        "document_type": "bank_statement",
+        "transaction_id": "CASH-CYCLE01",
+        "fields": {
+          "company_code": "SYNTH01",
+          "currency": "KRW",
+          "as_of_date": "2026-12-31",
+          "account_id": "CASH-ACCT001",
+          "opening_balance": 900000,
+          "closing_balance": 989500,
+          "coverage_start": "2026-01-01",
+          "coverage_end": "2026-12-31",
+          "entries": [
+            {
+              "entry_id": "CASH-SETTLED-R",
+              "date": "2026-12-30",
+              "amount": 150000
+            },
+            {
+              "entry_id": "CASH-SETTLED-P",
+              "date": "2026-12-30",
+              "amount": -60000
+            },
+            {
+              "entry_id": "CASH-BANK-FEE",
+              "date": "2026-12-31",
+              "amount": -500
+            }
+          ],
+          "extraction_status": "합성 원본: 실제 은행 추출 아님"
+        }
+      },
+      {
+        "document_id": "CASH-DOC-BOOK",
+        "document_type": "cash_ledger",
+        "transaction_id": "CASH-CYCLE01",
+        "fields": {
+          "company_code": "SYNTH01",
+          "currency": "KRW",
+          "as_of_date": "2026-12-31",
+          "account_id": "CASH-ACCT001",
+          "account_code": "1000",
+          "opening_balance": 900000,
+          "closing_balance": 1000000,
+          "entries": [
+            {
+              "entry_id": "CASH-SETTLED-R",
+              "date": "2026-12-30",
+              "amount": 150000
+            },
+            {
+              "entry_id": "CASH-SETTLED-P",
+              "date": "2026-12-30",
+              "amount": -60000
+            },
+            {
+              "entry_id": "CASH-TRANSIT-R",
+              "date": "2026-12-31",
+              "amount": 20000
+            },
+            {
+              "entry_id": "CASH-OUTSTANDING-P",
+              "date": "2026-12-31",
+              "amount": -10000
+            }
+          ]
+        }
+      },
+      {
+        "document_id": "CASH-DOC-RECON",
+        "document_type": "bank_reconciliation",
+        "transaction_id": "CASH-CYCLE01",
+        "fields": {
+          "company_code": "SYNTH01",
+          "currency": "KRW",
+          "as_of_date": "2026-12-31",
+          "account_id": "CASH-ACCT001",
+          "bank_adjustments": [
+            {
+              "adjustment_id": "CASH-RECON01",
+              "kind": "deposit_in_transit",
+              "amount": 20000,
+              "book_entry_id": "CASH-TRANSIT-R",
+              "cleared_date": "2027-01-02",
+              "clearing_entry_id": "CASH-CLEAR-R",
+              "evidence_id": "CASH-DOC-SUBSEQUENT"
+            },
+            {
+              "adjustment_id": "CASH-RECON02",
+              "kind": "outstanding_payment",
+              "amount": -10000,
+              "book_entry_id": "CASH-OUTSTANDING-P",
+              "cleared_date": "2027-01-03",
+              "clearing_entry_id": "CASH-CLEAR-P",
+              "evidence_id": "CASH-DOC-SUBSEQUENT"
+            }
+          ],
+          "prepared_by": null,
+          "reviewed_by": null,
+          "conclusion": null
+        }
+      },
+      {
+        "document_id": "CASH-DOC-SUBSEQUENT",
+        "document_type": "subsequent_bank_statement",
+        "transaction_id": "CASH-CYCLE01",
+        "fields": {
+          "company_code": "SYNTH01",
+          "currency": "KRW",
+          "as_of_date": "2026-12-31",
+          "account_id": "CASH-ACCT001",
+          "coverage_start": "2027-01-01",
+          "coverage_end": "2027-01-31",
+          "subsequent_period": true,
+          "entries": [
+            {
+              "entry_id": "CASH-CLEAR-R",
+              "date": "2027-01-02",
+              "amount": 20000
+            },
+            {
+              "entry_id": "CASH-CLEAR-P",
+              "date": "2027-01-03",
+              "amount": -10000
+            }
+          ]
+        }
+      },
+      {
+        "document_id": "CASH-DOC-CONFIRMATION",
+        "document_type": "bank_confirmation",
+        "transaction_id": "CASH-CYCLE01",
+        "fields": {
+          "company_code": "SYNTH01",
+          "currency": "KRW",
+          "as_of_date": "2026-12-31",
+          "account_id": "CASH-ACCT001",
+          "confirmed_balance": 989500,
+          "institution_id": "CASH-SYNBANK",
+          "response_status": "simulated_response",
+          "is_actual_confirmation": false
+        }
+      },
+      {
+        "document_id": "CASH-DOC-CONTROL",
+        "document_type": "confirmation_control",
+        "transaction_id": "CASH-CYCLE01",
+        "fields": {
+          "company_code": "SYNTH01",
+          "currency": "KRW",
+          "as_of_date": "2026-12-31",
+          "account_id": "CASH-ACCT001",
+          "request_id": "CASH-CONF01",
+          "sent_date": "2027-01-05",
+          "received_date": "2027-01-12",
+          "sent_by_auditor": true,
+          "received_directly_by_auditor": true,
+          "response_identity_reviewed": true,
+          "response_document_id": "CASH-DOC-CONFIRMATION",
+          "control_flags_are_simulated": true,
+          "reviewer": null
+        }
+      },
+      {
+        "document_id": "CASH-DOC-CONTRACT",
+        "document_type": "deposit_contract",
+        "transaction_id": "CASH-CYCLE01",
+        "fields": {
+          "company_code": "SYNTH01",
+          "currency": "KRW",
+          "as_of_date": "2026-12-31",
+          "contract_id": "CASH-DEP01",
+          "institution_id": "CASH-SYNBANK",
+          "account_code": "1100",
+          "principal": 1000000,
+          "annual_rate_ppm": 36500,
+          "contract_start": "2026-10-01",
+          "maturity_date": "2027-09-30",
+          "interest_start": "2026-10-01",
+          "interest_end": "2026-12-31",
+          "day_count": "ACT/365F",
+          "start_included": false,
+          "end_included": true,
+          "principal_changes": false,
+          "compound_interest": false,
+          "floating_rate": false,
+          "fees_or_discount": false,
+          "rounding": "ROUND_HALF_UP to integer won"
+        }
+      },
+      {
+        "document_id": "CASH-DOC-INTEREST",
+        "document_type": "interest_ledger",
+        "transaction_id": "CASH-CYCLE01",
+        "fields": {
+          "company_code": "SYNTH01",
+          "currency": "KRW",
+          "as_of_date": "2026-12-31",
+          "contract_id": "CASH-DEP01",
+          "account_code": "1150",
+          "accrued_interest": 9100,
+          "tolerance_won": 10,
+          "tolerance_is_audit_materiality": false
+        }
+      }
+    ],
+    "expected": [
+      {
+        "check_id": "CASH_BANK_ROLLFORWARD",
+        "status": "PASS",
+        "expected_value": 989500,
+        "actual_value": 989500,
+        "difference": 0,
+        "reason": "합성 정상 자료의 고정 기대값과 일치"
+      },
+      {
+        "check_id": "CASH_BOOK_ROLLFORWARD",
+        "status": "PASS",
+        "expected_value": 1000000,
+        "actual_value": 1000000,
+        "difference": 0,
+        "reason": "합성 정상 자료의 고정 기대값과 일치"
+      },
+      {
+        "check_id": "CASH_RECONCILIATION",
+        "status": "EXCEPTION",
+        "expected_value": 999500,
+        "actual_value": 1000000,
+        "difference": 500,
+        "reason": "미기록 수수료 의심 500원. 실제 원인·분개는 감사인 검토"
+      },
+      {
+        "check_id": "CASH_CONFIRMATION_BALANCE",
+        "status": "PASS",
+        "expected_value": 989500,
+        "actual_value": 989500,
+        "difference": 0,
+        "reason": "합성 정상 자료의 고정 기대값과 일치"
+      },
+      {
+        "check_id": "CASH_CONFIRMATION_CONTROL",
+        "status": "PASS",
+        "expected_value": 1,
+        "actual_value": 1,
+        "difference": 0,
+        "reason": "합성 정상 자료의 고정 기대값과 일치"
+      },
+      {
+        "check_id": "CASH_INTEREST",
+        "status": "PASS",
+        "expected_value": 9100,
+        "actual_value": 9100,
+        "difference": 0,
+        "reason": "합성 정상 자료의 고정 기대값과 일치"
+      }
+    ]
+  }
+}

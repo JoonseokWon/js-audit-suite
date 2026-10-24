@@ -1,0 +1,12 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { FileBlob, SpreadsheetFile } from '@oai/artifact-tool';
+const here = path.dirname(fileURLToPath(import.meta.url));
+const root = path.dirname(here);
+const wb = await SpreadsheetFile.importXlsx(await FileBlob.load(path.join(root, '00_분석자료요청목록.xlsx')));
+const report = await wb.inspect({kind:'table', range:'자료요청!A1:H4', include:'values,formulas',tableMaxRows:4,tableMaxCols:8,maxChars:3000});
+await fs.writeFile(path.join(here,'pbc_inspection.ndjson'), report.ndjson);
+const image = await wb.render({sheetName:'자료요청',range:'A1:H20',scale:1,format:'png'});
+await fs.writeFile(path.join(here,'pbc_preview.png'),new Uint8Array(await image.arrayBuffer()));
+console.log('PBC visual preview saved.');

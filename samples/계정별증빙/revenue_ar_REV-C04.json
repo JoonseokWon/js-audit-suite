@@ -1,0 +1,455 @@
+{
+  "schema_version": "account-evidence-1",
+  "synthetic": true,
+  "ledger_joined": false,
+  "worker": "revenue_ar",
+  "context": {
+    "company_id": "SYNTH01",
+    "period_start": "2026-01-01",
+    "period_end": "2026-12-31",
+    "currency": "KRW",
+    "consolidation": "별도",
+    "subsequent_period_start": "2027-01-01",
+    "subsequent_search_end": "2027-02-28"
+  },
+  "case_index": 3,
+  "case": {
+    "case_id": "REV-C04",
+    "description": "조회 미회신: 후속입금 60000원이 있어도 직접 조회 회신은 미수령",
+    "documents": [
+      {
+        "document_id": "REV-004-ORDER",
+        "document_type": "order",
+        "transaction_id": "REV-TX-004",
+        "fields": {
+          "company_id": "SYNTH01",
+          "customer_id": "REV-CUST-004",
+          "currency": "KRW",
+          "order_id": "REV-O-004",
+          "item_id": "REV-P01",
+          "order_date": "2026-12-18",
+          "quantity": 20,
+          "unit": "EA",
+          "unit_price": 5000
+        }
+      },
+      {
+        "document_id": "REV-004-CONTRACT",
+        "document_type": "contract",
+        "transaction_id": "REV-TX-004",
+        "fields": {
+          "company_id": "SYNTH01",
+          "customer_id": "REV-CUST-004",
+          "currency": "KRW",
+          "contract_id": "REV-CT-004",
+          "revenue_policy": "customer_acceptance",
+          "policy_assessed": true,
+          "significant_financing_component": false,
+          "performance_obligation": "가상 상품 20EA 인도 및 고객 검수",
+          "terms_reference": "SYNTHETIC ONLY / 계약 조건 판단 완료 가정"
+        }
+      },
+      {
+        "document_id": "REV-004-DELIVERY",
+        "document_type": "delivery",
+        "transaction_id": "REV-TX-004",
+        "fields": {
+          "company_id": "SYNTH01",
+          "customer_id": "REV-CUST-004",
+          "currency": "KRW",
+          "invoice_id": "REV-SI-004",
+          "item_id": "REV-P01",
+          "delivery_date": "2026-12-20",
+          "acceptance_date": "2026-12-20",
+          "quantity": 20,
+          "accepted_quantity": 20
+        }
+      },
+      {
+        "document_id": "REV-004-INVOICE",
+        "document_type": "invoice",
+        "transaction_id": "REV-TX-004",
+        "fields": {
+          "company_id": "SYNTH01",
+          "customer_id": "REV-CUST-004",
+          "currency": "KRW",
+          "invoice_id": "REV-SI-004",
+          "invoice_date": "2026-12-20",
+          "quantity": 20,
+          "unit_price": 5000,
+          "tax_rate_bps": 1000,
+          "supply_amount": 100000,
+          "tax_amount": 10000,
+          "total_amount": 110000
+        }
+      },
+      {
+        "document_id": "REV-004-LEDGER",
+        "document_type": "sales_ledger",
+        "transaction_id": "REV-TX-004",
+        "fields": {
+          "company_id": "SYNTH01",
+          "customer_id": "REV-CUST-004",
+          "currency": "KRW",
+          "invoice_id": "REV-SI-004",
+          "posting_date": "2026-12-20",
+          "revenue_credit": 100000,
+          "return_revenue_debit": 0,
+          "ar_debit": 110000,
+          "return_ar_credit": 0
+        }
+      },
+      {
+        "document_id": "REV-004-RETURN-SEARCH",
+        "document_type": "return_search",
+        "transaction_id": "REV-TX-004",
+        "fields": {
+          "company_id": "SYNTH01",
+          "customer_id": "REV-CUST-004",
+          "currency": "KRW",
+          "invoice_id": "REV-SI-004",
+          "search_start": "2026-12-20",
+          "search_end": "2027-02-28",
+          "complete_scope_declared": true,
+          "event_count": 0,
+          "scope": "합성 반품 및 대변메모 전체 건수 통제 예시",
+          "source_reference": "SYNTHETIC ONLY / 반품 추출 통제값"
+        }
+      },
+      {
+        "document_id": "REV-004-AR",
+        "document_type": "receivable",
+        "transaction_id": "REV-TX-004",
+        "fields": {
+          "company_id": "SYNTH01",
+          "customer_id": "REV-CUST-004",
+          "currency": "KRW",
+          "invoice_id": "REV-SI-004",
+          "receivable_id": "REV-AR-004",
+          "issue_date": "2026-12-20",
+          "due_date": "2026-12-30",
+          "closing_balance": 110000,
+          "reported_days_past_due": 1,
+          "group_id": "REV-GENERAL",
+          "measurement": "collective"
+        }
+      },
+      {
+        "document_id": "REV-004-RECEIPT",
+        "document_type": "bank_receipt",
+        "transaction_id": "REV-TX-004",
+        "fields": {
+          "company_id": "SYNTH01",
+          "customer_id": "REV-CUST-004",
+          "currency": "KRW",
+          "invoice_id": "REV-SI-004",
+          "receivable_id": "REV-AR-004",
+          "bank_transaction_id": "REV-BANK-004",
+          "receipt_date": "2027-01-20",
+          "bank_credit": 60000,
+          "allocated_amount": 60000,
+          "source_nature": "SYNTHETIC ONLY / 은행거래 합성값",
+          "authenticity_verified": false
+        }
+      },
+      {
+        "document_id": "REV-004-CONFIRM",
+        "document_type": "confirmation_control",
+        "transaction_id": "REV-TX-004",
+        "fields": {
+          "company_id": "SYNTH01",
+          "customer_id": "REV-CUST-004",
+          "currency": "KRW",
+          "invoice_id": "REV-SI-004",
+          "receivable_id": "REV-AR-004",
+          "request_date": "2027-01-05",
+          "response_date": null,
+          "balance_date": "2026-12-31",
+          "request_type": "positive",
+          "status": "NON_RESPONSE",
+          "request_controlled_by_auditor": true,
+          "recipient_verified": true,
+          "response_direct_to_auditor": false,
+          "responder_authority_checked": false,
+          "reply_amount": null,
+          "authenticity_verified": false,
+          "source_nature": "SYNTHETIC ONLY / 실제 발송·회신 아님"
+        }
+      },
+      {
+        "document_id": "REV-004-ECL-MODEL",
+        "document_type": "ecl_model",
+        "transaction_id": "REV-TX-004",
+        "fields": {
+          "company_id": "SYNTH01",
+          "customer_id": "REV-CUST-004",
+          "currency": "KRW",
+          "group_id": "REV-GENERAL",
+          "measurement": "lifetime_simplified_trade_no_sfc",
+          "historical_basis_reference": "SYNTHETIC ONLY / 동질군 손실이력 합성 가정",
+          "forward_basis_reference": "SYNTHETIC ONLY / 미래전망 합성 가정",
+          "time_value_reference": "SYNTHETIC ONLY / 단기 채권 할인 영향 중요성 별도 검토 가정",
+          "scenarios": [
+            {
+              "scenario_id": "REV-BASE",
+              "probability_bps": 7000,
+              "lower_days": 0,
+              "upper_days": 30,
+              "loss_rate_bps": 100
+            },
+            {
+              "scenario_id": "REV-ADVERSE",
+              "probability_bps": 3000,
+              "lower_days": 0,
+              "upper_days": 30,
+              "loss_rate_bps": 200
+            }
+          ]
+        }
+      },
+      {
+        "document_id": "REV-004-ECL-LEDGER",
+        "document_type": "allowance_ledger",
+        "transaction_id": "REV-TX-004",
+        "fields": {
+          "company_id": "SYNTH01",
+          "customer_id": "REV-CUST-004",
+          "currency": "KRW",
+          "group_id": "REV-GENERAL",
+          "opening_allowance": 1000,
+          "expense": 430,
+          "other_movement": 0,
+          "closing_allowance": 1430
+        }
+      }
+    ],
+    "expected": [
+      {
+        "check_id": "DOC_LINKS",
+        "status": "PASS",
+        "expected_value": true,
+        "actual_value": true,
+        "difference": 0,
+        "reason": "회사·거래·고객·송장 식별자가 연결됨",
+        "source_references": [
+          {
+            "document_id": "REV-004-ORDER",
+            "json_pointer": "/cases/3/documents/0/fields"
+          },
+          {
+            "document_id": "REV-004-CONTRACT",
+            "json_pointer": "/cases/3/documents/1/fields"
+          },
+          {
+            "document_id": "REV-004-DELIVERY",
+            "json_pointer": "/cases/3/documents/2/fields"
+          },
+          {
+            "document_id": "REV-004-INVOICE",
+            "json_pointer": "/cases/3/documents/3/fields"
+          },
+          {
+            "document_id": "REV-004-LEDGER",
+            "json_pointer": "/cases/3/documents/4/fields"
+          },
+          {
+            "document_id": "REV-004-RETURN-SEARCH",
+            "json_pointer": "/cases/3/documents/5/fields"
+          },
+          {
+            "document_id": "REV-004-AR",
+            "json_pointer": "/cases/3/documents/6/fields"
+          },
+          {
+            "document_id": "REV-004-RECEIPT",
+            "json_pointer": "/cases/3/documents/7/fields"
+          },
+          {
+            "document_id": "REV-004-CONFIRM",
+            "json_pointer": "/cases/3/documents/8/fields"
+          },
+          {
+            "document_id": "REV-004-ECL-MODEL",
+            "json_pointer": "/cases/3/documents/9/fields"
+          },
+          {
+            "document_id": "REV-004-ECL-LEDGER",
+            "json_pointer": "/cases/3/documents/10/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "INVOICE_CALC",
+        "status": "PASS",
+        "expected_value": 110000,
+        "actual_value": 110000,
+        "difference": 0,
+        "reason": "20개×5000원 + VAT 10000원",
+        "source_references": [
+          {
+            "document_id": "REV-004-ORDER",
+            "json_pointer": "/cases/3/documents/0/fields"
+          },
+          {
+            "document_id": "REV-004-INVOICE",
+            "json_pointer": "/cases/3/documents/3/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "CUTOFF_REVENUE",
+        "status": "PASS",
+        "expected_value": 100000,
+        "actual_value": 100000,
+        "difference": 0,
+        "reason": "계약상 검수 조건을 사전에 판단했다는 합성 가정",
+        "source_references": [
+          {
+            "document_id": "REV-004-CONTRACT",
+            "json_pointer": "/cases/3/documents/1/fields"
+          },
+          {
+            "document_id": "REV-004-DELIVERY",
+            "json_pointer": "/cases/3/documents/2/fields"
+          },
+          {
+            "document_id": "REV-004-LEDGER",
+            "json_pointer": "/cases/3/documents/4/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "RETURN_POSTING",
+        "status": "PASS",
+        "expected_value": 0,
+        "actual_value": 0,
+        "difference": 0,
+        "reason": "검색 범위를 선언한 반품 검색 0건",
+        "source_references": [
+          {
+            "document_id": "REV-004-LEDGER",
+            "json_pointer": "/cases/3/documents/4/fields"
+          },
+          {
+            "document_id": "REV-004-RETURN-SEARCH",
+            "json_pointer": "/cases/3/documents/5/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "AR_TIE",
+        "status": "PASS",
+        "expected_value": 110000,
+        "actual_value": 110000,
+        "difference": 0,
+        "reason": "기장된 채권 변동과 보조원장 수치 대사",
+        "source_references": [
+          {
+            "document_id": "REV-004-LEDGER",
+            "json_pointer": "/cases/3/documents/4/fields"
+          },
+          {
+            "document_id": "REV-004-AR",
+            "json_pointer": "/cases/3/documents/6/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "RECEIPT_ALLOCATION",
+        "status": "PASS",
+        "expected_value": 60000,
+        "actual_value": 60000,
+        "difference": 0,
+        "reason": "후속입금 60000원만 해당 송장에 배부됨; 조회 회신 대체 아님",
+        "source_references": [
+          {
+            "document_id": "REV-004-AR",
+            "json_pointer": "/cases/3/documents/6/fields"
+          },
+          {
+            "document_id": "REV-004-RECEIPT",
+            "json_pointer": "/cases/3/documents/7/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "CONFIRMATION_PROTOCOL",
+        "status": "INPUT_BLOCKED",
+        "expected_value": true,
+        "actual_value": null,
+        "difference": null,
+        "reason": "직접 서면 회신 미수령. 회신금액 null을 0으로 치환하지 않으며 후속입금은 별도 대체절차 후보",
+        "source_references": [
+          {
+            "document_id": "REV-004-AR",
+            "json_pointer": "/cases/3/documents/6/fields"
+          },
+          {
+            "document_id": "REV-004-CONFIRM",
+            "json_pointer": "/cases/3/documents/8/fields"
+          }
+        ],
+        "follow_up": "원본·기간·연결 및 계약 조건을 확인하고 감사인이 후속절차와 조정 여부를 판단"
+      },
+      {
+        "check_id": "AGING",
+        "status": "PASS",
+        "expected_value": 1,
+        "actual_value": 1,
+        "difference": 0,
+        "reason": "2026-12-30 만기, 12-31 기준 1일 연체",
+        "source_references": [
+          {
+            "document_id": "REV-004-AR",
+            "json_pointer": "/cases/3/documents/6/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "ECL",
+        "status": "PASS",
+        "expected_value": 1430,
+        "actual_value": 1430,
+        "difference": 0,
+        "reason": "110000×(1%×70%+2%×30%)=1430원; 주어진 가정의 재계산",
+        "source_references": [
+          {
+            "document_id": "REV-004-AR",
+            "json_pointer": "/cases/3/documents/6/fields"
+          },
+          {
+            "document_id": "REV-004-ECL-MODEL",
+            "json_pointer": "/cases/3/documents/9/fields"
+          },
+          {
+            "document_id": "REV-004-ECL-LEDGER",
+            "json_pointer": "/cases/3/documents/10/fields"
+          }
+        ],
+        "follow_up": null
+      },
+      {
+        "check_id": "ECL_ROLLFORWARD",
+        "status": "PASS",
+        "expected_value": 1430,
+        "actual_value": 1430,
+        "difference": 0,
+        "reason": "기초1000 + 비용430 + 기타0 = 기말1430",
+        "source_references": [
+          {
+            "document_id": "REV-004-ECL-LEDGER",
+            "json_pointer": "/cases/3/documents/10/fields"
+          }
+        ],
+        "follow_up": null
+      }
+    ]
+  }
+}

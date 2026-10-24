@@ -1,0 +1,127 @@
+{
+  "schema_version": "gla-cases-1",
+  "synthetic": true,
+  "normal": "GLA_01_정상전체규칙.xlsx",
+  "cases": [
+    {
+      "id": "GLA_01_정상전체규칙",
+      "file": "GLA_01_정상전체규칙.xlsx",
+      "blocking": false,
+      "review": true,
+      "required_codes": [
+        "GLA_MONTH_END",
+        "GLA_HIGH_AMOUNT"
+      ]
+    },
+    {
+      "id": "GLA_02_고액정상대조",
+      "file": "GLA_02_고액정상대조.xlsx",
+      "blocking": false,
+      "review": false,
+      "required_codes": []
+    },
+    {
+      "id": "GLA_03_고액경계",
+      "file": "GLA_03_고액경계.xlsx",
+      "blocking": false,
+      "review": true,
+      "required_codes": [
+        "GLA_HIGH_AMOUNT"
+      ]
+    },
+    {
+      "id": "GLA_04_주말전표",
+      "file": "GLA_04_주말전표.xlsx",
+      "blocking": false,
+      "review": true,
+      "required_codes": [
+        "GLA_WEEKEND"
+      ],
+      "current_ledger": "GLA_04_주말전표_현재원장.xlsx"
+    },
+    {
+      "id": "GLA_05_월말전표",
+      "file": "GLA_05_월말전표.xlsx",
+      "blocking": false,
+      "review": true,
+      "required_codes": [
+        "GLA_MONTH_END"
+      ]
+    },
+    {
+      "id": "GLA_06_동일구성반복",
+      "file": "GLA_06_동일구성반복.xlsx",
+      "blocking": false,
+      "review": true,
+      "required_codes": [
+        "GLA_REPEAT"
+      ],
+      "current_ledger": "GLA_06_동일구성반복_현재원장.xlsx"
+    },
+    {
+      "id": "GLA_07_동액다른계정정상",
+      "file": "GLA_07_동액다른계정정상.xlsx",
+      "blocking": false,
+      "review": false,
+      "required_codes": []
+    },
+    {
+      "id": "GLA_08_필수설정누락",
+      "file": "GLA_08_필수설정누락.xlsx",
+      "blocking": true,
+      "review": false,
+      "required_codes": [
+        "GLA_INPUT"
+      ]
+    },
+    {
+      "id": "GLA_09_중복설정",
+      "file": "GLA_09_중복설정.xlsx",
+      "blocking": true,
+      "review": false,
+      "required_codes": [
+        "GLA_INPUT"
+      ]
+    },
+    {
+      "id": "GLA_10_회사오류",
+      "file": "GLA_10_회사오류.xlsx",
+      "blocking": true,
+      "review": false,
+      "required_codes": [
+        "AN_SCOPE",
+        "AN_LEDGER_DIFF"
+      ]
+    },
+    {
+      "id": "GLA_11_기간오류",
+      "file": "GLA_11_기간오류.xlsx",
+      "blocking": true,
+      "review": false,
+      "required_codes": [
+        "AN_SCOPE"
+      ]
+    },
+    {
+      "id": "GLA_12_현재원장불일치",
+      "file": "GLA_12_현재원장불일치.xlsx",
+      "blocking": true,
+      "review": false,
+      "required_codes": [
+        "AN_LEDGER_DIFF"
+      ]
+    }
+  ],
+  "scope": "동일 생성기의 합성 원장·독립통제. 외부 독립 증거 아님. current_ledger가 있으면 그 7시트 원장을 먼저 실행.",
+  "fixed_normal_oracle": {
+    "원장행수": 82,
+    "전표수": 34,
+    "월수": 5,
+    "계정수": 59,
+    "작성자수": 1,
+    "복합대응미확인전표수": 11,
+    "고액후보수": 3,
+    "월말후보수": 21,
+    "전체후보수": 24
+  }
+}

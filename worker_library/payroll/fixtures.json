@@ -1,0 +1,628 @@
+{
+  "schema_version": "pm-raw-1",
+  "synthetic": true,
+  "integrated": false,
+  "context": {
+    "company_code": "SYNTH01",
+    "start_date": "2026-01-01",
+    "end_date": "2026-12-31",
+    "currency": "KRW",
+    "financial_statement_scope": "별도",
+    "subsequent_period_start": "2027-01-01",
+    "subsequent_search_end": "2027-01-31"
+  },
+  "scope_notice": "초기 JSON 예시. 기존 EXE 입력 아님. 각 case는 대안 테스트여서 같은 원장에 합산 금지. 연차·DC 문서는 원천필드 예시이며 산식/법적 권리/법정율 평가 대상 아님.",
+  "cases": [
+    {
+      "case_id": "PAY-001",
+      "description": "전월 고정급·승인공제·단일 당기 지급 정상. 연차/DC는 원천필드 예시만이며 계산하지 않음.",
+      "documents": [
+        {
+          "document_id": "PAY-DOC-001",
+          "document_type": "employment_contract",
+          "transaction_id": "PAY-TXN-001",
+          "fields": {
+            "company_code": "SYNTH01",
+            "employee_id": "PAY-EMP-001",
+            "synthetic_notice": "SYNTHETIC ONLY / 테스트 전용 / 법적 효력 없음",
+            "start_date": "2026-12-01",
+            "termination_date": null,
+            "pay_period_start": "2026-12-01",
+            "pay_period_end": "2026-12-31",
+            "base_monthly_amount": 3000000,
+            "pay_basis": "SYNTHETIC_FULL_MONTH_FIXED",
+            "policy_notice": "가상 전월 고정급; 실제 법정 일할·휴직·최저임금 산식 아님"
+          }
+        },
+        {
+          "document_id": "PAY-DOC-002",
+          "document_type": "attendance_approval",
+          "transaction_id": "PAY-TXN-001",
+          "fields": {
+            "company_code": "SYNTH01",
+            "employee_id": "PAY-EMP-001",
+            "synthetic_notice": "SYNTHETIC ONLY / 테스트 전용 / 법적 효력 없음",
+            "overtime_hours": 10,
+            "approved_overtime_unit_amount": 15000,
+            "approved_bonus_amount": 300000,
+            "approved_other_amount": 50000,
+            "approval_id": "PAY-APP-001",
+            "approval_notice": "가상 승인시간·단가, 법정 가산율 계산 아님"
+          }
+        },
+        {
+          "document_id": "PAY-DOC-003",
+          "document_type": "payroll_statement",
+          "transaction_id": "PAY-TXN-001",
+          "fields": {
+            "company_code": "SYNTH01",
+            "employee_id": "PAY-EMP-001",
+            "synthetic_notice": "SYNTHETIC ONLY / 테스트 전용 / 법적 효력 없음",
+            "payroll_id": "PAY-SAL-001",
+            "pay_period_start": "2026-12-01",
+            "pay_period_end": "2026-12-31",
+            "gross_amount": 3500000,
+            "deduction_amount": 350000,
+            "net_amount": 3150000
+          }
+        },
+        {
+          "document_id": "PAY-DOC-004",
+          "document_type": "withholding_approval",
+          "transaction_id": "PAY-TXN-001",
+          "fields": {
+            "company_code": "SYNTH01",
+            "employee_id": "PAY-EMP-001",
+            "synthetic_notice": "SYNTHETIC ONLY / 테스트 전용 / 법적 효력 없음",
+            "approved_amount": 200000,
+            "approval_id": "PAY-TAX-APP-001",
+            "calculation_status": "APPROVED_FIXED_SYNTHETIC_AMOUNT_NOT_TAX_CALCULATION"
+          }
+        },
+        {
+          "document_id": "PAY-DOC-005",
+          "document_type": "social_insurance_approval",
+          "transaction_id": "PAY-TXN-001",
+          "fields": {
+            "company_code": "SYNTH01",
+            "employee_id": "PAY-EMP-001",
+            "synthetic_notice": "SYNTHETIC ONLY / 테스트 전용 / 법적 효력 없음",
+            "approved_amount": 150000,
+            "approval_id": "PAY-SI-APP-001",
+            "calculation_status": "APPROVED_FIXED_SYNTHETIC_AMOUNT_NOT_STATUTORY_RATE_CALCULATION"
+          }
+        },
+        {
+          "document_id": "PAY-DOC-006",
+          "document_type": "bank_payment",
+          "transaction_id": "PAY-TXN-001",
+          "fields": {
+            "company_code": "SYNTH01",
+            "employee_id": "PAY-EMP-001",
+            "synthetic_notice": "SYNTHETIC ONLY / 테스트 전용 / 법적 효력 없음",
+            "payroll_id": "PAY-SAL-001",
+            "payment_date": "2026-12-31",
+            "amount": 3150000,
+            "bank_reference": "PAY-BANK-REFERENCE-001"
+          }
+        },
+        {
+          "document_id": "PAY-DOC-007",
+          "document_type": "payroll_ledger",
+          "transaction_id": "PAY-TXN-001",
+          "fields": {
+            "company_code": "SYNTH01",
+            "employee_id": "PAY-EMP-001",
+            "synthetic_notice": "SYNTHETIC ONLY / 테스트 전용 / 법적 효력 없음",
+            "payroll_id": "PAY-SAL-001",
+            "period_end": "2026-12-31",
+            "recorded_unpaid_net_amount": 0,
+            "ledger_reference": "PAY-GL-001"
+          }
+        },
+        {
+          "document_id": "PAY-DOC-008",
+          "document_type": "leave_record",
+          "transaction_id": "PAY-TXN-001",
+          "fields": {
+            "company_code": "SYNTH01",
+            "employee_id": "PAY-EMP-001",
+            "synthetic_notice": "SYNTHETIC ONLY / 테스트 전용 / 법적 효력 없음",
+            "period_end": "2026-12-31",
+            "opening_days": 0,
+            "approved_granted_days": 10,
+            "used_days": 3,
+            "expired_days": 1,
+            "declared_remaining_days": 6,
+            "expected_settlement_date": "2027-12-31",
+            "policy_id": "PAY-LEAVE-POL-001",
+            "calculation_status": "INPUT_ONLY_NOT_VALIDATED",
+            "assumption_notice": "가상 부여·소멸·정산 가정; 실제 법정 연차권리·미사용수당 계산 아님"
+          }
+        },
+        {
+          "document_id": "PAY-DOC-009",
+          "document_type": "dc_contribution_approval",
+          "transaction_id": "PAY-TXN-001",
+          "fields": {
+            "company_code": "SYNTH01",
+            "employee_id": "PAY-EMP-001",
+            "synthetic_notice": "SYNTHETIC ONLY / 테스트 전용 / 법적 효력 없음",
+            "period_end": "2026-12-31",
+            "approved_amount": 350000,
+            "declared_unpaid_amount": 350000,
+            "due_date": "2027-01-31",
+            "plan_id": "PAY-DC-PLAN-001",
+            "calculation_status": "INPUT_ONLY_NOT_VALIDATED",
+            "assumption_notice": "제도 분류·의무금액은 감사인 확인 필요; 법정 납입률 계산 아님"
+          }
+        },
+        {
+          "document_id": "PAY-DOC-010",
+          "document_type": "dc_payment",
+          "transaction_id": "PAY-TXN-001",
+          "fields": {
+            "company_code": "SYNTH01",
+            "employee_id": "PAY-EMP-001",
+            "synthetic_notice": "SYNTHETIC ONLY / 테스트 전용 / 법적 효력 없음",
+            "payment_date": "2027-01-10",
+            "amount": 350000,
+            "plan_id": "PAY-DC-PLAN-001",
+            "subsequent_period": true,
+            "calculation_status": "INPUT_ONLY_NOT_VALIDATED"
+          }
+        }
+      ],
+      "expected": [
+        {
+          "check_id": "PAY-REQUIRED",
+          "status": "PASS",
+          "expected_value": "complete valid required fields",
+          "actual_value": "complete valid required fields",
+          "difference": null,
+          "reason": "필수 자료·필드가 존재한다."
+        },
+        {
+          "check_id": "PAY-UNIQUE",
+          "status": "PASS",
+          "expected_value": 1,
+          "actual_value": 1,
+          "difference": 0,
+          "reason": "동일 사번·기간 명세가 1개다."
+        },
+        {
+          "check_id": "PAY-EMPLOYMENT",
+          "status": "PASS",
+          "expected_value": 1,
+          "actual_value": 1,
+          "difference": 0,
+          "reason": "전월 재직하며 계약과 명세 귀속기간이 같다."
+        },
+        {
+          "check_id": "PAY-GROSS",
+          "status": "PASS",
+          "expected_value": 3500000,
+          "actual_value": 3500000,
+          "difference": 0,
+          "reason": "3,000,000 + 10×15,000 + 300,000 + 50,000 = 3,500,000원"
+        },
+        {
+          "check_id": "PAY-DEDUCTION",
+          "status": "PASS",
+          "expected_value": 350000,
+          "actual_value": 350000,
+          "difference": 0,
+          "reason": "승인 원천세 200,000 + 승인 사회보험 150,000 = 350,000원"
+        },
+        {
+          "check_id": "PAY-NET",
+          "status": "PASS",
+          "expected_value": 3150000,
+          "actual_value": 3150000,
+          "difference": 0,
+          "reason": "3,500,000 - 350,000 = 3,150,000원"
+        },
+        {
+          "check_id": "PAY-PAYMENT",
+          "status": "PASS",
+          "expected_value": 3150000,
+          "actual_value": 3150000,
+          "difference": 0,
+          "reason": "미지급 원장 0원, 지급액은 순급여와 같다."
+        }
+      ]
+    },
+    {
+      "case_id": "PAY-002",
+      "description": "순급여 3,150,000원·미지급원장 0원이지만 은행 지급은 3,100,000원. 차이 -50,000원 검토 필요.",
+      "documents": [
+        {
+          "document_id": "PAY-DOC-001",
+          "document_type": "employment_contract",
+          "transaction_id": "PAY-TXN-001",
+          "fields": {
+            "company_code": "SYNTH01",
+            "employee_id": "PAY-EMP-001",
+            "synthetic_notice": "SYNTHETIC ONLY / 테스트 전용 / 법적 효력 없음",
+            "start_date": "2026-12-01",
+            "termination_date": null,
+            "pay_period_start": "2026-12-01",
+            "pay_period_end": "2026-12-31",
+            "base_monthly_amount": 3000000,
+            "pay_basis": "SYNTHETIC_FULL_MONTH_FIXED",
+            "policy_notice": "가상 전월 고정급; 실제 법정 일할·휴직·최저임금 산식 아님"
+          }
+        },
+        {
+          "document_id": "PAY-DOC-002",
+          "document_type": "attendance_approval",
+          "transaction_id": "PAY-TXN-001",
+          "fields": {
+            "company_code": "SYNTH01",
+            "employee_id": "PAY-EMP-001",
+            "synthetic_notice": "SYNTHETIC ONLY / 테스트 전용 / 법적 효력 없음",
+            "overtime_hours": 10,
+            "approved_overtime_unit_amount": 15000,
+            "approved_bonus_amount": 300000,
+            "approved_other_amount": 50000,
+            "approval_id": "PAY-APP-001",
+            "approval_notice": "가상 승인시간·단가, 법정 가산율 계산 아님"
+          }
+        },
+        {
+          "document_id": "PAY-DOC-003",
+          "document_type": "payroll_statement",
+          "transaction_id": "PAY-TXN-001",
+          "fields": {
+            "company_code": "SYNTH01",
+            "employee_id": "PAY-EMP-001",
+            "synthetic_notice": "SYNTHETIC ONLY / 테스트 전용 / 법적 효력 없음",
+            "payroll_id": "PAY-SAL-001",
+            "pay_period_start": "2026-12-01",
+            "pay_period_end": "2026-12-31",
+            "gross_amount": 3500000,
+            "deduction_amount": 350000,
+            "net_amount": 3150000
+          }
+        },
+        {
+          "document_id": "PAY-DOC-004",
+          "document_type": "withholding_approval",
+          "transaction_id": "PAY-TXN-001",
+          "fields": {
+            "company_code": "SYNTH01",
+            "employee_id": "PAY-EMP-001",
+            "synthetic_notice": "SYNTHETIC ONLY / 테스트 전용 / 법적 효력 없음",
+            "approved_amount": 200000,
+            "approval_id": "PAY-TAX-APP-001",
+            "calculation_status": "APPROVED_FIXED_SYNTHETIC_AMOUNT_NOT_TAX_CALCULATION"
+          }
+        },
+        {
+          "document_id": "PAY-DOC-005",
+          "document_type": "social_insurance_approval",
+          "transaction_id": "PAY-TXN-001",
+          "fields": {
+            "company_code": "SYNTH01",
+            "employee_id": "PAY-EMP-001",
+            "synthetic_notice": "SYNTHETIC ONLY / 테스트 전용 / 법적 효력 없음",
+            "approved_amount": 150000,
+            "approval_id": "PAY-SI-APP-001",
+            "calculation_status": "APPROVED_FIXED_SYNTHETIC_AMOUNT_NOT_STATUTORY_RATE_CALCULATION"
+          }
+        },
+        {
+          "document_id": "PAY-DOC-006",
+          "document_type": "bank_payment",
+          "transaction_id": "PAY-TXN-001",
+          "fields": {
+            "company_code": "SYNTH01",
+            "employee_id": "PAY-EMP-001",
+            "synthetic_notice": "SYNTHETIC ONLY / 테스트 전용 / 법적 효력 없음",
+            "payroll_id": "PAY-SAL-001",
+            "payment_date": "2026-12-31",
+            "amount": 3100000,
+            "bank_reference": "PAY-BANK-REFERENCE-001"
+          }
+        },
+        {
+          "document_id": "PAY-DOC-007",
+          "document_type": "payroll_ledger",
+          "transaction_id": "PAY-TXN-001",
+          "fields": {
+            "company_code": "SYNTH01",
+            "employee_id": "PAY-EMP-001",
+            "synthetic_notice": "SYNTHETIC ONLY / 테스트 전용 / 법적 효력 없음",
+            "payroll_id": "PAY-SAL-001",
+            "period_end": "2026-12-31",
+            "recorded_unpaid_net_amount": 0,
+            "ledger_reference": "PAY-GL-001"
+          }
+        },
+        {
+          "document_id": "PAY-DOC-008",
+          "document_type": "leave_record",
+          "transaction_id": "PAY-TXN-001",
+          "fields": {
+            "company_code": "SYNTH01",
+            "employee_id": "PAY-EMP-001",
+            "synthetic_notice": "SYNTHETIC ONLY / 테스트 전용 / 법적 효력 없음",
+            "period_end": "2026-12-31",
+            "opening_days": 0,
+            "approved_granted_days": 10,
+            "used_days": 3,
+            "expired_days": 1,
+            "declared_remaining_days": 6,
+            "expected_settlement_date": "2027-12-31",
+            "policy_id": "PAY-LEAVE-POL-001",
+            "calculation_status": "INPUT_ONLY_NOT_VALIDATED",
+            "assumption_notice": "가상 부여·소멸·정산 가정; 실제 법정 연차권리·미사용수당 계산 아님"
+          }
+        },
+        {
+          "document_id": "PAY-DOC-009",
+          "document_type": "dc_contribution_approval",
+          "transaction_id": "PAY-TXN-001",
+          "fields": {
+            "company_code": "SYNTH01",
+            "employee_id": "PAY-EMP-001",
+            "synthetic_notice": "SYNTHETIC ONLY / 테스트 전용 / 법적 효력 없음",
+            "period_end": "2026-12-31",
+            "approved_amount": 350000,
+            "declared_unpaid_amount": 350000,
+            "due_date": "2027-01-31",
+            "plan_id": "PAY-DC-PLAN-001",
+            "calculation_status": "INPUT_ONLY_NOT_VALIDATED",
+            "assumption_notice": "제도 분류·의무금액은 감사인 확인 필요; 법정 납입률 계산 아님"
+          }
+        },
+        {
+          "document_id": "PAY-DOC-010",
+          "document_type": "dc_payment",
+          "transaction_id": "PAY-TXN-001",
+          "fields": {
+            "company_code": "SYNTH01",
+            "employee_id": "PAY-EMP-001",
+            "synthetic_notice": "SYNTHETIC ONLY / 테스트 전용 / 법적 효력 없음",
+            "payment_date": "2027-01-10",
+            "amount": 350000,
+            "plan_id": "PAY-DC-PLAN-001",
+            "subsequent_period": true,
+            "calculation_status": "INPUT_ONLY_NOT_VALIDATED"
+          }
+        }
+      ],
+      "expected": [
+        {
+          "check_id": "PAY-REQUIRED",
+          "status": "PASS",
+          "expected_value": "complete valid required fields",
+          "actual_value": "complete valid required fields",
+          "difference": null,
+          "reason": "필수 자료·필드가 존재한다."
+        },
+        {
+          "check_id": "PAY-UNIQUE",
+          "status": "PASS",
+          "expected_value": 1,
+          "actual_value": 1,
+          "difference": 0,
+          "reason": "동일 사번·기간 명세가 1개다."
+        },
+        {
+          "check_id": "PAY-EMPLOYMENT",
+          "status": "PASS",
+          "expected_value": 1,
+          "actual_value": 1,
+          "difference": 0,
+          "reason": "전월 재직하며 계약과 명세 귀속기간이 같다."
+        },
+        {
+          "check_id": "PAY-GROSS",
+          "status": "PASS",
+          "expected_value": 3500000,
+          "actual_value": 3500000,
+          "difference": 0,
+          "reason": "3,000,000 + 10×15,000 + 300,000 + 50,000 = 3,500,000원"
+        },
+        {
+          "check_id": "PAY-DEDUCTION",
+          "status": "PASS",
+          "expected_value": 350000,
+          "actual_value": 350000,
+          "difference": 0,
+          "reason": "승인 원천세 200,000 + 승인 사회보험 150,000 = 350,000원"
+        },
+        {
+          "check_id": "PAY-NET",
+          "status": "PASS",
+          "expected_value": 3150000,
+          "actual_value": 3150000,
+          "difference": 0,
+          "reason": "3,500,000 - 350,000 = 3,150,000원"
+        },
+        {
+          "check_id": "PAY-PAYMENT",
+          "status": "EXCEPTION",
+          "expected_value": 3150000,
+          "actual_value": 3100000,
+          "difference": -50000,
+          "reason": "원장 잔액을 포함한 지급대사에서 50,000원 부족. 원장 또는 지급자료의 후속 확인 필요; 자동 분개 없음."
+        }
+      ]
+    },
+    {
+      "case_id": "PAY-003",
+      "description": "계약 기본월급 null: 금액 0으로 대체하지 않고 산식·지급대사를 모두 중단.",
+      "documents": [
+        {
+          "document_id": "PAY-DOC-001",
+          "document_type": "employment_contract",
+          "transaction_id": "PAY-TXN-001",
+          "fields": {
+            "company_code": "SYNTH01",
+            "employee_id": "PAY-EMP-001",
+            "synthetic_notice": "SYNTHETIC ONLY / 테스트 전용 / 법적 효력 없음",
+            "start_date": "2026-12-01",
+            "termination_date": null,
+            "pay_period_start": "2026-12-01",
+            "pay_period_end": "2026-12-31",
+            "base_monthly_amount": null,
+            "pay_basis": "SYNTHETIC_FULL_MONTH_FIXED",
+            "policy_notice": "가상 전월 고정급; 실제 법정 일할·휴직·최저임금 산식 아님"
+          }
+        },
+        {
+          "document_id": "PAY-DOC-002",
+          "document_type": "attendance_approval",
+          "transaction_id": "PAY-TXN-001",
+          "fields": {
+            "company_code": "SYNTH01",
+            "employee_id": "PAY-EMP-001",
+            "synthetic_notice": "SYNTHETIC ONLY / 테스트 전용 / 법적 효력 없음",
+            "overtime_hours": 10,
+            "approved_overtime_unit_amount": 15000,
+            "approved_bonus_amount": 300000,
+            "approved_other_amount": 50000,
+            "approval_id": "PAY-APP-001",
+            "approval_notice": "가상 승인시간·단가, 법정 가산율 계산 아님"
+          }
+        },
+        {
+          "document_id": "PAY-DOC-003",
+          "document_type": "payroll_statement",
+          "transaction_id": "PAY-TXN-001",
+          "fields": {
+            "company_code": "SYNTH01",
+            "employee_id": "PAY-EMP-001",
+            "synthetic_notice": "SYNTHETIC ONLY / 테스트 전용 / 법적 효력 없음",
+            "payroll_id": "PAY-SAL-001",
+            "pay_period_start": "2026-12-01",
+            "pay_period_end": "2026-12-31",
+            "gross_amount": 3500000,
+            "deduction_amount": 350000,
+            "net_amount": 3150000
+          }
+        },
+        {
+          "document_id": "PAY-DOC-004",
+          "document_type": "withholding_approval",
+          "transaction_id": "PAY-TXN-001",
+          "fields": {
+            "company_code": "SYNTH01",
+            "employee_id": "PAY-EMP-001",
+            "synthetic_notice": "SYNTHETIC ONLY / 테스트 전용 / 법적 효력 없음",
+            "approved_amount": 200000,
+            "approval_id": "PAY-TAX-APP-001",
+            "calculation_status": "APPROVED_FIXED_SYNTHETIC_AMOUNT_NOT_TAX_CALCULATION"
+          }
+        },
+        {
+          "document_id": "PAY-DOC-005",
+          "document_type": "social_insurance_approval",
+          "transaction_id": "PAY-TXN-001",
+          "fields": {
+            "company_code": "SYNTH01",
+            "employee_id": "PAY-EMP-001",
+            "synthetic_notice": "SYNTHETIC ONLY / 테스트 전용 / 법적 효력 없음",
+            "approved_amount": 150000,
+            "approval_id": "PAY-SI-APP-001",
+            "calculation_status": "APPROVED_FIXED_SYNTHETIC_AMOUNT_NOT_STATUTORY_RATE_CALCULATION"
+          }
+        },
+        {
+          "document_id": "PAY-DOC-006",
+          "document_type": "bank_payment",
+          "transaction_id": "PAY-TXN-001",
+          "fields": {
+            "company_code": "SYNTH01",
+            "employee_id": "PAY-EMP-001",
+            "synthetic_notice": "SYNTHETIC ONLY / 테스트 전용 / 법적 효력 없음",
+            "payroll_id": "PAY-SAL-001",
+            "payment_date": "2026-12-31",
+            "amount": 3150000,
+            "bank_reference": "PAY-BANK-REFERENCE-001"
+          }
+        },
+        {
+          "document_id": "PAY-DOC-007",
+          "document_type": "payroll_ledger",
+          "transaction_id": "PAY-TXN-001",
+          "fields": {
+            "company_code": "SYNTH01",
+            "employee_id": "PAY-EMP-001",
+            "synthetic_notice": "SYNTHETIC ONLY / 테스트 전용 / 법적 효력 없음",
+            "payroll_id": "PAY-SAL-001",
+            "period_end": "2026-12-31",
+            "recorded_unpaid_net_amount": 0,
+            "ledger_reference": "PAY-GL-001"
+          }
+        },
+        {
+          "document_id": "PAY-DOC-008",
+          "document_type": "leave_record",
+          "transaction_id": "PAY-TXN-001",
+          "fields": {
+            "company_code": "SYNTH01",
+            "employee_id": "PAY-EMP-001",
+            "synthetic_notice": "SYNTHETIC ONLY / 테스트 전용 / 법적 효력 없음",
+            "period_end": "2026-12-31",
+            "opening_days": 0,
+            "approved_granted_days": 10,
+            "used_days": 3,
+            "expired_days": 1,
+            "declared_remaining_days": 6,
+            "expected_settlement_date": "2027-12-31",
+            "policy_id": "PAY-LEAVE-POL-001",
+            "calculation_status": "INPUT_ONLY_NOT_VALIDATED",
+            "assumption_notice": "가상 부여·소멸·정산 가정; 실제 법정 연차권리·미사용수당 계산 아님"
+          }
+        },
+        {
+          "document_id": "PAY-DOC-009",
+          "document_type": "dc_contribution_approval",
+          "transaction_id": "PAY-TXN-001",
+          "fields": {
+            "company_code": "SYNTH01",
+            "employee_id": "PAY-EMP-001",
+            "synthetic_notice": "SYNTHETIC ONLY / 테스트 전용 / 법적 효력 없음",
+            "period_end": "2026-12-31",
+            "approved_amount": 350000,
+            "declared_unpaid_amount": 350000,
+            "due_date": "2027-01-31",
+            "plan_id": "PAY-DC-PLAN-001",
+            "calculation_status": "INPUT_ONLY_NOT_VALIDATED",
+            "assumption_notice": "제도 분류·의무금액은 감사인 확인 필요; 법정 납입률 계산 아님"
+          }
+        },
+        {
+          "document_id": "PAY-DOC-010",
+          "document_type": "dc_payment",
+          "transaction_id": "PAY-TXN-001",
+          "fields": {
+            "company_code": "SYNTH01",
+            "employee_id": "PAY-EMP-001",
+            "synthetic_notice": "SYNTHETIC ONLY / 테스트 전용 / 법적 효력 없음",
+            "payment_date": "2027-01-10",
+            "amount": 350000,
+            "plan_id": "PAY-DC-PLAN-001",
+            "subsequent_period": true,
+            "calculation_status": "INPUT_ONLY_NOT_VALIDATED"
+          }
+        }
+      ],
+      "expected": [
+        {
+          "check_id": "PAY-REQUIRED",
+          "status": "INPUT_BLOCKED",
+          "expected_value": "complete valid required fields",
+          "actual_value": [
+            "/documents/0/fields/base_monthly_amount"
+          ],
+          "difference": null,
+          "reason": "기본월급 필수 원천값 누락. 파생 금액 산출 중지."
+        }
+      ]
+    }
+  ]
+}

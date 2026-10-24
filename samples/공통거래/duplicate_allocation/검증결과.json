@@ -1,0 +1,28 @@
+{
+  "case": "duplicate_allocation",
+  "source_ledger": "원장_공통거래.xlsx",
+  "auditpack": "공통거래_duplicate_allocation.auditpack",
+  "raw_status": "INPUT_BLOCKED",
+  "raw_codes": [
+    "RAW_ALLOC_DUP"
+  ],
+  "raw_metrics": {
+    "선택원천행수": 12,
+    "선택대상행수": 13,
+    "배부건수": 14,
+    "미대사행수": 0,
+    "선택모집단수": 8,
+    "카탈로그테이블수": 7,
+    "미확인범위수": 1
+  },
+  "ledger_blocking": 0,
+  "ledger_codes": [],
+  "fixed_normal_oracle": {
+    "현금": 130,
+    "재고자산": 150,
+    "매출": 280,
+    "GL행수": 20,
+    "전표수": 10
+  },
+  "review_status": "작성·검토·결론 미확정"
+}

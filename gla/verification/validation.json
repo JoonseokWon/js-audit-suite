@@ -1,0 +1,37 @@
+{
+  "ok": true,
+  "python": "3.14.8",
+  "test_command": "python -B -X utf8 -m unittest test_gla -v",
+  "unit_test_methods": 21,
+  "unit_test_status": "OK",
+  "unit_test_elapsed_seconds": 4.208,
+  "file_cases": 12,
+  "companion_current_ledgers": 2,
+  "normal_metrics": {
+    "원장행수": 82,
+    "전표수": 34,
+    "월수": 5,
+    "계정수": 59,
+    "작성자수": 1,
+    "계정조합수": 31,
+    "위험후보수": 24,
+    "위험전표수": 22,
+    "미확인규칙수": 3,
+    "복합대응미확인전표수": 11
+  },
+  "normal_blocking": 0,
+  "normal_review": 24,
+  "current_ledger_rows": 141,
+  "normal_source_sha256": "1a4d06fdbdc5a9c1cb212a5c52bf540f48fd7ef2420a76cdbcfd2e50d147f945",
+  "module_sha256": "5f0eddb4dc7927ad2c0a5a33e95138228a5c0e546b0b0b1a0021368868319465",
+  "limitations": [
+    "Offline explainable rule candidates, no AI inference or fraud conclusion",
+    "Posting-date/author data do not establish manual/night/approval facts",
+    "Complex entries retain account sets; individual debit-credit matching unconfirmed",
+    "Synthetic source and controls share a generator, not independent external evidence"
+  ],
+  "regressions": [
+    "Split debit lines preserve account-set 1:1 but mark individual row correspondence unconfirmed",
+    "Repeated journal IDs indexed once; candidate reasons reference stable group ID with bounded length"
+  ]
+}

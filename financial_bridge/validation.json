@@ -1,0 +1,17 @@
+{
+  "python": "3.14.8",
+  "tests_run": 29,
+  "tests_passed": 29,
+  "normal_metrics": {
+    "대사항목수": 94,
+    "차이항목수": 0,
+    "매핑계정수": 59,
+    "필수주석수": 8
+  },
+  "normal_blocking": 0,
+  "normal_review": 0,
+  "source_ledger_sha256": "18765d8ad479bf36452500871a52b840f665799ce8a9aa8833272d87c1436388",
+  "normal_financial_sha256": "79819a78ba19f170773c9ee3d469ff88dad9afe34c858c473a4d2e81119b36bd",
+  "generated_fault_cases": 13,
+  "note": "기존 v1.3 합성 원장과 같은 시나리오에서 생성. 독립 외부 증거·실제 감사 결론 아님."
+}
