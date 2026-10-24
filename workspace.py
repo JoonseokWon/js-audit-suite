@@ -57,6 +57,7 @@ class Workspace:
         try:self.events,self.head=self._read(db)
         finally:db.close()
         self.sources={};self.runs={};self.procedures={};self.notes={};self.requests={};self.engagement=None
+        self.ai_drafts={};self.ai_approvals={};self.ai_applications=[]
         for e in self.events:
             d=e['data'];kind=e['kind']
             if kind=='engagement':self.engagement=d
@@ -65,6 +66,9 @@ class Workspace:
             elif kind=='procedure':self.procedures[d['id']]=d
             elif kind=='note':self.notes[d['id']]=d
             elif kind=='evidence_request':self.requests[d['id']]=d
+            elif kind=='ai_draft':self.ai_drafts[d['id']]=d
+            elif kind=='ai_apply':self.ai_applications.append(d)
+            elif kind=='ai_content_approval':self.ai_approvals[d['procedure_id']]=d
         if any(digest(r['result'])!=r['result_hash'] for r in self.runs.values()):raise AuditError('검사 결과 해시 불일치')
         if self.engagement is None:raise AuditError('업무 기본정보 없음')
         return self
@@ -138,8 +142,17 @@ class Workspace:
             rows.append({'모듈':module,'지표':'분석모집단·현재원장 연결','상태':'일치' if valid else '미확인','기대':None,'실제':None,'차이':None,'사유':'입력 7시트·GL·TB 연결 확인. 위험후보·미확인 규칙·은행 미대사는 별도 검토.' if valid else '현재 원장과 분석자료 불일치·차단·재실행 필요'})
         if '계정별증빙연습' in latest:rows.append({'모듈':'계정별증빙연습','지표':'독립 사례 범위','상태':'미확인','기대':None,'실제':None,'차이':None,'사유':'독립 거래 연습으로 현재 업무 TB와 합산·대사하지 않음. 검토중 조서만 출력 가능.'})
         return rows
-    def save_procedure(self,p):
+    def save_procedure(self,p,_ai_draft_id=None):
         self.refresh();p=dict(p);pid=text(p['id']);p['title']=text(p['title']);p['preparer']=text(p['preparer']);p['state']='작성중';p['basis']=self.basis();p['reviewer']='';p['reviewed_at']='';p['review_note']=''
+        previous=self.procedures.get(pid,{})
+        # The normal form omits hidden metadata. Preserve AI lineage so edits
+        # cannot accidentally turn an AI-applied draft into an untracked one.
+        origin=_ai_draft_id or previous.get('ai_draft_id')
+        p.pop('ai_draft_id',None)
+        if origin:
+            if origin not in self.ai_drafts:raise AuditError('AI 초안 연결 이력이 없습니다.')
+            p['ai_draft_id']=origin
+        p['edit_revision']=uid()
         for key in ('purpose','risk','scope','performed','conclusion','performed_date','evidence','excluded_reason'):p.setdefault(key,'')
         for sid in p.get('evidence_ids',[]):
             if sid not in self.sources:raise AuditError('등록되지 않은 증거 ID')
@@ -205,8 +218,9 @@ class Workspace:
     def snapshot(self,final=False):
         self.refresh()
         if self.verify_sources():raise AuditError('원본 사본이 변경/누락되었습니다. 내보내기 중단')
-        latest=self.latest();cross=self.cross_checks();procedures=[{**p,'current_state':self.procedure_state(p)} for p in self.procedures.values()]
+        latest=self.latest();cross=self.cross_checks();procedures=[{**p,'current_state':self.procedure_state(p),'ai_status':self.ai_status(p['id'])} for p in self.procedures.values()]
         if final:
+            if any(p['ai_status']['required'] and not p['ai_status']['approved'] for p in procedures):raise AuditError('AI 적용 조서의 최종내용 미승인/변경: 사람이 현재 내용과 근거를 확인·승인해야 합니다.')
             if any(r['state'] not in ('검토완료','취소') for r in self.requests.values()):raise AuditError('미완료 자료요청을 수령·검토하거나 취소 사유를 기록하세요.')
             if '원장·리드' not in latest or any(r['result']['blocking'] for r in latest.values()) or any(r['상태'] not in ('일치','차이') for r in cross):raise AuditError('자동검사 차단/모듈-TB 미확인: 검토완료본 저장 불가')
             if not procedures or any(p['current_state']!='검토기록완료' for p in procedures):raise AuditError('조서 검토·현재 자료 버전 확인 필요')
@@ -214,7 +228,27 @@ class Workspace:
             if not required<=set(self.procedures) or any(self.procedures[p].get('excluded') for p in required):raise AuditError('필수 검사 관련 수동절차·예외 조서가 누락되었거나 제외되었습니다.')
             if any(not n['resolved'] for n in self.notes.values()):raise AuditError('미해결 검토의견이 있습니다.')
         from review_support import source_requirements
-        return {'version':VERSION,'engagement':self.engagement,'export_state':'선택조서 검토기록완료' if final else '검토중 초안','scope':'등록한 조서와 검사 범위. 전체 감사완료나 감사의견을 뜻하지 않음.','basis':self.basis(),'head':self.head,'sources':list(self.sources.values()),'latest':list(latest.values()),'all_runs':list(self.runs.values()),'cross':cross,'procedures':procedures,'notes':list(self.notes.values()),'requests':list(self.requests.values()),'events':self.events,'risk_register':self.risk_register(),'analytics_source_requirements':source_requirements()}
+        return {'version':VERSION,'engagement':self.engagement,'export_state':'선택조서 검토기록완료' if final else '검토중 초안','scope':'등록한 조서와 검사 범위. 전체 감사완료나 감사의견을 뜻하지 않음.','basis':self.basis(),'head':self.head,'sources':list(self.sources.values()),'latest':list(latest.values()),'all_runs':list(self.runs.values()),'cross':cross,'procedures':procedures,'notes':list(self.notes.values()),'requests':list(self.requests.values()),'events':self.events,'risk_register':self.risk_register(),'analytics_source_requirements':source_requirements(),'ai_drafts':list(self.ai_drafts.values()),'ai_applications':self.ai_applications,'ai_approvals':list(self.ai_approvals.values())}
+
+    def ai_packet(self,pid,catalog=None,limits=None,event=None):
+        from ai_workpapers import build_packet
+        return build_packet(self,pid,catalog,limits,event)
+
+    def record_ai_draft(self,packet,response,actor):
+        from ai_workpapers import record_draft
+        return record_draft(self,packet,response,actor)
+
+    def apply_ai_draft(self,draft_id,actor):
+        from ai_workpapers import apply_draft
+        return apply_draft(self,draft_id,actor)
+
+    def approve_ai_content(self,pid,actor,note):
+        from ai_workpapers import approve_content
+        return approve_content(self,pid,actor,note)
+
+    def ai_status(self,pid):
+        from ai_workpapers import status
+        return status(self,pid)
 
     def risk_register(self):
         from review_support import collect_candidates

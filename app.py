@@ -15,8 +15,9 @@ from adapters import MODULES
 from display_schema import TABLE_COLUMNS,MODULE_TABLES
 import exporter
 from desktop_display import DisplayManager,ScrollableFrame,create_scrolled_text
+from ai_desktop import AIDesktopMixin
 
-TITLE='JS 통합 회계감사 v1.7.1'
+TITLE='JS 통합 회계감사 v1.8.0'
 def resource(*parts):return RESOURCE.joinpath(*parts)
 def display_time(value):return datetime.fromisoformat(value).astimezone(timezone(timedelta(hours=9))).strftime('%Y-%m-%d %H:%M:%S KST')
 CATALOG=json.loads(resource('procedure_catalog.json').read_text(encoding='utf-8'))
@@ -87,11 +88,12 @@ class FlowFrame(ttk.Frame):
             self.configure(height=y+row_height+5)
             self.layout=layout
 
-class App:
+class App(AIDesktopMixin):
     def __init__(self,root,sector_home=None):
         self.root=root;root.title(TITLE);ttk.Style(root).theme_use('clam');self.display=DisplayManager(root,scale=100);root.audit_display=self.display
         style=ttk.Style(root);style.configure('Primary.TButton',background='#2458a6',foreground='white');style.map('Primary.TButton',background=[('active','#194684')])
         self.ws=None;self.busy=False;self.cancel=threading.Event();self.queue=queue.Queue();self.current_pid=None;self.table_rows=[];self.page=0;self.closing=False
+        self.init_ai(CATALOG)
         bar=FlowFrame(root,padding=(10,5));bar.pack(fill='x');self.toolbar=bar
         self.workpaper_button=bar.add(ttk.Button(bar,text='조서초안 작성',style='Primary.TButton',command=lambda:self.call(self.open_workpaper_draft)))
         secondary_actions=[]
@@ -103,6 +105,7 @@ class App:
         self.zoom_box=ttk.Combobox(zoom_frame,textvariable=self.ui_zoom,values=['90%','100%','110%','125%','150%','175%'],state='readonly',width=6);self.zoom_box.pack(side='left');self.zoom_box.bind('<<ComboboxSelected>>',lambda _:self.call(lambda:self.set_ui_zoom(int(self.ui_zoom.get().rstrip('%')))))
         self.more_button=bar.add(ttk.Menubutton(bar,text='기타 기능 ▾'));self.more_button.flow_compact_only=True;self.more_menu=tk.Menu(self.more_button,tearoff=False);self.more_button.configure(menu=self.more_menu)
         for label,command in secondary_actions:self.more_menu.add_command(label=label,command=command)
+        self.more_menu.add_command(label='AI 설정',command=lambda:self.call(self.open_ai_settings))
         from sector_demo import list_companies,default_storage_root
         self.sector_home=Path(sector_home) if sector_home is not None else default_storage_root()
         self.active_sector=None;self.sector_options=list_companies(resource('sector_resources'))
@@ -248,14 +251,14 @@ class App:
     def set_history_text(self,value):
         self.history_detail.configure(state='normal');self.history_detail.delete('1.0','end');self.history_detail.insert('1.0',value);self.history_detail.configure(state='disabled')
     def history_rows(self):
-        names={'engagement':'업무 생성','source':'자료 등록','run':'검사 실행','procedure':'조서 저장·개정·검토','note':'검토의견','evidence_request':'자료요청·상태 변경'}
+        names={'engagement':'업무 생성','source':'자료 등록','run':'검사 실행','procedure':'조서 저장·개정·검토','note':'검토의견','evidence_request':'자료요청·상태 변경','ai_draft':'AI 초안 생성','ai_apply':'AI 초안 적용','ai_content_approval':'AI 내용 최종 승인'}
         self.history_items=list(self.ws.events) if self.ws else []
         rows=[]
         for index,event in enumerate(self.history_items,1):
             d=event['data'];state=d.get('state','')
             if event['kind']=='run':state='입력 보완 필요' if d['result']['blocking'] else '자동검사 종료 · 수동절차 필요'
             actor=' / '.join(str(d[k]) for k in ('preparer','reviewer','actor') if d.get(k))
-            rows.append({'순번':index,'시각 KST':display_time(event['at']),'기록종류':names.get(event['kind'],event['kind']),'대상':d.get('title') or d.get('name') or d.get('module') or d.get('회사명') or d.get('id',''),'상태':state,'작성·검토 입력값':actor or '기록 없음'})
+            rows.append({'순번':index,'시각 KST':display_time(event['at']),'기록종류':names.get(event['kind'],event['kind']),'대상':d.get('title') or d.get('name') or d.get('module') or d.get('회사명') or d.get('procedure_id') or d.get('id',''),'상태':state,'작성·검토 입력값':actor or '기록 없음'})
         return rows
     def show_history(self):
         selected=self.history_tree.selection()
@@ -423,6 +426,9 @@ class App:
                 kind,data=self.queue.get_nowait()
                 if kind=='status':self.status.set(data)
                 elif kind=='run':pass
+                elif kind in ('ai_ok','ai_error'):
+                    self.finish_ai_job(kind,data)
+                    if self.closing:return
                 elif kind in ('sector_ready','sector_error'):
                     self.set_busy(False)
                     if kind=='sector_ready':
@@ -432,13 +438,13 @@ class App:
                             self.status.set('저장된 회사 연습을 열었습니다.' if data['reused'] else ('모회사 원장 1개와 조서 초안 준비 · 투자주식 평가·연결계산은 미수행' if c.get('kind')=='parent' else '15개 검사·35개 TB 숫자·실행 연결 확인 · 독립 감사증거 검증 완료를 뜻하지 않습니다.'))
                         except Exception as e:self.sector_selection();self.status.set('업무 열기 오류: '+str(e))
                     else:self.sector_selection();self.status.set('회사 준비 중단: '+data)
-                    if self.closing:self.root.destroy();return
+                    if self.closing:self.shutdown_ai();self.root.destroy();return
                 else:
                     self.set_busy(False)
                     if kind=='error':self.status.set('실행 오류: '+data)
                     else:self.status.set('검사 완료. 수동 증거 확인과 조서 검토를 진행하세요.')
                     self.call(self.refresh)
-                    if self.closing:self.root.destroy();return
+                    if self.closing:self.shutdown_ai();self.root.destroy();return
         except queue.Empty:pass
         self.root.after(80,self.poll)
     def build_lead(self,p):
@@ -480,7 +486,7 @@ class App:
         if s:
             self.row_text.delete('1.0','end');self.row_text.insert('1.0',json.dumps(self.visible_rows[int(s[0])],ensure_ascii=False,indent=2))
     def build_procedures(self,p):
-        ttk.Label(p,text='① 왼쪽에서 계정 선택 → ② 목적·범위·계산 근거 확인 → ③ 실제 수행·판단 작성 → ④ 조서 저장·개정 → ⑤ 초안 Excel 내보내기',wraplength=1400).pack(anchor='w',pady=(0,7))
+        self.build_ai_actions(p,FlowFrame)
         pan=ttk.Panedwindow(p,orient='horizontal');pan.pack(fill='both',expand=True);left=ttk.Frame(pan);right_outer=ttk.Frame(pan,padding=(10,0));pan.add(left,weight=2);pan.add(right_outer,weight=3)
         buttons=FlowFrame(right_outer);buttons.pack(side='bottom',fill='x',pady=5);self.workpaper_actions=buttons
         self.save_workpaper_button=buttons.add(ttk.Button(buttons,text='조서 저장·개정',command=lambda:self.call(self.save_procedure)))
@@ -522,6 +528,7 @@ class App:
         self.reviewer.set(p.get('reviewer',''));self.review_note.set(p.get('review_note',''))
         self.review_saved=(self.reviewer.get(),self.review_note.get())
         self.saved_signature=self.form_signature()
+        self.refresh_ai_status()
     def save_procedure(self):
         self.guard()
         if not self.current_pid:raise AuditError('절차를 선택하세요.')
@@ -612,9 +619,15 @@ class App:
         self.call(op)
     def close(self):
         if self.busy:self.closing=True;self.cancel.set();self.status.set('취소·이력 저장 후 종료 중…')
-        elif self.check_navigation():self.root.destroy()
+        elif self.check_navigation():self.shutdown_ai();self.root.destroy()
 
 def main():
+    if '--self-test-ai-real' in sys.argv:
+        from verify_ai_actual import self_test
+        return self_test(Path(sys.argv[sys.argv.index('--report')+1]),Path(sys.argv[sys.argv.index('--ai-runtime')+1]))
+    if '--self-test-v18' in sys.argv:
+        from verify_v18 import self_test
+        return self_test(Path(sys.argv[sys.argv.index('--report')+1]))
     if '--self-test-v171' in sys.argv:
         from verify_v171 import self_test
         return self_test(Path(sys.argv[sys.argv.index('--report')+1]))

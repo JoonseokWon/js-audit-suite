@@ -32,7 +32,7 @@ def workbook_bytes(snapshot,catalog):
         for c in ws[1]:c.font=Font(name='맑은 고딕',size=10,bold=True,color='FFFFFF');c.fill=PatternFill('solid',fgColor='263F59')
         ws.sheet_view.showGridLines=False;ws.freeze_panes='B2';ws.auto_filter.ref=ws.dimensions
         for j,k in enumerate(headers,1):ws.column_dimensions[get_column_letter(j)].width=min(55,max(14,len(k)*1.7+2, max((len(str(ws.cell(i,j).value or '')) for i in range(2,min(ws.max_row,35)+1)),default=0)*1.1))
-        if name in ('조서표지','수행검토조서','검토의견','자료요청·수령','통합검토후보','분석필요자료'):
+        if name in ('조서표지','수행검토조서','검토의견','자료요청·수령','통합검토후보','분석필요자료','AI초안목록','AI최종내용승인','AI적용이력','AI근거참조'):
             import math,unicodedata
             for row in ws.iter_rows(min_row=2):
                 lines=1
@@ -41,7 +41,10 @@ def workbook_bytes(snapshot,catalog):
                     lines=max(lines,sum(max(1,math.ceil(sum(2 if unicodedata.east_asian_width(ch) in ('W','F') else 1 for ch in line)/max(8,width-2))) for line in str(cell.value or '').split('\n')))
                 ws.row_dimensions[row[0].row].height=max(25,lines*16+6)
         return ws
-    eng=snapshot['engagement'];cover=[{'항목':k,'값':eng[k]} for k in ('회사명','회사코드','시작일','기준일','작성자','회계체계','감사기준')]+[{'항목':'업무ID','값':eng['id']},{'항목':'출력상태','값':snapshot['export_state']},{'항목':'범위','값':snapshot['scope']},{'항목':'더미표시','값':'SYNTHETIC ONLY' if eng.get('더미업무') else '실제업무 기록'},{'항목':'검토정책','값':'작성자와 별도 검토자 이름 입력. 인증된 서명 아님.'}];add('조서표지',cover)
+    eng=snapshot['engagement'];cover=[{'항목':k,'값':eng[k]} for k in ('회사명','회사코드','시작일','기준일','작성자','회계체계','감사기준')]+[{'항목':'업무ID','값':eng['id']},{'항목':'출력상태','값':snapshot['export_state']},{'항목':'범위','값':snapshot['scope']},{'항목':'더미표시','값':'SYNTHETIC ONLY' if eng.get('더미업무') else '실제업무 기록'},{'항목':'검토정책','값':'작성자와 별도 검토자 이름 입력. 인증된 서명 아님.'}]
+    ai_statuses=[p.get('ai_status',{}) for p in snapshot['procedures'] if p.get('ai_status',{}).get('required')]
+    if ai_statuses:cover.append({'항목':'AI 최종내용 승인','값':f"AI 적용 {len(ai_statuses)}개 / 현재 내용 승인 {sum(bool(s.get('approved')) for s in ai_statuses)}개 / 나머지는 미승인·변경 초안. 전체 감사완료·감사의견과 다름."})
+    add('조서표지',cover)
     add('검사실행목록',[{'모듈':r['module'],'실행ID':r['id'],'시각':r['at'],'입력자료ID':r['source_id'],'차단':r['result']['blocking'],'검토':r['result']['review'],'결과해시':r['result_hash']} for r in snapshot['all_runs']])
     add('모듈TB연결',snapshot['cross']);add('증거등록부',snapshot['sources'])
     # Nested rule detail remains in module tables and the complete evidence JSON.
@@ -50,13 +53,21 @@ def workbook_bytes(snapshot,catalog):
     add('분석필요자료',snapshot.get('analytics_source_requirements',[]))
     request_labels={'id':'요청번호','title':'요청자료','requested_from':'요청처','due_date':'기한','state':'상태','note':'요청범위·처리내용','source_ids':'연결 증거번호','updated_at':'기록시각 UTC'}
     add('자료요청·수령',[{label:r.get(key,'') for key,label in request_labels.items()} for r in snapshot.get('requests',[])],list(request_labels.values()))
-    add('수행검토조서',[{'절차ID':p['id'],'제목':p['title'],'상태':p['current_state'],'작성자':p['preparer'],'실제수행일':p['performed_date'],'검토자':p['reviewer'],'검토기록시각UTC':p['reviewed_at']} for p in snapshot['procedures']]);add('검토의견',snapshot['notes'])
+    add('수행검토조서',[{'절차ID':p['id'],'제목':p['title'],'상태':p['current_state'],'AI내용상태':p.get('ai_status',{}).get('state','AI 미적용'),'작성자':p['preparer'],'실제수행일':p['performed_date'],'검토자':p['reviewer'],'검토기록시각UTC':p['reviewed_at']} for p in snapshot['procedures']]);add('검토의견',snapshot['notes'])
+    if snapshot.get('ai_drafts'):
+        add('AI초안목록',[{'초안ID':d['id'],'절차ID':d['procedure_id'],'요청자':d['actor'],'모델제공자':d['provider'],'모델':d['model'],'프롬프트버전':d['prompt_version'],'근거패킷SHA256':d['packet_hash'],'자료실행버전':d['basis'],'생성시각UTC':d['at'],'원문응답':d['raw_response'],'적용정책':'AI 응답 보존은 적용·사람 승인·검토완료와 다름. 전체 원문은 증적JSON 참조.'} for d in snapshot['ai_drafts']])
+        add('AI근거참조',[{'초안ID':d['id'],'절차ID':d['procedure_id'],'회사코드':d['company_code'],'참조ID':r['id'],'참조종류':r['kind'],'자료ID':r.get('source_id',''),'원문SHA256':r.get('sha256',''),'실행ID':r.get('run_id',''),'결과SHA256':r.get('result_hash',''),'내용':r['data']} for d in snapshot['ai_drafts'] for r in d['packet']['references']])
+        add('AI적용이력',snapshot.get('ai_applications',[]))
+        add('AI최종내용승인',[{'절차ID':p['id'],'현재상태':p.get('ai_status',{}).get('state','AI 미적용'),'승인필요':p.get('ai_status',{}).get('required',False),'현재승인유효':p.get('ai_status',{}).get('approved',False),'현재내용SHA256':p.get('ai_status',{}).get('content_hash',''),'현재자료실행버전':snapshot['basis'],'승인기록':p.get('ai_status',{}).get('approval') or '미승인','범위':'사람이 저장한 AI 적용 내용의 승인. 별도 감사조서 검토통제·감사의견을 대신하지 않음.'} for p in snapshot['procedures'] if p.get('ai_status',{}).get('required')])
     labels={'id':'조서·절차ID','title':'제목','current_state':'현재상태','purpose':'목적·주장','risk':'위험·관련 기준','scope':'모집단·선정·검사 범위','performed':'실제 수행내용·근거·예외 조사','conclusion':'판단·결론·추가절차','preparer':'작성자','performed_date':'실제 수행일','reviewer':'검토자','review_note':'검토 내용·범위','reviewed_at':'검토 기록시각 UTC','excluded_reason':'범위 제외 사유','basis':'연결된 자료·실행 버전 해시'}
     source_names={s['id']:s['name']+' / '+s['file']+' / SHA256 '+s['sha256'] for s in snapshot['sources']}
     import math,unicodedata
     for p in snapshot['procedures']:
         rows=[{'항목':label,'기록':p.get(key,'')} for key,label in labels.items()]
         rows.append({'항목':'연결 증거 사본','기록':'\n'.join(source_names.get(s,s) for s in p.get('evidence_ids',[]))})
+        ai=p.get('ai_status',{})
+        if ai.get('required'):
+            rows.extend([{'항목':'AI 최종내용 승인 상태','기록':ai['state']},{'항목':'AI 초안·모델','기록':ai['draft_id']+' / '+ai.get('provider','')+' / '+ai.get('model','')},{'항목':'AI 적용 내용 SHA256','기록':ai.get('content_hash','')},{'항목':'사람 최종내용 승인 기록','기록':dumps(ai.get('approval')) if ai.get('approval') else '미승인 초안. 실제 수행·검토·감사완료로 사용하지 마세요.'}])
         if eng.get('더미업무'):rows.insert(0,{'항목':'더미 표시','기록':'SYNTHETIC ONLY / 가상 수행·검토 상태. 실제 감사증거·감사 결론 아님.'})
         module=PROCEDURE_MODULES.get(p['id'])
         linked=next(((i,r) for i,r in enumerate(snapshot['latest'],1) if r['module']==module),None)
