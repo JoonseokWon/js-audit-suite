@@ -273,8 +273,46 @@ class RuntimeTests(unittest.TestCase):
             self.assertNotIn('HTTP_PROXY', env)
             self.assertEqual(env['OLLAMA_HOST'], '127.0.0.1:11437')
             self.assertEqual(env['OLLAMA_NO_CLOUD'], '1')
-            self.assertTrue(Path(env['USERPROFILE']).is_relative_to(self.root))
-            self.assertTrue(Path(env['OLLAMA_MODELS']).is_relative_to(self.root))
+            # Windows TEMP can spell the same folder as RUNNER~1 or
+            # RunnerAdmin. The runtime deliberately stores its resolved path.
+            physical_root = self.root.resolve()
+            self.assertTrue(Path(env['USERPROFILE']).resolve().is_relative_to(physical_root))
+            self.assertTrue(Path(env['OLLAMA_MODELS']).resolve().is_relative_to(physical_root))
+            self.assertEqual(Path(env['USERPROFILE']).resolve(), physical_root / 'profile')
+            self.assertEqual(Path(env['OLLAMA_MODELS']).resolve(), physical_root / 'models')
+            # Exercise a lexical alias on every platform, plus the real native
+            # TEMP short-name API on Windows. No skip and no process/network.
+            base = Path(self.temp.name) / 'Runtime Environment Long Folder'
+            (base / 'alias').mkdir(parents=True)
+            roots = [('dotdot', base / 'alias' / '..' / 'private-ai')]
+            if os.name == 'nt':
+                import ctypes
+                from ctypes import wintypes
+                short_name = ctypes.WinDLL('kernel32', use_last_error=True).GetShortPathNameW
+                short_name.argtypes = [wintypes.LPCWSTR, wintypes.LPWSTR, wintypes.DWORD]
+                short_name.restype = wintypes.DWORD
+                buffer = ctypes.create_unicode_buffer(32768)
+                length = short_name(str(base), buffer, len(buffer))
+                self.assertGreater(length, 0, 'Native TEMP short-path lookup must succeed')
+                self.assertLess(length, len(buffer), 'Native short-path result must fit')
+                roots.append(('windows-short-temp', Path(buffer.value) / 'private-ai'))
+            for label, selected_root in roots:
+                with self.subTest(root_spelling=label):
+                    manager = ai.LocalAIRuntime(selected_root)
+                    physical = selected_root.resolve()
+                    private = manager._environment()
+                    self.assertEqual(manager.root, physical)
+                    self.assertEqual(Path(private['USERPROFILE']).resolve(), physical / 'profile')
+                    self.assertEqual(Path(private['OLLAMA_MODELS']).resolve(), physical / 'models')
+                    self.assertTrue(Path(private['USERPROFILE']).resolve().is_relative_to(physical))
+                    self.assertTrue(Path(private['OLLAMA_MODELS']).resolve().is_relative_to(physical))
+                    self.assertFalse((physical.parent / (physical.name + '-outside') / 'profile').resolve().is_relative_to(physical))
+                    self.assertNotIn('OPENAI_API_KEY', private)
+                    self.assertNotIn('HTTP_PROXY', private)
+                    self.assertEqual(private['OLLAMA_HOST'], '127.0.0.1:11437')
+                    self.assertEqual(private['OLLAMA_NO_CLOUD'], '1')
+                    if label == 'dotdot':
+                        self.assertFalse(Path(private['USERPROFILE']).is_relative_to(selected_root))
             self.assertEqual(os.environ['OPENAI_API_KEY'], 'secret')
         self.assertEqual(os.environ, old)
 

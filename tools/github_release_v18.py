@@ -7,6 +7,7 @@ use the GitHub upload API; no per-source-file blob upload is performed.
 from __future__ import annotations
 
 import argparse
+import copy
 import hashlib
 import json
 import os
@@ -411,7 +412,7 @@ def commit_files(files,state):
     parents=git(['rev-list','--parents','-n','1','HEAD']).decode().split()
     if parents != [commit,state['base']] or state['base'] != BASE_COMMIT:
         raise RuntimeError('패치 커밋이 지정 v1.7.1 main을 유일 부모로 잇지 않습니다.')
-    state.update(phase='COMMITTED',commit=commit);save_state(state)
+    state.update(phase='COMMITTED',commit=commit,patch_commits=[commit]);save_state(state)
 
 
 def pinned_artifacts(state):
@@ -517,6 +518,187 @@ def stage(api,windows_name):
             'assets':len(state['assets']),'private':False,'draft':True,'base_commit':state['base'],'previous_release_preserved':True}
 
 
+REVISION_ALLOWED_PATHS={'test_local_ai_runtime.py','tools/github_release_v18.py'}
+
+
+def patch_commits(state):
+    chain=state.get('patch_commits',[state.get('commit')])
+    if (state.get('base')!=BASE_COMMIT or not isinstance(chain,list) or not 1<=len(chain)<=20
+            or any(not isinstance(c,str) or not re.fullmatch('[0-9a-f]{40}',c) for c in chain)
+            or len(set(chain))!=len(chain) or chain[-1]!=state.get('commit')):
+        raise RuntimeError('원래 BASE에서 이어지는 공개 패치 커밋 목록이 유효하지 않습니다.')
+    return chain
+
+
+def verify_patch_chain(api,state):
+    parent=BASE_COMMIT;last=None
+    for commit in patch_commits(state):
+        last=api.call('GET','/git/commits/'+commit)
+        if [p.get('sha') for p in last.get('parents',[])]!=[parent]:
+            raise RuntimeError('공개 패치 이력이 BASE부터 연속된 단일 부모 fast-forward가 아닙니다.')
+        parent=commit
+    return last
+
+
+def revision_plan(state,assets,files):
+    if state.get('phase')!='STAGED':raise RuntimeError('게시되지 않은 STAGED draft에서만 revise를 시작할 수 있습니다.')
+    patch_commits(state)
+    old={r['path']:r for r in state['source_files']};new={r['path']:r for r in file_manifest(files)}
+    if set(old)!=set(new):raise RuntimeError('revise는 기존 소스 파일의 추가/삭제를 허용하지 않습니다.')
+    changed=sorted(p for p in new if new[p]!=old[p])
+    if not changed or not set(changed)<=REVISION_ALLOWED_PATHS:
+        raise RuntimeError('revise는 CI 경로 테스트와 릴리스 helper 두 파일의 변경만 허용합니다.')
+    if set(assets)!=set(state['local_assets']):raise RuntimeError('revise 첨부파일 이름 네 개를 보존해야 합니다.')
+    old_ids={a['name']:a['asset_id'] for a in state.get('assets',[])}
+    if set(old_ids)!=set(assets):raise RuntimeError('기존 STAGED 첨부 ID 네 개가 필요합니다.')
+    return {'phase':'PREPARED','before':copy.deepcopy(state),'assets':assets,'source_files':file_manifest(files),
+            'changed_paths':changed,'old_asset_ids':old_ids,'asset_steps':{}}
+
+
+def _revision_release(api,state,heads):
+    report=api.inspect();preserved_previous(report,state)
+    if report['head'] not in heads or report.get('tag_exists'):
+        raise RuntimeError('revise 중 원격 HEAD/새 태그가 달라졌습니다. 태그 이동/강제 push는 하지 않습니다.')
+    release=api.call('GET','/releases/'+str(state['release_id']))
+    if (release.get('id')!=state['release_id'] or not release.get('draft') or not release.get('prerelease')
+            or release.get('tag_name')!=TAG or release.get('target_commitish') not in heads):
+        raise RuntimeError('현재 v1.8 draft/대상/ID가 달라졌습니다. 기존 공개 릴리스는 수정하지 않습니다.')
+    return report,release
+
+
+def _revision_tree_check(expected):
+    tree={}
+    for record in git(['ls-tree','-rz','HEAD']).split(b'\0'):
+        if record:
+            info,path=record.split(b'\t',1);mode,kind,blob=info.split(b' ')
+            if kind!=b'blob' or mode not in (b'100644',b'100755'):raise RuntimeError('revise checkout에 예상 밖 모드가 있습니다.')
+            tree[path.decode('utf-8')]=(mode.decode(),blob.decode())
+    if set(tree)!=set(expected) or any(tree[p][1]!=r['git_blob_sha'] for p,r in expected.items()):
+        raise RuntimeError('revise checkout HEAD가 보존된 STAGED 소스 원문과 다릅니다.')
+    return tree
+
+
+def _revision_commit(files,state):
+    revision=state['revision'];old=revision['before'];checkout_checks()
+    old_expected={r['path']:r for r in old['source_files']+old['additional_files']}
+    new_expected={r['path']:r for r in revision['source_files']+old['additional_files']}
+    head=git(['rev-parse','HEAD']).decode().strip()
+    if head==old['commit']:
+        tree=_revision_tree_check(old_expected)
+        if git(['ls-files','--others','--exclude-standard','-z']):raise RuntimeError('revise checkout에 사용자 미추적 파일이 있습니다.')
+        for relative,expected in old_expected.items():
+            path=CHECKOUT/relative
+            if not path.resolve().is_relative_to(CHECKOUT.resolve()) or path.is_symlink() or not path.is_file():raise RuntimeError('revise checkout 파일 경로/원본 오류')
+            acceptable={expected['git_blob_sha']}
+            if relative in revision['changed_paths']:acceptable.add(new_expected[relative]['git_blob_sha'])
+            if git_sha(path.read_bytes()) not in acceptable:raise RuntimeError('revise 중 사용자 파일 변경을 발견했습니다. 덮어쓰지 않습니다.')
+        for relative in revision['changed_paths']:
+            temporary=WORK/('revision-write-'+sha(relative.encode())+'.tmp')
+            temporary.write_bytes(files[relative]);os.replace(temporary,CHECKOUT/relative)
+        pathspec=WORK/'revision-pathspec.nul'
+        pathspec.write_bytes(b''.join((':(literal)'+p).encode()+b'\0' for p in revision['changed_paths']))
+        git(['add','--pathspec-from-file='+str(pathspec),'--pathspec-file-nul'])
+        index={}
+        for record in git(['ls-files','--stage','-z']).split(b'\0'):
+            if record:
+                info,path=record.split(b'\t',1);mode,blob,stage=info.split(b' ')
+                index[path.decode()]=(mode.decode(),blob.decode(),stage.decode())
+        if set(index)!=set(new_expected) or any(index[p]!=(tree[p][0],r['git_blob_sha'],'0') for p,r in new_expected.items()):
+            raise RuntimeError('revise index가 허용된 두 파일 변경과 정확히 일치하지 않습니다.')
+        revision['phase']='LOCAL_STAGED';save_state(state)
+        git(['commit','-m','Fix Windows CI temporary path comparison without changing audit application'])
+        head=git(['rev-parse','HEAD']).decode().strip()
+    # Also recover a successful local commit if the process stopped before saving.
+    if git(['rev-list','--parents','-n','1','HEAD']).decode().split()!=[head,old['commit']]:
+        raise RuntimeError('revise 커밋은 이전 STAGED 커밋의 단일 자식이어야 합니다.')
+    _revision_tree_check(new_expected)
+    if git(['status','--porcelain=v1','-z']):raise RuntimeError('revise 커밋 후 checkout 변경이 있습니다.')
+    revision.update(phase='COMMITTED',commit=head)
+    state.update(commit=head,patch_commits=patch_commits(old)+[head]);save_state(state)
+
+
+def _revision_asset_state(release,revision):
+    actual={a['name']:a for a in release['assets']}
+    if len(actual)!=len(release['assets']) or not set(actual)<=set(revision['assets']):raise RuntimeError('revise draft에 예상 밖/중복 첨부가 있습니다.')
+    for name,expected in revision['assets'].items():
+        asset=actual.get(name);phase=revision['asset_steps'].get(name)
+        if asset is None:
+            if phase not in ('DELETE_PENDING','DELETED','UPLOAD_PENDING'):raise RuntimeError('revise가 삭제하지 않은 첨부가 사라졌습니다.')
+            continue
+        old=asset.get('id')==revision['old_asset_ids'][name]
+        proof=revision['before']['local_assets'][name] if old else expected
+        if (asset.get('digest')!='sha256:'+proof['sha256'] or asset.get('size')!=proof['bytes'] or asset.get('state')!='uploaded'
+                or (not old and phase not in ('UPLOAD_PENDING','UPLOADED'))):
+            raise RuntimeError('revise draft 첨부 ID/원래·새 SHA256이 보존된 상태와 다릅니다.')
+    return actual
+
+
+def revise(api):
+    """Append a recoverable CI-only revision to the current, unpublished draft."""
+    state=load_state()
+    if state.get('phase')=='STAGED':
+        report,release=_revision_release(api,state,{state['commit']})
+        verified=ensure_assets(api,release,state)
+        if {a['name']:a['asset_id'] for a in verified}!={a['name']:a['asset_id'] for a in state.get('assets',[])}:
+            raise RuntimeError('기존 draft 첨부 ID가 원래 STAGED 기록과 다릅니다.')
+        assets,files=local_artifacts(state['windows_asset'])
+        if state.get('revisions') and assets==state['local_assets'] and file_manifest(files)==state['source_files']:
+            return {'phase':'STAGED','commit':state['commit'],'patch_commits':patch_commits(state),
+                    'changed_paths':state['revisions'][-1]['changed_paths'],'draft':True,
+                    'assets':len(verified),'requires_new_exact_head_ci':True,'already_revised':True}
+        revision=revision_plan(state,assets,files)
+        snapshot=WORK/('revision-before-'+state['commit']+'.json')
+        if snapshot.exists() and json.loads(snapshot.read_text(encoding='utf-8'))!=state:
+            raise RuntimeError('기존 revise 상태 스냅샷이 다릅니다. 원본을 덮어쓰지 않습니다.')
+        if not snapshot.exists():write_json(snapshot,state)
+        state.update(phase='REVISING',revision=revision);save_state(state)
+    if state.get('phase')!='REVISING' or 'revision' not in state:raise RuntimeError('revise 준비/재시도 상태가 아닙니다.')
+    revision=state['revision'];old=revision['before']
+    assets,files=local_artifacts(state['windows_asset'])
+    if assets!=revision['assets'] or file_manifest(files)!=revision['source_files']:raise RuntimeError('revise 준비 이후 새 첨부/소스 ZIP이 변경되었습니다.')
+    if revision['phase'] in ('PREPARED','LOCAL_STAGED'):
+        _revision_release(api,state,{old['commit']})
+        _revision_commit(files,state)
+    target=revision['commit']
+    if revision['phase']=='COMMITTED':
+        checkout_checks()
+        if git(['rev-parse','HEAD']).decode().strip()!=target or git(['status','--porcelain=v1','-z']):
+            raise RuntimeError('revise push 전 checkout HEAD/작업 상태가 달라졌습니다.')
+        _revision_tree_check({r['path']:r for r in revision['source_files']+old['additional_files']})
+        report,release=_revision_release(api,state,{old['commit'],target})
+        if report['head']==old['commit']:git(['push','origin','HEAD:refs/heads/'+BRANCH],timeout=600)
+        report,release=_revision_release(api,state,{target,old['commit']})
+        if report['head']!=target:raise RuntimeError('revise fast-forward push 대상 확인 실패')
+        revision['phase']='PUSHED';save_state(state)
+    report,release=_revision_release(api,state,{target}) if revision['phase'] not in ('PUSHED',) else _revision_release(api,state,{old['commit'],target})
+    if report['head']!=target:raise RuntimeError('revise 원격 HEAD가 새 커밋과 다릅니다.')
+    if release['target_commitish']!=target:
+        release=api.call('PATCH','/releases/'+str(state['release_id']),{'target_commitish':target,'draft':True,'prerelease':True})
+    if not release.get('draft') or release.get('target_commitish')!=target:raise RuntimeError('revise draft 새 대상 갱신 확인 실패')
+    revision['phase']='RETARGETED';save_state(state)
+    _revision_asset_state(release,revision)
+    for name in revision['assets']:
+        _,release=_revision_release(api,state,{target});actual=_revision_asset_state(release,revision);asset=actual.get(name)
+        if asset and asset['id']==revision['old_asset_ids'][name]:
+            revision['asset_steps'][name]='DELETE_PENDING';save_state(state)
+            api.call('DELETE','/releases/assets/'+str(asset['id']))
+            revision['asset_steps'][name]='DELETED';save_state(state);asset=None
+        if asset is None:
+            revision['asset_steps'][name]='UPLOAD_PENDING';save_state(state)
+            url=release['upload_url'].split('{',1)[0]+'?'+urllib.parse.urlencode({'name':name})
+            api.call('POST',url,raw=(ROOT/'배포'/name).read_bytes())
+        revision['asset_steps'][name]='UPLOADED';save_state(state)
+    _,release=_revision_release(api,state,{target})
+    final_state={**state,'local_assets':assets,'source_files':revision['source_files']}
+    final_assets=ensure_assets(api,release,final_state)
+    state.update(local_assets=assets,source_files=revision['source_files'],assets=final_assets,phase='STAGED')
+    state.setdefault('revisions',[]).append({'from_commit':old['commit'],'commit':target,'changed_paths':revision['changed_paths'],
+        'snapshot':('revision-before-'+old['commit']+'.json'),'previous_assets':old['local_assets'],'assets':assets})
+    state.pop('revision');save_state(state)
+    return {'phase':'STAGED','commit':target,'patch_commits':state['patch_commits'],'changed_paths':state['revisions'][-1]['changed_paths'],
+            'draft':True,'assets':len(final_assets),'requires_new_exact_head_ci':True}
+
+
 def status(api):
     state = load_state()
     if 'commit' not in state:
@@ -565,6 +747,7 @@ def publish(api):
         raise RuntimeError('검증된 STAGED 상태에서만 게시할 수 있습니다.')
     pinned_artifacts(state)
     ci = ci_gate(status(api))
+    verify_patch_chain(api,state)
     current = api.inspect()
     preserved_previous(current,state)
     if current['head'] != state['commit'] or current.get('repo_id') != state['repo_id']:
@@ -608,9 +791,7 @@ def verify(api):
         raise RuntimeError('태그의 최종 커밋이 배포 커밋과 다릅니다.')
     ci = ci_gate(status(api))
     assets = ensure_assets(api, release, state)
-    commit = api.call('GET', '/git/commits/' + state['commit'])
-    if [p.get('sha') for p in commit.get('parents',[])] != [state['base']] or state['base'] != BASE_COMMIT:
-        raise RuntimeError('공개 패치 커밋의 부모가 지정 v1.7.1 main과 다릅니다.')
+    commit = verify_patch_chain(api,state)
     tree = api.call('GET', '/git/trees/' + commit['tree']['sha'] + '?recursive=1')
     if tree.get('truncated'):
         raise RuntimeError('원격 소스 트리 목록이 잘려 exact 검증하지 못했습니다.')
@@ -624,7 +805,7 @@ def verify(api):
             raise RuntimeError('소스 ZIP/README/CI의 원격 Git blob 바이트가 다릅니다: ' + row['path'])
     output = {'phase': 'VERIFIED', 'repository': REPOSITORY, 'private': False, 'tag': TAG, 'commit': state['commit'],
               'prerelease': True, 'url': release['html_url'], 'source_files': len(expected),
-              'remote_git_blob_sha_exact': True, 'base_commit': state['base'], 'previous_release_preserved': True, 'preserved_tags':sorted(PREVIOUS_RELEASES), 'preserved_workflows':list(OLD_WORKFLOW_PATHS), 'previous_repository_private': True, 'assets': assets, 'ci_url': ci['url']}
+              'remote_git_blob_sha_exact': True, 'base_commit': state['base'], 'patch_commits':patch_commits(state), 'previous_release_preserved': True, 'preserved_tags':sorted(PREVIOUS_RELEASES), 'preserved_workflows':list(OLD_WORKFLOW_PATHS), 'previous_repository_private': True, 'assets': assets, 'ci_url': ci['url']}
     state.update(phase='VERIFIED', url=release['html_url'], ci=ci)
     save_state(state)
     write_json(WORK / 'release-verified.json', output)
@@ -633,7 +814,7 @@ def verify(api):
 
 def main():
     parser = argparse.ArgumentParser(description='기존 공개 저장소의 v1.8.0 fast-forward 릴리스 도구')
-    parser.add_argument('--mode', required=True, choices=['inspect', 'stage', 'status', 'publish', 'verify'])
+    parser.add_argument('--mode', required=True, choices=['inspect', 'stage', 'revise', 'status', 'publish', 'verify'])
     parser.add_argument('--windows-asset', default=DEFAULT_WINDOWS_NAME, help='배포 폴더의 Windows ZIP 이름(stage 신규 시작에만 적용)')
     args = parser.parse_args()
     WORK.mkdir(parents=True, exist_ok=True)
@@ -644,6 +825,8 @@ def main():
         output = api.inspect()
     elif args.mode == 'stage':
         output = stage(api, args.windows_asset)
+    elif args.mode == 'revise':
+        output = revise(api)
     elif args.mode == 'status':
         output = status(api)
     elif args.mode == 'publish':
