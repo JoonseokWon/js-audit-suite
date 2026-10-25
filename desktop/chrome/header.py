@@ -65,6 +65,10 @@ def build_header(host,parent):
         ('AI 설정',lambda:host.call(host.open_ai_settings))):
         host.more_menu.add_command(label=label,command=fn)
     host.more_menu.add_separator()
+    from desktop.onboarding.manager import open_workbench
+    from desktop.onboarding.examples import open_example
+    host.more_menu.add_command(label='실무절차 입력·검사',command=lambda:host.call(lambda:open_workbench(host)))
+    host.more_menu.add_command(label='새 JS 실무절차 예제',command=lambda:host.call(lambda:open_example(host)))
     from desktop.chrome.tools import open_cashflow
     host.more_menu.add_command(label='현금흐름표 별도 도구',command=lambda:host.call(lambda:open_cashflow(host)))
     screens=tk.Menu(host.more_menu,tearoff=False)

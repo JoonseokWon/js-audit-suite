@@ -1,6 +1,7 @@
 """Keyboard-accessible native sidebar with explicit selected-state text and color."""
 from tkinter import ttk
 from desktop.design import COLORS
+from common import VERSION
 
 ROUTES = (
     ('업무 요약','업무 요약','워크스페이스'),
@@ -46,7 +47,7 @@ class Sidebar(ttk.Frame):
             self.buttons[key]=button
         self.footer=ttk.Frame(self)
         self.footer.pack(side='bottom',fill='x',pady=(12,0))
-        ttk.Label(self.footer,text='v2.0.0 · 로컬 저장',style='Muted.TLabel',
+        ttk.Label(self.footer,text='v'+VERSION+' · 로컬 저장',style='Muted.TLabel',
                   font=display.small_font).pack(anchor='w')
 
     def select(self,key):

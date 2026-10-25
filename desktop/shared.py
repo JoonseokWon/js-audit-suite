@@ -18,7 +18,17 @@ from desktop_display import DisplayManager,ScrollableFrame,create_scrolled_text,
 from ai_desktop import AIDesktopMixin
 from workflow_desktop import WorkflowDesktopMixin
 
-TITLE='JS 통합 회계감사 v2.0.0'
+TITLE='JS 통합 회계감사 v2.1.0'
+
+ONBOARDING_LIMITS={
+ '실무자료·원장':'확인한 ERP 열·계정·부호와 독립 통제. 조정 전후 TB·본문·주석·제조원가 대사. 원본 추출 신뢰성은 별도 확인.',
+ '유형자산증감':'원가·누계·CIP 취득·대체·취소·처분 모집단과 증감 대사. 자본화·사용가능일·실재성은 사람 판단.',
+ '감사표본선정':'확인한 모집단·방법·규모와 고정 seed로 고액층·특정항목·무작위 표본 선정. 규모·범위·오류 평가 판단은 별도.',
+ '금융기관조회':'금융기관 목록·조회항목·부분회신·미회신과 원장 대사. 실제 발송·회신 진위 확인은 사람 수행.',
+ '주석구성대사':'자산·차입 증감과 담보 등 주석 구성 대사. 적용 공시요건·정성 표현의 충분성은 별도 검토.',
+ '분류검토':'보유목적·만기·제한·위험 등 근거 누락과 상충 확인. 날짜만으로 현금성자산을 자동 확정하지 않음.',
+ '현금흐름표연결':'현재 원장과 현금 배부·제조상각·이자·법인세·비현금·부채 증감 대사. 적용 정책·출발점은 사람 확인.',
+}
 def resource(*parts):return RESOURCE.joinpath(*parts)
 def display_time(value):return datetime.fromisoformat(value).astimezone(timezone(timedelta(hours=9))).strftime('%Y-%m-%d %H:%M:%S KST')
 CATALOG=json.loads(resource('procedure_catalog.json').read_text(encoding='utf-8'))

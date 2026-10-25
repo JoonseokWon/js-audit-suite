@@ -146,10 +146,14 @@ class Workspace:
         if self.verify_sources():raise AuditError('등록한 원본 사본의 변경/누락을 먼저 해결하세요.')
         sid=self.add_source(path,module+' 입력',module);source=self.sources[sid];rid=uid()
         ledger=self.latest().get('원장·리드')
-        try:out=adapters.run(module,self.root/source['file'],self.context,event,ledger_result=ledger['result'] if ledger else None)
+        try:
+            out=adapters.run(module,self.root/source['file'],self.context,event,ledger_result=ledger['result'] if ledger else None)
+            if module in ONBOARDING_MODULES:
+                from onboarding.integration import validate_sources
+                validate_sources(self,out)
         except Exception as e:
             out=result(module,self.context,{},[{'code':'RUN_FAILED','severity':'차단','message':str(e),'reference':source['name']}],detail={'failed':True})
-        if module in ('원천증빙','재무제표·주석','GLA','FIA','현금분석'):
+        if module in ('원천증빙','재무제표·주석','GLA','FIA','현금분석')+ONBOARDING_MODULES:
             out['detail']['ledger_run_id']=ledger['id'] if ledger else None
             out['detail']['ledger_result_hash']=ledger['result_hash'] if ledger else None
         cancelled_flag=bool(event and event.is_set())
@@ -189,6 +193,8 @@ class Workspace:
             valid=current and not run['result']['blocking'] and not ledger['result']['blocking'] and run['result']['detail'].get('현재원장연결') is True
             rows.append({'모듈':module,'지표':'분석모집단·현재원장 연결','상태':'일치' if valid else '미확인','기대':None,'실제':None,'차이':None,'사유':'입력 7시트·GL·TB 연결 확인. 위험후보·미확인 규칙·은행 미대사는 별도 검토.' if valid else '현재 원장과 분석자료 불일치·차단·재실행 필요'})
         if '계정별증빙연습' in latest:rows.append({'모듈':'계정별증빙연습','지표':'독립 사례 범위','상태':'미확인','기대':None,'실제':None,'차이':None,'사유':'독립 거래 연습으로 현재 업무 TB와 합산·대사하지 않음. 검토중 조서만 출력 가능.'})
+        from onboarding.integration import workspace_checks
+        rows.extend(workspace_checks(latest,ledger))
         return rows
     def save_procedure(self,p,_ai_draft_id=None):
         self.assert_writeable();p=dict(p);pid=text(p['id'])
@@ -226,12 +232,14 @@ class Workspace:
             if not p.get('evidence_ids'):raise AuditError('등록한 원본 증거를 하나 이상 연결하세요.')
             mod=self.procedure_module(pid)
             latest=self.latest()
-            if mod in ('GLA','FIA','현금분석') and mod not in latest:raise AuditError('분석 조서에 연결할 검사를 먼저 실행하세요.')
+            if mod in ('GLA','FIA','현금분석')+ONBOARDING_MODULES and mod not in latest:raise AuditError('분석 조서에 연결할 검사를 먼저 실행하세요.')
             if mod in latest:
                 if mod!='계정별증빙연습' and '원장·리드' not in latest:raise AuditError('계산 조서의 원장·리드 실행 필요')
                 required_evidence={latest[mod]['source_id']}|({latest['원장·리드']['source_id']} if mod!='계정별증빙연습' else set())
                 if not required_evidence<=set(p['evidence_ids']):raise AuditError('추정 계산자료와 독립 원장·리드 증거를 모두 연결하세요.')
-                if mod in ('원천증빙','재무제표·주석','GLA','FIA','현금분석'):
+                if mod in ONBOARDING_MODULES and not set(latest[mod]['result']['detail'].get('origin_source_ids',[]))<=set(p['evidence_ids']):
+                    raise AuditError('실무절차 입력에 사용한 원본 자료도 조서 증거에 연결하세요.')
+                if mod in ('원천증빙','재무제표·주석','GLA','FIA','현금분석')+ONBOARDING_MODULES:
                     r=latest[mod];active=latest['원장·리드']
                     if r['result']['blocking'] or r['result']['detail'].get('ledger_run_id')!=active['id'] or r['result']['detail'].get('ledger_result_hash')!=active['result_hash']:
                         raise AuditError('현재 원장과 연결된 차단 없는 검사를 다시 실행한 후 검토요청하세요.')
@@ -266,11 +274,12 @@ class Workspace:
         except AuditError:return None
         r=self.latest().get(module)
         if not r:return None
-        return {'모듈':module,'실행ID':r['id'],'자료ID':r['source_id'],'결과해시':r['result_hash'],'계산지표':r['result']['metrics'],'계산정책':r['result']['detail'],'원장대사':[x for x in self.cross_checks() if x['모듈']==module],'계산표':list(r['result']['tables']),'차단':r['result']['blocking'],'검토':r['result']['review']}
+        return {'모듈':module,'실행ID':r['id'],'자료ID':r['source_id'],'원본자료ID':r['result']['detail'].get('origin_source_ids',[]),'결과해시':r['result_hash'],'계산지표':r['result']['metrics'],'계산정책':r['result']['detail'],'원장대사':[x for x in self.cross_checks() if x['모듈']==module],'계산표':list(r['result']['tables']),'차단':r['result']['blocking'],'검토':r['result']['review']}
     def required_procedures(self):
         required=set()
         mapping={'원장·리드':['C04','C05','P07'],'금융상품':['A02'],'매출':['A04'],'감가상각':['A12'],'확장검사':['A01','A06','A08','A10'],'리스':['A15'],'대손충당금':['A07'],'재고평가':['A11'],'종업원급여':['A16'],'미기록부채·비용이연':['A08','A09'],'원천증빙':['R01'],'재무제표·주석':['FS01'],'계정별증빙연습':['W01']}
         mapping.update({'GLA':['G01'],'FIA':['I01'],'현금분석':['H01']})
+        mapping.update({module:[pid] for pid,module in ONBOARDING_PROCEDURES.items()})
         for r in self.latest().values():
             required.update(mapping[r['module']])
             for i,issue in enumerate(r['result']['issues']):

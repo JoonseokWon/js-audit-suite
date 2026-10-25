@@ -7,7 +7,11 @@ from engines.assets import engine as assets
 
 MODULES=('원장·리드','금융상품','매출','감가상각','확장검사','리스','대손충당금','재고평가','종업원급여','미기록부채·비용이연','원천증빙','재무제표·주석','계정별증빙연습')
 MODULES=MODULES+('GLA','FIA','현금분석')
+MODULES=MODULES+ONBOARDING_MODULES
 def run(module,path,context,event=None,ledger_result=None):
+    if module in ONBOARDING_MODULES:
+        from onboarding.integration import run
+        return run(module,path,context,ledger_result,event)
     if module in ('GLA','FIA','현금분석'):
         import importlib
         engine=importlib.import_module({'GLA':'gla','FIA':'fia','현금분석':'cash_analytics'}[module])

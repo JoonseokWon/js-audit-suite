@@ -4,6 +4,9 @@ from pathlib import Path
 
 def dispatch(arguments):
     def report():return Path(arguments[arguments.index('--report')+1])
+    if '--self-test-v21' in arguments:
+        from tools.verify_onboarding_v21 import self_test
+        return self_test(report())
     if '--self-test-v20' in arguments:
         from tools.verify_bento_v20 import self_test
         return self_test(report())

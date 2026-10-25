@@ -1,5 +1,5 @@
 """Shared non-UI workpaper definitions for manual and sector demo workflows."""
-from common import AuditError,dumps,digest
+from common import AuditError,dumps,digest,ONBOARDING_PROCEDURES,ONBOARDING_MODULES
 
 def task_definitions(ws,catalog):
     tasks=[{'id':m['id'],'title':m['name'],'purpose':m['workpaper'],'risk':m['human_required']+' / '+m['standards'],'scope':'','performed':'','conclusion':''} for m in catalog['modules']]
@@ -8,6 +8,12 @@ def task_definitions(ws,catalog):
         if task['id']=='F01':task['purpose_code']='subsequent_events'
         elif task['id']=='FS01':task['purpose_code']='financial_statement_reconciliation'
     if ws:
+        for pid,module in ONBOARDING_PROCEDURES.items():
+            if module in ws.latest():
+                tasks.append({'id':pid,'title':module+' · 근거와 차이 검토',
+                    'purpose':'입력자료·현재 원장·계산표를 대사하고 누락과 차이를 조사',
+                    'risk':'원본 신뢰성, 적용 정책과 범위, 실제 수행·판단·승인·검토는 별도로 기록',
+                    'scope':'','performed':'','conclusion':''})
         from audit_workflow import legacy_f01
         if not legacy_f01(ws)['resolved']:
             for task in tasks:
@@ -19,9 +25,9 @@ def task_definitions(ws,catalog):
         for task in tasks:
             linked=ws.calculation_refs(task['id'])
             if linked:
-                unit='' if linked['모듈'] in ('원천증빙','재무제표·주석','계정별증빙연습','GLA','FIA','현금분석') else '원'
+                unit='' if linked['모듈'] in ('원천증빙','재무제표·주석','계정별증빙연습','GLA','FIA','현금분석')+ONBOARDING_MODULES else '원'
                 task['scope']='자동계산 연결: '+linked['모듈']+'\n계산값: '+' / '.join(k+' '+str(v)+unit for k,v in linked['계산지표'].items())+'\n독립 원장 대사: '+' / '.join(x['지표']+' '+x['상태'] for x in linked['원장대사'])+'\n결과 상세에서 계산표·입력 원본을 확인하고 실제 검사 범위와 수행내용을 작성하세요.'
-                task['evidence_ids']=[linked['자료ID']]+([ws.latest()['원장·리드']['source_id']] if '원장·리드' in ws.latest() else [])
+                task['evidence_ids']=list(dict.fromkeys([linked['자료ID']]+linked.get('원본자료ID',[])+([ws.latest()['원장·리드']['source_id']] if '원장·리드' in ws.latest() else [])))
         for r in ws.latest().values():
             for i,x in enumerate(r['result']['issues']):tasks.append({'id':'X-'+r['id']+'-'+str(i),'title':r['module']+' 예외: '+x['code'],'purpose':'예외 원인·증거·추가절차 및 회계처리 영향 평가','risk':x['message'],'scope':x['reference'],'performed':'','conclusion':''})
         for x in ws.cross_checks():

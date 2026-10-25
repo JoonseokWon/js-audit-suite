@@ -7,6 +7,17 @@ from desktop.widgets.cards import BentoCard
 
 class InputsView:
     def build_inputs(self, parent):
+        from desktop.onboarding.manager import open_workbench
+        from desktop.onboarding.examples import open_example
+        LIMITS.update(ONBOARDING_LIMITS)
+        practice=BentoCard(parent,'실무자료와 추가 감사절차',
+            '원본 열·계정 연결, 유형자산·표본·조회·주석·분류·현금흐름표를 현재 원장과 연결해요.')
+        practice.pack(fill='x',pady=(0,16))
+        actions=FlowFrame(practice.body);actions.pack(fill='x')
+        actions.add(ttk.Button(actions,text='실무절차 입력·검사',style='Primary.TButton',
+            command=lambda:self.call(lambda:open_workbench(self))))
+        actions.add(ttk.Button(actions,text='새 JS 실무절차 예제',style='Secondary.TButton',
+            command=lambda:self.call(lambda:open_example(self))))
         upload = BentoCard(parent, '자료를 등록하고 검사해요',
                            '원본의 회사·기간과 추출 조건을 확인한 뒤 검사할 자료를 선택하세요.')
         upload.pack(fill='x', pady=(0, 16))
