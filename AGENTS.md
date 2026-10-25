@@ -1,4 +1,11 @@
-# v1.9.0 감사계획·절차·증거 연결
+# v2.0.0 선명도·벤토 데스크톱 UI
+
+- 이 버전은 사용자 요청에 따라 전체 GUI의 DPI·레이아웃을 점검하고 벤토 그리드 UI와 작은 모듈로 재구성한다. 기존 v1.9.0 소스·배포·업무·계산 정책은 변경하지 않는다.
+- PM 소유: app.py, desktop/shell.py, desktop/design.py, desktop/widgets/cards.py·navigation.py·responsive.py, desktop/views/home.py, common.py 버전, 빌드·최종 통합.
+- desktop_refactor_v20 소유: desktop/shared.py, desktop/application.py, desktop/actions/*, desktop/views/*(home.py 제외), desktop/widgets/flow.py·tables.py. 기존 App 메서드를 화면/기능별로 분리하고 의미·안전 게이트·공개 API를 보존한다.
+- dpi_audit_v20 소유: desktop_display.py, windows.manifest, dpi_support/*, DPI 관련 테스트 및 구형 앱 인벤토리·검증 보고서. 보관 원본과 OS 설정은 바꾸지 않는다.
+- release_qa_v20 소유: tools/*v20*, ci/*v20*, 독립 구조/GUI QA 테스트, 사용 안내. 소스 엔진·표본·고정 모본은 변경하지 않는다.
+- 기존 아래 지침의 소유권/버전 표기는 과거 기록이다. 위의 v2 소유권을 우선한다. 워커 위임은 사용자가 이미 허용했다.
 
 - 사용자는 사람의 판단·승인을 자동화하지 않고 나머지 감사 지원 흐름을 구현하도록 요청했다. 판단·승인 입력과 미완료 표시는 유지하며 AI/프로그램이 대신 완료 처리하지 않는다.
 - 기존 v1.8.1 코드·EXE·공개 이력·원본 업무·계산 정책·합성 모본은 보존한다. 새 코드는 이 v1.9.0 폴더에서만 수정한다. 실제 회사별 업무를 테스트로 변경하지 않는다.

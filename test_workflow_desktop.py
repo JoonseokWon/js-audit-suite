@@ -176,7 +176,7 @@ class WorkflowDesktopTests(unittest.TestCase):
     def test_final_archive_button_cannot_queue_unreviewed_unlocked_work(self):
         self.profile()
         with patch('workflow_desktop.filedialog.asksaveasfilename') as dialog:
-            with self.assertRaisesRegex(ValueError,'잠금'):self.app.workflow_archive_dialog(True)
+            with self.assertRaisesRegex(ValueError,'수정 제한'):self.app.workflow_archive_dialog(True)
             dialog.assert_not_called()
         self.assertFalse(self.app.busy)
 

@@ -94,18 +94,18 @@ class DisplayMetricTests(unittest.TestCase):
         for area in ((0,0,20,20),(0,0,1),()):
             with self.subTest(area=area),self.assertRaises(ValueError):display.window_geometry(area)
 
-    def test_manifest_system_awareness_is_explicit_and_unprivileged(self):
+    def test_manifest_per_monitor_awareness_is_explicit_and_unprivileged(self):
         root=ET.parse(Path(__file__).with_name('windows.manifest')).getroot()
         values={n.tag.split('}')[-1]:n for n in root.iter()}
-        self.assertEqual(values['dpiAware'].text,'true')
-        self.assertEqual(values['dpiAwareness'].text,'system')
+        self.assertEqual(values['dpiAware'].text,'true/pm')
+        self.assertEqual(values['dpiAwareness'].text,'PerMonitorV2, PerMonitor')
         self.assertEqual(values['requestedExecutionLevel'].attrib,{'level':'asInvoker','uiAccess':'false'})
 
-    def test_source_api_requests_system_awareness(self):
+    def test_source_api_requests_per_monitor_v2_awareness(self):
         api=Call(True);user=SimpleNamespace(SetProcessDpiAwarenessContext=api)
         state=display._enable_windows(user)
-        self.assertEqual(state['mode'],'system');self.assertTrue(state['enabled'])
-        self.assertEqual(api.calls[0][0].value,display.ctypes.c_void_p(-2).value)
+        self.assertEqual(state['mode'],'per_monitor_v2');self.assertTrue(state['enabled'])
+        self.assertEqual(api.calls[0][0].value,display.ctypes.c_void_p(-4).value)
 
     def test_manifest_or_host_awareness_is_not_forced_again(self):
         user=SimpleNamespace(SetProcessDpiAwarenessContext=Call(False),GetThreadDpiAwarenessContext=Call(1),GetAwarenessFromDpiAwarenessContext=Call(2))
@@ -117,7 +117,7 @@ class DisplayMetricTests(unittest.TestCase):
     def test_old_windows_api_fallback(self):
         fallback=SimpleNamespace(SetProcessDpiAwareness=Call(0))
         state=display._enable_windows(SimpleNamespace(),fallback)
-        self.assertEqual(state['method'],'SetProcessDpiAwareness');self.assertEqual(fallback.SetProcessDpiAwareness.calls,[(1,)])
+        self.assertEqual(state['method'],'SetProcessDpiAwareness');self.assertEqual(fallback.SetProcessDpiAwareness.calls,[(2,)])
 
     def test_legacy_windows_api_fallback(self):
         user=SimpleNamespace(SetProcessDPIAware=Call(True))
@@ -232,7 +232,7 @@ class WholeAppTeardownTests(unittest.TestCase):
         try:
             from window_capture import destroy_test_window
             app=App(root)
-            self.assertEqual(len(app.tab_scrolls),8);self.assertIsInstance(app.proc_scroll,display.ScrollableFrame)
+            self.assertEqual(len(app.tab_scrolls),9);self.assertIsInstance(app.proc_scroll,display.ScrollableFrame)
             for _ in range(3):root.update()
             for scale in (100,125,150):
                 app.set_ui_zoom(scale);root.update_idletasks()
