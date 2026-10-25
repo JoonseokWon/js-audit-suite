@@ -41,6 +41,9 @@ MODULE_FILES = (
 )
 METADATA_FILES = {'master': '품목자산_마스터.json',
                   'profile': '업종설정.json', 'plan': '업종별_감사검토계획.json'}
+# Frozen sector-resources-1/engine 1.7 source-manifest IDs. Do not migrate the
+# immutable source bundle. New workspaces use procedures.task_definitions and
+# Workspace.required_procedures, where the financial reconciliation is FS01.
 COMMON_PROCEDURES = ('C02', 'C04', 'C05', 'P01', 'P07', 'A01', 'A02',
                      'A04', 'A06', 'A07', 'A08', 'A09', 'A10', 'A11',
                      'A12', 'A15', 'A16', 'R01', 'F01', 'G01', 'I01', 'H01')

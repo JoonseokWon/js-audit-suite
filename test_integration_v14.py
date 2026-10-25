@@ -22,13 +22,13 @@ class IntegratedV14Tests(unittest.TestCase):
         for m,r in self.ws.latest().items():self.assertEqual(r['result']['blocking'],0,(m,r['result']['issues']))
         cross=self.ws.cross_checks();self.assertEqual(len(cross),32);self.assertTrue(all(r['상태']=='일치' for r in cross),cross)
         fs=self.ws.latest()['재무제표·주석']['result'];self.assertEqual(fs['metrics']['매핑계정수'],59);self.assertEqual(fs['metrics']['대사항목수'],94)
-        self.assertTrue({'F01','R01'}<=self.ws.required_procedures())
+        self.assertTrue({'FS01','R01'}<=self.ws.required_procedures())
     def test_stale_financial_run_cannot_be_reviewed_by_resaving_procedure(self):
         self.normal();fs=self.ws.latest()['재무제표·주석']
         self.ws.execute('원장·리드',ROOT/'samples/통합/통합_v1.3_원장_리드.xlsx')
-        p={'id':'F01','title':'합성 재무제표 대사','preparer':'합성작성자','purpose':'합성','risk':'합성','scope':'합성','performed':'합성 기록','conclusion':'합성 판단','performed_date':'2026-12-31','evidence_ids':[fs['source_id'],self.ws.latest()['원장·리드']['source_id']]}
+        p={'purpose_code':'financial_statement_reconciliation','id':'FS01','title':'합성 재무제표 대사','preparer':'합성작성자','purpose':'합성','risk':'합성','scope':'합성','performed':'합성 기록','conclusion':'합성 판단','performed_date':'2026-12-31','evidence_ids':[fs['source_id'],self.ws.latest()['원장·리드']['source_id']]}
         self.ws.save_procedure(p)
-        with self.assertRaises(AuditError):self.ws.request_review('F01')
+        with self.assertRaises(AuditError):self.ws.request_review('FS01')
         self.assertEqual(next(x for x in self.ws.cross_checks() if x['모듈']=='재무제표·주석')['상태'],'미확인')
         with self.assertRaises(AuditError):self.ws.snapshot(True)
     def test_raw_package_different_current_ledger_is_blocked(self):
@@ -59,14 +59,14 @@ class IntegratedV14Tests(unittest.TestCase):
         self.assertEqual(self.ws.snapshot()['requests'][0]['state'],'검토완료')
     def test_workpaper_exports_actual_links_and_draft_states(self):
         self.normal()
-        for pid,module in [('F01','재무제표·주석'),('R01','원천증빙')]:
-            refs=self.ws.calculation_refs(pid);self.ws.save_procedure({'id':pid,'title':module,'preparer':'합성작성자','purpose':'합성 검증 초안','scope':str(refs['계산지표']),'evidence_ids':[refs['자료ID'],self.ws.latest()['원장·리드']['source_id']]})
+        for pid,module in [('FS01','재무제표·주석'),('R01','원천증빙')]:
+            refs=self.ws.calculation_refs(pid);self.ws.save_procedure({'purpose_code':'financial_statement_reconciliation' if pid=='FS01' else pid,'id':pid,'title':module,'preparer':'합성작성자','purpose':'합성 검증 초안','scope':str(refs['계산지표']),'evidence_ids':[refs['자료ID'],self.ws.latest()['원장·리드']['source_id']]})
         target=self.root/'draft.xlsx';snap=exporter.export(self.ws,target,CATALOG)
         from openpyxl import load_workbook
         w=load_workbook(target,data_only=False)
         try:
-            self.assertTrue({'조서_F01','조서_R01','자료요청·수령'}<=set(w.sheetnames))
-            self.assertTrue(any(row[1].hyperlink for row in w['조서_F01'].iter_rows(min_row=2)))
+            self.assertTrue({'조서_FS01','조서_R01','자료요청·수령'}<=set(w.sheetnames))
+            self.assertTrue(any(row[1].hyperlink for row in w['조서_FS01'].iter_rows(min_row=2)))
             proof=json.loads(''.join(row[1] for row in w['증적JSON'].iter_rows(min_row=2,values_only=True)))
             self.assertEqual(proof['basis'],self.ws.basis())
             self.assertTrue(all(not p['performed'] and not p['conclusion'] and not p['reviewer'] for p in proof['procedures']))

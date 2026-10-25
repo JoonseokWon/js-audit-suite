@@ -56,7 +56,7 @@ def regression(root):
         assert before==sha(p);reports.append({'module':'감가상각','name':c['name'],'actual':actual,'ok':True})
     return reports
 
-def synthetic_procedure(pid,source_ids):return {'id':pid,'title':'합성 수행·검토 연습 '+pid,'purpose':'합성 자료의 검사·조서 연결 연습','risk':'SYNTHETIC ONLY: 실재·권리·추정 판단은 실제 미수행','scope':'등록된 합성 입력 '+str(len(source_ids))+'개 및 자동검사 결과','performed':'SYNTHETIC ONLY / 프로그램 검증에서 수행·검토 상태를 모의 입력. 실제 감사증거 검사 아님.','conclusion':'합성 시나리오의 조서 상태 확인. 실제 감사 결론 없음.','performed_date':'2026-10-22','preparer':'합성작성자','evidence_ids':source_ids,'excluded':False}
+def synthetic_procedure(pid,source_ids):return {**({'purpose_code':'financial_statement_reconciliation' if pid=='FS01' else 'subsequent_events'} if pid in ('F01','FS01') else {}),'id':pid,'title':'합성 수행·검토 연습 '+pid,'purpose':'합성 자료의 검사·조서 연결 연습','risk':'SYNTHETIC ONLY: 실재·권리·추정 판단은 실제 미수행','scope':'등록된 합성 입력 '+str(len(source_ids))+'개 및 자동검사 결과','performed':'SYNTHETIC ONLY / 프로그램 검증에서 수행·검토 상태를 모의 입력. 실제 감사증거 검사 아님.','conclusion':'합성 시나리오의 조서 상태 확인. 실제 감사 결론 없음.','performed_date':'2026-10-22','preparer':'합성작성자','evidence_ids':source_ids,'excluded':False}
 
 def self_test(report_path):
     from app import App,CATALOG,resource,DEMO_FILES

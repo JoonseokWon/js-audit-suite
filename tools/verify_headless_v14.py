@@ -154,8 +154,8 @@ def run(output):
 
         # A blank draft must neither invent human execution/conclusions nor
         # permit a reviewed export. Export/reopen checks the actual workbook.
-        for pid in ('F01','R01'):
-            ws.save_procedure({'id':pid,'title':'합성 검토 초안 '+pid,'preparer':'합성작성자',
+        for pid in ('FS01','R01'):
+            ws.save_procedure({'purpose_code':'financial_statement_reconciliation' if pid=='FS01' else pid,'id':pid,'title':'합성 검토 초안 '+pid,'preparer':'합성작성자',
                 'purpose':'등록 원천과 수치 대사 범위 검토','risk':'합성 자료·선택 범위 제한',
                 'scope':'현재 원장 연결 자동검사','performed':'','conclusion':'','performed_date':'',
                 'evidence_ids':list(ws.sources)})
@@ -168,7 +168,7 @@ def run(output):
         from openpyxl import load_workbook
         book=load_workbook(draft,read_only=True,data_only=False)
         try:
-            check('조서_F01' in book.sheetnames and '조서_R01' in book.sheetnames,'draft_F01_R01_sheets')
+            check('조서_FS01' in book.sheetnames and '조서_R01' in book.sheetnames,'draft_FS01_R01_sheets')
             fs_sheet=next(s for s in book if s.title.endswith('_재무제표대사'))
             raw_sheet=next(s for s in book if s.title.endswith('_현재원장연결'))
             check(fs_sheet.max_row==95 and raw_sheet.max_row==142,'draft_all_FS_and_current_ledger_rows_exported')
@@ -264,10 +264,10 @@ def run(output):
         old_ids={m:ws.latest()[m]['id'] for m in ('원천증빙','재무제표·주석')}
         ws.execute('원장·리드',ROOT/'samples/통합/통합_v1.3_원장_리드.xlsx')
         changed=ws.cross_checks()
-        for module,pid in [('재무제표·주석','F01'),('원천증빙','R01')]:
+        for module,pid in [('재무제표·주석','FS01'),('원천증빙','R01')]:
             check(next(x['상태'] for x in changed if x['모듈']==module)=='미확인',module+'_old_binding_invalid_after_ledger_rerun')
             check(ws.latest()[module]['id']==old_ids[module],module+'_old_result_preserved_in_history')
-            ws.save_procedure({'id':pid,'title':'합성 연결 재검토 '+pid,'preparer':'합성작성자',
+            ws.save_procedure({'purpose_code':'financial_statement_reconciliation' if pid=='FS01' else pid,'id':pid,'title':'합성 연결 재검토 '+pid,'preparer':'합성작성자',
                 'purpose':'연결 통제','risk':'자료 버전 변경','scope':'합성 회귀검사',
                 'performed':'SYNTHETIC ONLY / 검사 상태 연습','conclusion':'실제 감사 결론 없음',
                 'performed_date':'2026-12-31','evidence_ids':list(ws.sources)})

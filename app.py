@@ -16,8 +16,9 @@ from display_schema import TABLE_COLUMNS,MODULE_TABLES
 import exporter
 from desktop_display import DisplayManager,ScrollableFrame,create_scrolled_text,create_editable_text
 from ai_desktop import AIDesktopMixin
+from workflow_desktop import WorkflowDesktopMixin
 
-TITLE='JS 통합 회계감사 v1.8.1'
+TITLE='JS 통합 회계감사 v1.9.0'
 def resource(*parts):return RESOURCE.joinpath(*parts)
 def display_time(value):return datetime.fromisoformat(value).astimezone(timezone(timedelta(hours=9))).strftime('%Y-%m-%d %H:%M:%S KST')
 CATALOG=json.loads(resource('procedure_catalog.json').read_text(encoding='utf-8'))
@@ -88,7 +89,7 @@ class FlowFrame(ttk.Frame):
             self.configure(height=y+row_height+5)
             self.layout=layout
 
-class App(AIDesktopMixin):
+class App(WorkflowDesktopMixin,AIDesktopMixin):
     def __init__(self,root,sector_home=None):
         self.root=root;root.title(TITLE);ttk.Style(root).theme_use('clam');self.display=DisplayManager(root,scale=100);root.audit_display=self.display
         if sys.platform=='win32':root.iconbitmap(default=str(resource('assets','js-audit.ico')))
@@ -97,6 +98,7 @@ class App(AIDesktopMixin):
         self.init_ai(CATALOG)
         bar=FlowFrame(root,padding=(10,5));bar.pack(fill='x');self.toolbar=bar
         self.workpaper_button=bar.add(ttk.Button(bar,text='조서초안 작성',style='Primary.TButton',command=lambda:self.call(self.open_workpaper_draft)))
+        self.workflow_button=bar.add(ttk.Button(bar,text='감사계획·절차',command=lambda:self.call(self.open_workflow_view)))
         secondary_actions=[]
         for label,command in [('새 업무',self.new_dialog),('업무 열기',self.open_dialog),('계정별 증빙연습',self.case_dialog),('로우데이터',lambda:self.call(self.open_raw_data)),('자료 복사',self.copy_templates),('초안 Excel 내보내기',lambda:self.export_dialog(False)),('검토완료본',lambda:self.export_dialog(True))]:
             button=bar.add(ttk.Button(bar,text=label,command=command))
@@ -120,7 +122,7 @@ class App(AIDesktopMixin):
         self.info=tk.StringVar(value='회사를 선택하거나 업무를 연 뒤 조서초안 작성을 누르세요.');self.info_label=ttk.Label(root,textvariable=self.info,padding=(14,4));self.info_label.pack(fill='x')
         self.status=tk.StringVar(value='준비');ttk.Label(root,textvariable=self.status,padding=(14,3)).pack(side='bottom',fill='x')
         self.nb=ttk.Notebook(root);self.nb.pack(fill='both',expand=True,padx=10,pady=5)
-        tabs={name:ttk.Frame(self.nb,padding=10) for name in ('자료·검사','원장·리드','결과 상세','검토후보','절차·조서','증거·검토의견','자료요청','작업 이력')}
+        tabs={name:ttk.Frame(self.nb,padding=10) for name in ('자료·검사','원장·리드','결과 상세','검토후보','절차·조서','증거·검토의견','자료요청','작업 이력','계획·절차·취합')}
         for name,frame in tabs.items():self.nb.add(frame,text='조서초안·작성' if name=='절차·조서' else name)
         navigation=tk.Menu(self.more_menu,tearoff=False)
         for name,frame in tabs.items():navigation.add_command(label='조서초안·작성' if name=='절차·조서' else name,command=lambda tab=frame:self.nb.select(tab))
@@ -131,6 +133,7 @@ class App(AIDesktopMixin):
             else:
                 scroll=ScrollableFrame(frame);scroll.pack(fill='both',expand=True);self.tab_scrolls[name]=scroll;contents[name]=scroll.inner
         self.build_inputs(contents['자료·검사']);self.build_lead(contents['원장·리드']);self.build_results(contents['결과 상세']);self.build_risks(contents['검토후보']);self.build_procedures(contents['절차·조서']);self.build_evidence(contents['증거·검토의견']);self.build_requests(contents['자료요청']);self.build_history(contents['작업 이력'])
+        self.build_workflow(contents['계획·절차·취합'],FlowFrame)
         self.request_saved=self.request_signature();self.review_saved=('', '')
         self.display.refresh_widgets();self.display.fit_window(initial=True)
         def wrap_labels(parent):
@@ -167,6 +170,10 @@ class App(AIDesktopMixin):
         self.load_procedure(preferred)
         index=next(i for i,t in enumerate(self.tasks) if t['id']==preferred);self.proc_tree.selection_set(str(index));self.proc_tree.see(str(index))
         self.status.set('계정별 초안: 목적·범위·계산 근거를 확인하고 실제 수행·판단을 입력한 뒤 조서 저장·개정을 누르세요.');return preferred
+    def open_workflow_view(self):
+        self.guard()
+        if not self.check_navigation():return False
+        self.refresh_workflow();self.nb.select(self.tabs['계획·절차·취합']);return True
     def sector_selection(self):
         self.sector_name.set(next((c['name'] for c in self.sector_options if c['code']==self.active_sector),'회사를 선택하세요'))
         if self.active_sector is None:self.sector_description.set('수동 업무 · 회사명·범위는 현재 업무 정보를 확인하세요.')
@@ -206,6 +213,8 @@ class App(AIDesktopMixin):
             self.disabled_widgets=[];self.sector_box.configure(state='readonly');self.sector_new.configure(state='normal');self.sector_cancel.configure(state='disabled')
     def reset_workspace_view(self):
         self.current_pid=None;self.current_request=None;self.file.set('');self.search.set('');self.result_module.set('');self.result_table.set('');self.page=0;self.table_rows=[];self.visible_rows=[]
+        if hasattr(self,'wf_detail'):
+            self.wf_state={};self.wf_last_archive={};self.wf_detail.configure(state='normal');self.wf_detail.delete('1.0','end');self.wf_detail.configure(state='disabled')
         for var in self.proc_vars.values():var.set('')
         for text in list(self.proc_text.values())+[self.row_text,self.risk_detail]:text.delete('1.0','end')
         self.set_history_text('')
@@ -254,6 +263,9 @@ class App(AIDesktopMixin):
     def history_rows(self):
         names={'engagement':'업무 생성','source':'자료 등록','run':'검사 실행','procedure':'조서 저장·개정·검토','note':'검토의견','evidence_request':'자료요청·상태 변경','ai_draft':'AI 초안 생성','ai_apply':'AI 초안 적용','ai_content_approval':'AI 내용 최종 승인'}
         names['sector_storage_relocation']='자료 보관 폴더 이동'
+        names.update({'workflow_profile':'감사계획·중요성','workflow_risk':'위험·주장 연결','workflow_procedure':'절차·증거 연결',
+            'workflow_f01_classification':'구형 F01 목적 확인','workflow_finalize':'검토기록 잠금','workflow_reopen':'수정 재개',
+            'workflow_risk_retire':'위험 사용 해제','workflow_procedure_retire':'절차 연결 사용 해제'})
         self.history_items=list(self.ws.events) if self.ws else []
         rows=[]
         for index,event in enumerate(self.history_items,1):
@@ -431,6 +443,9 @@ class App(AIDesktopMixin):
                 elif kind in ('ai_ok','ai_error'):
                     self.finish_ai_job(kind,data)
                     if self.closing:return
+                elif kind in ('workflow_ok','workflow_error'):
+                    self.finish_workflow_job(kind,data)
+                    if self.closing:self.shutdown_ai();self.root.destroy();return
                 elif kind in ('sector_ready','sector_error'):
                     self.set_busy(False)
                     if kind=='sector_ready':
@@ -535,6 +550,8 @@ class App(AIDesktopMixin):
         self.guard()
         if not self.current_pid:raise AuditError('절차를 선택하세요.')
         p={'id':self.current_pid,'title':self.current_title,**{k:v.get() for k,v in self.proc_vars.items()},**{k:t.get('1.0','end').strip() for k,t in self.proc_text.items()},'excluded':self.excluded.get(),'evidence_ids':[self.evidence_sources[i]['id'] for i in self.evidence_list.curselection()]}
+        task=next((task for task in self.task_list() if task['id']==self.current_pid),{})
+        if task.get('purpose_code'):p['purpose_code']=task['purpose_code']
         if p['excluded']:p['excluded_reason']=p['risk']
         self.ws.save_procedure(p);self.refresh();self.status.set('조서 개정 저장. 이전 검토는 다시 받아야 합니다.')
     def request_review(self):
@@ -612,6 +629,7 @@ class App(AIDesktopMixin):
         self.risk_items=self.ws.risk_register();fill(self.risk_tree,self.risk_items);self.risk_detail.delete('1.0','end')
         fill(self.history_tree,self.history_rows());self.set_history_text('')
         if self.current_pid and any(t['id']==self.current_pid for t in self.tasks):self.load_procedure(self.current_pid)
+        self.refresh_workflow()
     def export_dialog(self,final):
         def op():
             self.guard()
@@ -620,10 +638,15 @@ class App(AIDesktopMixin):
             if path:exporter.export(self.ws,path,CATALOG,final);self.status.set('조서 저장: '+path)
         self.call(op)
     def close(self):
+        modal=getattr(self,'wf_modal',None)
+        if modal is not None and modal.win.winfo_exists() and not modal.close():return
         if self.busy:self.closing=True;self.cancel.set();self.status.set('취소·이력 저장 후 종료 중…')
         elif self.check_navigation():self.shutdown_ai();self.root.destroy()
 
 def main():
+    if '--self-test-v19' in sys.argv:
+        from verify_v19 import self_test
+        return self_test(Path(sys.argv[sys.argv.index('--report')+1]))
     if '--self-test-ime' in sys.argv:
         from verify_ime_patch import self_test
         return self_test(Path(sys.argv[sys.argv.index('--report')+1]),Path(sys.argv[sys.argv.index('--workspace')+1]))

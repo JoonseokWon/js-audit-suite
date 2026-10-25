@@ -32,13 +32,13 @@ def self_test(report_path,legacy=True):
             check(len(app.table_rows)==count,module+'_native_table_rows')
             capture_window(root,report_path.parent/(module+'_화면.png'))
             check(bool(app.result_tree.get_children()),module+'_native_table_visible')
-        for pid in ('F01','R01'):
+        for pid in ('FS01','R01'):
             app.load_procedure(pid);check(bool(app.proc_text['scope'].get('1.0','end').strip()),pid+'_draft_links')
             app.save_procedure();p=app.ws.procedures[pid]
             check(not p['performed'] and not p['conclusion'] and not p['reviewer'],pid+'_no_human_conclusion')
         exporter.export(app.ws,report_path.parent/'통합감사_미검토초안_v1.4.xlsx',CATALOG)
         check(all(p['state']=='작성중' for p in app.ws.procedures.values()),'draft_export_keeps_preparation_state')
-        app.nb.select(app.tabs['절차·조서']);app.load_procedure('F01');root.update();capture_window(root,report_path.parent/'재무제표_조서화면.png')
+        app.nb.select(app.tabs['절차·조서']);app.load_procedure('FS01');root.update();capture_window(root,report_path.parent/'재무제표_조서화면.png')
         app.clear_request()
         for k,v in {'title':'합성 계약 추가 요청','requested_from':'가상 담당','due_date':'2026-12-31','note':'가상 원천자료 검토 범위 확인'}.items():app.request_vars[k].set(v)
         app.save_request();check(len(app.ws.requests)==1,'evidence_request_saved')

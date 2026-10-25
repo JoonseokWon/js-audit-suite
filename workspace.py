@@ -44,10 +44,17 @@ class Workspace:
         return [json.loads(r[1]) for r in rows],last
     def _connect(self):
         db=sqlite3.connect(self.dbpath,timeout=5);db.execute('PRAGMA trusted_schema=OFF');return db
-    def _append(self,kind,data):
+    def _append(self,kind,data,expected_head=None):
         db=self._connect()
         try:
             db.execute('BEGIN IMMEDIATE');events,last=self._read(db);seq=len(events)+1
+            locked=False
+            for event in events:
+                if event['kind']=='workflow_finalize':locked=True
+                elif event['kind']=='workflow_reopen':locked=False
+            if locked and kind!='workflow_reopen':raise AuditError('보관 잠금된 업무입니다. 명시적 재개 사유를 기록하세요.')
+            if kind=='workflow_reopen' and not locked:raise AuditError('보관 잠금되지 않은 업무입니다.')
+            if expected_head is not None and last!=expected_head:raise AuditError('완료 점검 중 이력이 변경되었습니다. 다시 확인하세요.')
             payload=dumps({'kind':kind,'at':now(),'data':data});h=digest({'seq':seq,'payload':payload,'prev':last})
             db.execute('INSERT INTO events VALUES (?,?,?,?)',(seq,payload,last,h));db.commit()
             atomic(self.anchor,dumps({'seq':seq,'hash':h}).encode())
@@ -71,12 +78,53 @@ class Workspace:
             elif kind=='ai_content_approval':self.ai_approvals[d['procedure_id']]=d
         if any(digest(r['result'])!=r['result_hash'] for r in self.runs.values()):raise AuditError('검사 결과 해시 불일치')
         if self.engagement is None:raise AuditError('업무 기본정보 없음')
+        from audit_workflow import refresh_state
+        refresh_state(self)
         return self
     @property
     def context(self):return {k:self.engagement[k] for k in ('회사코드','시작일','기준일')}
-    def basis(self):return digest({'sources':self.sources,'runs':self.runs,'engagement':self.engagement})
+    def data_basis(self):return digest({'sources':self.sources,'runs':self.runs,'engagement':self.engagement})
+    def basis(self):
+        from audit_workflow import workflow_basis
+        plan=workflow_basis(self)
+        return digest({'data_basis':self.data_basis(),'workflow':plan}) if plan else self.data_basis()
+    def assert_writeable(self,expected_head=None):
+        self.refresh()
+        if expected_head is not None and self.head!=expected_head:raise AuditError('화면을 연 뒤 업무 이력이 변경되었습니다. 새 상태를 확인하고 다시 입력하세요.')
+        if self.workflow_locked:raise AuditError('보관 잠금된 업무입니다. 명시적 재개 사유를 기록하세요.')
+        return self.head
+    def workflow_status(self):
+        from audit_workflow import status
+        return status(self)
+    def save_workflow_profile(self,payload,actor,*,expected_head=None):
+        from audit_workflow import save_profile
+        return save_profile(self,payload,actor,expected_head=expected_head)
+    def save_workflow_risk(self,payload,actor,*,expected_head=None):
+        from audit_workflow import save_risk
+        return save_risk(self,payload,actor,expected_head=expected_head)
+    def save_workflow_procedure(self,payload,actor,*,expected_head=None):
+        from audit_workflow import save_procedure_link
+        return save_procedure_link(self,payload,actor,expected_head=expected_head)
+    def retire_workflow_risk(self,risk_id,actor,reason,*,expected_head=None):
+        from audit_workflow import retire
+        return retire(self,risk_id,actor,reason,risk=True,expected_head=expected_head)
+    def retire_workflow_procedure(self,procedure_id,actor,reason,*,expected_head=None):
+        from audit_workflow import retire
+        return retire(self,procedure_id,actor,reason,expected_head=expected_head)
+    def classify_legacy_f01(self,purpose_code,actor,reason,*,expected_head=None):
+        from audit_workflow import classify_legacy_f01
+        return classify_legacy_f01(self,purpose_code,actor,reason,expected_head=expected_head)
+    def finalize_workflow(self,actor,note,*,expected_head=None):
+        from audit_workflow import finalize
+        return finalize(self,actor,note,expected_head=expected_head)
+    def reopen_workflow(self,actor,reason,*,expected_head=None):
+        from audit_workflow import reopen
+        return reopen(self,actor,reason,expected_head=expected_head)
+    def procedure_module(self,pid):
+        from audit_workflow import module_for
+        return module_for(self,pid)
     def add_source(self,path,label,role='증거'):
-        self.refresh();p=Path(path).resolve();label=text(label,'자료명');role=text(role,'자료유형')
+        self.assert_writeable();p=Path(path).resolve();label=text(label,'자료명');role=text(role,'자료유형')
         if not p.is_file() or p.stat().st_size>25*1024**2:raise AuditError('자료는 25MB 이하 파일이어야 합니다.')
         raw=p.read_bytes();sid=uid();relative=Path('원본')/(sid+p.suffix.lower());dest=self.root/relative
         atomic(dest,raw)
@@ -143,7 +191,12 @@ class Workspace:
         if '계정별증빙연습' in latest:rows.append({'모듈':'계정별증빙연습','지표':'독립 사례 범위','상태':'미확인','기대':None,'실제':None,'차이':None,'사유':'독립 거래 연습으로 현재 업무 TB와 합산·대사하지 않음. 검토중 조서만 출력 가능.'})
         return rows
     def save_procedure(self,p,_ai_draft_id=None):
-        self.refresh();p=dict(p);pid=text(p['id']);p['title']=text(p['title']);p['preparer']=text(p['preparer']);p['state']='작성중';p['basis']=self.basis();p['reviewer']='';p['reviewed_at']='';p['review_note']=''
+        self.assert_writeable();p=dict(p);pid=text(p['id'])
+        if pid in ('F01','FS01'):
+            from audit_workflow import purpose_code
+            expected=purpose_code(self,pid)
+            if p.get('purpose_code')!=expected:raise AuditError('F01/FS01 절차 목적을 명시하고 원래 목적과 일치시켜야 합니다.')
+        p['title']=text(p['title']);p['preparer']=text(p['preparer']);p['state']='작성중';p['basis']=self.basis();p['reviewer']='';p['reviewed_at']='';p['review_note']=''
         previous=self.procedures.get(pid,{})
         # The normal form omits hidden metadata. Preserve AI lineage so edits
         # cannot accidentally turn an AI-applied draft into an untracked one.
@@ -151,20 +204,27 @@ class Workspace:
         p.pop('ai_draft_id',None)
         if origin:
             if origin not in self.ai_drafts:raise AuditError('AI 초안 연결 이력이 없습니다.')
+            draft=self.ai_drafts[origin]
+            if draft.get('procedure_id')!=pid:raise AuditError('다른 절차의 AI 초안 연결 금지')
+            if pid in ('F01','FS01') and draft.get('packet',{}).get('procedure',{}).get('purpose_code')!=p.get('purpose_code'):raise AuditError('구형/다른 목적 AI 초안을 전용할 수 없습니다.')
             p['ai_draft_id']=origin
         p['edit_revision']=uid()
         for key in ('purpose','risk','scope','performed','conclusion','performed_date','evidence','excluded_reason'):p.setdefault(key,'')
-        for sid in p.get('evidence_ids',[]):
+        ids=p.get('evidence_ids',[])
+        if not isinstance(ids,list) or any(not isinstance(i,str) for i in ids) or len(set(ids))!=len(ids):raise AuditError('증거 ID 목록/중복 오류')
+        for sid in ids:
             if sid not in self.sources:raise AuditError('등록되지 않은 증거 ID')
         p['updated_at']=now();self._append('procedure',p);self.refresh();return p
     def request_review(self,pid):
-        self.refresh();p=dict(self.procedures[pid])
+        self.assert_writeable()
+        if pid=='F01':self.procedure_module(pid)
+        p=dict(self.procedures[pid])
         required=('excluded_reason',) if p.get('excluded') else ('purpose','risk','scope','performed','conclusion','performed_date')
         if any(not str(p.get(k,'')).strip() for k in required):raise AuditError('필수 수행·판단 필드 또는 제외 사유를 채우세요.')
         if not p.get('excluded'):
             day(p['performed_date'])
             if not p.get('evidence_ids'):raise AuditError('등록한 원본 증거를 하나 이상 연결하세요.')
-            mod=PROCEDURE_MODULES.get(pid)
+            mod=self.procedure_module(pid)
             latest=self.latest()
             if mod in ('GLA','FIA','현금분석') and mod not in latest:raise AuditError('분석 조서에 연결할 검사를 먼저 실행하세요.')
             if mod in latest:
@@ -179,7 +239,9 @@ class Workspace:
         if self.verify_sources():raise AuditError('증거 사본 무결성 오류')
         p['state']='검토요청';p['updated_at']=now();self._append('procedure',p);self.refresh()
     def review(self,pid,reviewer,note,accepted=True):
-        self.refresh();p=dict(self.procedures[pid]);reviewer=text(reviewer,'검토자');note=text(note,'검토내용·범위')
+        self.assert_writeable()
+        if pid=='F01':self.procedure_module(pid)
+        p=dict(self.procedures[pid]);reviewer=text(reviewer,'검토자');note=text(note,'검토내용·범위')
         if reviewer==p['preparer']:raise AuditError('이 제품의 검토 정책: 작성자와 다른 검토자 필요')
         if p['state']!='검토요청' or p['basis']!=self.basis():raise AuditError('현재 자료 버전의 검토요청 상태여야 합니다.')
         if self.verify_sources():raise AuditError('증거 사본 무결성 오류')
@@ -200,13 +262,14 @@ class Workspace:
         if d['state'] in ('부분수령','수령','검토완료') and self.verify_sources():raise AuditError('수령 자료 사본 무결성 확인 필요')
         d['updated_at']=now();self._append('evidence_request',d);self.refresh();return d
     def calculation_refs(self,pid):
-        module=PROCEDURE_MODULES.get(pid)
+        try:module=self.procedure_module(pid)
+        except AuditError:return None
         r=self.latest().get(module)
         if not r:return None
         return {'모듈':module,'실행ID':r['id'],'자료ID':r['source_id'],'결과해시':r['result_hash'],'계산지표':r['result']['metrics'],'계산정책':r['result']['detail'],'원장대사':[x for x in self.cross_checks() if x['모듈']==module],'계산표':list(r['result']['tables']),'차단':r['result']['blocking'],'검토':r['result']['review']}
     def required_procedures(self):
         required=set()
-        mapping={'원장·리드':['C04','C05','P07'],'금융상품':['A02'],'매출':['A04'],'감가상각':['A12'],'확장검사':['A01','A06','A08','A10'],'리스':['A15'],'대손충당금':['A07'],'재고평가':['A11'],'종업원급여':['A16'],'미기록부채·비용이연':['A08','A09'],'원천증빙':['R01'],'재무제표·주석':['F01'],'계정별증빙연습':['W01']}
+        mapping={'원장·리드':['C04','C05','P07'],'금융상품':['A02'],'매출':['A04'],'감가상각':['A12'],'확장검사':['A01','A06','A08','A10'],'리스':['A15'],'대손충당금':['A07'],'재고평가':['A11'],'종업원급여':['A16'],'미기록부채·비용이연':['A08','A09'],'원천증빙':['R01'],'재무제표·주석':['FS01'],'계정별증빙연습':['W01']}
         mapping.update({'GLA':['G01'],'FIA':['I01'],'현금분석':['H01']})
         for r in self.latest().values():
             required.update(mapping[r['module']])
@@ -218,8 +281,14 @@ class Workspace:
     def snapshot(self,final=False):
         self.refresh()
         if self.verify_sources():raise AuditError('원본 사본이 변경/누락되었습니다. 내보내기 중단')
+        workflow=self.workflow_status()
+        form_references=[]
+        if workflow['active']:
+            from audit_workflow import form_reference_rows
+            form_references=form_reference_rows(self)
         latest=self.latest();cross=self.cross_checks();procedures=[{**p,'current_state':self.procedure_state(p),'ai_status':self.ai_status(p['id'])} for p in self.procedures.values()]
         if final:
+            if workflow['blockers']:raise AuditError('감사 흐름 완료 점검 차단: '+' / '.join(r['message'] for r in workflow['blockers'][:6]))
             if any(p['ai_status']['required'] and not p['ai_status']['approved'] for p in procedures):raise AuditError('AI 적용 조서의 최종내용 미승인/변경: 사람이 현재 내용과 근거를 확인·승인해야 합니다.')
             if any(r['state'] not in ('검토완료','취소') for r in self.requests.values()):raise AuditError('미완료 자료요청을 수령·검토하거나 취소 사유를 기록하세요.')
             if '원장·리드' not in latest or any(r['result']['blocking'] for r in latest.values()) or any(r['상태'] not in ('일치','차이') for r in cross):raise AuditError('자동검사 차단/모듈-TB 미확인: 검토완료본 저장 불가')
@@ -228,7 +297,7 @@ class Workspace:
             if not required<=set(self.procedures) or any(self.procedures[p].get('excluded') for p in required):raise AuditError('필수 검사 관련 수동절차·예외 조서가 누락되었거나 제외되었습니다.')
             if any(not n['resolved'] for n in self.notes.values()):raise AuditError('미해결 검토의견이 있습니다.')
         from review_support import source_requirements
-        return {'version':VERSION,'engagement':self.engagement,'export_state':'선택조서 검토기록완료' if final else '검토중 초안','scope':'등록한 조서와 검사 범위. 전체 감사완료나 감사의견을 뜻하지 않음.','basis':self.basis(),'head':self.head,'sources':list(self.sources.values()),'latest':list(latest.values()),'all_runs':list(self.runs.values()),'cross':cross,'procedures':procedures,'notes':list(self.notes.values()),'requests':list(self.requests.values()),'events':self.events,'risk_register':self.risk_register(),'analytics_source_requirements':source_requirements(),'ai_drafts':list(self.ai_drafts.values()),'ai_applications':self.ai_applications,'ai_approvals':list(self.ai_approvals.values())}
+        return {'version':VERSION,'engagement':self.engagement,'export_state':'선택조서 검토기록완료' if final else '검토중 초안','scope':'등록한 조서와 검사 범위. 전체 감사완료나 감사의견을 뜻하지 않음.','basis':self.basis(),'head':self.head,'sources':list(self.sources.values()),'latest':list(latest.values()),'all_runs':list(self.runs.values()),'cross':cross,'procedures':procedures,'notes':list(self.notes.values()),'requests':list(self.requests.values()),'events':self.events,'risk_register':self.risk_register(),'analytics_source_requirements':source_requirements(),'ai_drafts':list(self.ai_drafts.values()),'ai_applications':self.ai_applications,'ai_approvals':list(self.ai_approvals.values()),'workflow':workflow,'form_references':form_references,'legacy_f01_documents':self.legacy_f01_documents,'legacy_f01_approvals':self.legacy_f01_approvals}
 
     def ai_packet(self,pid,catalog=None,limits=None,event=None):
         from ai_workpapers import build_packet

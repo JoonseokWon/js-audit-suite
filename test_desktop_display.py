@@ -232,7 +232,7 @@ class WholeAppTeardownTests(unittest.TestCase):
         try:
             from window_capture import destroy_test_window
             app=App(root)
-            self.assertEqual(len(app.tab_scrolls),7);self.assertIsInstance(app.proc_scroll,display.ScrollableFrame)
+            self.assertEqual(len(app.tab_scrolls),8);self.assertIsInstance(app.proc_scroll,display.ScrollableFrame)
             for _ in range(3):root.update()
             for scale in (100,125,150):
                 app.set_ui_zoom(scale);root.update_idletasks()

@@ -27,7 +27,9 @@ _SECRET=re.compile(r'(?i)(?:\bsk-[a-z0-9_-]{12,}|\bBearer\s+[a-z0-9._-]{12,}|(?:
 _ABS_PATH=re.compile(r'(?i)(?:\b[A-Z]:[\\/][^\s\"\'<>]*|\\\\[^\s\"\'<>]+|file:///[^\s\"\'<>]+|/(?:Users|home|tmp|mnt|root|private|var|opt)/[^\s\"\'<>]*)')
 
 def content_hash(procedure):
-    return digest({k:procedure.get(k,False if k=='excluded' else [] if k=='evidence_ids' else '') for k in CONTENT_FIELDS})
+    fields={k:procedure.get(k,False if k=='excluded' else [] if k=='evidence_ids' else '') for k in CONTENT_FIELDS}
+    if procedure.get('purpose_code'):fields['purpose_code']=procedure['purpose_code']
+    return digest(fields)
 
 def procedure_fingerprint(ws,pid):
     p=ws.procedures.get(pid,{})
@@ -63,8 +65,10 @@ def build_packet(ws,pid,catalog=None,limits=None,event=None):
         lim.update(limits)
     if any(type(v)!=int or v<1 or v>DEFAULT_LIMITS[k] for k,v in lim.items()):raise AuditError('AI 근거 한도 범위 오류')
     if lim['max_chars']<8000:raise AuditError('AI 근거 전체 한도는 최소 8,000자입니다.')
+    from audit_workflow import purpose_code
+    semantic=purpose_code(ws,pid) if pid in ('F01','FS01') else None
     task=_task(ws,pid,catalog);basis=ws.basis();company=ws.context['회사코드']
-    module=PROCEDURE_MODULES.get(pid,{'C04':'원장·리드','C05':'원장·리드','P07':'원장·리드','A01':'확장검사','A06':'확장검사','A10':'확장검사'}.get(pid))
+    module=ws.procedure_module(pid) or {'C04':'원장·리드','C05':'원장·리드','P07':'원장·리드','A01':'확장검사','A06':'확장검사','A10':'확장검사'}.get(pid)
     latest=ws.latest();chosen=[]
     for name in (module,'원장·리드'):
         if name in latest and latest[name] not in chosen:chosen.append(latest[name])
@@ -91,6 +95,7 @@ def build_packet(ws,pid,catalog=None,limits=None,event=None):
         'references':references,'limitations':['사람의 감사절차·전문적 판단·검토·최종내용 승인은 미수행. AI 초안은 실제 감사증거 또는 감사의견이 아니다.','프로그램 입력·모듈대사 범위의 한정된 검사이며 동일 생성기 더미는 독립 수령 자료가 아니다.','원문 행은 명시한 한도의 발췌이며 생략된 행은 AI가 검토하지 않았다.'],
         'safety_rules':SAFETY_RULES,'truncation':truncation,'limits':lim,'supported_modules':list(SUPPORTED_MODULES)}
 
+    if semantic:packet['procedure']['purpose_code']=semantic
     raw_chars=0
     def ref(kind,data,**links):
         nonlocal raw_chars
@@ -109,6 +114,12 @@ def build_packet(ws,pid,catalog=None,limits=None,event=None):
 
     ref('engagement',packet['engagement'])
     ref('procedure_definition',{'id':pid,'title':task['title'],'purpose':task.get('purpose',''),'risk':task.get('risk',''),'human_work':'실사·조회·수령 신뢰성 확인·판단·승인은 사람이 별도로 수행해야 함'})
+    if ws.workflow_profile:
+        ref('human_workflow_profile', ws.workflow_profile)
+        linked=ws.workflow_procedure_links.get(pid)
+        if linked:ref('human_workflow_procedure',linked)
+        for risk in ws.workflow_risks.values():
+            if pid in risk['procedure_ids']:ref('human_workflow_risk',risk)
     for run in chosen:
         result=run['result']
         ref('run_summary',{'module':run['module'],'metrics':result['metrics'],'blocking':result['blocking'],'review':result['review'],'cancelled':run.get('cancelled',False)},run_id=run['id'],result_hash=run['result_hash'],source_id=run['source_id'])
@@ -221,7 +232,7 @@ def _validate_response(packet,response):
     return {'fields':deepcopy(fields),'citations':deepcopy(citations),'raw_response':raw,'provider':response['provider'],'model':model,'prompt_version':PROMPT_VERSION,'packet_hash':digest(packet),'procedure_id':context['procedure_id'],'company_code':context['company_code'],'basis':packet['basis']}
 
 def record_draft(ws,packet,response,actor):
-    ws.refresh();actor=text(actor,'AI 초안 요청자')
+    ws.assert_writeable();actor=text(actor,'AI 초안 요청자')
     if not isinstance(packet,dict) or packet.get('packet_version')!=PACKET_VERSION:raise AuditError('AI 근거 패킷 버전 오류')
     current=build_packet(ws,packet.get('procedure',{}).get('id'),limits=packet.get('limits'))
     if digest(current)!=digest(packet):raise AuditError('AI 생성 중 자료/실행/조서 또는 근거 패킷 변경. 다시 생성하세요.')
@@ -230,9 +241,12 @@ def record_draft(ws,packet,response,actor):
     ws._append('ai_draft',draft);ws.refresh();return draft['id']
 
 def apply_draft(ws,draft_id,actor):
-    ws.refresh();actor=text(actor,'AI 초안 적용자');draft=ws.ai_drafts.get(draft_id)
+    ws.assert_writeable();actor=text(actor,'AI 초안 적용자');draft=ws.ai_drafts.get(draft_id)
     if draft is None:raise AuditError('저장된 실제 AI 초안을 선택하세요.')
     pid=draft['procedure_id']
+    if pid in ('F01','FS01'):
+        from audit_workflow import purpose_code
+        if draft['packet']['procedure'].get('purpose_code')!=purpose_code(ws,pid):raise AuditError('구형 F01 AI 근거를 다른 목적 조서에 전용할 수 없습니다. 새 목적의 근거를 생성하세요.')
     if draft['basis']!=ws.basis() or draft['packet']['procedure']['fingerprint']!=procedure_fingerprint(ws,pid):raise AuditError('AI 초안 생성 후 자료/실행/조서 변경. 새 근거로 다시 생성하세요.')
     if ws.verify_sources():raise AuditError('AI 초안 증거 사본 변경/누락')
     _validate_response(draft['packet'],draft)
@@ -255,7 +269,11 @@ def status(ws,pid):
     return {'state':'AI 최종내용 승인' if valid else 'AI 승인 변경·재승인 필요' if stale else 'AI 최종내용 미승인','required':True,'approved':valid,'stale':stale,'procedure_id':pid,'draft_id':draft_id,'content_hash':actual,'basis':ws.basis(),'model':draft.get('model','') if draft else '', 'provider':draft.get('provider','') if draft else '', 'approval':deepcopy(approval) if approval else None}
 
 def approve_content(ws,pid,actor,note):
-    ws.refresh();actor=text(actor,'최종내용 승인자');note=text(note,'최종내용 승인 범위·수정·판단 기록')
+    ws.assert_writeable();actor=text(actor,'최종내용 승인자');note=text(note,'최종내용 승인 범위·수정·판단 기록')
+    if pid in ('F01','FS01'):
+        from audit_workflow import purpose_code
+        expected=purpose_code(ws,pid)
+        if ws.procedures.get(pid,{}).get('purpose_code')!=expected:raise AuditError('F01/FS01 조서 목적 확인 필요')
     current=status(ws,pid)
     if not current['required']:raise AuditError('AI 적용 조서를 저장한 후 최종내용을 승인하세요.')
     draft=ws.ai_drafts.get(current['draft_id']);p=ws.procedures[pid]
@@ -263,4 +281,5 @@ def approve_content(ws,pid,actor,note):
     if not any(e['kind']=='ai_apply' and e['data'].get('draft_id')==draft['id'] for e in ws.events):raise AuditError('AI 초안 적용 이력이 없습니다.')
     if any(not str(p.get(key,'')).strip() for key in FIELDS):raise AuditError('AI 조서의 목적·위험·범위·수행·결론을 사람이 확인·수정해 저장하세요.')
     approval={'id':uuid.uuid4().hex,'at':now(),'procedure_id':pid,'draft_id':draft['id'],'actor':actor,'note':note,'content_hash':content_hash(p),'edit_revision':p.get('edit_revision'),'basis':ws.basis(),'provider':draft['provider'],'model':draft['model'],'prompt_version':draft['prompt_version'],'packet_hash':draft['packet_hash'],'citations':deepcopy(draft['citations']),'scope':'AI가 제안하고 사람이 저장한 최종 내용 승인. 본인인증·전체 감사완료·감사의견·별도 검토완료를 뜻하지 않음.'}
+    if p.get('purpose_code'):approval['purpose_code']=p['purpose_code']
     ws._append('ai_content_approval',approval);ws.refresh();return approval

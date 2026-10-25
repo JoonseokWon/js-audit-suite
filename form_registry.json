@@ -1,0 +1,5968 @@
+{
+  "schema_version": "audit-form-registry-1",
+  "source": {
+    "filename": "2026 감사조서서식(예시)-엑셀 260827.zip",
+    "sha256": "0be87ba0ce6db247e75a1b70b8d2f2a20fa021cadf701ee32ae8f7d44dd66740",
+    "bytes": 11180722,
+    "entries": 119,
+    "directories": 3,
+    "files": 116,
+    "file_types": {
+      ".xlsx": 80,
+      ".xlsm": 2,
+      ".docx": 28,
+      ".pdf": 2,
+      ".doc": 2,
+      ".hwp": 2
+    },
+    "workbooks": 82,
+    "sheets": 435,
+    "inspection": {
+      "formulas_evaluated": false,
+      "macros_executed": false,
+      "external_links_refreshed": false,
+      "binaries_distributed": false
+    }
+  },
+  "scope": "2026 예시 ZIP의 파일·해시·시트명 메타데이터와 앱 절차의 명시적 설계상 참고 연결. 법규·기준서 전문의 필수조항 전수 해석 또는 공식 서식 자동작성 구현 아님.",
+  "exclusions": [
+    "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+    "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+    "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력",
+    "공식 PDF·DOCX·DOC·HWP 본문·원본 템플릿·VBA 바이너리 배포 제외",
+    "2026 개정 前文 21쪽을 회계감사기준 全文으로 취급하지 않음"
+  ],
+  "frameworks": [
+    "KIFRS",
+    "일반기업",
+    "소규모기업"
+  ],
+  "forms": [
+    {
+      "official_id": "official.example.2026:KIFRS:01:xlsx:be22686e147a",
+      "form_code": "01",
+      "member": "1. K-IFRS_2026/감사조서서식_01 조서파일 KIFRS.xlsx",
+      "title": "감사조서서식_01 조서파일 KIFRS",
+      "framework": "KIFRS",
+      "extension": ".xlsx",
+      "bytes": 19628,
+      "sha256": "be22686e147ab694686d110b39ea79f024dedf82555ab5eac16496897b7965ba",
+      "sheet_names": [
+        "표지1",
+        "조서목록",
+        "표지2"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:02:xlsx:4a532eca6371",
+      "form_code": "02",
+      "member": "1. K-IFRS_2026/감사조서서식_02 영구조서목록.xlsx",
+      "title": "감사조서서식_02 영구조서목록",
+      "framework": "KIFRS",
+      "extension": ".xlsx",
+      "bytes": 12549,
+      "sha256": "4a532eca6371b4c7967612cf32878a1995d47abb5498d238c81eb17b5eb455ab",
+      "sheet_names": [
+        "Sheet1"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:03:xlsx:49e61411c7b4",
+      "form_code": "03",
+      "member": "1. K-IFRS_2026/감사조서서식_03 일반조서목록 KIFRS.xlsx",
+      "title": "감사조서서식_03 일반조서목록 KIFRS",
+      "framework": "KIFRS",
+      "extension": ".xlsx",
+      "bytes": 14259,
+      "sha256": "49e61411c7b4dc946aca674fe4487f4616440bb45660d1c246f550c53bb94152",
+      "sheet_names": [
+        "Sheet1"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:04:xlsx:d5f5a1c11ac5",
+      "form_code": "04",
+      "member": "1. K-IFRS_2026/감사조서서식_04 감사조서철 작성 및 보존.xlsx",
+      "title": "감사조서서식_04 감사조서철 작성 및 보존",
+      "framework": "KIFRS",
+      "extension": ".xlsx",
+      "bytes": 11346,
+      "sha256": "d5f5a1c11ac55957f25a0a8519100cebc8b45613d54d08741896b0453e90c411",
+      "sheet_names": [
+        "Sheet1"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:1100A:xlsx:b6efed5ee476",
+      "form_code": "1100A",
+      "member": "1. K-IFRS_2026/감사조서서식_1100A_계약전 위험평가표 수임 2026.xlsx",
+      "title": "감사조서서식_1100A_계약전 위험평가표 수임 2026",
+      "framework": "KIFRS",
+      "extension": ".xlsx",
+      "bytes": 131793,
+      "sha256": "b6efed5ee47671f314a130ea0f91a843dcb7ece0fe48352b02cb5de5918053d7",
+      "sheet_names": [
+        "1100A"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:1100~1300:xlsx:9c7aa730172a",
+      "form_code": "1100~1300",
+      "member": "1. K-IFRS_2026/감사조서서식_1100~1300 감사계약.xlsx",
+      "title": "감사조서서식_1100~1300 감사계약",
+      "framework": "KIFRS",
+      "extension": ".xlsx",
+      "bytes": 57107,
+      "sha256": "9c7aa730172a7c9aa1079f5b513accc4856d4ca831ef25ba2bbaf7455daba64e",
+      "sheet_names": [
+        "1100",
+        "1200",
+        "1300"
+      ],
+      "vba_present": false,
+      "external_link_parts": 10,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:1101A:xlsx:a4124f3de05d",
+      "form_code": "1101A",
+      "member": "1. K-IFRS_2026/감사조서서식_1101A_계약전 위험평가표 계속 2026.xlsx",
+      "title": "감사조서서식_1101A_계약전 위험평가표 계속 2026",
+      "framework": "KIFRS",
+      "extension": ".xlsx",
+      "bytes": 120807,
+      "sha256": "a4124f3de05d383b2d3a3dbf6f1c9e7662d8df058247b69b2789e1e005ac20a4",
+      "sheet_names": [
+        "1101A"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:1300A:xlsx:0e7285ac2db0",
+      "form_code": "1300A",
+      "member": "1. K-IFRS_2026/감사조서서식_1300A_독립성준수검토조서 2026.xlsx",
+      "title": "감사조서서식_1300A_독립성준수검토조서 2026",
+      "framework": "KIFRS",
+      "extension": ".xlsx",
+      "bytes": 63752,
+      "sha256": "0e7285ac2db0745ab040fbfcf4073fdafcf7f123c4b670a5037687efd16f7dbb",
+      "sheet_names": [
+        "1300A"
+      ],
+      "vba_present": false,
+      "external_link_parts": 10,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:1300B:xlsx:5717f092c814",
+      "form_code": "1300B",
+      "member": "1. K-IFRS_2026/감사조서서식_1300B_개별 감사 참여자의 독립성 준수 확인서 2026.xlsx",
+      "title": "감사조서서식_1300B_개별 감사 참여자의 독립성 준수 확인서 2026",
+      "framework": "KIFRS",
+      "extension": ".xlsx",
+      "bytes": 51551,
+      "sha256": "5717f092c814108431001845db1e21e53532efd76b263944768d1d3bd5d91f57",
+      "sheet_names": [
+        "1300B"
+      ],
+      "vba_present": false,
+      "external_link_parts": 10,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:1300C:xlsx:eb5614c3a58d",
+      "form_code": "1300C",
+      "member": "1. K-IFRS_2026/감사조서서식_1300C_산업전문가검토조서.xlsx",
+      "title": "감사조서서식_1300C_산업전문가검토조서",
+      "framework": "KIFRS",
+      "extension": ".xlsx",
+      "bytes": 46955,
+      "sha256": "eb5614c3a58d6e6e4dd16bcda84d6452cd68fab718e936937c66540f0046e9a1",
+      "sheet_names": [
+        "1300C"
+      ],
+      "vba_present": false,
+      "external_link_parts": 10,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:2100-2700:xlsx:5b1a2ecc54bc",
+      "form_code": "2100-2700",
+      "member": "1. K-IFRS_2026/감사조서서식_2100-2700 위험평가 2026.xlsx",
+      "title": "감사조서서식_2100-2700 위험평가 2026",
+      "framework": "KIFRS",
+      "extension": ".xlsx",
+      "bytes": 293048,
+      "sha256": "5b1a2ecc54bcb32e4c8684a6b90d9878d8b4042f3cc0149705e93d4465030eeb",
+      "sheet_names": [
+        "2100",
+        "2100A",
+        "2110",
+        "2110A",
+        "2120",
+        "2120A",
+        "2131",
+        "2132",
+        "2133",
+        "2301",
+        "2511",
+        "2512",
+        "2513",
+        "2520",
+        "2530",
+        "2531",
+        "2531A",
+        "2532",
+        "2533",
+        "2600",
+        "2700"
+      ],
+      "vba_present": false,
+      "external_link_parts": 12,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:2110-1:xlsx:cd5b5b3dcda6",
+      "form_code": "2110-1",
+      "member": "1. K-IFRS_2026/감사조서서식_2110-1 감사전략계획서 2026 신규.xlsx",
+      "title": "감사조서서식_2110-1 감사전략계획서 2026 신규",
+      "framework": "KIFRS",
+      "extension": ".xlsx",
+      "bytes": 34466,
+      "sha256": "cd5b5b3dcda60a0e86ec001a114708f78bbcb00e536ccffe39fc4cc5c4d16dc6",
+      "sheet_names": [
+        "2110-1",
+        "Sheet1"
+      ],
+      "vba_present": false,
+      "external_link_parts": 1,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:2110-1:docx:efca729eb15a",
+      "form_code": "2110-1",
+      "member": "1. K-IFRS_2026/감사조서서식_2110-1 감사전략계획서 2026.docx",
+      "title": "감사조서서식_2110-1 감사전략계획서 2026",
+      "framework": "KIFRS",
+      "extension": ".docx",
+      "bytes": 39580,
+      "sha256": "efca729eb15acba351c7ae6125799b2977be1a0ccb5cf13c6e8bfc37974bfcbf",
+      "sheet_names": [],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:2110-2:xlsx:01afbdd2235d",
+      "form_code": "2110-2",
+      "member": "1. K-IFRS_2026/감사조서서식_2110-2 계약후 감사위험 재평가.xlsx",
+      "title": "감사조서서식_2110-2 계약후 감사위험 재평가",
+      "framework": "KIFRS",
+      "extension": ".xlsx",
+      "bytes": 48601,
+      "sha256": "01afbdd2235d6b6c9503bc0b708f15c96ce430f9066d6400cc4278dbd778b476",
+      "sheet_names": [
+        "2110-2"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:2131A:docx:a898dc84519e",
+      "form_code": "2131A",
+      "member": "1. K-IFRS_2026/감사조서서식_2131A_감사인측 외부전문가에 대한 질문서.docx",
+      "title": "감사조서서식_2131A_감사인측 외부전문가에 대한 질문서",
+      "framework": "KIFRS",
+      "extension": ".docx",
+      "bytes": 38063,
+      "sha256": "a898dc84519e2e22e2a6182dce2e6932efa484aacb6dccc595f03a9ddc66af23",
+      "sheet_names": [],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:2302:pdf:1366e69ff36e",
+      "form_code": "2302",
+      "member": "1. K-IFRS_2026/감사조서서식_2302 중요왜곡표시위험의 식별 평가 및 대응 2026 (위험평가 매크로 포함) 사용 안내서.pdf",
+      "title": "감사조서서식_2302 중요왜곡표시위험의 식별 평가 및 대응 2026 (위험평가 매크로 포함) 사용 안내서",
+      "framework": "KIFRS",
+      "extension": ".pdf",
+      "bytes": 462654,
+      "sha256": "1366e69ff36ebf7a71f43a0103888d975fc0cb6c630e35ae815e8a85f266e9e3",
+      "sheet_names": [],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:2302:xlsm:91fe30f8ed02",
+      "form_code": "2302",
+      "member": "1. K-IFRS_2026/감사조서서식_2302 중요왜곡표시위험의 식별 평가 및 대응 2026 (위험평가 매크로 포함).xlsm",
+      "title": "감사조서서식_2302 중요왜곡표시위험의 식별 평가 및 대응 2026 (위험평가 매크로 포함)",
+      "framework": "KIFRS",
+      "extension": ".xlsm",
+      "bytes": 388514,
+      "sha256": "91fe30f8ed029824a9d2ac7e95461cdd875dcb8d10c68b1f948992de3ec747f1",
+      "sheet_names": [
+        "작업목록",
+        "_CRA_HDR",
+        "_CRA_SIMPLE_META",
+        "2302",
+        "_2302_마스터",
+        "_MAP_4000",
+        "_CRA_ACCOUNT_MASTER"
+      ],
+      "vba_present": true,
+      "external_link_parts": 0,
+      "macro_container": true
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:2302:xlsx:cd9105a40651",
+      "form_code": "2302",
+      "member": "1. K-IFRS_2026/감사조서서식_2302 중요왜곡표시위험의 식별 평가 및 대응 2026.xlsx",
+      "title": "감사조서서식_2302 중요왜곡표시위험의 식별 평가 및 대응 2026",
+      "framework": "KIFRS",
+      "extension": ".xlsx",
+      "bytes": 41060,
+      "sha256": "cd9105a40651005062a7de05bf973193dcfb79b5048f3470507d2dae48fc0c91",
+      "sheet_names": [
+        "2302"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:2600A:doc:9b94bf831f85",
+      "form_code": "2600A",
+      "member": "1. K-IFRS_2026/감사조서서식_2600A 내부회계관리제도에 대한 경영자확인서.doc",
+      "title": "감사조서서식_2600A 내부회계관리제도에 대한 경영자확인서",
+      "framework": "KIFRS",
+      "extension": ".doc",
+      "bytes": 32768,
+      "sha256": "9b94bf831f854026d30e60682ab09031d2ebf226a6df9f893968bfd29b06c8c7",
+      "sheet_names": [],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:2700A:xlsx:457404c8b75c",
+      "form_code": "2700A",
+      "member": "1. K-IFRS_2026/감사조서서식_2700A 중요성요약표 및 산정 template.xlsx",
+      "title": "감사조서서식_2700A 중요성요약표 및 산정 template",
+      "framework": "KIFRS",
+      "extension": ".xlsx",
+      "bytes": 75978,
+      "sha256": "457404c8b75c83de6d38ab60fd8b43ab1ca4061cd7065e0a21fddae3815d7c0a",
+      "sheet_names": [
+        "2700A",
+        "2700A-1",
+        "2700A-2",
+        "2700A-3"
+      ],
+      "vba_present": false,
+      "external_link_parts": 10,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:3150-3800:xlsx:3720e2ce1808",
+      "form_code": "3150-3800",
+      "member": "1. K-IFRS_2026/감사조서서식_3150-3800 위험에 대한 대응 2026.xlsx",
+      "title": "감사조서서식_3150-3800 위험에 대한 대응 2026",
+      "framework": "KIFRS",
+      "extension": ".xlsx",
+      "bytes": 116272,
+      "sha256": "3720e2ce1808a5f26552f8f30cd9b1788089dfc3c29184a4ba3db57e84a80d5c",
+      "sheet_names": [
+        "3150",
+        "3200",
+        "3300",
+        "3300A",
+        "3400",
+        "3400-1",
+        "3500",
+        "3600",
+        "3700",
+        "3800"
+      ],
+      "vba_present": false,
+      "external_link_parts": 2,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:3500A:docx:1535b9a761ed",
+      "form_code": "3500A",
+      "member": "1. K-IFRS_2026/감사조서서식_3500A 특수관계자에 대한 경영진질문서.docx",
+      "title": "감사조서서식_3500A 특수관계자에 대한 경영진질문서",
+      "framework": "KIFRS",
+      "extension": ".docx",
+      "bytes": 17012,
+      "sha256": "1535b9a761edbca052d10f63ade992fd1353a4050f7153f5a5e416784221fc30",
+      "sheet_names": [],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:3600A:docx:4153a077f7f5",
+      "form_code": "3600A",
+      "member": "1. K-IFRS_2026/감사조서서식_3600A 부정에 대한 경영진 질문서.docx",
+      "title": "감사조서서식_3600A 부정에 대한 경영진 질문서",
+      "framework": "KIFRS",
+      "extension": ".docx",
+      "bytes": 16840,
+      "sha256": "4153a077f7f5975630472767ca11e3f65e42b3a9464517f4b8b0e3173f57a50e",
+      "sheet_names": [],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:3600B:docx:d7cae6511560",
+      "form_code": "3600B",
+      "member": "1. K-IFRS_2026/감사조서서식_3600B 부정에 대한 지배기구 질문서.docx",
+      "title": "감사조서서식_3600B 부정에 대한 지배기구 질문서",
+      "framework": "KIFRS",
+      "extension": ".docx",
+      "bytes": 16202,
+      "sha256": "d7cae651156061e9f9b28ec237c1bec5ce5d85570817e3e6e760010a63ce64a6",
+      "sheet_names": [],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:3600C:docx:84d5c8bd8e87",
+      "form_code": "3600C",
+      "member": "1. K-IFRS_2026/감사조서서식_3600C 재무보고절차 관여자에 대한 질문서.docx",
+      "title": "감사조서서식_3600C 재무보고절차 관여자에 대한 질문서",
+      "framework": "KIFRS",
+      "extension": ".docx",
+      "bytes": 17944,
+      "sha256": "84d5c8bd8e8738d80866f951e7e9e70c9ba6cc6f538f066beb3b60ef12b680d4",
+      "sheet_names": [],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:3650:xlsx:1192d92151ac",
+      "form_code": "3650",
+      "member": "1. K-IFRS_2026/감사조서서식_3650 감사 전 재무제표 확인.xlsx",
+      "title": "감사조서서식_3650 감사 전 재무제표 확인",
+      "framework": "KIFRS",
+      "extension": ".xlsx",
+      "bytes": 33614,
+      "sha256": "1192d92151acd63f25c36b248f52763c7ad8a693e93b3e76375152cc6bce7cab",
+      "sheet_names": [
+        "3650",
+        "3650A 신규"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:3900:xlsx:5dbe576fa027",
+      "form_code": "3900",
+      "member": "1. K-IFRS_2026/감사조서서식_3900_3900A 핵심감사사항.xlsx",
+      "title": "감사조서서식_3900_3900A 핵심감사사항",
+      "framework": "KIFRS",
+      "extension": ".xlsx",
+      "bytes": 48677,
+      "sha256": "5dbe576fa027ea05aa42370b571f2b8c6c9ec5baebd9bc0fb1a0f0a161836ae4",
+      "sheet_names": [
+        "3900",
+        "3900A"
+      ],
+      "vba_present": false,
+      "external_link_parts": 10,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:3900B:docx:69c0ca34d672",
+      "form_code": "3900B",
+      "member": "1. K-IFRS_2026/감사조서서식_3900B 핵심감사사항 초안.docx",
+      "title": "감사조서서식_3900B 핵심감사사항 초안",
+      "framework": "KIFRS",
+      "extension": ".docx",
+      "bytes": 22060,
+      "sha256": "69c0ca34d6723d7d7f70fc876ad2f1d7bdbc55bd068729aea0af829b6c830ab2",
+      "sheet_names": [],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:3910:xlsx:b8fb8ec7dc43",
+      "form_code": "3910",
+      "member": "1. K-IFRS_2026/감사조서서식_3910 수주산업 핵심감사사항.xlsx",
+      "title": "감사조서서식_3910 수주산업 핵심감사사항",
+      "framework": "KIFRS",
+      "extension": ".xlsx",
+      "bytes": 52649,
+      "sha256": "b8fb8ec7dc43b39c809d1015ebc5131abf074fe3c4d119f2f8be0690ae575d19",
+      "sheet_names": [
+        "3910",
+        "3910A",
+        "3910B"
+      ],
+      "vba_present": false,
+      "external_link_parts": 10,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:3910C:docx:090ccc55e076",
+      "form_code": "3910C",
+      "member": "1. K-IFRS_2026/감사조서서식_3910C 수주산업 핵심감사사항 초안.docx",
+      "title": "감사조서서식_3910C 수주산업 핵심감사사항 초안",
+      "framework": "KIFRS",
+      "extension": ".docx",
+      "bytes": 19382,
+      "sha256": "090ccc55e076f3699227d27a7f593706c85fea68ef75c2cabf1c21214bb68d32",
+      "sheet_names": [],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:4000:xlsx:b18010907559",
+      "form_code": "4000",
+      "member": "1. K-IFRS_2026/감사조서서식_4000 계정별 실증절차 (KIFRS용) 2026.xlsx",
+      "title": "감사조서서식_4000 계정별 실증절차 (KIFRS용) 2026",
+      "framework": "KIFRS",
+      "extension": ".xlsx",
+      "bytes": 383876,
+      "sha256": "b18010907559669f167d811e44e596dc84e49b04e77fd05830b2ddfc993c799b",
+      "sheet_names": [
+        "실증절차",
+        "A",
+        "B",
+        "SAJ",
+        "DER",
+        "C",
+        "DL",
+        "D",
+        "E",
+        "E100",
+        "F",
+        "G",
+        "H",
+        "I",
+        "J",
+        "AA",
+        "BBDD",
+        "CC",
+        "EE",
+        "FF",
+        "FFF",
+        "TUL",
+        "CL",
+        "GG",
+        "P",
+        "Q",
+        "R",
+        "S",
+        "T",
+        "U",
+        "V",
+        "JV",
+        "SEG",
+        "EST",
+        "EST-1",
+        "EST-1_예시",
+        "IOC",
+        "CF"
+      ],
+      "vba_present": false,
+      "external_link_parts": 13,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:4000P-1:docx:48dc58d1b94d",
+      "form_code": "4000P-1",
+      "member": "1. K-IFRS_2026/감사조서서식_4000P-1 K-IFRS 제1115호 고객과의 계약에서 생기는 수익_템플릿.docx",
+      "title": "감사조서서식_4000P-1 K-IFRS 제1115호 고객과의 계약에서 생기는 수익_템플릿",
+      "framework": "KIFRS",
+      "extension": ".docx",
+      "bytes": 59294,
+      "sha256": "48dc58d1b94dda8e795c17ccc5af2ff867339358bfa9d523d82fefe768b73aa4",
+      "sheet_names": [],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:4000P-1:xlsx:476166e39371",
+      "form_code": "4000P-1",
+      "member": "1. K-IFRS_2026/감사조서서식_4000P-1 K-IFRS 제1115호 고객과의 계약에서 생기는 수익_템플릿.xlsx",
+      "title": "감사조서서식_4000P-1 K-IFRS 제1115호 고객과의 계약에서 생기는 수익_템플릿",
+      "framework": "KIFRS",
+      "extension": ".xlsx",
+      "bytes": 41357,
+      "sha256": "476166e39371931bc14c99f9a29473d8de1e421204df081d39d5fa950017c4e6",
+      "sheet_names": [
+        "P-1"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:7000~7570:xlsx:bd2563d3f0b9",
+      "form_code": "7000~7570",
+      "member": "1. K-IFRS_2026/감사조서서식_7000~7570 그룹감사 2026.xlsx",
+      "title": "감사조서서식_7000~7570 그룹감사 2026",
+      "framework": "KIFRS",
+      "extension": ".xlsx",
+      "bytes": 556665,
+      "sha256": "bd2563d3f0b9c1bb54901fe7be433fedf11cc4d387c4c28ddf7fdd34b8140884",
+      "sheet_names": [
+        "7000",
+        "7100",
+        "7100A",
+        "7200",
+        "7200A",
+        "7200B",
+        "7200B-1",
+        "7200B-2",
+        "7200B-3",
+        "7200C",
+        "7200C-1",
+        "7200C-2",
+        "7200C-3",
+        "7200D",
+        "7300",
+        "7400",
+        "7400-1",
+        "7510",
+        "7510A",
+        "7560A",
+        "7530",
+        "7560",
+        "7565_기타정보검토조서_신설",
+        "7565A_체크리스트_신설",
+        "7570"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:7212A:xlsx:3286013bf165",
+      "form_code": "7212A",
+      "member": "1. K-IFRS_2026/감사조서서식_7212A_그룹감사 위험평가 분석적절차 2026.xlsx",
+      "title": "감사조서서식_7212A_그룹감사 위험평가 분석적절차 2026",
+      "framework": "KIFRS",
+      "extension": ".xlsx",
+      "bytes": 36150,
+      "sha256": "3286013bf165053fca15c009eebba15f3f058a64ed8073507697d2edd6b63645",
+      "sheet_names": [
+        "7212A"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:7410:xlsx:cd07a2c566f4",
+      "form_code": "7410",
+      "member": "1. K-IFRS_2026/감사조서서식_7410 부문감사인에 대한 그룹감사지침서 2026.xlsx",
+      "title": "감사조서서식_7410 부문감사인에 대한 그룹감사지침서 2026",
+      "framework": "KIFRS",
+      "extension": ".xlsx",
+      "bytes": 66834,
+      "sha256": "cd07a2c566f43ff9107a1cb4a97515a157ab5e6af38695d84769d7969f84f412",
+      "sheet_names": [
+        "기본입력사항",
+        "7410"
+      ],
+      "vba_present": false,
+      "external_link_parts": 10,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:7410E:xlsx:4ca4e1d67c7b",
+      "form_code": "7410E",
+      "member": "1. K-IFRS_2026/감사조서서식_7410E 부문감사인에 대한 그룹감사지침서 영문 2026.xlsx",
+      "title": "감사조서서식_7410E 부문감사인에 대한 그룹감사지침서 영문 2026",
+      "framework": "KIFRS",
+      "extension": ".xlsx",
+      "bytes": 73147,
+      "sha256": "4ca4e1d67c7b4e07b06731d05f52837987207ca4ad9cf33ef7ebe41a93087262",
+      "sheet_names": [
+        "기본입력",
+        "7410E"
+      ],
+      "vba_present": false,
+      "external_link_parts": 10,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:7511A:xlsx:b3b712b7a84e",
+      "form_code": "7511A",
+      "member": "1. K-IFRS_2026/감사조서서식_7511A_그룹감사결론을 위한 분석적절차 2026.xlsx",
+      "title": "감사조서서식_7511A_그룹감사결론을 위한 분석적절차 2026",
+      "framework": "KIFRS",
+      "extension": ".xlsx",
+      "bytes": 36033,
+      "sha256": "b3b712b7a84e6cb74cd0509ff331a7375fce22b3e61b48dd3f28c07a253fc2d5",
+      "sheet_names": [
+        "7511A"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:7530A:docx:4a0dcc7996f4",
+      "form_code": "7530A",
+      "member": "1. K-IFRS_2026/감사조서서식_7530A 그룹감사서면진술서 (KIFRS용) 2026.docx",
+      "title": "감사조서서식_7530A 그룹감사서면진술서 (KIFRS용) 2026",
+      "framework": "KIFRS",
+      "extension": ".docx",
+      "bytes": 68056,
+      "sha256": "4a0dcc7996f42930a3a5278faf7b5413a8867c0c1748a753d78afb5d7061ae3a",
+      "sheet_names": [],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:7540:xlsx:b3ec88a2f010",
+      "form_code": "7540",
+      "member": "1. K-IFRS_2026/감사조서서식_7540 연결공시사항점검표 (KIFRS용)_2026.xlsx",
+      "title": "감사조서서식_7540 연결공시사항점검표 (KIFRS용)_2026",
+      "framework": "KIFRS",
+      "extension": ".xlsx",
+      "bytes": 321462,
+      "sha256": "b3ec88a2f01001d51f985ae0d8013d04247691a2a5bc612f6f5282d490210ace",
+      "sheet_names": [
+        "개정사항",
+        "7540",
+        "공시사항점검표 목차(2026)"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:7555:xlsx:b1fa8314f052",
+      "form_code": "7555",
+      "member": "1. K-IFRS_2026/감사조서서식_7555 연결심리사항점검표.xlsx",
+      "title": "감사조서서식_7555 연결심리사항점검표",
+      "framework": "KIFRS",
+      "extension": ".xlsx",
+      "bytes": 14257,
+      "sha256": "b1fa8314f0521f7c8c302ebd2a95c86c50e2f2369fcec29505f1c7ae6604c2e0",
+      "sheet_names": [
+        "7555"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:7555A:xlsx:1dbe1944a94d",
+      "form_code": "7555A",
+      "member": "1. K-IFRS_2026/감사조서서식_7555A_그룹감사 업무수행이사와 논의한 사항 및 자문한 사항.xlsx",
+      "title": "감사조서서식_7555A_그룹감사 업무수행이사와 논의한 사항 및 자문한 사항",
+      "framework": "KIFRS",
+      "extension": ".xlsx",
+      "bytes": 12203,
+      "sha256": "1dbe1944a94d882d78c56a9e2c1a66fc9fa25da44cbe3e789ecee9f10642749d",
+      "sheet_names": [
+        "7555A"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:8100~8700:xlsx:77687903219b",
+      "form_code": "8100~8700",
+      "member": "1. K-IFRS_2026/감사조서서식_8100~8700 감사완결 2026.xlsx",
+      "title": "감사조서서식_8100~8700 감사완결 2026",
+      "framework": "KIFRS",
+      "extension": ".xlsx",
+      "bytes": 485288,
+      "sha256": "77687903219b5ddc5602f2b535fba8ca32b6798c54b078431dea294a28023ac5",
+      "sheet_names": [
+        "8100",
+        "8100A",
+        "8100B",
+        "8110",
+        "8110A",
+        "8200",
+        "8300",
+        "8500",
+        "8600",
+        "8600A",
+        "8650_기타정보검토조서_신설",
+        "8650A_체크리스트_신설",
+        "8700",
+        "8700A"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:8300A:docx:4b3a38eaa109",
+      "form_code": "8300A",
+      "member": "1. K-IFRS_2026/감사조서서식_8300A 서면진술서 (KIFRS용) 2026.docx",
+      "title": "감사조서서식_8300A 서면진술서 (KIFRS용) 2026",
+      "framework": "KIFRS",
+      "extension": ".docx",
+      "bytes": 68586,
+      "sha256": "4b3a38eaa10975ee38ce655b516cb8b8bd3347a181f547fc1700299a2474da55",
+      "sheet_names": [],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:8300B:docx:a44fc57c5d8f",
+      "form_code": "8300B",
+      "member": "1. K-IFRS_2026/감사조서서식_8300B 서면진술서 (KIFRS용)_통합감사 2026.docx",
+      "title": "감사조서서식_8300B 서면진술서 (KIFRS용)_통합감사 2026",
+      "framework": "KIFRS",
+      "extension": ".docx",
+      "bytes": 73170,
+      "sha256": "a44fc57c5d8f1048e1c71b48d5510d0d8a7b9fbdb0870978f0550f654cdaf67a",
+      "sheet_names": [],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:8300B:hwp:60cdab0d8ca8",
+      "form_code": "8300B",
+      "member": "1. K-IFRS_2026/감사조서서식_8300B 서면진술서 (KIFRS용)_통합감사 2026.hwp",
+      "title": "감사조서서식_8300B 서면진술서 (KIFRS용)_통합감사 2026",
+      "framework": "KIFRS",
+      "extension": ".hwp",
+      "bytes": 67072,
+      "sha256": "60cdab0d8ca87d43a8f016a5d44873b82528cfc4018441b389dd201062392309",
+      "sheet_names": [],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:8400:xlsx:22e444238a14",
+      "form_code": "8400",
+      "member": "1. K-IFRS_2026/감사조서서식_8400_공시사항점검표_KIFRS용_2026.xlsx",
+      "title": "감사조서서식_8400_공시사항점검표_KIFRS용_2026",
+      "framework": "KIFRS",
+      "extension": ".xlsx",
+      "bytes": 321455,
+      "sha256": "22e444238a14f5e47d2659f1d4814de9990c9aa6f258416bdec578a92c8f39df",
+      "sheet_names": [
+        "개정사항",
+        "8400",
+        "공시사항점검표 목차(2026)"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:8550:xlsx:dcb30e4903bc",
+      "form_code": "8550",
+      "member": "1. K-IFRS_2026/감사조서서식_8550 심리사항점검표.xlsx",
+      "title": "감사조서서식_8550 심리사항점검표",
+      "framework": "KIFRS",
+      "extension": ".xlsx",
+      "bytes": 14557,
+      "sha256": "dcb30e4903bc96e92775a6619ffc5a7ea7f0029e228d9929fad75fc5359750c7",
+      "sheet_names": [
+        "8550"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:8550A:xlsx:6159a40f99c4",
+      "form_code": "8550A",
+      "member": "1. K-IFRS_2026/감사조서서식_8550A_업무수행이사와 논의한 사항 및 자문한 사항.xlsx",
+      "title": "감사조서서식_8550A_업무수행이사와 논의한 사항 및 자문한 사항",
+      "framework": "KIFRS",
+      "extension": ".xlsx",
+      "bytes": 11971,
+      "sha256": "6159a40f99c40786b5e34ae974fbd4c2a8a9fb13630de1f174260bacf43f8bb8",
+      "sheet_names": [
+        "8550A"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:9100~9800:xlsx:5943afb0bc03",
+      "form_code": "9100~9800",
+      "member": "1. K-IFRS_2026/감사조서서식_9100~9800 내부회계관리제도감사 조서서식(예시) 2026.xlsx",
+      "title": "감사조서서식_9100~9800 내부회계관리제도감사 조서서식(예시) 2026",
+      "framework": "KIFRS",
+      "extension": ".xlsx",
+      "bytes": 286575,
+      "sha256": "5943afb0bc03f7913e46dffb6666d6396171ca9e84e831103bd917f6350c6f39",
+      "sheet_names": [
+        "유의사항",
+        "목차",
+        "9100",
+        "9200",
+        "9210 ELC",
+        "9210A 중점고려사항",
+        "9220 외부감사법",
+        "9300",
+        "9310 유의적인 계정",
+        "9311 복수사업장",
+        "9312 IT 범위선정",
+        "9320 왜곡표시원천의 이해",
+        "9330 테스트대상통제선정",
+        "9400",
+        "9410 통제테스트",
+        "9411 내부감사기능",
+        "9411A 내부감사기능 활용 여부 검토",
+        "9420 통제테스트 (검토유형 통제)",
+        "9430 IPE",
+        "9500",
+        "9510 미비점평가",
+        "9600",
+        "9700",
+        "9710 내부회계관리제도 감사보고",
+        "9800 감사 종결"
+      ],
+      "vba_present": false,
+      "external_link_parts": 2,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:9720:docx:49fe618169ee",
+      "form_code": "9720",
+      "member": "1. K-IFRS_2026/감사조서서식_9720 내부회계관리제도감사 서면진술서.docx",
+      "title": "감사조서서식_9720 내부회계관리제도감사 서면진술서",
+      "framework": "KIFRS",
+      "extension": ".docx",
+      "bytes": 20532,
+      "sha256": "49fe618169ee606739a0de31c34cb7a7ef94ab82ac3003a26888569a23ceaa3d",
+      "sheet_names": [],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:KIFRS:참고자료:hwp:0b52b8225692",
+      "form_code": "참고자료",
+      "member": "1. K-IFRS_2026/참고자료-자산손상 및 확정급여채무의 보험수리적 평가 사례(IFRS).hwp",
+      "title": "참고자료-자산손상 및 확정급여채무의 보험수리적 평가 사례(IFRS)",
+      "framework": "KIFRS",
+      "extension": ".hwp",
+      "bytes": 144384,
+      "sha256": "0b52b822569276caad8e62cc7702e30b96b5ee37e4606edcba78f05bc6910b10",
+      "sheet_names": [],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:일반기업:01:xlsx:092f3df6a48d",
+      "form_code": "01",
+      "member": "2. 일반기업회계기준_2026/감사조서서식_01 조서파일.xlsx",
+      "title": "감사조서서식_01 조서파일",
+      "framework": "일반기업",
+      "extension": ".xlsx",
+      "bytes": 19636,
+      "sha256": "092f3df6a48d5af0e864647ea21e3a4ebb910d2fb3c9156b203e6e84e9480c0c",
+      "sheet_names": [
+        "표지1",
+        "조서목록",
+        "표지2"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:일반기업:02:xlsx:4a532eca6371",
+      "form_code": "02",
+      "member": "2. 일반기업회계기준_2026/감사조서서식_02 영구조서목록.xlsx",
+      "title": "감사조서서식_02 영구조서목록",
+      "framework": "일반기업",
+      "extension": ".xlsx",
+      "bytes": 12549,
+      "sha256": "4a532eca6371b4c7967612cf32878a1995d47abb5498d238c81eb17b5eb455ab",
+      "sheet_names": [
+        "Sheet1"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:일반기업:03:xlsx:2f1924dbad76",
+      "form_code": "03",
+      "member": "2. 일반기업회계기준_2026/감사조서서식_03 일반조서목록.xlsx",
+      "title": "감사조서서식_03 일반조서목록",
+      "framework": "일반기업",
+      "extension": ".xlsx",
+      "bytes": 13612,
+      "sha256": "2f1924dbad765225db5b2ebf25a21e1b86575124d5ca122e7d47cd457d1b5d30",
+      "sheet_names": [
+        "Sheet1"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:일반기업:04:xlsx:d5f5a1c11ac5",
+      "form_code": "04",
+      "member": "2. 일반기업회계기준_2026/감사조서서식_04 감사조서철 작성 및 보존.xlsx",
+      "title": "감사조서서식_04 감사조서철 작성 및 보존",
+      "framework": "일반기업",
+      "extension": ".xlsx",
+      "bytes": 11346,
+      "sha256": "d5f5a1c11ac55957f25a0a8519100cebc8b45613d54d08741896b0453e90c411",
+      "sheet_names": [
+        "Sheet1"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:일반기업:1100A:xlsx:2952b156892d",
+      "form_code": "1100A",
+      "member": "2. 일반기업회계기준_2026/감사조서서식_1100A_계약전 위험평가표 수임 2026 일반.xlsx",
+      "title": "감사조서서식_1100A_계약전 위험평가표 수임 2026 일반",
+      "framework": "일반기업",
+      "extension": ".xlsx",
+      "bytes": 131791,
+      "sha256": "2952b156892de37fa6c310a7dd8ce06764fd71e96d10663f72c08302521c7b31",
+      "sheet_names": [
+        "1100A"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:일반기업:1100~1300:xlsx:9d6d48f7c384",
+      "form_code": "1100~1300",
+      "member": "2. 일반기업회계기준_2026/감사조서서식_1100~1300 감사계약_일반기업.xlsx",
+      "title": "감사조서서식_1100~1300 감사계약_일반기업",
+      "framework": "일반기업",
+      "extension": ".xlsx",
+      "bytes": 57053,
+      "sha256": "9d6d48f7c3841cc0381f151996157028c387b952a00eff827cddd27180c1bd1b",
+      "sheet_names": [
+        "1100",
+        "1200",
+        "1300"
+      ],
+      "vba_present": false,
+      "external_link_parts": 10,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:일반기업:1101A:xlsx:7afcdf5e54ea",
+      "form_code": "1101A",
+      "member": "2. 일반기업회계기준_2026/감사조서서식_1101A_계약전 위험평가표 계속 2026 일반.xlsx",
+      "title": "감사조서서식_1101A_계약전 위험평가표 계속 2026 일반",
+      "framework": "일반기업",
+      "extension": ".xlsx",
+      "bytes": 120926,
+      "sha256": "7afcdf5e54ea4070e2b88cc36be2b3b5b5aacc63664c04f99789a1df4da1698b",
+      "sheet_names": [
+        "1101A"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:일반기업:1300A:xlsx:8e3611fd9b95",
+      "form_code": "1300A",
+      "member": "2. 일반기업회계기준_2026/감사조서서식_1300A_독립성준수검토조서_일반 2026.xlsx",
+      "title": "감사조서서식_1300A_독립성준수검토조서_일반 2026",
+      "framework": "일반기업",
+      "extension": ".xlsx",
+      "bytes": 63704,
+      "sha256": "8e3611fd9b95edf7db22ca7f901eec33cae3500a836d7ae83782120b56f75cdf",
+      "sheet_names": [
+        "1300A"
+      ],
+      "vba_present": false,
+      "external_link_parts": 10,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:일반기업:1300B:xlsx:a71155ed59cd",
+      "form_code": "1300B",
+      "member": "2. 일반기업회계기준_2026/감사조서서식_1300B_개별 감사 참여자의 독립성 준수 확인서 일반 2026.xlsx",
+      "title": "감사조서서식_1300B_개별 감사 참여자의 독립성 준수 확인서 일반 2026",
+      "framework": "일반기업",
+      "extension": ".xlsx",
+      "bytes": 51570,
+      "sha256": "a71155ed59cde58b4a9fea961ea90187350c7e9adb872c1cfd64132de6fff24c",
+      "sheet_names": [
+        "1300B"
+      ],
+      "vba_present": false,
+      "external_link_parts": 10,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:일반기업:2100~2700:xlsx:17bfbd41a00c",
+      "form_code": "2100~2700",
+      "member": "2. 일반기업회계기준_2026/감사조서서식_2100~2700 위험평가_일반 2026.xlsx",
+      "title": "감사조서서식_2100~2700 위험평가_일반 2026",
+      "framework": "일반기업",
+      "extension": ".xlsx",
+      "bytes": 285456,
+      "sha256": "17bfbd41a00cba8ffd66f77d42ec3b2c4542bd01b16730e6543c9141f2f1206e",
+      "sheet_names": [
+        "2100",
+        "2100A",
+        "2110",
+        "2110A",
+        "2120",
+        "2120A",
+        "2131",
+        "2132",
+        "2133",
+        "2301",
+        "2511",
+        "2512",
+        "2513",
+        "2520",
+        "2530",
+        "2531",
+        "2531A",
+        "2532",
+        "2533",
+        "2600",
+        "2700"
+      ],
+      "vba_present": false,
+      "external_link_parts": 12,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:일반기업:2110-1:xlsx:cd5b5b3dcda6",
+      "form_code": "2110-1",
+      "member": "2. 일반기업회계기준_2026/감사조서서식_2110-1 감사전략계획서 2026 신규 일반.xlsx",
+      "title": "감사조서서식_2110-1 감사전략계획서 2026 신규 일반",
+      "framework": "일반기업",
+      "extension": ".xlsx",
+      "bytes": 34466,
+      "sha256": "cd5b5b3dcda60a0e86ec001a114708f78bbcb00e536ccffe39fc4cc5c4d16dc6",
+      "sheet_names": [
+        "2110-1",
+        "Sheet1"
+      ],
+      "vba_present": false,
+      "external_link_parts": 1,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:일반기업:2110-1:docx:efca729eb15a",
+      "form_code": "2110-1",
+      "member": "2. 일반기업회계기준_2026/감사조서서식_2110-1 감사전략계획서 2026 일반.docx",
+      "title": "감사조서서식_2110-1 감사전략계획서 2026 일반",
+      "framework": "일반기업",
+      "extension": ".docx",
+      "bytes": 39580,
+      "sha256": "efca729eb15acba351c7ae6125799b2977be1a0ccb5cf13c6e8bfc37974bfcbf",
+      "sheet_names": [],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:일반기업:2110-2:xlsx:4da14472960d",
+      "form_code": "2110-2",
+      "member": "2. 일반기업회계기준_2026/감사조서서식_2110-2 계약후 감사위험 재평가_일반.xlsx",
+      "title": "감사조서서식_2110-2 계약후 감사위험 재평가_일반",
+      "framework": "일반기업",
+      "extension": ".xlsx",
+      "bytes": 48094,
+      "sha256": "4da14472960d89efb12f2cf6f2c24485551ec57a4bfd0474342311a16a95e3d1",
+      "sheet_names": [
+        "2110-2"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:일반기업:2131A:docx:ea38ca6eaeeb",
+      "form_code": "2131A",
+      "member": "2. 일반기업회계기준_2026/감사조서서식_2131A_감사인측 외부전문가에 대한 질문서.docx",
+      "title": "감사조서서식_2131A_감사인측 외부전문가에 대한 질문서",
+      "framework": "일반기업",
+      "extension": ".docx",
+      "bytes": 34259,
+      "sha256": "ea38ca6eaeebd880550b7b14ed60a62473099955c4b4744671f4b777b196ebfe",
+      "sheet_names": [],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:일반기업:2302:pdf:1366e69ff36e",
+      "form_code": "2302",
+      "member": "2. 일반기업회계기준_2026/감사조서서식_2302 중요왜곡표시위험의 식별 평가 및 대응 2026 (위험평가 매크로 포함) 사용 안내서.pdf",
+      "title": "감사조서서식_2302 중요왜곡표시위험의 식별 평가 및 대응 2026 (위험평가 매크로 포함) 사용 안내서",
+      "framework": "일반기업",
+      "extension": ".pdf",
+      "bytes": 462654,
+      "sha256": "1366e69ff36ebf7a71f43a0103888d975fc0cb6c630e35ae815e8a85f266e9e3",
+      "sheet_names": [],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:일반기업:2302:xlsm:91fe30f8ed02",
+      "form_code": "2302",
+      "member": "2. 일반기업회계기준_2026/감사조서서식_2302 중요왜곡표시위험의 식별 평가 및 대응 2026 (위험평가 매크로 포함).xlsm",
+      "title": "감사조서서식_2302 중요왜곡표시위험의 식별 평가 및 대응 2026 (위험평가 매크로 포함)",
+      "framework": "일반기업",
+      "extension": ".xlsm",
+      "bytes": 388514,
+      "sha256": "91fe30f8ed029824a9d2ac7e95461cdd875dcb8d10c68b1f948992de3ec747f1",
+      "sheet_names": [
+        "작업목록",
+        "_CRA_HDR",
+        "_CRA_SIMPLE_META",
+        "2302",
+        "_2302_마스터",
+        "_MAP_4000",
+        "_CRA_ACCOUNT_MASTER"
+      ],
+      "vba_present": true,
+      "external_link_parts": 0,
+      "macro_container": true
+    },
+    {
+      "official_id": "official.example.2026:일반기업:2302:xlsx:cd9105a40651",
+      "form_code": "2302",
+      "member": "2. 일반기업회계기준_2026/감사조서서식_2302 중요왜곡표시위험의 식별 평가 및 대응 2026.xlsx",
+      "title": "감사조서서식_2302 중요왜곡표시위험의 식별 평가 및 대응 2026",
+      "framework": "일반기업",
+      "extension": ".xlsx",
+      "bytes": 41060,
+      "sha256": "cd9105a40651005062a7de05bf973193dcfb79b5048f3470507d2dae48fc0c91",
+      "sheet_names": [
+        "2302"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:일반기업:2600A:doc:de0718dbcf94",
+      "form_code": "2600A",
+      "member": "2. 일반기업회계기준_2026/감사조서서식_2600A 내부회계관리제도에 대한 경영자확인서.doc",
+      "title": "감사조서서식_2600A 내부회계관리제도에 대한 경영자확인서",
+      "framework": "일반기업",
+      "extension": ".doc",
+      "bytes": 32768,
+      "sha256": "de0718dbcf94459cfe9cb08a40f2c81cc4234a2ea274b246757ce26401b436f8",
+      "sheet_names": [],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:일반기업:2700A:xlsx:d36f17c05c83",
+      "form_code": "2700A",
+      "member": "2. 일반기업회계기준_2026/감사조서서식_2700A 중요성요약표 및 산정 template_일반.xlsx",
+      "title": "감사조서서식_2700A 중요성요약표 및 산정 template_일반",
+      "framework": "일반기업",
+      "extension": ".xlsx",
+      "bytes": 76019,
+      "sha256": "d36f17c05c835a8949f19ef0065c2d1f0aecc421dbfc89469bef5c95aeb53041",
+      "sheet_names": [
+        "2700A",
+        "2700A-1",
+        "2700A-2",
+        "2700A-3"
+      ],
+      "vba_present": false,
+      "external_link_parts": 10,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:일반기업:3150~3800:xlsx:8793d32fc1a9",
+      "form_code": "3150~3800",
+      "member": "2. 일반기업회계기준_2026/감사조서서식_3150~3800 위험에 대한 대응 일반 2026.xlsx",
+      "title": "감사조서서식_3150~3800 위험에 대한 대응 일반 2026",
+      "framework": "일반기업",
+      "extension": ".xlsx",
+      "bytes": 117703,
+      "sha256": "8793d32fc1a9862657e796b18d5260498c9348b780e7bb674e7378d9403ef6b2",
+      "sheet_names": [
+        "3150",
+        "3200",
+        "3300",
+        "3300A",
+        "3400",
+        "3400-1",
+        "3500",
+        "3600",
+        "3700",
+        "3800"
+      ],
+      "vba_present": false,
+      "external_link_parts": 2,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:일반기업:3500A:docx:ac83cb6d4e55",
+      "form_code": "3500A",
+      "member": "2. 일반기업회계기준_2026/감사조서서식_3500A 특수관계자에 대한 경영진질문서_ 일반.docx",
+      "title": "감사조서서식_3500A 특수관계자에 대한 경영진질문서_ 일반",
+      "framework": "일반기업",
+      "extension": ".docx",
+      "bytes": 17049,
+      "sha256": "ac83cb6d4e550e617d0cc17690fa4bd5c6685f4866a49dace9df459063a2169a",
+      "sheet_names": [],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:일반기업:3600A:docx:54c0099ef0a5",
+      "form_code": "3600A",
+      "member": "2. 일반기업회계기준_2026/감사조서서식_3600A 부정에 대한 경영진 질문서_일반.docx",
+      "title": "감사조서서식_3600A 부정에 대한 경영진 질문서_일반",
+      "framework": "일반기업",
+      "extension": ".docx",
+      "bytes": 16933,
+      "sha256": "54c0099ef0a5524a961a2476eacf10b04b20a929cf1f209ddbb9cf217da88723",
+      "sheet_names": [],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:일반기업:3600B:docx:bc41e3b4c104",
+      "form_code": "3600B",
+      "member": "2. 일반기업회계기준_2026/감사조서서식_3600B 부정에 대한 지배기구 질문서_ 일반.docx",
+      "title": "감사조서서식_3600B 부정에 대한 지배기구 질문서_ 일반",
+      "framework": "일반기업",
+      "extension": ".docx",
+      "bytes": 16273,
+      "sha256": "bc41e3b4c10425e554d51d1277787d55fbf6e3a0a78297f853f0e580cf62893e",
+      "sheet_names": [],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:일반기업:3600C:docx:84d5c8bd8e87",
+      "form_code": "3600C",
+      "member": "2. 일반기업회계기준_2026/감사조서서식_3600C 재무보고절차 관여자에 대한 질문서.docx",
+      "title": "감사조서서식_3600C 재무보고절차 관여자에 대한 질문서",
+      "framework": "일반기업",
+      "extension": ".docx",
+      "bytes": 17944,
+      "sha256": "84d5c8bd8e8738d80866f951e7e9e70c9ba6cc6f538f066beb3b60ef12b680d4",
+      "sheet_names": [],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:일반기업:3650:xlsx:3ed1c007717a",
+      "form_code": "3650",
+      "member": "2. 일반기업회계기준_2026/감사조서서식_3650 감사 전 재무제표 확인_일반.xlsx",
+      "title": "감사조서서식_3650 감사 전 재무제표 확인_일반",
+      "framework": "일반기업",
+      "extension": ".xlsx",
+      "bytes": 32417,
+      "sha256": "3ed1c007717ad43a25243a7d399d296521332aea9a1e2da6f46abe5619c34d1b",
+      "sheet_names": [
+        "3650",
+        "3650A 신규"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:일반기업:3910:xlsx:bab319dc2651",
+      "form_code": "3910",
+      "member": "2. 일반기업회계기준_2026/감사조서서식_3910 수주산업 핵심감사사항.xlsx",
+      "title": "감사조서서식_3910 수주산업 핵심감사사항",
+      "framework": "일반기업",
+      "extension": ".xlsx",
+      "bytes": 52457,
+      "sha256": "bab319dc265198287c6d7cfbf71a66fc298d0e5d0a26036edb1028d77dfb0d30",
+      "sheet_names": [
+        "3910",
+        "3910A",
+        "3910B"
+      ],
+      "vba_present": false,
+      "external_link_parts": 10,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:일반기업:3910C:docx:ae7868c6f4b8",
+      "form_code": "3910C",
+      "member": "2. 일반기업회계기준_2026/감사조서서식_3910C 수주산업 핵심감사사항 초안.docx",
+      "title": "감사조서서식_3910C 수주산업 핵심감사사항 초안",
+      "framework": "일반기업",
+      "extension": ".docx",
+      "bytes": 21189,
+      "sha256": "ae7868c6f4b8f9b0db93ba0c12b495b5591a1ca2e7badce4d4527189f81744c4",
+      "sheet_names": [],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:일반기업:4000:xlsx:51a0cfe7a678",
+      "form_code": "4000",
+      "member": "2. 일반기업회계기준_2026/감사조서서식_4000 계정별 실증절차 일반 2026.xlsx",
+      "title": "감사조서서식_4000 계정별 실증절차 일반 2026",
+      "framework": "일반기업",
+      "extension": ".xlsx",
+      "bytes": 361707,
+      "sha256": "51a0cfe7a6784503759d8fdc598209977624a6bbd13c080bc7994c72ac4b8d9a",
+      "sheet_names": [
+        "실증절차",
+        "A",
+        "B",
+        "SAJ",
+        "DER",
+        "C",
+        "DL",
+        "D",
+        "E",
+        "E100",
+        "F",
+        "G",
+        "H",
+        "I",
+        "J",
+        "AA",
+        "BBDD",
+        "CC",
+        "EE",
+        "FF",
+        "FFF",
+        "TUL",
+        "CL",
+        "GG",
+        "P",
+        "Q",
+        "R",
+        "S",
+        "T",
+        "U",
+        "JV",
+        "EST",
+        "EST-1",
+        "EST-1_예시",
+        "IOC",
+        "CF"
+      ],
+      "vba_present": false,
+      "external_link_parts": 13,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:일반기업:7000~7570:xlsx:6a0572632356",
+      "form_code": "7000~7570",
+      "member": "2. 일반기업회계기준_2026/감사조서서식_7000~7570 그룹감사_일반 2026.xlsx",
+      "title": "감사조서서식_7000~7570 그룹감사_일반 2026",
+      "framework": "일반기업",
+      "extension": ".xlsx",
+      "bytes": 559953,
+      "sha256": "6a057263235604626b6d811218de2a8b5f8aab4f8bbe5c75f6cd51d6c8c9b260",
+      "sheet_names": [
+        "7000",
+        "7100",
+        "7100A",
+        "7200",
+        "7200A",
+        "7200B",
+        "7200B-1",
+        "7200B-2",
+        "7200B-3",
+        "7200C",
+        "7200C-1",
+        "7200C-2",
+        "7200C-3",
+        "7200D",
+        "7300",
+        "7400(일반)",
+        "7400-1",
+        "7510",
+        "7510A",
+        "7530",
+        "7560",
+        "7560A",
+        "7565_기타정보검토조서_신설",
+        "7565A_체크리스트_신설",
+        "7570",
+        "7570A"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:일반기업:7212A:xlsx:8c722651e99e",
+      "form_code": "7212A",
+      "member": "2. 일반기업회계기준_2026/감사조서서식_7212A_그룹감사 위험평가 분석적절차_일반 2026.xlsx",
+      "title": "감사조서서식_7212A_그룹감사 위험평가 분석적절차_일반 2026",
+      "framework": "일반기업",
+      "extension": ".xlsx",
+      "bytes": 36198,
+      "sha256": "8c722651e99e2df9ff13cd16b19e681725631b52507a3baac0699bc07e902776",
+      "sheet_names": [
+        "7212A"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:일반기업:7410:xlsx:ff4d72777b82",
+      "form_code": "7410",
+      "member": "2. 일반기업회계기준_2026/감사조서서식_7410 부문감사인에 대한 그룹감사지침서 일반 2026.xlsx",
+      "title": "감사조서서식_7410 부문감사인에 대한 그룹감사지침서 일반 2026",
+      "framework": "일반기업",
+      "extension": ".xlsx",
+      "bytes": 66844,
+      "sha256": "ff4d72777b8232d492f68951a6306b5a792f3bb9a232b9890207d05c97954b6c",
+      "sheet_names": [
+        "기본입력사항",
+        "7410"
+      ],
+      "vba_present": false,
+      "external_link_parts": 10,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:일반기업:7410E:xlsx:83f7a676bd40",
+      "form_code": "7410E",
+      "member": "2. 일반기업회계기준_2026/감사조서서식_7410E 부문감사인에 대한 그룹감사지침서 일반 영문 2026.xlsx",
+      "title": "감사조서서식_7410E 부문감사인에 대한 그룹감사지침서 일반 영문 2026",
+      "framework": "일반기업",
+      "extension": ".xlsx",
+      "bytes": 73017,
+      "sha256": "83f7a676bd40adc54e9fa53c0e3c92bbc92d2e64d92d47e9f85c0685fd92ffde",
+      "sheet_names": [
+        "기본입력",
+        "7410E"
+      ],
+      "vba_present": false,
+      "external_link_parts": 10,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:일반기업:7511A:xlsx:919acfa8f2b5",
+      "form_code": "7511A",
+      "member": "2. 일반기업회계기준_2026/감사조서서식_7511A_그룹감사결론을 위한 분석적절차_일반.xlsx",
+      "title": "감사조서서식_7511A_그룹감사결론을 위한 분석적절차_일반",
+      "framework": "일반기업",
+      "extension": ".xlsx",
+      "bytes": 36107,
+      "sha256": "919acfa8f2b598fdf89c29fd993e1b8ccf1adbbf0c079ee64bca3ce09d35dd17",
+      "sheet_names": [
+        "7511A"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:일반기업:7530A:docx:fdf7d08c7585",
+      "form_code": "7530A",
+      "member": "2. 일반기업회계기준_2026/감사조서서식_7530A 그룹감사서면진술서 (일반기준용) 2026.docx",
+      "title": "감사조서서식_7530A 그룹감사서면진술서 (일반기준용) 2026",
+      "framework": "일반기업",
+      "extension": ".docx",
+      "bytes": 65560,
+      "sha256": "fdf7d08c75851d7bb0e7aa9fed808bfc707bd92fa143ae5445b065d865afe5be",
+      "sheet_names": [],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:일반기업:7540:xlsx:446ff5de19f9",
+      "form_code": "7540",
+      "member": "2. 일반기업회계기준_2026/감사조서서식_7540 연결공시사항점검표 (일반기준용)_2026.xlsx",
+      "title": "감사조서서식_7540 연결공시사항점검표 (일반기준용)_2026",
+      "framework": "일반기업",
+      "extension": ".xlsx",
+      "bytes": 109977,
+      "sha256": "446ff5de19f9915189d9ebd7240ca9a12955692d8cde7df206ee737737d820a5",
+      "sheet_names": [
+        "개정사항",
+        "7540",
+        "공시사항점검표 목차(2026)"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:일반기업:7555:xlsx:466fa8cfc9b2",
+      "form_code": "7555",
+      "member": "2. 일반기업회계기준_2026/감사조서서식_7555 연결심리사항점검표.xlsx",
+      "title": "감사조서서식_7555 연결심리사항점검표",
+      "framework": "일반기업",
+      "extension": ".xlsx",
+      "bytes": 14366,
+      "sha256": "466fa8cfc9b244e15f5a0ebc7093963b507ad287998b610777d58305a1969b77",
+      "sheet_names": [
+        "7555"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:일반기업:7555A:xlsx:1aded5326e43",
+      "form_code": "7555A",
+      "member": "2. 일반기업회계기준_2026/감사조서서식_7555A_그룹감사 업무수행이사와 논의한 사항 및 자문한 사항 일반.xlsx",
+      "title": "감사조서서식_7555A_그룹감사 업무수행이사와 논의한 사항 및 자문한 사항 일반",
+      "framework": "일반기업",
+      "extension": ".xlsx",
+      "bytes": 12072,
+      "sha256": "1aded5326e434d6d8587436334f6ce3b44c77fce579b5d82e9dbf0b28bfd168d",
+      "sheet_names": [
+        "7555A"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:일반기업:8100~8700:xlsx:174406f58a40",
+      "form_code": "8100~8700",
+      "member": "2. 일반기업회계기준_2026/감사조서서식_8100~8700 감사완결_일반 2026.xlsx",
+      "title": "감사조서서식_8100~8700 감사완결_일반 2026",
+      "framework": "일반기업",
+      "extension": ".xlsx",
+      "bytes": 481966,
+      "sha256": "174406f58a4028e1924dd48a4c78bdab1a71dfcd339168ac51824b8bd25c81db",
+      "sheet_names": [
+        "8100",
+        "8100A",
+        "8100B(신규)",
+        "8110",
+        "8110A",
+        "8200",
+        "8300",
+        "8500",
+        "8600",
+        "8600A",
+        "8650_기타정보검토조서_신설",
+        "8650A_체크리스트_신설",
+        "8700",
+        "8700A"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:일반기업:8300A:docx:e781b7c9721a",
+      "form_code": "8300A",
+      "member": "2. 일반기업회계기준_2026/감사조서서식_8300A 서면진술서 (일반기준용) 2026.docx",
+      "title": "감사조서서식_8300A 서면진술서 (일반기준용) 2026",
+      "framework": "일반기업",
+      "extension": ".docx",
+      "bytes": 68270,
+      "sha256": "e781b7c9721a2f20dff665b87586a3ac39f81880ac7a1b5e0b4c4fb699ec365e",
+      "sheet_names": [],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:일반기업:8400:xlsx:05a0a311ee6f",
+      "form_code": "8400",
+      "member": "2. 일반기업회계기준_2026/감사조서서식_8400_공시사항점검표_일반기준용_2026.xlsx",
+      "title": "감사조서서식_8400_공시사항점검표_일반기준용_2026",
+      "framework": "일반기업",
+      "extension": ".xlsx",
+      "bytes": 109889,
+      "sha256": "05a0a311ee6f58a74384fc766716022122659807fdcf32f646bf14b58a983b67",
+      "sheet_names": [
+        "개정사항",
+        "8400",
+        "공시사항점검표 목차(2026)"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:일반기업:8550:xlsx:f9bcac632e4d",
+      "form_code": "8550",
+      "member": "2. 일반기업회계기준_2026/감사조서서식_8550 심리사항점검표.xlsx",
+      "title": "감사조서서식_8550 심리사항점검표",
+      "framework": "일반기업",
+      "extension": ".xlsx",
+      "bytes": 14583,
+      "sha256": "f9bcac632e4d7422449c40b4e552f3399320fb84aac77ddd9ee8b64bc635e1bc",
+      "sheet_names": [
+        "8550"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:일반기업:8550A:xlsx:6159a40f99c4",
+      "form_code": "8550A",
+      "member": "2. 일반기업회계기준_2026/감사조서서식_8550A_업무수행이사와 논의한 사항 및 자문한 사항 일반.xlsx",
+      "title": "감사조서서식_8550A_업무수행이사와 논의한 사항 및 자문한 사항 일반",
+      "framework": "일반기업",
+      "extension": ".xlsx",
+      "bytes": 11971,
+      "sha256": "6159a40f99c40786b5e34ae974fbd4c2a8a9fb13630de1f174260bacf43f8bb8",
+      "sheet_names": [
+        "8550A"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:소규모기업:01:xlsx:13091d67dc30",
+      "form_code": "01",
+      "member": "3. 소규모기업용 감사조서서식(예시)_2026/소규모기업용 감사조서서식_01 조서파일.xlsx",
+      "title": "소규모기업용 감사조서서식_01 조서파일",
+      "framework": "소규모기업",
+      "extension": ".xlsx",
+      "bytes": 19007,
+      "sha256": "13091d67dc302c26840e4e16108e93d269ea92a55e4d989b355df196b7f1f6fe",
+      "sheet_names": [
+        "표지1",
+        "조서목록",
+        "표지2"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:소규모기업:02:xlsx:4a532eca6371",
+      "form_code": "02",
+      "member": "3. 소규모기업용 감사조서서식(예시)_2026/소규모기업용 감사조서서식_02 영구조서목록.xlsx",
+      "title": "소규모기업용 감사조서서식_02 영구조서목록",
+      "framework": "소규모기업",
+      "extension": ".xlsx",
+      "bytes": 12549,
+      "sha256": "4a532eca6371b4c7967612cf32878a1995d47abb5498d238c81eb17b5eb455ab",
+      "sheet_names": [
+        "Sheet1"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:소규모기업:03:xlsx:7edffb25b8b5",
+      "form_code": "03",
+      "member": "3. 소규모기업용 감사조서서식(예시)_2026/소규모기업용 감사조서서식_03 일반조서목록.xlsx",
+      "title": "소규모기업용 감사조서서식_03 일반조서목록",
+      "framework": "소규모기업",
+      "extension": ".xlsx",
+      "bytes": 13124,
+      "sha256": "7edffb25b8b517a7ca2cd511cad969dfa4612c008bc5f05886ed87d6daebcaf8",
+      "sheet_names": [
+        "Sheet1"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:소규모기업:04:xlsx:9a8717cba421",
+      "form_code": "04",
+      "member": "3. 소규모기업용 감사조서서식(예시)_2026/소규모기업용 감사조서서식_04 감사조서철 작성 및 보존.xlsx",
+      "title": "소규모기업용 감사조서서식_04 감사조서철 작성 및 보존",
+      "framework": "소규모기업",
+      "extension": ".xlsx",
+      "bytes": 11576,
+      "sha256": "9a8717cba4219067fcbff6f8a588e1aee1c657b9d298a3e9a7b9046e1e3fc927",
+      "sheet_names": [
+        "Sheet1"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:소규모기업:1100~1300:xlsx:c5cf93012c0f",
+      "form_code": "1100~1300",
+      "member": "3. 소규모기업용 감사조서서식(예시)_2026/소규모기업용 감사조서서식_1100~1300 감사계약 2026.xlsx",
+      "title": "소규모기업용 감사조서서식_1100~1300 감사계약 2026",
+      "framework": "소규모기업",
+      "extension": ".xlsx",
+      "bytes": 267712,
+      "sha256": "c5cf93012c0f7fc55f0b75a3967c7559c2fd65d16ff2ba39ec5ea32a037c9180",
+      "sheet_names": [
+        "1100(소규모)",
+        "1100A(소규모)",
+        "1101A(소규모)",
+        "1200(소규모)"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:소규모기업:1200A:xlsx:db66685f35fb",
+      "form_code": "1200A",
+      "member": "3. 소규모기업용 감사조서서식(예시)_2026/소규모기업용 감사조서서식_1200A 독립성 준수 검토 조서 2026.xlsx",
+      "title": "소규모기업용 감사조서서식_1200A 독립성 준수 검토 조서 2026",
+      "framework": "소규모기업",
+      "extension": ".xlsx",
+      "bytes": 29820,
+      "sha256": "db66685f35fba7d2bc7117e31d4344b936c0b82725ecc5754e0a6d28d331311f",
+      "sheet_names": [
+        "1200A(소규모)"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:소규모기업:1200B:xlsx:91dabb71dde1",
+      "form_code": "1200B",
+      "member": "3. 소규모기업용 감사조서서식(예시)_2026/소규모기업용 감사조서서식_1200B 개별 감사 참여자의 독립성 준수 확인서 2026.xlsx",
+      "title": "소규모기업용 감사조서서식_1200B 개별 감사 참여자의 독립성 준수 확인서 2026",
+      "framework": "소규모기업",
+      "extension": ".xlsx",
+      "bytes": 19070,
+      "sha256": "91dabb71dde180f41516382728249f588f154580d3fddb2129d04f0537f89730",
+      "sheet_names": [
+        "1200B(소규모)"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:소규모기업:2100~2700:xlsx:d8d41fcec2ad",
+      "form_code": "2100~2700",
+      "member": "3. 소규모기업용 감사조서서식(예시)_2026/소규모기업용 감사조서서식_2100~2700 위험평가 2026.xlsx",
+      "title": "소규모기업용 감사조서서식_2100~2700 위험평가 2026",
+      "framework": "소규모기업",
+      "extension": ".xlsx",
+      "bytes": 196857,
+      "sha256": "d8d41fcec2add1e73e01ac114f5cbd5e5e85324e001632023fe224fc8525df39",
+      "sheet_names": [
+        "2100(소규모)",
+        "2110(소규모)",
+        "2110A(소규모)",
+        "2120(소규모)",
+        "2120A(소규모)",
+        "2131(소규모)",
+        "2301(소규모)",
+        "2511(소규모)",
+        "2520(소규모)",
+        "2530(소규모)",
+        "2531A(소규모)",
+        "2531(소규모)",
+        "2532(소규모)",
+        "2700(소규모)"
+      ],
+      "vba_present": false,
+      "external_link_parts": 10,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:소규모기업:2110-1:xlsx:822bb0975af4",
+      "form_code": "2110-1",
+      "member": "3. 소규모기업용 감사조서서식(예시)_2026/소규모기업용 감사조서서식_2110-1 감사전략계획서 2026 신규.xlsx",
+      "title": "소규모기업용 감사조서서식_2110-1 감사전략계획서 2026 신규",
+      "framework": "소규모기업",
+      "extension": ".xlsx",
+      "bytes": 32822,
+      "sha256": "822bb0975af401165f2c11360a21be4b3dc332bc4818487fbe69d02f263009af",
+      "sheet_names": [
+        "2110-1",
+        "Sheet1"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:소규모기업:2110-1:docx:539fb0a52c26",
+      "form_code": "2110-1",
+      "member": "3. 소규모기업용 감사조서서식(예시)_2026/소규모기업용 감사조서서식_2110-1 감사전략계획서 2026.docx",
+      "title": "소규모기업용 감사조서서식_2110-1 감사전략계획서 2026",
+      "framework": "소규모기업",
+      "extension": ".docx",
+      "bytes": 39880,
+      "sha256": "539fb0a52c26ad40e6306c0dea9831eeae1bd8bce2ebf6a94b5d50968163312f",
+      "sheet_names": [],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:소규모기업:2700A:xlsx:ba3bfa594478",
+      "form_code": "2700A",
+      "member": "3. 소규모기업용 감사조서서식(예시)_2026/소규모기업용 감사조서서식_2700A 중요성요약표 및 산정 template.xlsx",
+      "title": "소규모기업용 감사조서서식_2700A 중요성요약표 및 산정 template",
+      "framework": "소규모기업",
+      "extension": ".xlsx",
+      "bytes": 632876,
+      "sha256": "ba3bfa594478e5251c4617b22d9b810b2a945fb799efbc1726d3a3a849bcc6c7",
+      "sheet_names": [
+        "2700A (소규모)",
+        "2700A-1(소규모)",
+        "2700A-2(소규모)",
+        "2700A-3(소규모)",
+        "참고_중요성 벤치마크 사례 2700"
+      ],
+      "vba_present": false,
+      "external_link_parts": 10,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:소규모기업:3100~3800:xlsx:97cc3063b042",
+      "form_code": "3100~3800",
+      "member": "3. 소규모기업용 감사조서서식(예시)_2026/소규모기업용 감사조서서식_3100~3800 위험에 대한 대응 2026.xlsx",
+      "title": "소규모기업용 감사조서서식_3100~3800 위험에 대한 대응 2026",
+      "framework": "소규모기업",
+      "extension": ".xlsx",
+      "bytes": 122281,
+      "sha256": "97cc3063b042c983b6cdf0e5f4cd5379d8eec6db28924bae920ba0083e3b885c",
+      "sheet_names": [
+        "3100(소규모)",
+        "3150(소규모)",
+        "3200(소규모)",
+        "3300(소규모)",
+        "3300A(소규모)",
+        "3400(소규모)",
+        "3500(소규모)",
+        "3600(소규모)",
+        "3700(소규모)",
+        "3800(소규모)"
+      ],
+      "vba_present": false,
+      "external_link_parts": 10,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:소규모기업:3500A:docx:827689e80adf",
+      "form_code": "3500A",
+      "member": "3. 소규모기업용 감사조서서식(예시)_2026/소규모기업용 감사조서서식_3500A 특수관계자에 대한 경영진질문서.docx",
+      "title": "소규모기업용 감사조서서식_3500A 특수관계자에 대한 경영진질문서",
+      "framework": "소규모기업",
+      "extension": ".docx",
+      "bytes": 17328,
+      "sha256": "827689e80adf3a99b0263cbf6f1c7fe9cacc4f70f5cb4fb04f6a90f41ac7ac86",
+      "sheet_names": [],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:소규모기업:3600A:docx:ceef922795f7",
+      "form_code": "3600A",
+      "member": "3. 소규모기업용 감사조서서식(예시)_2026/소규모기업용 감사조서서식_3600A 부정에 대한 경영진 질문서.docx",
+      "title": "소규모기업용 감사조서서식_3600A 부정에 대한 경영진 질문서",
+      "framework": "소규모기업",
+      "extension": ".docx",
+      "bytes": 16793,
+      "sha256": "ceef922795f7a3871ce313289c45dc2cb90a90df22a5f087c6cbdd25a585762f",
+      "sheet_names": [],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:소규모기업:3600B:docx:ba81cc146fd7",
+      "form_code": "3600B",
+      "member": "3. 소규모기업용 감사조서서식(예시)_2026/소규모기업용 감사조서서식_3600B 부정에 대한 지배기구 질문서.docx",
+      "title": "소규모기업용 감사조서서식_3600B 부정에 대한 지배기구 질문서",
+      "framework": "소규모기업",
+      "extension": ".docx",
+      "bytes": 16525,
+      "sha256": "ba81cc146fd7d24ff39ebf2edf8189bee75ffa01952e19d5b283a8ae2065e0d6",
+      "sheet_names": [],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:소규모기업:3600C:docx:8cd699a7d7e0",
+      "form_code": "3600C",
+      "member": "3. 소규모기업용 감사조서서식(예시)_2026/소규모기업용 감사조서서식_3600C 재무보고절차 관여자에 대한 질문서 2026.docx",
+      "title": "소규모기업용 감사조서서식_3600C 재무보고절차 관여자에 대한 질문서 2026",
+      "framework": "소규모기업",
+      "extension": ".docx",
+      "bytes": 18176,
+      "sha256": "8cd699a7d7e09b63dbca2be8d0d56ce56f182f60e657dd2f2c4be5839c1d7040",
+      "sheet_names": [],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:소규모기업:4000:xlsx:3cb7ba2810fc",
+      "form_code": "4000",
+      "member": "3. 소규모기업용 감사조서서식(예시)_2026/소규모기업용 감사조서서식_4000 계정별 실증절차 2026.xlsx",
+      "title": "소규모기업용 감사조서서식_4000 계정별 실증절차 2026",
+      "framework": "소규모기업",
+      "extension": ".xlsx",
+      "bytes": 334462,
+      "sha256": "3cb7ba2810fc20854a5964e2d625e675c6a13d21631729702495d4158b43c813",
+      "sheet_names": [
+        "실증절차",
+        "A",
+        "B",
+        "SAJ",
+        "DER",
+        "C",
+        "DL",
+        "D",
+        "E",
+        "E100",
+        "F",
+        "G",
+        "H",
+        "I",
+        "J",
+        "AA",
+        "BBDD",
+        "CC",
+        "EE",
+        "FF",
+        "FFF",
+        "TUL",
+        "CL",
+        "GG",
+        "P",
+        "Q",
+        "R",
+        "S",
+        "T",
+        "U",
+        "JV",
+        "EST",
+        "IOC",
+        "CF"
+      ],
+      "vba_present": false,
+      "external_link_parts": 11,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:소규모기업:8100~8700:xlsx:c2fc0bd6fca8",
+      "form_code": "8100~8700",
+      "member": "3. 소규모기업용 감사조서서식(예시)_2026/소규모기업용 감사조서서식_8100~8700 감사완결 2026.xlsx",
+      "title": "소규모기업용 감사조서서식_8100~8700 감사완결 2026",
+      "framework": "소규모기업",
+      "extension": ".xlsx",
+      "bytes": 445299,
+      "sha256": "c2fc0bd6fca812388eb89aaea4f4f14681202e2827a04b25e356216bb2b0d82f",
+      "sheet_names": [
+        "8100(소규모)",
+        "8100A(소규모)",
+        "8100B(소규모)",
+        "8100C(소규모)(신규)",
+        "8200(소규모)",
+        "8300(소규모)",
+        "8500(소규모)",
+        "8600(소규모)",
+        "8600A(소규모)",
+        "8700(소규모)",
+        "8700A(소규모)"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:소규모기업:8300A:docx:e2990655f4fd",
+      "form_code": "8300A",
+      "member": "3. 소규모기업용 감사조서서식(예시)_2026/소규모기업용 감사조서서식_8300A 서면진술서.docx",
+      "title": "소규모기업용 감사조서서식_8300A 서면진술서",
+      "framework": "소규모기업",
+      "extension": ".docx",
+      "bytes": 66766,
+      "sha256": "e2990655f4fdabc37b365fe438ae3c0bb8d49294ba28977d7c150f616ab117d8",
+      "sheet_names": [],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:소규모기업:8400:xlsx:60f057bd74b5",
+      "form_code": "8400",
+      "member": "3. 소규모기업용 감사조서서식(예시)_2026/소규모기업용 감사조서서식_8400_공시사항점검표_2026.xlsx",
+      "title": "소규모기업용 감사조서서식_8400_공시사항점검표_2026",
+      "framework": "소규모기업",
+      "extension": ".xlsx",
+      "bytes": 109704,
+      "sha256": "60f057bd74b5ac33117ae7e53ee314eb245c23c2211daddfe28ef4f63cb702ee",
+      "sheet_names": [
+        "개정사항",
+        "8400",
+        "공시사항점검표 목차(2026)"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:소규모기업:8550:xlsx:de4108aa0148",
+      "form_code": "8550",
+      "member": "3. 소규모기업용 감사조서서식(예시)_2026/소규모기업용 감사조서서식_8550 심리사항점검표.xlsx",
+      "title": "소규모기업용 감사조서서식_8550 심리사항점검표",
+      "framework": "소규모기업",
+      "extension": ".xlsx",
+      "bytes": 14074,
+      "sha256": "de4108aa014878dc2200d41b5b786b392232c1a9a73b667fba47eea0736d4e3a",
+      "sheet_names": [
+        "8550"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    },
+    {
+      "official_id": "official.example.2026:소규모기업:8550A:xlsx:6159a40f99c4",
+      "form_code": "8550A",
+      "member": "3. 소규모기업용 감사조서서식(예시)_2026/소규모기업용 감사조서서식_8550A_업무수행이사와 논의한 사항 및 자문한 사항 일반.xlsx",
+      "title": "소규모기업용 감사조서서식_8550A_업무수행이사와 논의한 사항 및 자문한 사항 일반",
+      "framework": "소규모기업",
+      "extension": ".xlsx",
+      "bytes": 11971,
+      "sha256": "6159a40f99c40786b5e34ae974fbd4c2a8a9fb13630de1f174260bacf43f8bb8",
+      "sheet_names": [
+        "8550A"
+      ],
+      "vba_present": false,
+      "external_link_parts": 0,
+      "macro_container": false
+    }
+  ],
+  "procedures": [
+    {
+      "app_id": "C01",
+      "title": "업무수임·독립성·계약",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "C02",
+      "title": "회사·기간·기준·전기자료",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "C03",
+      "title": "PBC 자료요청·진행관리",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "C04",
+      "title": "TB·GL·보조부 모집단 완전성",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "C05",
+      "title": "계정 매핑·리드스케줄",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "C06",
+      "title": "증빙 수집·PDF/OCR·출처 추적",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "C07",
+      "title": "공통 대사 엔진",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "P01",
+      "title": "사업이해·위험평가",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "P02",
+      "title": "중요성·수행중요성",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "P03",
+      "title": "감사전략·절차 설계",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "P04",
+      "title": "분석적 절차",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "P05",
+      "title": "업무흐름·RCM·통제테스트",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "P06",
+      "title": "ITGC·IPE·서비스조직",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "P07",
+      "title": "전표테스트·경영진 통제무력화",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "P08",
+      "title": "표본 계획·선정·오류평가",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "A01",
+      "title": "현금·예금·은행조정·조회",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "A02",
+      "title": "금융상품·미수수익·이자",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "A03",
+      "title": "차입금·사채·약정",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "A04",
+      "title": "매출·발생·기간귀속·반품",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "A05",
+      "title": "계약자산·계약부채·진행기준",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "A06",
+      "title": "매출채권·연령·조회·후속입금",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "A07",
+      "title": "대손충당금·기대신용손실",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "A08",
+      "title": "매입·매입채무·미기록부채",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "A09",
+      "title": "비용·선급·미지급·충당경비",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "A10",
+      "title": "재고실사·수량·권리·이동",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "A11",
+      "title": "재고단가·제조원가·NRV",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "A12",
+      "title": "유형자산·감가상각·취득처분",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "A13",
+      "title": "무형자산·개발비·상각",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "A14",
+      "title": "영업권·자산손상",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "A15",
+      "title": "리스부채·사용권자산",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "A16",
+      "title": "급여·상여·연차·퇴직정산",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "A17",
+      "title": "확정급여채무·사외적립자산",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "A18",
+      "title": "당기법인세·이연법인세·세무잔액",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "A19",
+      "title": "충당부채·우발채무·소송",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "A20",
+      "title": "자본·배당·주식보상·복합상품",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "A21",
+      "title": "외화거래·환산·해외사업",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "A22",
+      "title": "특수관계자·자금거래·공시",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "A23",
+      "title": "연결·내부거래·기업결합",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "A24",
+      "title": "현금흐름표",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "A25",
+      "title": "재무제표·주석·공시 대사",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "F01",
+      "title": "후속사건",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "F02",
+      "title": "계속기업",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "F03",
+      "title": "왜곡표시·수정분개·미수정사항",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "F04",
+      "title": "최종 분석·모순 및 미완료 검토",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "F05",
+      "title": "경영진진술·지배기구 커뮤니케이션",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "F06",
+      "title": "전문가·부문/내부감사인 업무",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "F07",
+      "title": "감사보고서·핵심감사사항·기타정보",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "F08",
+      "title": "조서 작성·검토·품질·최종보관",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "FS01",
+      "title": "재무제표·본문·주석 대사",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "R01",
+      "title": "원천증빙·거래배부 검토",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "W01",
+      "title": "독립 계정 증빙연습",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "G01",
+      "title": "GLA 원장 연결·검토 후보 조사",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "I01",
+      "title": "FIA 원장 연결·검토 후보 조사",
+      "namespace": "app.procedure"
+    },
+    {
+      "app_id": "H01",
+      "title": "현금분석 원장 연결·검토 후보 조사",
+      "namespace": "app.procedure"
+    }
+  ],
+  "crosswalk": [
+    {
+      "app_id": "C01",
+      "framework": "KIFRS",
+      "mapping_status": "설계상참고",
+      "scope": "수임·유지·독립성·계약 주제의 참고 연결",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:1100~1300:xlsx:9c7aa730172a",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:KIFRS:1100A:xlsx:b6efed5ee476",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:KIFRS:1101A:xlsx:a4124f3de05d",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:KIFRS:1300A:xlsx:0e7285ac2db0",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:KIFRS:1300B:xlsx:5717f092c814",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "C01",
+      "framework": "일반기업",
+      "mapping_status": "설계상참고",
+      "scope": "수임·유지·독립성·계약 주제의 참고 연결",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:1100~1300:xlsx:9d6d48f7c384",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:일반기업:1100A:xlsx:2952b156892d",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:일반기업:1101A:xlsx:7afcdf5e54ea",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:일반기업:1300A:xlsx:8e3611fd9b95",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:일반기업:1300B:xlsx:a71155ed59cd",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "C01",
+      "framework": "소규모기업",
+      "mapping_status": "설계상참고",
+      "scope": "수임·유지·독립성·계약 주제의 참고 연결",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:1100~1300:xlsx:c5cf93012c0f",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:소규모기업:1200A:xlsx:db66685f35fb",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:소규모기업:1200B:xlsx:91dabb71dde1",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "C02",
+      "framework": "KIFRS",
+      "mapping_status": "설계상참고",
+      "scope": "회사·기간·전기자료 및 영구조서 목록 수준의 참고 연결",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:02:xlsx:4a532eca6371",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "C02",
+      "framework": "일반기업",
+      "mapping_status": "설계상참고",
+      "scope": "회사·기간·전기자료 및 영구조서 목록 수준의 참고 연결",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:02:xlsx:4a532eca6371",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "C02",
+      "framework": "소규모기업",
+      "mapping_status": "설계상참고",
+      "scope": "회사·기간·전기자료 및 영구조서 목록 수준의 참고 연결",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:02:xlsx:4a532eca6371",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "C03",
+      "framework": "KIFRS",
+      "mapping_status": "수동판단",
+      "scope": "조서 목록과 자료요청 진행관리의 관련성을 사람이 확인",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:03:xlsx:49e61411c7b4",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "C03",
+      "framework": "일반기업",
+      "mapping_status": "수동판단",
+      "scope": "조서 목록과 자료요청 진행관리의 관련성을 사람이 확인",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:03:xlsx:2f1924dbad76",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "C03",
+      "framework": "소규모기업",
+      "mapping_status": "수동판단",
+      "scope": "조서 목록과 자료요청 진행관리의 관련성을 사람이 확인",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:03:xlsx:7edffb25b8b5",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "C04",
+      "framework": "KIFRS",
+      "mapping_status": "설계상참고",
+      "scope": "모집단·IPE 통제와 제출 재무제표 확인의 제한된 주제 연결",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:4000:xlsx:b18010907559",
+          "linked_sheets": [
+            "IOC"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        },
+        {
+          "official_id": "official.example.2026:KIFRS:3650:xlsx:1192d92151ac",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "C04",
+      "framework": "일반기업",
+      "mapping_status": "설계상참고",
+      "scope": "모집단·IPE 통제와 제출 재무제표 확인의 제한된 주제 연결",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:4000:xlsx:51a0cfe7a678",
+          "linked_sheets": [
+            "IOC"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        },
+        {
+          "official_id": "official.example.2026:일반기업:3650:xlsx:3ed1c007717a",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "C04",
+      "framework": "소규모기업",
+      "mapping_status": "설계상참고",
+      "scope": "모집단·IPE 통제와 제출 재무제표 확인의 제한된 주제 연결",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:4000:xlsx:3cb7ba2810fc",
+          "linked_sheets": [
+            "IOC"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "C05",
+      "framework": "KIFRS",
+      "mapping_status": "수동판단",
+      "scope": "계정 매핑·리드스케줄과 계정별 실증절차의 연결은 사람이 선택",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:4000:xlsx:b18010907559",
+          "linked_sheets": [
+            "실증절차"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "C05",
+      "framework": "일반기업",
+      "mapping_status": "수동판단",
+      "scope": "계정 매핑·리드스케줄과 계정별 실증절차의 연결은 사람이 선택",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:4000:xlsx:51a0cfe7a678",
+          "linked_sheets": [
+            "실증절차"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "C05",
+      "framework": "소규모기업",
+      "mapping_status": "수동판단",
+      "scope": "계정 매핑·리드스케줄과 계정별 실증절차의 연결은 사람이 선택",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:4000:xlsx:3cb7ba2810fc",
+          "linked_sheets": [
+            "실증절차"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "C06",
+      "framework": "KIFRS",
+      "mapping_status": "미연결",
+      "scope": "증빙 수집·PDF/OCR·출처 추적의 전용 공식 예시 항목을 특정하지 않음",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": []
+    },
+    {
+      "app_id": "C06",
+      "framework": "일반기업",
+      "mapping_status": "미연결",
+      "scope": "증빙 수집·PDF/OCR·출처 추적의 전용 공식 예시 항목을 특정하지 않음",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": []
+    },
+    {
+      "app_id": "C06",
+      "framework": "소규모기업",
+      "mapping_status": "미연결",
+      "scope": "증빙 수집·PDF/OCR·출처 추적의 전용 공식 예시 항목을 특정하지 않음",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": []
+    },
+    {
+      "app_id": "C07",
+      "framework": "KIFRS",
+      "mapping_status": "미연결",
+      "scope": "공통 대사 계산 기능 자체에 대응하는 공식 예시 항목을 특정하지 않음",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": []
+    },
+    {
+      "app_id": "C07",
+      "framework": "일반기업",
+      "mapping_status": "미연결",
+      "scope": "공통 대사 계산 기능 자체에 대응하는 공식 예시 항목을 특정하지 않음",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": []
+    },
+    {
+      "app_id": "C07",
+      "framework": "소규모기업",
+      "mapping_status": "미연결",
+      "scope": "공통 대사 계산 기능 자체에 대응하는 공식 예시 항목을 특정하지 않음",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": []
+    },
+    {
+      "app_id": "P01",
+      "framework": "KIFRS",
+      "mapping_status": "설계상참고",
+      "scope": "사업이해·감사위험 식별 평가 주제의 참고 연결",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:2100-2700:xlsx:5b1a2ecc54bc",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:KIFRS:2110-2:xlsx:01afbdd2235d",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:KIFRS:2302:xlsx:cd9105a40651",
+          "linked_sheets": [
+            "2302"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "P01",
+      "framework": "일반기업",
+      "mapping_status": "설계상참고",
+      "scope": "사업이해·감사위험 식별 평가 주제의 참고 연결",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:2100~2700:xlsx:17bfbd41a00c",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:일반기업:2110-2:xlsx:4da14472960d",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:일반기업:2302:xlsx:cd9105a40651",
+          "linked_sheets": [
+            "2302"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "P01",
+      "framework": "소규모기업",
+      "mapping_status": "설계상참고",
+      "scope": "사업이해·감사위험 식별 평가 주제의 참고 연결",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력",
+        "소규모기업 서식계열 ZIP에 없는 2302·그룹감사·3650 서식을 다른 서식계열에서 차용하지 않음"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:2100~2700:xlsx:d8d41fcec2ad",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "P02",
+      "framework": "KIFRS",
+      "mapping_status": "설계상참고",
+      "scope": "중요성·수행중요성 선정·변경 기록을 위한 참고 연결",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:2700A:xlsx:457404c8b75c",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "P02",
+      "framework": "일반기업",
+      "mapping_status": "설계상참고",
+      "scope": "중요성·수행중요성 선정·변경 기록을 위한 참고 연결",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:2700A:xlsx:d36f17c05c83",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "P02",
+      "framework": "소규모기업",
+      "mapping_status": "설계상참고",
+      "scope": "중요성·수행중요성 선정·변경 기록을 위한 참고 연결",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:2700A:xlsx:ba3bfa594478",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "P03",
+      "framework": "KIFRS",
+      "mapping_status": "설계상참고",
+      "scope": "감사전략·위험 대응 절차의 성격·시기·범위 참고 연결",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:2110-1:xlsx:cd5b5b3dcda6",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:KIFRS:2110-1:docx:efca729eb15a",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:KIFRS:2302:xlsx:cd9105a40651",
+          "linked_sheets": [
+            "2302"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        },
+        {
+          "official_id": "official.example.2026:KIFRS:3150-3800:xlsx:3720e2ce1808",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "P03",
+      "framework": "일반기업",
+      "mapping_status": "설계상참고",
+      "scope": "감사전략·위험 대응 절차의 성격·시기·범위 참고 연결",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:2110-1:xlsx:cd5b5b3dcda6",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:일반기업:2110-1:docx:efca729eb15a",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:일반기업:2302:xlsx:cd9105a40651",
+          "linked_sheets": [
+            "2302"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        },
+        {
+          "official_id": "official.example.2026:일반기업:3150~3800:xlsx:8793d32fc1a9",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "P03",
+      "framework": "소규모기업",
+      "mapping_status": "설계상참고",
+      "scope": "감사전략·위험 대응 절차의 성격·시기·범위 참고 연결",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력",
+        "소규모기업 서식계열 ZIP에 없는 2302·그룹감사·3650 서식을 다른 서식계열에서 차용하지 않음"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:2110-1:xlsx:822bb0975af4",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:소규모기업:2110-1:docx:539fb0a52c26",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:소규모기업:3100~3800:xlsx:97cc3063b042",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "P04",
+      "framework": "KIFRS",
+      "mapping_status": "수동판단",
+      "scope": "분석적 절차의 사업이해·위험평가 단계 적용 범위를 사람이 선택",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:2100-2700:xlsx:5b1a2ecc54bc",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "P04",
+      "framework": "일반기업",
+      "mapping_status": "수동판단",
+      "scope": "분석적 절차의 사업이해·위험평가 단계 적용 범위를 사람이 선택",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:2100~2700:xlsx:17bfbd41a00c",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "P04",
+      "framework": "소규모기업",
+      "mapping_status": "수동판단",
+      "scope": "분석적 절차의 사업이해·위험평가 단계 적용 범위를 사람이 선택",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:2100~2700:xlsx:d8d41fcec2ad",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "P05",
+      "framework": "KIFRS",
+      "mapping_status": "수동판단",
+      "scope": "업무흐름·통제와 정보시스템 관련 절차의 적용 범위를 사람이 선택",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:4000:xlsx:b18010907559",
+          "linked_sheets": [
+            "IOC"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "P05",
+      "framework": "일반기업",
+      "mapping_status": "수동판단",
+      "scope": "업무흐름·통제와 정보시스템 관련 절차의 적용 범위를 사람이 선택",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:4000:xlsx:51a0cfe7a678",
+          "linked_sheets": [
+            "IOC"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "P05",
+      "framework": "소규모기업",
+      "mapping_status": "수동판단",
+      "scope": "업무흐름·통제와 정보시스템 관련 절차의 적용 범위를 사람이 선택",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:4000:xlsx:3cb7ba2810fc",
+          "linked_sheets": [
+            "IOC"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "P06",
+      "framework": "KIFRS",
+      "mapping_status": "수동판단",
+      "scope": "IT·IPE 관련 주제의 참고 연결; 서비스조직 전체 범위와는 구별",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:4000:xlsx:b18010907559",
+          "linked_sheets": [
+            "IOC"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "P06",
+      "framework": "일반기업",
+      "mapping_status": "수동판단",
+      "scope": "IT·IPE 관련 주제의 참고 연결; 서비스조직 전체 범위와는 구별",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:4000:xlsx:51a0cfe7a678",
+          "linked_sheets": [
+            "IOC"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "P06",
+      "framework": "소규모기업",
+      "mapping_status": "수동판단",
+      "scope": "IT·IPE 관련 주제의 참고 연결; 서비스조직 전체 범위와는 구별",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:4000:xlsx:3cb7ba2810fc",
+          "linked_sheets": [
+            "IOC"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "P07",
+      "framework": "KIFRS",
+      "mapping_status": "설계상참고",
+      "scope": "전표 후보 조사와 부정·경영진 질문·위험평가 주제 연결",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:2302:xlsx:cd9105a40651",
+          "linked_sheets": [
+            "2302"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        },
+        {
+          "official_id": "official.example.2026:KIFRS:3600A:docx:4153a077f7f5",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:KIFRS:3600B:docx:d7cae6511560",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:KIFRS:3600C:docx:84d5c8bd8e87",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "P07",
+      "framework": "일반기업",
+      "mapping_status": "설계상참고",
+      "scope": "전표 후보 조사와 부정·경영진 질문·위험평가 주제 연결",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:2302:xlsx:cd9105a40651",
+          "linked_sheets": [
+            "2302"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        },
+        {
+          "official_id": "official.example.2026:일반기업:3600A:docx:54c0099ef0a5",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:일반기업:3600B:docx:bc41e3b4c104",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:일반기업:3600C:docx:84d5c8bd8e87",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "P07",
+      "framework": "소규모기업",
+      "mapping_status": "설계상참고",
+      "scope": "전표 후보 조사와 부정·경영진 질문·위험평가 주제 연결",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력",
+        "소규모기업 서식계열 ZIP에 없는 2302·그룹감사·3650 서식을 다른 서식계열에서 차용하지 않음"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:3600A:docx:ceef922795f7",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:소규모기업:3600B:docx:ba81cc146fd7",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:소규모기업:3600C:docx:8cd699a7d7e0",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "P08",
+      "framework": "KIFRS",
+      "mapping_status": "수동판단",
+      "scope": "위험 대응·표본 절차의 선택과 오류평가는 사람이 결정",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:3150-3800:xlsx:3720e2ce1808",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "P08",
+      "framework": "일반기업",
+      "mapping_status": "수동판단",
+      "scope": "위험 대응·표본 절차의 선택과 오류평가는 사람이 결정",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:3150~3800:xlsx:8793d32fc1a9",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "P08",
+      "framework": "소규모기업",
+      "mapping_status": "수동판단",
+      "scope": "위험 대응·표본 절차의 선택과 오류평가는 사람이 결정",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:3100~3800:xlsx:97cc3063b042",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "A01",
+      "framework": "KIFRS",
+      "mapping_status": "설계상참고",
+      "scope": "현금·예금 실증절차의 주제 참고 연결",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:4000:xlsx:b18010907559",
+          "linked_sheets": [
+            "A"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A01",
+      "framework": "일반기업",
+      "mapping_status": "설계상참고",
+      "scope": "현금·예금 실증절차의 주제 참고 연결",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:4000:xlsx:51a0cfe7a678",
+          "linked_sheets": [
+            "A"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A01",
+      "framework": "소규모기업",
+      "mapping_status": "설계상참고",
+      "scope": "현금·예금 실증절차의 주제 참고 연결",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:4000:xlsx:3cb7ba2810fc",
+          "linked_sheets": [
+            "A"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A02",
+      "framework": "KIFRS",
+      "mapping_status": "설계상참고",
+      "scope": "금융상품·유가증권·파생상품의 주제 참고; 앱 계산 범위는 일부",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:4000:xlsx:b18010907559",
+          "linked_sheets": [
+            "A",
+            "B",
+            "DER"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A02",
+      "framework": "일반기업",
+      "mapping_status": "설계상참고",
+      "scope": "금융상품·유가증권·파생상품의 주제 참고; 앱 계산 범위는 일부",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:4000:xlsx:51a0cfe7a678",
+          "linked_sheets": [
+            "A",
+            "B",
+            "DER"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A02",
+      "framework": "소규모기업",
+      "mapping_status": "설계상참고",
+      "scope": "금융상품·유가증권·파생상품의 주제 참고; 앱 계산 범위는 일부",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:4000:xlsx:3cb7ba2810fc",
+          "linked_sheets": [
+            "A",
+            "B",
+            "DER"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A03",
+      "framework": "KIFRS",
+      "mapping_status": "설계상참고",
+      "scope": "차입금·사채 관련 계정 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:4000:xlsx:b18010907559",
+          "linked_sheets": [
+            "BBDD"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A03",
+      "framework": "일반기업",
+      "mapping_status": "설계상참고",
+      "scope": "차입금·사채 관련 계정 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:4000:xlsx:51a0cfe7a678",
+          "linked_sheets": [
+            "BBDD"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A03",
+      "framework": "소규모기업",
+      "mapping_status": "설계상참고",
+      "scope": "차입금·사채 관련 계정 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:4000:xlsx:3cb7ba2810fc",
+          "linked_sheets": [
+            "BBDD"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A04",
+      "framework": "KIFRS",
+      "mapping_status": "설계상참고",
+      "scope": "매출·수익 실증절차 및 KIFRS 수익 템플릿의 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:4000:xlsx:b18010907559",
+          "linked_sheets": [
+            "P"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        },
+        {
+          "official_id": "official.example.2026:KIFRS:4000P-1:docx:48dc58d1b94d",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:KIFRS:4000P-1:xlsx:476166e39371",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "A04",
+      "framework": "일반기업",
+      "mapping_status": "설계상참고",
+      "scope": "매출·수익 실증절차 및 KIFRS 수익 템플릿의 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:4000:xlsx:51a0cfe7a678",
+          "linked_sheets": [
+            "P"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A04",
+      "framework": "소규모기업",
+      "mapping_status": "설계상참고",
+      "scope": "매출·수익 실증절차 및 KIFRS 수익 템플릿의 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:4000:xlsx:3cb7ba2810fc",
+          "linked_sheets": [
+            "P"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A05",
+      "framework": "KIFRS",
+      "mapping_status": "수동판단",
+      "scope": "계약자산·계약부채·진행기준의 적용 회계정책 및 수익 절차를 사람이 선택",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:4000:xlsx:b18010907559",
+          "linked_sheets": [
+            "P"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        },
+        {
+          "official_id": "official.example.2026:KIFRS:4000P-1:docx:48dc58d1b94d",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:KIFRS:4000P-1:xlsx:476166e39371",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "A05",
+      "framework": "일반기업",
+      "mapping_status": "수동판단",
+      "scope": "계약자산·계약부채·진행기준의 적용 회계정책 및 수익 절차를 사람이 선택",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:4000:xlsx:51a0cfe7a678",
+          "linked_sheets": [
+            "P"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A05",
+      "framework": "소규모기업",
+      "mapping_status": "수동판단",
+      "scope": "계약자산·계약부채·진행기준의 적용 회계정책 및 수익 절차를 사람이 선택",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:4000:xlsx:3cb7ba2810fc",
+          "linked_sheets": [
+            "P"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A06",
+      "framework": "KIFRS",
+      "mapping_status": "설계상참고",
+      "scope": "매출채권·조회·후속회수 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:4000:xlsx:b18010907559",
+          "linked_sheets": [
+            "C"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A06",
+      "framework": "일반기업",
+      "mapping_status": "설계상참고",
+      "scope": "매출채권·조회·후속회수 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:4000:xlsx:51a0cfe7a678",
+          "linked_sheets": [
+            "C"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A06",
+      "framework": "소규모기업",
+      "mapping_status": "설계상참고",
+      "scope": "매출채권·조회·후속회수 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:4000:xlsx:3cb7ba2810fc",
+          "linked_sheets": [
+            "C"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A07",
+      "framework": "KIFRS",
+      "mapping_status": "설계상참고",
+      "scope": "매출채권과 회계추정의 주제 참고; ECL 계산은 일부",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:4000:xlsx:b18010907559",
+          "linked_sheets": [
+            "C",
+            "EST"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A07",
+      "framework": "일반기업",
+      "mapping_status": "설계상참고",
+      "scope": "매출채권과 회계추정의 주제 참고; ECL 계산은 일부",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:4000:xlsx:51a0cfe7a678",
+          "linked_sheets": [
+            "C",
+            "EST"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A07",
+      "framework": "소규모기업",
+      "mapping_status": "설계상참고",
+      "scope": "매출채권과 회계추정의 주제 참고; ECL 계산은 일부",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:4000:xlsx:3cb7ba2810fc",
+          "linked_sheets": [
+            "C",
+            "EST"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A08",
+      "framework": "KIFRS",
+      "mapping_status": "설계상참고",
+      "scope": "매입채무·미기록부채 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:4000:xlsx:b18010907559",
+          "linked_sheets": [
+            "AA",
+            "TUL"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A08",
+      "framework": "일반기업",
+      "mapping_status": "설계상참고",
+      "scope": "매입채무·미기록부채 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:4000:xlsx:51a0cfe7a678",
+          "linked_sheets": [
+            "AA",
+            "TUL"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A08",
+      "framework": "소규모기업",
+      "mapping_status": "설계상참고",
+      "scope": "매입채무·미기록부채 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:4000:xlsx:3cb7ba2810fc",
+          "linked_sheets": [
+            "AA",
+            "TUL"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A09",
+      "framework": "KIFRS",
+      "mapping_status": "설계상참고",
+      "scope": "기타유동자산·부채 및 비용의 일부 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:4000:xlsx:b18010907559",
+          "linked_sheets": [
+            "D",
+            "CC",
+            "R"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A09",
+      "framework": "일반기업",
+      "mapping_status": "설계상참고",
+      "scope": "기타유동자산·부채 및 비용의 일부 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:4000:xlsx:51a0cfe7a678",
+          "linked_sheets": [
+            "D",
+            "CC",
+            "R"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A09",
+      "framework": "소규모기업",
+      "mapping_status": "설계상참고",
+      "scope": "기타유동자산·부채 및 비용의 일부 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:4000:xlsx:3cb7ba2810fc",
+          "linked_sheets": [
+            "D",
+            "CC",
+            "R"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A10",
+      "framework": "KIFRS",
+      "mapping_status": "설계상참고",
+      "scope": "재고수량·권리 및 실제 실사입회 기록의 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:4000:xlsx:b18010907559",
+          "linked_sheets": [
+            "E",
+            "E100"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A10",
+      "framework": "일반기업",
+      "mapping_status": "설계상참고",
+      "scope": "재고수량·권리 및 실제 실사입회 기록의 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:4000:xlsx:51a0cfe7a678",
+          "linked_sheets": [
+            "E",
+            "E100"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A10",
+      "framework": "소규모기업",
+      "mapping_status": "설계상참고",
+      "scope": "재고수량·권리 및 실제 실사입회 기록의 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:4000:xlsx:3cb7ba2810fc",
+          "linked_sheets": [
+            "E",
+            "E100"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A11",
+      "framework": "KIFRS",
+      "mapping_status": "설계상참고",
+      "scope": "재고평가·제조원가 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:4000:xlsx:b18010907559",
+          "linked_sheets": [
+            "E",
+            "Q"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A11",
+      "framework": "일반기업",
+      "mapping_status": "설계상참고",
+      "scope": "재고평가·제조원가 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:4000:xlsx:51a0cfe7a678",
+          "linked_sheets": [
+            "E",
+            "Q"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A11",
+      "framework": "소규모기업",
+      "mapping_status": "설계상참고",
+      "scope": "재고평가·제조원가 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:4000:xlsx:3cb7ba2810fc",
+          "linked_sheets": [
+            "E",
+            "Q"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A12",
+      "framework": "KIFRS",
+      "mapping_status": "설계상참고",
+      "scope": "유형자산·취득처분·감가상각 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:4000:xlsx:b18010907559",
+          "linked_sheets": [
+            "G"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A12",
+      "framework": "일반기업",
+      "mapping_status": "설계상참고",
+      "scope": "유형자산·취득처분·감가상각 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:4000:xlsx:51a0cfe7a678",
+          "linked_sheets": [
+            "G"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A12",
+      "framework": "소규모기업",
+      "mapping_status": "설계상참고",
+      "scope": "유형자산·취득처분·감가상각 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:4000:xlsx:3cb7ba2810fc",
+          "linked_sheets": [
+            "G"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A13",
+      "framework": "KIFRS",
+      "mapping_status": "설계상참고",
+      "scope": "무형자산·개발비 인식과 상각 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:4000:xlsx:b18010907559",
+          "linked_sheets": [
+            "H"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A13",
+      "framework": "일반기업",
+      "mapping_status": "설계상참고",
+      "scope": "무형자산·개발비 인식과 상각 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:4000:xlsx:51a0cfe7a678",
+          "linked_sheets": [
+            "H"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A13",
+      "framework": "소규모기업",
+      "mapping_status": "설계상참고",
+      "scope": "무형자산·개발비 인식과 상각 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:4000:xlsx:3cb7ba2810fc",
+          "linked_sheets": [
+            "H"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A14",
+      "framework": "KIFRS",
+      "mapping_status": "설계상참고",
+      "scope": "자산손상 주제 참고; CGU·측정·손상 결론은 사람 판단",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:4000:xlsx:b18010907559",
+          "linked_sheets": [
+            "J"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A14",
+      "framework": "일반기업",
+      "mapping_status": "설계상참고",
+      "scope": "자산손상 주제 참고; CGU·측정·손상 결론은 사람 판단",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:4000:xlsx:51a0cfe7a678",
+          "linked_sheets": [
+            "J"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A14",
+      "framework": "소규모기업",
+      "mapping_status": "설계상참고",
+      "scope": "자산손상 주제 참고; CGU·측정·손상 결론은 사람 판단",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:4000:xlsx:3cb7ba2810fc",
+          "linked_sheets": [
+            "J"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A15",
+      "framework": "KIFRS",
+      "mapping_status": "설계상참고",
+      "scope": "리스 관련 계정 주제 참고; 모든 계약조건을 자동 판단하지 않음",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:4000:xlsx:b18010907559",
+          "linked_sheets": [
+            "DL"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A15",
+      "framework": "일반기업",
+      "mapping_status": "설계상참고",
+      "scope": "리스 관련 계정 주제 참고; 모든 계약조건을 자동 판단하지 않음",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:4000:xlsx:51a0cfe7a678",
+          "linked_sheets": [
+            "DL"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A15",
+      "framework": "소규모기업",
+      "mapping_status": "설계상참고",
+      "scope": "리스 관련 계정 주제 참고; 모든 계약조건을 자동 판단하지 않음",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:4000:xlsx:3cb7ba2810fc",
+          "linked_sheets": [
+            "DL"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A16",
+      "framework": "KIFRS",
+      "mapping_status": "설계상참고",
+      "scope": "급여·퇴직급여 및 비용 관련 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:4000:xlsx:b18010907559",
+          "linked_sheets": [
+            "EE",
+            "R"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A16",
+      "framework": "일반기업",
+      "mapping_status": "설계상참고",
+      "scope": "급여·퇴직급여 및 비용 관련 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:4000:xlsx:51a0cfe7a678",
+          "linked_sheets": [
+            "EE",
+            "R"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A16",
+      "framework": "소규모기업",
+      "mapping_status": "설계상참고",
+      "scope": "급여·퇴직급여 및 비용 관련 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:4000:xlsx:3cb7ba2810fc",
+          "linked_sheets": [
+            "EE",
+            "R"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A17",
+      "framework": "KIFRS",
+      "mapping_status": "수동판단",
+      "scope": "퇴직급여 관련 주제 참고; 보험수리 평가·DB 판단은 별도",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:4000:xlsx:b18010907559",
+          "linked_sheets": [
+            "EE"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A17",
+      "framework": "일반기업",
+      "mapping_status": "수동판단",
+      "scope": "퇴직급여 관련 주제 참고; 보험수리 평가·DB 판단은 별도",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:4000:xlsx:51a0cfe7a678",
+          "linked_sheets": [
+            "EE"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A17",
+      "framework": "소규모기업",
+      "mapping_status": "수동판단",
+      "scope": "퇴직급여 관련 주제 참고; 보험수리 평가·DB 판단은 별도",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:4000:xlsx:3cb7ba2810fc",
+          "linked_sheets": [
+            "EE"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A18",
+      "framework": "KIFRS",
+      "mapping_status": "설계상참고",
+      "scope": "당기·이연법인세 계정 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:4000:xlsx:b18010907559",
+          "linked_sheets": [
+            "T"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A18",
+      "framework": "일반기업",
+      "mapping_status": "설계상참고",
+      "scope": "당기·이연법인세 계정 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:4000:xlsx:51a0cfe7a678",
+          "linked_sheets": [
+            "T"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A18",
+      "framework": "소규모기업",
+      "mapping_status": "설계상참고",
+      "scope": "당기·이연법인세 계정 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:4000:xlsx:3cb7ba2810fc",
+          "linked_sheets": [
+            "T"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A19",
+      "framework": "KIFRS",
+      "mapping_status": "설계상참고",
+      "scope": "충당부채·우발채무 및 약정 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:4000:xlsx:b18010907559",
+          "linked_sheets": [
+            "FF",
+            "CL"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A19",
+      "framework": "일반기업",
+      "mapping_status": "설계상참고",
+      "scope": "충당부채·우발채무 및 약정 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:4000:xlsx:51a0cfe7a678",
+          "linked_sheets": [
+            "FF",
+            "CL"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A19",
+      "framework": "소규모기업",
+      "mapping_status": "설계상참고",
+      "scope": "충당부채·우발채무 및 약정 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:4000:xlsx:3cb7ba2810fc",
+          "linked_sheets": [
+            "FF",
+            "CL"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A20",
+      "framework": "KIFRS",
+      "mapping_status": "수동판단",
+      "scope": "자본 및 금융상품 분류 주제 참고; 주식보상·복합상품 범위는 별도",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:4000:xlsx:b18010907559",
+          "linked_sheets": [
+            "GG",
+            "DER"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A20",
+      "framework": "일반기업",
+      "mapping_status": "수동판단",
+      "scope": "자본 및 금융상품 분류 주제 참고; 주식보상·복합상품 범위는 별도",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:4000:xlsx:51a0cfe7a678",
+          "linked_sheets": [
+            "GG",
+            "DER"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A20",
+      "framework": "소규모기업",
+      "mapping_status": "수동판단",
+      "scope": "자본 및 금융상품 분류 주제 참고; 주식보상·복합상품 범위는 별도",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:4000:xlsx:3cb7ba2810fc",
+          "linked_sheets": [
+            "GG",
+            "DER"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A21",
+      "framework": "KIFRS",
+      "mapping_status": "미연결",
+      "scope": "외화거래·환산·해외사업의 전용 공식 예시 시트를 특정하지 않음",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": []
+    },
+    {
+      "app_id": "A21",
+      "framework": "일반기업",
+      "mapping_status": "미연결",
+      "scope": "외화거래·환산·해외사업의 전용 공식 예시 시트를 특정하지 않음",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": []
+    },
+    {
+      "app_id": "A21",
+      "framework": "소규모기업",
+      "mapping_status": "미연결",
+      "scope": "외화거래·환산·해외사업의 전용 공식 예시 시트를 특정하지 않음",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": []
+    },
+    {
+      "app_id": "A22",
+      "framework": "KIFRS",
+      "mapping_status": "설계상참고",
+      "scope": "특수관계자 질문 및 대응 절차의 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:3500A:docx:1535b9a761ed",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:KIFRS:3150-3800:xlsx:3720e2ce1808",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "A22",
+      "framework": "일반기업",
+      "mapping_status": "설계상참고",
+      "scope": "특수관계자 질문 및 대응 절차의 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:3500A:docx:ac83cb6d4e55",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:일반기업:3150~3800:xlsx:8793d32fc1a9",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "A22",
+      "framework": "소규모기업",
+      "mapping_status": "설계상참고",
+      "scope": "특수관계자 질문 및 대응 절차의 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:3500A:docx:827689e80adf",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:소규모기업:3100~3800:xlsx:97cc3063b042",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "A23",
+      "framework": "KIFRS",
+      "mapping_status": "수동판단",
+      "scope": "종속·관계기업·공동약정과 그룹감사 주제 참고; 연결 범위는 사람이 선택",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:4000:xlsx:b18010907559",
+          "linked_sheets": [
+            "SAJ",
+            "JV"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        },
+        {
+          "official_id": "official.example.2026:KIFRS:7000~7570:xlsx:bd2563d3f0b9",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:KIFRS:7410:xlsx:cd07a2c566f4",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:KIFRS:7540:xlsx:b3ec88a2f010",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "A23",
+      "framework": "일반기업",
+      "mapping_status": "수동판단",
+      "scope": "종속·관계기업·공동약정과 그룹감사 주제 참고; 연결 범위는 사람이 선택",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:4000:xlsx:51a0cfe7a678",
+          "linked_sheets": [
+            "SAJ",
+            "JV"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        },
+        {
+          "official_id": "official.example.2026:일반기업:7000~7570:xlsx:6a0572632356",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:일반기업:7410:xlsx:ff4d72777b82",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:일반기업:7540:xlsx:446ff5de19f9",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "A23",
+      "framework": "소규모기업",
+      "mapping_status": "수동판단",
+      "scope": "종속·관계기업·공동약정과 그룹감사 주제 참고; 연결 범위는 사람이 선택",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력",
+        "소규모기업 서식계열 ZIP에 없는 2302·그룹감사·3650 서식을 다른 서식계열에서 차용하지 않음"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:4000:xlsx:3cb7ba2810fc",
+          "linked_sheets": [
+            "SAJ",
+            "JV"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A24",
+      "framework": "KIFRS",
+      "mapping_status": "설계상참고",
+      "scope": "현금흐름표 검토 관련 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:4000:xlsx:b18010907559",
+          "linked_sheets": [
+            "CF"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A24",
+      "framework": "일반기업",
+      "mapping_status": "설계상참고",
+      "scope": "현금흐름표 검토 관련 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:4000:xlsx:51a0cfe7a678",
+          "linked_sheets": [
+            "CF"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A24",
+      "framework": "소규모기업",
+      "mapping_status": "설계상참고",
+      "scope": "현금흐름표 검토 관련 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:4000:xlsx:3cb7ba2810fc",
+          "linked_sheets": [
+            "CF"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A25",
+      "framework": "KIFRS",
+      "mapping_status": "설계상참고",
+      "scope": "재무제표 제출·공시 점검 관련 주제 참고; 전체 공시 문항 대사 아님",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력",
+        "본문·전체 주석·모든 공시항목 완전성 자동검증 제외; 대사한 입력 범위만 표시"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:3650:xlsx:1192d92151ac",
+          "linked_sheets": [
+            "3650"
+          ],
+          "reference_scope": "시트명·제출/공시 점검 주제 수준의 설계상 참고; 개별 셀·전체 공시문항 대응 제외"
+        },
+        {
+          "official_id": "official.example.2026:KIFRS:8400:xlsx:22e444238a14",
+          "linked_sheets": [
+            "8400"
+          ],
+          "reference_scope": "시트명·제출/공시 점검 주제 수준의 설계상 참고; 개별 셀·전체 공시문항 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A25",
+      "framework": "일반기업",
+      "mapping_status": "설계상참고",
+      "scope": "재무제표 제출·공시 점검 관련 주제 참고; 전체 공시 문항 대사 아님",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력",
+        "본문·전체 주석·모든 공시항목 완전성 자동검증 제외; 대사한 입력 범위만 표시"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:3650:xlsx:3ed1c007717a",
+          "linked_sheets": [
+            "3650"
+          ],
+          "reference_scope": "시트명·제출/공시 점검 주제 수준의 설계상 참고; 개별 셀·전체 공시문항 대응 제외"
+        },
+        {
+          "official_id": "official.example.2026:일반기업:8400:xlsx:05a0a311ee6f",
+          "linked_sheets": [
+            "8400"
+          ],
+          "reference_scope": "시트명·제출/공시 점검 주제 수준의 설계상 참고; 개별 셀·전체 공시문항 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "A25",
+      "framework": "소규모기업",
+      "mapping_status": "설계상참고",
+      "scope": "재무제표 제출·공시 점검 관련 주제 참고; 전체 공시 문항 대사 아님",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력",
+        "본문·전체 주석·모든 공시항목 완전성 자동검증 제외; 대사한 입력 범위만 표시",
+        "소규모기업 서식계열 ZIP에 없는 2302·그룹감사·3650 서식을 다른 서식계열에서 차용하지 않음"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:8400:xlsx:60f057bd74b5",
+          "linked_sheets": [
+            "8400"
+          ],
+          "reference_scope": "시트명·제출/공시 점검 주제 수준의 설계상 참고; 개별 셀·전체 공시문항 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "F01",
+      "framework": "KIFRS",
+      "mapping_status": "수동판단",
+      "scope": "후속사건 관련 감사완결 파일 수준 참고; 세부 항목은 사람이 선택",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:8100~8700:xlsx:77687903219b",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "F01",
+      "framework": "일반기업",
+      "mapping_status": "수동판단",
+      "scope": "후속사건 관련 감사완결 파일 수준 참고; 세부 항목은 사람이 선택",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:8100~8700:xlsx:174406f58a40",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "F01",
+      "framework": "소규모기업",
+      "mapping_status": "수동판단",
+      "scope": "후속사건 관련 감사완결 파일 수준 참고; 세부 항목은 사람이 선택",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:8100~8700:xlsx:c2fc0bd6fca8",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "F02",
+      "framework": "KIFRS",
+      "mapping_status": "수동판단",
+      "scope": "계속기업 관련 감사완결 파일 수준 참고; 세부 항목은 사람이 선택",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:8100~8700:xlsx:77687903219b",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "F02",
+      "framework": "일반기업",
+      "mapping_status": "수동판단",
+      "scope": "계속기업 관련 감사완결 파일 수준 참고; 세부 항목은 사람이 선택",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:8100~8700:xlsx:174406f58a40",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "F02",
+      "framework": "소규모기업",
+      "mapping_status": "수동판단",
+      "scope": "계속기업 관련 감사완결 파일 수준 참고; 세부 항목은 사람이 선택",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:8100~8700:xlsx:c2fc0bd6fca8",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "F03",
+      "framework": "KIFRS",
+      "mapping_status": "수동판단",
+      "scope": "왜곡표시·수정분개 관련 감사완결 파일 수준 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:8100~8700:xlsx:77687903219b",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "F03",
+      "framework": "일반기업",
+      "mapping_status": "수동판단",
+      "scope": "왜곡표시·수정분개 관련 감사완결 파일 수준 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:8100~8700:xlsx:174406f58a40",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "F03",
+      "framework": "소규모기업",
+      "mapping_status": "수동판단",
+      "scope": "왜곡표시·수정분개 관련 감사완결 파일 수준 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:8100~8700:xlsx:c2fc0bd6fca8",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "F04",
+      "framework": "KIFRS",
+      "mapping_status": "수동판단",
+      "scope": "최종 분석·미완료 검토 관련 감사완결 파일 수준 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:8100~8700:xlsx:77687903219b",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "F04",
+      "framework": "일반기업",
+      "mapping_status": "수동판단",
+      "scope": "최종 분석·미완료 검토 관련 감사완결 파일 수준 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:8100~8700:xlsx:174406f58a40",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "F04",
+      "framework": "소규모기업",
+      "mapping_status": "수동판단",
+      "scope": "최종 분석·미완료 검토 관련 감사완결 파일 수준 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:8100~8700:xlsx:c2fc0bd6fca8",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "F05",
+      "framework": "KIFRS",
+      "mapping_status": "설계상참고",
+      "scope": "서면진술 및 감사완결 커뮤니케이션 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:8300A:docx:4b3a38eaa109",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:KIFRS:8100~8700:xlsx:77687903219b",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "F05",
+      "framework": "일반기업",
+      "mapping_status": "설계상참고",
+      "scope": "서면진술 및 감사완결 커뮤니케이션 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:8300A:docx:e781b7c9721a",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:일반기업:8100~8700:xlsx:174406f58a40",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "F05",
+      "framework": "소규모기업",
+      "mapping_status": "설계상참고",
+      "scope": "서면진술 및 감사완결 커뮤니케이션 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:8300A:docx:e2990655f4fd",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:소규모기업:8100~8700:xlsx:c2fc0bd6fca8",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "F06",
+      "framework": "KIFRS",
+      "mapping_status": "수동판단",
+      "scope": "전문가·부문감사인 업무 참고; 내부감사인 활용 판단 전체와는 구별",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:2131A:docx:a898dc84519e",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:KIFRS:7410:xlsx:cd07a2c566f4",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:KIFRS:8100~8700:xlsx:77687903219b",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "F06",
+      "framework": "일반기업",
+      "mapping_status": "수동판단",
+      "scope": "전문가·부문감사인 업무 참고; 내부감사인 활용 판단 전체와는 구별",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:2131A:docx:ea38ca6eaeeb",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:일반기업:7410:xlsx:ff4d72777b82",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:일반기업:8100~8700:xlsx:174406f58a40",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "F06",
+      "framework": "소규모기업",
+      "mapping_status": "수동판단",
+      "scope": "전문가·부문감사인 업무 참고; 내부감사인 활용 판단 전체와는 구별",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력",
+        "소규모기업 서식계열 ZIP에 없는 2302·그룹감사·3650 서식을 다른 서식계열에서 차용하지 않음"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:8100~8700:xlsx:c2fc0bd6fca8",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "F07",
+      "framework": "KIFRS",
+      "mapping_status": "수동판단",
+      "scope": "감사보고·핵심감사사항 및 기타정보의 주제 참고; 발행 제외",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:8100~8700:xlsx:77687903219b",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:KIFRS:3900:xlsx:5dbe576fa027",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:KIFRS:3910:xlsx:b8fb8ec7dc43",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "F07",
+      "framework": "일반기업",
+      "mapping_status": "수동판단",
+      "scope": "감사보고·핵심감사사항 및 기타정보의 주제 참고; 발행 제외",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:8100~8700:xlsx:174406f58a40",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:일반기업:3910:xlsx:bab319dc2651",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "F07",
+      "framework": "소규모기업",
+      "mapping_status": "수동판단",
+      "scope": "감사보고·핵심감사사항 및 기타정보의 주제 참고; 발행 제외",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:8100~8700:xlsx:c2fc0bd6fca8",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "F08",
+      "framework": "KIFRS",
+      "mapping_status": "설계상참고",
+      "scope": "조서 작성·보관 및 심리·논의 기록 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:04:xlsx:d5f5a1c11ac5",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:KIFRS:8550:xlsx:dcb30e4903bc",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:KIFRS:8550A:xlsx:6159a40f99c4",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "F08",
+      "framework": "일반기업",
+      "mapping_status": "설계상참고",
+      "scope": "조서 작성·보관 및 심리·논의 기록 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:04:xlsx:d5f5a1c11ac5",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:일반기업:8550:xlsx:f9bcac632e4d",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:일반기업:8550A:xlsx:6159a40f99c4",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "F08",
+      "framework": "소규모기업",
+      "mapping_status": "설계상참고",
+      "scope": "조서 작성·보관 및 심리·논의 기록 주제 참고",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:04:xlsx:9a8717cba421",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:소규모기업:8550:xlsx:de4108aa0148",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:소규모기업:8550A:xlsx:6159a40f99c4",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "FS01",
+      "framework": "KIFRS",
+      "mapping_status": "설계상참고",
+      "scope": "재무제표·TB·본문·선택 주석 대사와 제출·공시 점검의 주제 연결",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력",
+        "본문·전체 주석·모든 공시항목 완전성 자동검증 제외; 대사한 입력 범위만 표시"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:3650:xlsx:1192d92151ac",
+          "linked_sheets": [
+            "3650"
+          ],
+          "reference_scope": "시트명·제출/공시 점검 주제 수준의 설계상 참고; 개별 셀·전체 공시문항 대응 제외"
+        },
+        {
+          "official_id": "official.example.2026:KIFRS:8400:xlsx:22e444238a14",
+          "linked_sheets": [
+            "8400"
+          ],
+          "reference_scope": "시트명·제출/공시 점검 주제 수준의 설계상 참고; 개별 셀·전체 공시문항 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "FS01",
+      "framework": "일반기업",
+      "mapping_status": "설계상참고",
+      "scope": "재무제표·TB·본문·선택 주석 대사와 제출·공시 점검의 주제 연결",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력",
+        "본문·전체 주석·모든 공시항목 완전성 자동검증 제외; 대사한 입력 범위만 표시"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:3650:xlsx:3ed1c007717a",
+          "linked_sheets": [
+            "3650"
+          ],
+          "reference_scope": "시트명·제출/공시 점검 주제 수준의 설계상 참고; 개별 셀·전체 공시문항 대응 제외"
+        },
+        {
+          "official_id": "official.example.2026:일반기업:8400:xlsx:05a0a311ee6f",
+          "linked_sheets": [
+            "8400"
+          ],
+          "reference_scope": "시트명·제출/공시 점검 주제 수준의 설계상 참고; 개별 셀·전체 공시문항 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "FS01",
+      "framework": "소규모기업",
+      "mapping_status": "설계상참고",
+      "scope": "재무제표·TB·본문·선택 주석 대사와 제출·공시 점검의 주제 연결",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력",
+        "본문·전체 주석·모든 공시항목 완전성 자동검증 제외; 대사한 입력 범위만 표시",
+        "소규모기업 서식계열 ZIP에 없는 2302·그룹감사·3650 서식을 다른 서식계열에서 차용하지 않음"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:8400:xlsx:60f057bd74b5",
+          "linked_sheets": [
+            "8400"
+          ],
+          "reference_scope": "시트명·제출/공시 점검 주제 수준의 설계상 참고; 개별 셀·전체 공시문항 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "R01",
+      "framework": "KIFRS",
+      "mapping_status": "수동판단",
+      "scope": "원천증빙·거래배부와 계정별 실증절차의 관계를 사람이 선택",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:4000:xlsx:b18010907559",
+          "linked_sheets": [
+            "실증절차"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "R01",
+      "framework": "일반기업",
+      "mapping_status": "수동판단",
+      "scope": "원천증빙·거래배부와 계정별 실증절차의 관계를 사람이 선택",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:4000:xlsx:51a0cfe7a678",
+          "linked_sheets": [
+            "실증절차"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "R01",
+      "framework": "소규모기업",
+      "mapping_status": "수동판단",
+      "scope": "원천증빙·거래배부와 계정별 실증절차의 관계를 사람이 선택",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:4000:xlsx:3cb7ba2810fc",
+          "linked_sheets": [
+            "실증절차"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "W01",
+      "framework": "KIFRS",
+      "mapping_status": "수동판단",
+      "scope": "독립 계정 증빙연습의 계정별 주제 참고; 현 업무 수행증거로 자동 전환하지 않음",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:4000:xlsx:b18010907559",
+          "linked_sheets": [
+            "실증절차"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "W01",
+      "framework": "일반기업",
+      "mapping_status": "수동판단",
+      "scope": "독립 계정 증빙연습의 계정별 주제 참고; 현 업무 수행증거로 자동 전환하지 않음",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:4000:xlsx:51a0cfe7a678",
+          "linked_sheets": [
+            "실증절차"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "W01",
+      "framework": "소규모기업",
+      "mapping_status": "수동판단",
+      "scope": "독립 계정 증빙연습의 계정별 주제 참고; 현 업무 수행증거로 자동 전환하지 않음",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:4000:xlsx:3cb7ba2810fc",
+          "linked_sheets": [
+            "실증절차"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "G01",
+      "framework": "KIFRS",
+      "mapping_status": "수동판단",
+      "scope": "GLA 이상 후보와 위험평가·부정 질문의 연결 범위를 사람이 결정",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력",
+        "분석 후보는 부정 확정·조회 수령·실제 후속절차 수행을 뜻하지 않음"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:2302:xlsx:cd9105a40651",
+          "linked_sheets": [
+            "2302"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        },
+        {
+          "official_id": "official.example.2026:KIFRS:3600A:docx:4153a077f7f5",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:KIFRS:3600C:docx:84d5c8bd8e87",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "G01",
+      "framework": "일반기업",
+      "mapping_status": "수동판단",
+      "scope": "GLA 이상 후보와 위험평가·부정 질문의 연결 범위를 사람이 결정",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력",
+        "분석 후보는 부정 확정·조회 수령·실제 후속절차 수행을 뜻하지 않음"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:2302:xlsx:cd9105a40651",
+          "linked_sheets": [
+            "2302"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        },
+        {
+          "official_id": "official.example.2026:일반기업:3600A:docx:54c0099ef0a5",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:일반기업:3600C:docx:84d5c8bd8e87",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "G01",
+      "framework": "소규모기업",
+      "mapping_status": "수동판단",
+      "scope": "GLA 이상 후보와 위험평가·부정 질문의 연결 범위를 사람이 결정",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력",
+        "분석 후보는 부정 확정·조회 수령·실제 후속절차 수행을 뜻하지 않음",
+        "소규모기업 서식계열 ZIP에 없는 2302·그룹감사·3650 서식을 다른 서식계열에서 차용하지 않음"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:3600A:docx:ceef922795f7",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:소규모기업:3600C:docx:8cd699a7d7e0",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "I01",
+      "framework": "KIFRS",
+      "mapping_status": "수동판단",
+      "scope": "FIA 이상 후보와 위험평가·부정 질문의 연결 범위를 사람이 결정",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력",
+        "분석 후보는 부정 확정·조회 수령·실제 후속절차 수행을 뜻하지 않음"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:2302:xlsx:cd9105a40651",
+          "linked_sheets": [
+            "2302"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        },
+        {
+          "official_id": "official.example.2026:KIFRS:3600A:docx:4153a077f7f5",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:KIFRS:3600C:docx:84d5c8bd8e87",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "I01",
+      "framework": "일반기업",
+      "mapping_status": "수동판단",
+      "scope": "FIA 이상 후보와 위험평가·부정 질문의 연결 범위를 사람이 결정",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력",
+        "분석 후보는 부정 확정·조회 수령·실제 후속절차 수행을 뜻하지 않음"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:2302:xlsx:cd9105a40651",
+          "linked_sheets": [
+            "2302"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        },
+        {
+          "official_id": "official.example.2026:일반기업:3600A:docx:54c0099ef0a5",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:일반기업:3600C:docx:84d5c8bd8e87",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "I01",
+      "framework": "소규모기업",
+      "mapping_status": "수동판단",
+      "scope": "FIA 이상 후보와 위험평가·부정 질문의 연결 범위를 사람이 결정",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력",
+        "분석 후보는 부정 확정·조회 수령·실제 후속절차 수행을 뜻하지 않음",
+        "소규모기업 서식계열 ZIP에 없는 2302·그룹감사·3650 서식을 다른 서식계열에서 차용하지 않음"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:3600A:docx:ceef922795f7",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        },
+        {
+          "official_id": "official.example.2026:소규모기업:3600C:docx:8cd699a7d7e0",
+          "linked_sheets": [],
+          "reference_scope": "파일명·파일 주제 수준 참고; 세부 시트·행·문항의 적용은 사람이 확인"
+        }
+      ]
+    },
+    {
+      "app_id": "H01",
+      "framework": "KIFRS",
+      "mapping_status": "설계상참고",
+      "scope": "현금분석 후보와 현금·예금 실증절차의 주제 연결",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력",
+        "분석 후보는 부정 확정·조회 수령·실제 후속절차 수행을 뜻하지 않음"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:KIFRS:4000:xlsx:b18010907559",
+          "linked_sheets": [
+            "A"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "H01",
+      "framework": "일반기업",
+      "mapping_status": "설계상참고",
+      "scope": "현금분석 후보와 현금·예금 실증절차의 주제 연결",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력",
+        "분석 후보는 부정 확정·조회 수령·실제 후속절차 수행을 뜻하지 않음"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:일반기업:4000:xlsx:51a0cfe7a678",
+          "linked_sheets": [
+            "A"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    },
+    {
+      "app_id": "H01",
+      "framework": "소규모기업",
+      "mapping_status": "설계상참고",
+      "scope": "현금분석 후보와 현금·예금 실증절차의 주제 연결",
+      "exclusions": [
+        "공식 예시의 필수항목 충족 또는 감사기준 준수 인증 아님",
+        "공식 셀·서명·질문서·보고서 자동작성 및 공식 서식 전수검증 제외",
+        "적용 여부·수행 사실·증거 충분성·판단·검토·승인은 사람 입력",
+        "분석 후보는 부정 확정·조회 수령·실제 후속절차 수행을 뜻하지 않음"
+      ],
+      "references": [
+        {
+          "official_id": "official.example.2026:소규모기업:4000:xlsx:3cb7ba2810fc",
+          "linked_sheets": [
+            "A"
+          ],
+          "reference_scope": "시트명·계정 주제 수준의 설계상 참고; 개별 셀·필수항목 대응 제외"
+        }
+      ]
+    }
+  ]
+}

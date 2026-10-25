@@ -277,7 +277,7 @@ class AiWorkpaperTests(unittest.TestCase):
         from ai_provider import validate_packet
         opened=sector_demo.open_company('JS_ELEC',Path(self.temp.name)/'업종보관',ROOT/'sector_resources')
         child=Workspace(opened['folder'])
-        pids={'원장·리드':'C04','금융상품':'A02','매출':'A04','감가상각':'A12','확장검사':'A01','리스':'A15','대손충당금':'A07','재고평가':'A11','종업원급여':'A16','미기록부채·비용이연':'A09','원천증빙':'R01','재무제표·주석':'F01','GLA':'G01','FIA':'I01','현금분석':'H01'}
+        pids={'원장·리드':'C04','금융상품':'A02','매출':'A04','감가상각':'A12','확장검사':'A01','리스':'A15','대손충당금':'A07','재고평가':'A11','종업원급여':'A16','미기록부채·비용이연':'A09','원천증빙':'R01','재무제표·주석':'FS01','GLA':'G01','FIA':'I01','현금분석':'H01'}
         self.assertEqual(set(child.latest()),set(pids))
         for module,pid in pids.items():
             with self.subTest(module=module):

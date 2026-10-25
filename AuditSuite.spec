@@ -8,5 +8,6 @@ a=Analysis([str(root/'app.py')],pathex=[str(root)],binaries=[],
     hiddenimports=['tkinter','tkinter.ttk','defusedxml.ElementTree','sqlite3','et_xmlfile','gla','fia','cash_analytics','sector_demo','procedures']+['worker_library.'+w+'.engine' for w in ('cash_finance','revenue_ar','inventory_ap','fixed_assets','leases','payroll','debt_tax','equity_disclosure','financial_reporting')],hookspath=[],hooksconfig={},runtime_hooks=[],
     excludes=['lxml','numpy','pandas','anthropic','pytest','requests'],noarchive=False,optimize=0)
 a.datas += [(str(p.relative_to(root)),str(p),'DATA') for p in (root/'assets').iterdir() if p.is_file()]
+a.datas += [('form_registry.json',str(root/'form_registry.json'),'DATA')]
 pyz=PYZ(a.pure)
 exe=EXE(pyz,a.scripts,a.binaries,a.datas,[],name='AuditSuite',debug=False,bootloader_ignore_signals=False,strip=False,upx=False,runtime_tmpdir=None,console=False,disable_windowed_traceback=False,uac_admin=False,uac_uiaccess=False,manifest=str(root/'windows.manifest'),icon=str(root/'assets/js-audit.ico'))
