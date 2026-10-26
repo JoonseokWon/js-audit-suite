@@ -6,6 +6,7 @@ class AIJobs:
     def launch_ai_job(self,work,complete):
             if self.busy:raise AuditError('현재 작업이 끝난 뒤 실행하세요.')
             self.cancel.clear();self.ai_job_complete=complete;self.set_busy(True)
+            self.start_ai_elapsed()
             def worker():
                 try:result=work();self.queue.put(('ai_ok',result))
                 except Exception as exc:
@@ -17,6 +18,7 @@ class AIJobs:
             threading.Thread(target=worker,daemon=False).start()
 
     def finish_ai_job(self,kind,data):
+            self.stop_ai_elapsed()
             self.set_busy(False);complete=self.ai_job_complete;self.ai_job_complete=None
             if self.closing:self.shutdown_ai();self.root.destroy();return
             if self.cancel.is_set():self.status.set('AI 작업 취소. 새 초안·승인 기록을 저장하지 않았습니다.');return

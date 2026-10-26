@@ -33,8 +33,9 @@ class WorkpapersActions:
         self.current_pid = pid
         self.current_title = p['title']
         self.proc_heading.set(p['title'] + ' / ' + (self.ws.procedure_state(p) if self.ws and 'basis' in p else '미착수'))
+        from desktop.demo.context import default_preparer
         for key, var in self.proc_vars.items():
-            var.set(p.get(key, self.ws.engagement['작성자'] if key == 'preparer' and self.ws else ''))
+            var.set(p.get(key, default_preparer(self.ws) if key == 'preparer' else ''))
         self.excluded.set(p.get('excluded', False))
         for key, t in self.proc_text.items():
             t.delete('1.0', 'end')

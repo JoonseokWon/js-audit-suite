@@ -69,6 +69,9 @@ def build_header(host,parent):
     from desktop.onboarding.examples import open_example
     host.more_menu.add_command(label='실무절차 입력·검사',command=lambda:host.call(lambda:open_workbench(host)))
     host.more_menu.add_command(label='새 JS 실무절차 예제',command=lambda:host.call(lambda:open_example(host)))
+    from desktop.demo import open_demo_creator,open_demo_guide
+    host.more_menu.add_command(label='새 JS전자 감사 시연',command=lambda:host.call(lambda:open_demo_creator(host)))
+    host.more_menu.add_command(label='JS전자 시연 진행 안내',command=lambda:host.call(lambda:open_demo_guide(host)))
     from desktop.chrome.tools import open_cashflow
     host.more_menu.add_command(label='현금흐름표 별도 도구',command=lambda:host.call(lambda:open_cashflow(host)))
     screens=tk.Menu(host.more_menu,tearoff=False)

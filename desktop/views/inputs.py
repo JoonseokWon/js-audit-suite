@@ -18,6 +18,11 @@ class InputsView:
             command=lambda:self.call(lambda:open_workbench(self))))
         actions.add(ttk.Button(actions,text='새 JS 실무절차 예제',style='Secondary.TButton',
             command=lambda:self.call(lambda:open_example(self))))
+        from desktop.demo import open_demo_creator,open_demo_guide
+        actions.add(ttk.Button(actions,text='새 JS전자 감사 시연',style='Secondary.TButton',
+            command=lambda:self.call(lambda:open_demo_creator(self))))
+        actions.add(ttk.Button(actions,text='시연 진행 안내',
+            command=lambda:self.call(lambda:open_demo_guide(self))))
         upload = BentoCard(parent, '자료를 등록하고 검사해요',
                            '원본의 회사·기간과 추출 조건을 확인한 뒤 검사할 자료를 선택하세요.')
         upload.pack(fill='x', pady=(0, 16))

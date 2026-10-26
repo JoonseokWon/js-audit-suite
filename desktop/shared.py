@@ -18,7 +18,7 @@ from desktop_display import DisplayManager,ScrollableFrame,create_scrolled_text,
 from ai_desktop import AIDesktopMixin
 from workflow_desktop import WorkflowDesktopMixin
 
-TITLE='JS 통합 회계감사 v2.1.0'
+TITLE='JS 통합 회계감사 v2.2.0'
 
 ONBOARDING_LIMITS={
  '실무자료·원장':'확인한 ERP 열·계정·부호와 독립 통제. 조정 전후 TB·본문·주석·제조원가 대사. 원본 추출 신뢰성은 별도 확인.',

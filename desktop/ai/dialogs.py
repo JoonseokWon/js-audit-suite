@@ -1,16 +1,21 @@
 """AIDialogs; method bodies preserved from the original UI contract."""
 from .shared import *
+from .evidence import build_evidence_frame,wrapping_label
 
 
 class AIDialogs:
     def ai_window(self,title,width=960,height=700):
             win=tk.Toplevel(self.root);win.title(title);win.transient(self.root)
-            win.geometry(f'{min(width,self.root.winfo_screenwidth()-80)}x{min(height,self.root.winfo_screenheight()-130)}')
-            win.minsize(520,380);return win
+            win.audit_display=getattr(self,'display',None)
+            px=self.display.px if hasattr(self,'display') else int
+            available_w=max(320,self.root.winfo_screenwidth()-80)
+            available_h=max(320,self.root.winfo_screenheight()-130)
+            win.geometry(f'{min(px(width),available_w)}x{min(px(height),available_h)}')
+            win.minsize(min(px(520),available_w),min(px(380),available_h));return win
 
     def open_external_consent(self,packet,send):
             win=self.ai_window('OpenAI로 전송할 근거 확인');self.ai_consent_win=win
-            ttk.Label(win,text='아래 선택된 원문 발췌·대사·예외·현재 조서가 OpenAI API로 전송됩니다. 실제 데이터의 외부 전송 권한을 확인하세요.',wraplength=850,padding=10).pack(fill='x')
+            wrapping_label(win,text='아래 선택된 원문 발췌·대사·예외·현재 조서가 OpenAI API로 전송됩니다. 실제 데이터의 외부 전송 권한을 확인하세요.',padding=10).pack(fill='x')
             footer=ttk.Frame(win);footer.pack(side='bottom',fill='x')
             text=create_scrolled_text(win,wrap='word');text.audit_container.pack(fill='both',expand=True,padx=10);text.insert('1.0',json.dumps(packet,ensure_ascii=False,indent=2));text.configure(state='disabled')
             approved=tk.BooleanVar(value=False);win.confirmed=approved
@@ -29,11 +34,16 @@ class AIDialogs:
                 if not drafts:raise AuditError('현재 조서의 저장된 AI 초안이 없습니다. AI 초안 생성을 먼저 실행하세요.')
                 draft_id=drafts[-1]['id']
             draft=self.ws.ai_drafts[draft_id];win=self.ai_window('AI 초안 · 근거 확인');self.ai_preview_win=win;win.draft_id=draft_id
-            ttk.Label(win,text=f"{draft['procedure_id']} · {draft['provider']} / {draft['model']}\nAI 제안입니다. 실제 미수행 사항과 예외를 확인하고 사람이 수정·승인하세요.",wraplength=850,padding=10).pack(fill='x')
+            wrapping_label(win,text=f"{draft['procedure_id']} · {draft['provider']} / {draft['model']}\nAI 제안입니다. 실제 미수행 사항과 예외를 확인하고 사람이 수정·승인하세요.",padding=10).pack(fill='x')
             footer=ttk.Frame(win);footer.pack(side='bottom',fill='x')
             nb=ttk.Notebook(win);nb.pack(fill='both',expand=True,padx=10)
-            for label,content in [('AI 초안','\n\n'.join(FIELD_LABELS[k]+'\n'+draft['fields'][k]+'\n근거: '+', '.join(draft['citations'][k]) for k in FIELD_LABELS)),('근거·대사',json.dumps(draft['packet'],ensure_ascii=False,indent=2))]:
+            for label,content in [('AI 초안','\n\n'.join(FIELD_LABELS[k]+'\n'+draft['fields'][k]+'\n근거: '+', '.join(draft['citations'][k]) for k in FIELD_LABELS))]:
                 frame=ttk.Frame(nb);nb.add(frame,text=label);text=create_scrolled_text(frame,wrap='word');text.audit_container.pack(fill='both',expand=True);text.insert('1.0',content);text.configure(state='disabled')
+            evidence=build_evidence_frame(nb,draft['packet']);nb.add(evidence,text='원본·대사 근거')
+            frame=ttk.Frame(nb);nb.add(frame,text='전체 근거 JSON')
+            text=create_scrolled_text(frame,wrap='word');text.audit_container.pack(fill='both',expand=True)
+            text.insert('1.0',json.dumps(draft['packet'],ensure_ascii=False,indent=2));text.configure(state='disabled')
+            win.evidence_body=evidence
             def apply():
                 if self.ws is not captured_ws:raise AuditError('초안 화면을 연 뒤 업무가 변경됐습니다. 현재 업무에서 다시 여세요.')
                 if self.current_pid!=draft['procedure_id']:raise AuditError('이 초안의 원래 조서를 선택하세요.')
@@ -46,8 +56,10 @@ class AIDialogs:
             if not self.ai_clean_form():return
             ws=self.ws;pid=self.current_pid;state=ws.ai_status(pid)
             if not state['required']:raise AuditError('AI 초안을 적용한 후 최종 내용을 승인하세요.')
+            if ws.ai_drafts[state['draft_id']]['basis']!=ws.basis():
+                raise AuditError('근거 자료·검사 결과가 바뀌었어요. 새 AI 초안을 생성·적용하고 사람이 내용을 확인하세요.')
             win=self.ai_window('AI 내용 최종 승인');self.ai_approval_win=win
-            ttk.Label(win,text='사람이 수정·저장한 현재 내용과 근거 버전을 승인합니다. 별도 검토자의 검토기록과 전체 감사 완료를 대신하지 않습니다.',wraplength=850,padding=10).pack(fill='x')
+            wrapping_label(win,text='사람이 수정·저장한 현재 내용과 근거 버전을 승인합니다. 별도 검토자의 검토기록과 전체 감사 완료를 대신하지 않습니다.',padding=10).pack(fill='x')
             controls=ttk.Frame(win,padding=10);controls.pack(side='bottom',fill='x')
             body=create_scrolled_text(win,wrap='word');body.audit_container.pack(fill='both',expand=True,padx=10)
             p=ws.procedures[pid];draft=ws.ai_drafts[state['draft_id']]

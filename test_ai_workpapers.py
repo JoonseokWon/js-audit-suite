@@ -243,13 +243,13 @@ class AiWorkpaperTests(unittest.TestCase):
 
     def test_ai_text_starting_equals_is_exported_as_literal_not_formula(self):
         packet=self.packet();response=mock_response(packet)
-        response['fields']['purpose']='=1+1 [REF001]';response['citations']['purpose']=['REF001']
+        response['fields']['purpose']='=SUM(A:A) [REF001]';response['citations']['purpose']=['REF001']
         did=self.ws.record_ai_draft(packet,sync_raw(response),'합성요청자');self.ws.apply_ai_draft(did,'합성작성자')
         from openpyxl import load_workbook
         book=load_workbook(io.BytesIO(exporter.workbook_bytes(self.ws.snapshot(),CATALOG)),data_only=False)
         try:
             cell=next(row[1] for row in book['조서_A04'] if row[0].value=='목적·주장')
-            self.assertEqual(cell.value,'=1+1 [REF001]');self.assertEqual(cell.data_type,'s')
+            self.assertEqual(cell.value,'=SUM(A:A) [REF001]');self.assertEqual(cell.data_type,'s')
         finally:book.close()
 
     def test_final_needs_ai_approval_and_existing_independent_review(self):

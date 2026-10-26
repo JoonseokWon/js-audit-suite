@@ -1,0 +1,30 @@
+name: JS Audit Suite v2.2.0
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    name: Audit Suite Python ${{ matrix.python-version }}
+    runs-on: windows-latest
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.12', '3.14']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: python -m pip install openpyxl==3.1.5 defusedxml==0.7.1
+      - name: Unit tests
+        run: python -X utf8 -B -m unittest discover -v
+      - name: Release policy mock tests
+        run: python -X utf8 -B tools/test_release_v22.py
+      - name: Headless integration
+        run: python -X utf8 -B tools/verify_headless_v22.py --directory "${{ runner.temp }}/audit-suite-v22-${{ matrix.python-version }}"

@@ -8,7 +8,11 @@ class CompanyActions:
     def sector_selection(self):
         self.sector_name.set(next((c['name'] for c in self.sector_options if c['code'] == self.active_sector), '회사를 선택하세요'))
         if self.active_sector is None:
-            self.sector_description.set('수동 업무 · 회사명·범위는 현재 업무 정보를 확인하세요.')
+            from desktop.demo.context import has_demo_marker
+            if has_demo_marker(self.ws):
+                self.sector_name.set(self.ws.engagement['회사명'])
+                self.sector_description.set('JS전자 감사 시연 · 가상 제조업 자료의 별도 업무예요. 실제 감사 수행·승인과 모회사 연결결산을 포함하지 않아요.')
+            else:self.sector_description.set('수동 업무 · 회사명·범위는 현재 업무 정보를 확인하세요.')
 
     def new_sector(self):
         chosen = next((c['code'] for c in self.sector_options if c['name'] == self.sector_name.get()), None)

@@ -117,7 +117,7 @@ def build_packet(ws,pid,catalog=None,limits=None,event=None):
     ref('engagement',packet['engagement'])
     ref('procedure_definition',{'id':pid,'title':task['title'],'purpose':task.get('purpose',''),'risk':task.get('risk',''),'human_work':'실사·조회·수령 신뢰성 확인·판단·승인은 사람이 별도로 수행해야 함'})
     protected=set()
-    if module in ONBOARDING_MODULES:
+    if module in ONBOARDING_MODULES or module=='매출':
         from onboarding.ai_evidence import reserve
         protected=reserve(ws,module,chosen,ref)
     if ws.workflow_profile:

@@ -207,7 +207,8 @@ def _ollama_response_schema(packet, public_schema):
         schema['properties']['fields']['properties'][field] = {
             'type': 'string', 'pattern': _ollama_prefix_pattern(value)}
     ids = [ref['id'] for ref in packet['references']
-           if ref['kind'] in ('exception', 'run_summary', 'ledger_reconciliation')]
+           if ref['kind'] in ('exception', 'run_summary', 'ledger_reconciliation',
+                              'calculation_row','raw_xlsx_row','raw_json')]
     schema['properties']['citations']['properties']['performed'] = {
         'type': 'array', 'enum': [list(dict.fromkeys(ids))]}
     return schema
@@ -239,6 +240,12 @@ def _qualified_claim(sentence, match, expression_index):
     if _NEGATIVE.search(suffix):
         return True
     if re.search(r'\b(?:not|cannot|never)\s+(?:(?:conclude|claim|state|assert)\s+)?$', sentence[max(0, match.start() - 25):match.start()], re.I):
+        return True
+    # A noun phrase asking whether a procedure occurred is not an assertion
+    # that it occurred. Do not accept "여부를 확인했다" or later completed work.
+    if expression_index in (2, 3, 4, 5) and re.search(
+            r'^\s*여부(?:임\b|이다\b|입니다\b|\s*$|는\s*(?:미확인|확인\s*필요)'
+            r'|를\s*(?:추가\s*)?확인(?:해야|할\s*필요|할\s*예정))',suffix):
         return True
     # Future audit work is permitted; "no fraud"/clean opinion is not a plan.
     return expression_index in (2, 3, 4, 5) and bool(_FUTURE.search(suffix))
@@ -292,6 +299,9 @@ def validate_draft_response(packet, fields, citations):
         dismissed = re.search(r'(?:추가|후속)\s*(?:조사|확인|감사절차).{0,20}(?:불필요|필요\s*없|하지\s*않아도|생략\s*가능)', conclusion)
         if not (actor and warning and followup and required) or dismissed:
             raise AIProviderError('선택된 예외에 대한 사람의 추가조사·확인 필요를 AI 결론에 명시해야 합니다.')
+    from ai_quality import validate_numeric_support
+    try:validate_numeric_support(packet, fields, citations)
+    except ValueError as exc:raise AIProviderError(str(exc)) from None
     return True
 
 
@@ -508,6 +518,7 @@ def generate_draft(packet, config, cancel_event=None):
     schema = response_schema(snapshot)
     format_schema = _ollama_response_schema(snapshot, schema) if provider == 'ollama' else schema
     instructions = _SYSTEM
+    instructions += '\n각 항목의 숫자는 그 항목의 citations에 포함된 근거에서 확인되는 값만 사용합니다. 날짜를 금액 근거로 쓰지 않습니다. 원문의 부호를 유지하고 해당 근거가 없으면 숫자 대신 미확인이라고 작성합니다.'
     if provider == 'ollama' and _selected_exceptions(snapshot):
         instructions += '\n로컬 생성 제약: performed는 선택 예외(원문 고정) 코드·ID 목록 뒤의 AI 서술에 실제 원문·대사 결과와 미수행 범위를 작성합니다. conclusion은 필수 경고 뒤 AI 제안에 선택 예외의 의미와 추가 확인 대상을 작성합니다. 고정 구간은 프로그램이 제시한 원문 목록·안전 경고이며 AI가 새로 판단한 사실이 아닙니다. AI 서술과 AI 제안은 각각 20자 이상의 한 문단으로 작성하고 따옴표·역슬래시·줄바꿈은 쓰지 않습니다.'
     instructions += '\n응답 JSON schema: ' + _json(format_schema)
@@ -549,8 +560,12 @@ def generate_draft(packet, config, cancel_event=None):
                        'text': {'format': {'type': 'json_schema', 'name': 'audit_workpaper_draft',
                                            'strict': True, 'schema': schema}},
                        'max_output_tokens': 4000}
+        if cancel_event is not None and cancel_event.is_set():
+            raise AIProviderError('사용자가 AI 작성을 취소했습니다. 초안을 저장하지 않았습니다.')
         response = _post_json(target, payload, headers, float(timeout), cancel_event)
         raw, actual_model = _extract(provider, response)
+        if provider == 'ollama' and actual_model != model:
+            raise AIProviderError('요청한 로컬 모델과 응답 모델이 다릅니다. 초안을 저장하지 않았습니다.')
         if key and (key in raw or key in actual_model):
             raise AIProviderError('AI 응답에 인증정보가 포함되어 있어 초안을 차단했습니다.')
         parsed = _loads(raw)
