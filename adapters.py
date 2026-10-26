@@ -30,13 +30,16 @@ def run(module,path,context,event=None,ledger_result=None):
             out=analyze(path,context,event)
         out['source']={'name':Path(path).name,'sha256':sha(path),'bytes':Path(path).stat().st_size}
         return plain(out)
-    tables,source=read_xlsx(path,event=event,max_rows=10000 if module in ('원장·리드','리스','대손충당금','재고평가','종업원급여','미기록부채·비용이연') else 1000)
+    if module=='원장·리드':
+        import ledger
+        from input_limits import LEDGER_LIMITS
+        tables,source=read_xlsx(path,ledger.SCHEMA,event,row_limits=LEDGER_LIMITS)
+    else:tables,source=read_xlsx(path,event=event,max_rows=10000 if module in ('리스','대손충당금','재고평가','종업원급여','미기록부채·비용이연') else 1000)
     cancelled(event)
     if module=='원장·리드':
         import ledger
         if set(tables)!=set(ledger.SCHEMA):raise AuditError('원장·리드 입력양식을 사용하세요.')
-        # Re-read with exact schema before accounting operations.
-        tables,source=read_xlsx(path,ledger.SCHEMA,event)
+        # Exact schema was checked in the single value-only read above.
         out=ledger.analyze(tables,event)
     elif module=='금융상품':
         r=finance.reconcile(Path(path),event);iss=[]

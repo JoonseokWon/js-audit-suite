@@ -34,14 +34,14 @@ class Workspace:
         self.refresh()
     def _read(self,db):
         if schema_digest(db)!=EXPECTED_SCHEMA or db.execute('SELECT version FROM meta').fetchall()!=[('audit-suite-1',)]:raise AuditError('업무 DB 스키마/버전 검증 실패. 원본을 보존하세요.')
-        rows=db.execute('SELECT seq,payload,prev,hash FROM events ORDER BY seq').fetchall();last=''
+        rows=db.execute('SELECT seq,payload,prev,hash FROM events ORDER BY seq').fetchall();last='';decoded=[]
         for i,(seq,payload,prev,h) in enumerate(rows,1):
             if seq!=i or prev!=last or digest({'seq':seq,'payload':payload,'prev':prev})!=h:raise AuditError('업무 이력 무결성 검증 실패')
-            json.loads(payload);last=h
+            decoded.append(json.loads(payload));last=h
         try:a=json.loads(self.anchor.read_text(encoding='utf-8'))
         except (OSError,ValueError) as e:raise AuditError('이력 헤드 파일 없음/오류') from e
         if a!={'seq':len(rows),'hash':last}:raise AuditError('이력 끝부분/헤드 불일치. DB와 헤드를 함께 보존·복구하세요.')
-        return [json.loads(r[1]) for r in rows],last
+        return decoded,last
     def _connect(self):
         db=sqlite3.connect(self.dbpath,timeout=5);db.execute('PRAGMA trusted_schema=OFF');return db
     def _append(self,kind,data,expected_head=None):
@@ -125,7 +125,8 @@ class Workspace:
         return module_for(self,pid)
     def add_source(self,path,label,role='증거'):
         self.assert_writeable();p=Path(path).resolve();label=text(label,'자료명');role=text(role,'자료유형')
-        if not p.is_file() or p.stat().st_size>25*1024**2:raise AuditError('자료는 25MB 이하 파일이어야 합니다.')
+        from input_limits import MAX_SOURCE_BYTES
+        if not p.is_file() or p.stat().st_size>MAX_SOURCE_BYTES:raise AuditError('자료는 256MB 이하 파일이어야 합니다.')
         raw=p.read_bytes();sid=uid();relative=Path('원본')/(sid+p.suffix.lower());dest=self.root/relative
         atomic(dest,raw)
         if hashlib.sha256(p.read_bytes()).hexdigest()!=hashlib.sha256(raw).hexdigest():dest.unlink();raise AuditError('자료 복사 중 원본 변경')

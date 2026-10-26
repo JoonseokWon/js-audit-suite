@@ -5,7 +5,8 @@ from .schema import PROVENANCE
 
 
 def read_original(path, event=None):
-    tables,metadata=read_xlsx(path,schema=None,event=event)
+    from input_limits import EXCEL_DATA_ROWS
+    tables,metadata=read_xlsx(path,schema=None,event=event,max_rows=EXCEL_DATA_ROWS)
     # The generic reader adds these metadata keys. Reject a colliding original header before it is mistaken for provenance.
     from openpyxl import load_workbook
     book=load_workbook(path,read_only=True,data_only=False,keep_links=False)

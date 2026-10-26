@@ -54,8 +54,10 @@ PROVENANCE = ('source_file', 'source_sha256', 'source_sheet', 'source_row')
 
 def rows(payload, key):
     value = payload.get(key, [])
-    if not isinstance(value, list) or len(value) > 10000:
-        raise AuditError(key + ': 10,000행 이하 표가 필요합니다.')
+    from input_limits import EXCEL_DATA_ROWS
+    limit=EXCEL_DATA_ROWS if key=='source_rows' else 10000
+    if not isinstance(value, list) or len(value) > limit:
+        raise AuditError(key + f': {limit:,}행 이하 표가 필요합니다.')
     for row in value:
         if not isinstance(row, dict) or any(isinstance(v, (list, dict)) for v in row.values()):
             raise AuditError(key + ': 각 행에는 확정 단일 값만 입력하세요.')

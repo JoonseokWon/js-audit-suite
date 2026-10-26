@@ -10,7 +10,7 @@ def workbook_bytes(snapshot,catalog):
     from openpyxl.styles import Font,PatternFill,Alignment
     from openpyxl.utils import get_column_letter
     w=Workbook();w.remove(w.active)
-    def add(name,rows,headers=None):
+    def regular_add(name,rows,headers=None):
         safe=re.sub(r'[\\/*?:\[\]]','_',name)[:31] or '자료';base=safe;n=1
         while safe in w.sheetnames:n+=1;safe=base[:27]+'_'+str(n)
         priority={'리드스케줄':['계정코드','계정명','리드코드','리드명','표시구분','기초잔액','차변','대변','조정전','승인조정','조정후','원본행'],'리드집계':['리드코드','리드명','표시구분','계정수','기초잔액','차변','대변','조정전','승인조정','조정후']}
@@ -41,6 +41,12 @@ def workbook_bytes(snapshot,catalog):
                     lines=max(lines,sum(max(1,math.ceil(sum(2 if unicodedata.east_asian_width(ch) in ('W','F') else 1 for ch in line)/max(8,width-2))) for line in str(cell.value or '').split('\n')))
                 ws.row_dimensions[row[0].row].height=max(25,lines*16+6)
         return ws
+    large=sum(len(rows) for run in snapshot['latest'] for rows in run['result']['tables'].values())>20000
+    if large:
+        from export_streaming import create_builder
+        priority={'리드스케줄':['계정코드','계정명','리드코드','리드명','표시구분','기초잔액','차변','대변','조정전','승인조정','조정후','원본행'],'리드집계':['리드코드','리드명','표시구분','계정수','기초잔액','차변','대변','조정전','승인조정','조정후']}|TABLE_COLUMNS
+        w.close();w,add=create_builder(priority,NUMERIC,RATES,QUANTITIES)
+    else:add=regular_add
     eng=snapshot['engagement'];cover=[{'항목':k,'값':eng[k]} for k in ('회사명','회사코드','시작일','기준일','작성자','회계체계','감사기준')]+[{'항목':'업무ID','값':eng['id']},{'항목':'출력상태','값':snapshot['export_state']},{'항목':'범위','값':snapshot['scope']},{'항목':'더미표시','값':'SYNTHETIC ONLY' if eng.get('더미업무') else '실제업무 기록'},{'항목':'검토정책','값':'작성자와 별도 검토자 이름 입력. 인증된 서명 아님.'}]
     ai_statuses=[p.get('ai_status',{}) for p in snapshot['procedures'] if p.get('ai_status',{}).get('required')]
     if ai_statuses:cover.append({'항목':'AI 최종내용 승인','값':f"AI 적용 {len(ai_statuses)}개 / 현재 내용 승인 {sum(bool(s.get('approved')) for s in ai_statuses)}개 / 나머지는 미승인·변경 초안. 전체 감사완료·감사의견과 다름."})
@@ -110,9 +116,14 @@ def workbook_bytes(snapshot,catalog):
         preferred=MODULE_TABLES.get(r['module'],[])
         for name in sorted(r['result']['tables'],key=lambda n:preferred.index(n) if n in preferred else len(preferred)):add(str(index)+'_'+name,r['result']['tables'][name])
     add('변경이력',[{'순번':i+1,**e} for i,e in enumerate(snapshot['events'])])
-    proof=dumps(snapshot);add('증적JSON',[{'순서':i//28000+1,'JSON조각':proof[i:i+28000]} for i in range(0,len(proof),28000)])
+    if large:
+        from export_streaming import chunks
+        add('증적JSON',({'순서':i,'JSON조각':part} for i,part in enumerate(chunks(snapshot),1)),['순서','JSON조각'])
+    else:
+        proof=dumps(snapshot);add('증적JSON',[{'순서':i//28000+1,'JSON조각':proof[i:i+28000]} for i in range(0,len(proof),28000)])
     from openpyxl.utils import quote_sheetname
     for pid in PROCEDURE_MODULES:
+        if large:break
         if '조서_'+pid not in w.sheetnames:continue
         for row in w['조서_'+pid].iter_rows(min_row=2):
             if str(row[0].value).startswith('상세표: ') and row[1].value in w.sheetnames:

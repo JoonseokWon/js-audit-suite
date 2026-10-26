@@ -1,18 +1,19 @@
 """Exact current-ledger binding shared by independent explainable analyzers."""
 from common import *
 import ledger
+from input_limits import LEDGER_LIMITS,EXCEL_DATA_ROWS
 
 def canonical(rows,headers):
     return sorted([dumps({k:r.get(k) for k in headers}) for r in rows])
 
 def read_bound(path,extra_schema,context,ledger_result=None,event=None):
     if set(extra_schema)&set(ledger.SCHEMA):raise AuditError('분석 시트와 공통 원장 시트 중복')
-    tables,source=read_xlsx(path,{**ledger.SCHEMA,**extra_schema},event,max_rows=10000)
+    tables,source=read_xlsx(path,{**ledger.SCHEMA,**extra_schema},event,max_rows=10000,row_limits=LEDGER_LIMITS)
     issues=[];links=[];current=None;base=None
     detail={'분석기준':'현재 업무 조정전 GL·TB. 승인조정·감사 결론 별도.',
             '입력원문SHA256':source['sha256'],'연결정책':'회사+전표ID+행ID 복합키; 현재 원장 7시트 원문 의미값 및 리드 재계산 일치',
             '모집단한계':'선언된 입력·독립통제와 현재 업무 원장 비교. ERP 추출 진위·미제출 계좌는 별도 확인.',
-            '현재원장연결':False,'규칙범위':'확정값 KRW, 시트당 10000행; 위험 후보는 부정 확정이나 발생확률이 아님'}
+            '현재원장연결':False,'규칙범위':f'확정값 KRW, 원장 {EXCEL_DATA_ROWS:,}행·보조표 10,000행; 위험 후보는 부정 확정이나 발생확률이 아님'}
     def block(code,message,ref=''):issue(issues,code,message,ref)
     try:
         base=ledger.analyze({k:tables[k] for k in ledger.SCHEMA},event)
