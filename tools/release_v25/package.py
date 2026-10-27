@@ -10,7 +10,7 @@ def clean(report):
     keys=('version','frozen','ok','status','checks','actual_model_calls','actual_local_inference',
           'actual_human_approvals','actual_openai_calls','synthetic_approval_events','human_approval_scope',
           'execution_mode','case_mode','integrated','model','model_digest','packet_hash','response_hash',
-          'seconds','independent_expected','integration_checks','gates','ui_request_policy')
+          'seconds','independent_expected','integration_checks','gates','ui_request_policy','error')
     result={k:report[k] for k in keys if k in report}
     require(not re.search(r'(?i)[A-Z]:[\\/]|/Users/|/home/',str(result)),'공개 검증 요약에 로컬 경로 포함')
     return result
@@ -39,6 +39,19 @@ def check_actual(r,frozen):
 
 def validation(expected):
     source_hash=manifest_hash(expected);exe_hash=sha((PROJECT/'실행파일'/EXE).read_bytes())
+    oracle=read(QA/'headless-fixed-v25-owner-freeze.json')
+    headless=read(QA/'headless-fixed-v25/report.json')
+    require(headless.get('ok') is True and headless['version']==VERSION
+            and headless['actual_model_calls']==0 and oracle['status']=='passed'
+            and oracle['original_assert_count_preserved'] is True,'전체 CI headless 경로 로컬 재검증 필요')
+    require(all(expected[item['path']]['sha256']==item['sha256'] for item in oracle['files']),
+            '논리 행 검증기 재검증 후 소스 변경')
+    scope_chain=read(QA/'completion-scope-headless/report.json')
+    scope_owner=read(QA/'completion-scope-headless-owner.json')
+    require(scope_chain.get('ok') is True and scope_chain['version']==VERSION
+            and scope_chain['actual_model_calls']==0 and scope_owner['status']=='passed'
+            and all(expected[item['path']]['sha256']==item['sha256'] for item in scope_owner['files']),
+            '완료 표현 검사 수정 후 전체 CI 경로 재검증 필요')
     for name in ('source','frozen'):
         receipt=read(QA/(name+'-check-receipt.json'))
         require(receipt['source_manifest_hash']==source_hash,'전체 검증 소스 명세 불일치')
@@ -71,6 +84,8 @@ def validation(expected):
         policy_counts.append(int(count[1]))
     initial=read(QA/'ai-initial-feedback/report.json')
     previous={name:read(QA/'attempt3-before-GUI'/name/'report.json') for name in ('source-ai','frozen-ai')}
+    previous_ci={name:read(QA/'attempt4-before-CI'/name/'report.json') for name in ('source-ai','frozen-ai')}
+    previous_scope={name:read(QA/'attempt5-before-completion-scope'/name/'report.json') for name in ('source-ai','frozen-ai')}
     return {'schema':'js-audit-suite-v25-validation-1','version':VERSION,
         'checked_at_kst':datetime.now(timezone(timedelta(hours=9))).isoformat(),
         'scope':'AI 예외 인용·왜곡표시 집계·위험/주장/절차/수행/조서 연결 및 가상 상태전이',
@@ -79,13 +94,23 @@ def validation(expected):
             'skip_reason':'공식 원본 ZIP은 공개 소스에 포함하지 않아 해당 원본 직접 열기 검사만 미실행' if skip_count else '',
             'seconds':float(match[2]),'passed':True},
         'publication_mock_tests':{'count':sum(policy_counts),'passed':True,'actual_remote_mutations':0},
+        'local_ci_headless_regression':{k:v for k,v in oracle.items()
+            if k not in ('headless_run_log','headless_report')},
+        'post_completion_scope_headless_regression':{k:v for k,v in scope_owner.items()
+            if k in ('files','status','version','actual_model_calls','physical_UI_control',
+                     'legacy_fixture_cases','legacy_assertions','desktop_checks','v25_integration_checks','unchanged')},
         'source_legacy':clean(reports['source-legacy']),'frozen_legacy':clean(reports['frozen-legacy']),
         'source_integration':clean(reports['source-flow']),'frozen_integration':clean(reports['frozen-flow']),
         'source_actual_ai':clean(reports['source-ai']),'frozen_actual_ai':clean(reports['frozen-ai']),
         'initial_preintegration_feedback':clean(initial),
         'prior_integrated_before_ui_alignment':{name:clean(r) for name,r in previous.items()},
-        'actual_call_history_note':'초기 생성 1회, 화면 설정 정렬 전 통합 소스·EXE 각 1회, 최종 화면 공용정책 통합 소스·EXE 각 1회. 이전 원응답·검증은 보존했습니다.',
+        'prior_integrated_before_ci_oracle_update':{name:clean(r) for name,r in previous_ci.items()},
+        'prior_integrated_before_completion_scope_fix':{name:clean(r) for name,r in previous_scope.items()},
+        'historical_rejection_note':'완료 전 단계·완료 여부 미확인이라는 명사구를 완료 단정으로 오인해 EXE 응답 1회를 저장 전에 거절했습니다. 최초 실패·원응답·승인 0 기록을 보존하고 국소 표현 구분을 별도로 개선했습니다. 과거 거절을 완료된 생성·승인·Excel 검증으로 바꾸지 않았습니다.',
+        'actual_call_history_note':'초기 생성 1회, 화면 설정 정렬 전 각 1회, 논리 행 검증기 수정 전 각 1회, 완료 표현 오탐 수정 전 각 1회(거절 1회 포함), 최종 소스·EXE 각 1회. 모든 원응답·검증을 보존했습니다.',
         'current_actual_model_calls':initial['actual_model_calls']+sum(r['actual_model_calls'] for r in previous.values())
+            +sum(r['actual_model_calls'] for r in previous_ci.values())
+            +sum(r['actual_model_calls'] for r in previous_scope.values())
             +sum(reports[n]['actual_model_calls'] for n in ('source-ai','frozen-ai')),
         'actual_openai_calls':0,'actual_human_approvals':0,
         'large_ledger_current_version':{name:reports[name] for name in ('source-large','frozen-large')},

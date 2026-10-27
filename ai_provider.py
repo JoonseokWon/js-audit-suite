@@ -221,6 +221,9 @@ def _qualified_claim(sentence, match, expression_index):
     # or appended "additional review needed" does not make a clean claim safe.
     suffix = sentence[match.end():match.end() + 45]
     suffix = re.split(r'[,;]|(?:으나|하지만|그러나|다만|이며|으며|하고|했고|하였고|그리고)', suffix, maxsplit=1)[0]
+    from ai_quality.completion_scope import local_noncompletion_scope
+    if local_noncompletion_scope(expression_index,match.group(),suffix):
+        return True
     if _NEGATIVE.search(suffix):
         return True
     if re.search(r'\b(?:not|cannot|never)\s+(?:(?:conclude|claim|state|assert)\s+)?$', sentence[max(0, match.start() - 25):match.start()], re.I):

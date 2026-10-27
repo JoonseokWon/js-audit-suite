@@ -18,6 +18,9 @@ class PublicationBoundaryTests(unittest.TestCase):
             (qa/'build/manifest.json').write_text(json.dumps(manifest({'app.py':b'# public\n'})))
             with patch.object(build,'QA',qa),patch.object(build,'public_files',return_value={'app.py':b'# public\n'}):
                 build.pinned()
+                (folder/'sector_verification').mkdir()
+                (folder/'sector_verification/test-workspace.sqlite3').write_bytes(b'SYNTHETIC ONLY scratch')
+                build.pinned()
                 (folder/'assets').mkdir();(folder/'assets/private.bin').write_bytes(b'PRIVATE')
                 with self.assertRaises(RuntimeError):build.pinned()
 

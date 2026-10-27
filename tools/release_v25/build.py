@@ -19,8 +19,11 @@ def pinned():
     expected=read(QA/'build/manifest.json');current=manifest(public_files())
     require(current==expected,'고정 후 소스 변경. 기존 빌드 증거는 보존하고 새 빌드가 필요합니다.')
     folder=QA/'build/stage'
+    # Existing regression tests create private temporary engagements here.
+    # Neither folder is scanned by public_files() or included in AuditSuite.spec.
+    scratch={'검증','sector_verification'}
     found={p.relative_to(folder).as_posix() for p in folder.rglob('*') if p.is_file()
-           and (p.relative_to(folder).parts[0]!='검증' or p.relative_to(folder).as_posix() in expected)}
+           and (p.relative_to(folder).parts[0] not in scratch or p.relative_to(folder).as_posix() in expected)}
     require(found==set(expected),'고정 stage에 추가·누락 파일이 있습니다.')
     require(all(sha(safe_file(folder,name).read_bytes())==item['sha256'] for name,item in expected.items()),'고정 stage 변경')
     return folder,expected

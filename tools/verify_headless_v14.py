@@ -57,6 +57,76 @@ def read_json(path):
     return json.loads(Path(path).read_text(encoding='utf-8'))
 
 
+def exported_rows_match(book, sheet, expected):
+    """Reconstruct exact logical cells; physical continuation rows are not records.
+
+    This verification helper neither changes the exporter nor treats a larger
+    physical row count as sufficient. Every physical row must belong to exactly
+    one expected record, and scalar/numeric cells occur only on its first row.
+    """
+    from export_support.text import display_text
+    matrix = list(sheet.iter_rows(values_only=True))
+    if not matrix or not expected:
+        return False
+    headers = matrix[0]
+    keys = {key for record in expected for key in record}
+    if (any(not isinstance(key, str) for key in headers) or len(headers) != len(set(headers))
+            or set(headers) != keys):
+        return False
+    mappings = {}
+    if '출력문단연결' in book.sheetnames:
+        index = list(book['출력문단연결'].iter_rows(values_only=True))
+        required = ('표', '원본행', '시작행', '마지막행', '분할열')
+        if not index or any(key not in index[0] for key in required):
+            return False
+        positions = [index[0].index(key) for key in required]
+        for row in index[1:]:
+            name, logical, start, end, split = [row[i] for i in positions]
+            if name != sheet.title:
+                continue
+            if (any(type(value) is not int for value in (logical, start, end)) or
+                    not 1 <= logical <= len(expected) or logical in mappings or
+                    not 2 <= start <= end <= len(matrix)):
+                return False
+            columns = split.split(', ') if isinstance(split, str) and split else []
+            if len(columns) != len(set(columns)) or not set(columns) <= set(headers):
+                return False
+            mappings[logical] = (start, end, set(columns))
+    cursor = 2
+    for logical, record in enumerate(expected, 1):
+        start, end, splits = mappings.get(logical, (cursor, cursor, set()))
+        if start != cursor or end > len(matrix):
+            return False
+        fragments = matrix[start-1:end]
+        for column, key in enumerate(headers):
+            original = record.get(key)
+            if isinstance(original, (dict, list)):
+                original = json.dumps(original, ensure_ascii=False, sort_keys=True,
+                                      separators=(',', ':'), allow_nan=False)
+            if isinstance(original, str):
+                original = display_text(original)
+            values = [row[column] for row in fragments]
+            if key in splits:
+                if not isinstance(original, str) or any(value is not None and not isinstance(value, str) for value in values):
+                    return False
+                actual = ''.join(value or '' for value in values)
+            else:
+                if any(value is not None for value in values[1:]):
+                    return False
+                actual = values[0]
+            original = None if original == '' else original
+            if isinstance(original, bool):
+                if type(actual) is not bool or actual != original:
+                    return False
+            elif isinstance(original, (int, float)):
+                if isinstance(actual, bool) or not isinstance(actual, (int, float)) or actual != original:
+                    return False
+            elif actual != original:
+                return False
+        cursor = end + 1
+    return cursor == len(matrix) + 1
+
+
 def fresh(folder):
     return Workspace(folder,create={**CONTEXT, '회사명':'SYNTHETIC ONLY / headless 합성업무',
         '회계체계':'K-IFRS / 제한된 합성 사례', '감사기준':'학습용 / 실제 감사 수행 아님',
@@ -171,7 +241,10 @@ def run(output):
             check('조서_FS01' in book.sheetnames and '조서_R01' in book.sheetnames,'draft_FS01_R01_sheets')
             fs_sheet=next(s for s in book if s.title.endswith('_재무제표대사'))
             raw_sheet=next(s for s in book if s.title.endswith('_현재원장연결'))
-            check(fs_sheet.max_row==95 and raw_sheet.max_row==142,'draft_all_FS_and_current_ledger_rows_exported')
+            check(len(financial['tables']['재무제표대사'])==94 and len(raw['tables']['현재원장연결'])==141
+                  and exported_rows_match(book,fs_sheet,financial['tables']['재무제표대사'])
+                  and exported_rows_match(book,raw_sheet,raw['tables']['현재원장연결']),
+                  'draft_all_FS_and_current_ledger_rows_exported')
             proof=json.loads(''.join(row[1] for row in book['증적JSON'].iter_rows(min_row=2,values_only=True)))
             check(len(proof['latest'])==12 and len(proof['cross'])==32,'draft_full_proof_12_modules_32_links')
             check(all(p['current_state']=='작성중' and not p['performed'] and not p['conclusion'] and not p['reviewer'] for p in proof['procedures']),'draft_proof_has_no_human_conclusion')

@@ -38,7 +38,8 @@ audit_workflow.py common.py export_streaming.py exporter.py input_limits.py onbo
 onboarding/erp/__init__.py onboarding/erp/normalize.py onboarding/erp/samples.py onboarding/erp/schema.py
 onboarding/workbooks.py test_ai_desktop.py test_ai_provider.py test_ai_workpapers.py
 test_onboarding_workspace.py verify_v18.py windows_text.py workspace.py
-app.py procedures.py display_schema.py desktop/entry_tests.py AuditSuite.spec demo_case/verification.py'''.split())
+app.py procedures.py display_schema.py desktop/entry_tests.py AuditSuite.spec demo_case/verification.py
+tools/verify_headless_v14.py'''.split())
 PACKAGES=('ai_contract','ai_quality','audit_links','misstatements','v25_demo',
           'desktop/audit_links','desktop/misstatements','tools/release_v25')
 FIXED={'audit_extensions.py','desktop/actions/audit_extensions.py','desktop/ai/request_policy.py',

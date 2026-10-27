@@ -5,6 +5,24 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from common import VERSION
 
 
+def legacy_diagnostics(out):
+    """Expose private job artifacts in the CI log; never masks a failed stage."""
+    for path in sorted(out.rglob('*')):
+        if not path.is_file() or path.name not in ('legacy.log', 'report.json'):
+            continue
+        if path.name == 'legacy.log':
+            tail=path.read_text(encoding='utf-8',errors='replace')[-4000:]
+            print(json.dumps({'legacy_artifact':str(path.relative_to(out)), 'tail':tail},ensure_ascii=False))
+        else:
+            try:
+                report=json.loads(path.read_text(encoding='utf-8'))
+                if report.get('ok') is False:
+                    print(json.dumps({'legacy_artifact':str(path.relative_to(out)),
+                        'error':report.get('error'), 'traceback':str(report.get('traceback',''))[-4000:]},ensure_ascii=False))
+            except (ValueError,OSError) as exc:
+                print(json.dumps({'legacy_artifact':str(path.relative_to(out)), 'read_error':str(exc)},ensure_ascii=False))
+
+
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--directory',required=True,type=Path)
     out=parser.parse_args().directory.resolve();root=Path(__file__).resolve().parents[1]
@@ -16,7 +34,9 @@ def main():
             '--directory',str(out/'legacy')],cwd=root,stdout=log,stderr=subprocess.STDOUT,
             env=dict(os.environ,PYTHONUTF8='1',PYTHONDONTWRITEBYTECODE='1'),
             creationflags=getattr(subprocess,'CREATE_NO_WINDOW',0))
-    if prior.returncode:raise RuntimeError('기존 통합 검사 실패: legacy.log')
+    if prior.returncode:
+        legacy_diagnostics(out)
+        raise RuntimeError('기존 통합 검사 실패: legacy.log')
     from tools.verify_flow_v25 import self_test
     code=self_test(out/'v25/report.json')
     report={'ok':code==0,'version':VERSION,'actual_model_calls':0,
