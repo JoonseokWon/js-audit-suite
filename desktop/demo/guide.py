@@ -57,6 +57,14 @@ class DemoGuide:
             card=BentoCard(self.stage_frame,f"{index:02} · {stage['title']}",stage.get('detail',''))
             card.pack(fill='x',pady=(0,8))
             wrapping_label(card.body,text=str(stage.get('state','미확인')),style='Muted.TLabel').pack(fill='x')
+        if (ws.root/'v25_추가자료목록.json').exists():
+            from v25_demo import load_extension
+            extra=load_extension(ws.root);self.win.v25_extension=extra
+            for stage in extra['steps']:
+                card=BentoCard(self.stage_frame,'추가 절차 · '+stage['title'],stage['detail'])
+                card.pack(fill='x',pady=(0,8))
+                wrapping_label(card.body,text='입력·수행·판단·승인은 해당 화면에서 직접 기록하세요.',
+                               style='Muted.TLabel').pack(fill='x')
         self.win.demo_status=status
 
     def build_actions(self,body):
@@ -64,6 +72,7 @@ class DemoGuide:
         card.pack(fill='x',padx=8,pady=(8,16))
         actions=FlowFrame(card.body);actions.pack(fill='x');self.actions=actions
         specs=(('오류 검사 결과',self.results),('매출 조서·AI',self.workpaper),
+               ('왜곡표시 집계',self.host.open_misstatements),('위험·절차 연결',self.host.open_audit_links),
                ('조서 생성 근거',self.evidence),('AI 설정',self.host.open_ai_settings),
                ('초안 Excel 저장',lambda:self.host.export_dialog(False)))
         self.buttons={}

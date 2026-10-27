@@ -21,7 +21,7 @@ def open_demo_creator(host):
     wrapping_label(body,text='AI 모델 준비와 생성은 별도 버튼으로 실행해요. 예제를 여는 것만으로 모델을 호출하지 않아요.').pack(fill='x')
     footer=FlowFrame(body);footer.pack(side='bottom',fill='x',pady=(20,0))
     def create():
-        from demo_case import create_demo
+        from v25_demo import create_demo
         if host.busy:raise AuditError('진행 중인 작업이 끝난 뒤 다시 실행하세요.')
         if not host.check_navigation():return
         folder=host.sector_home.parent/'감사시연'/('JS전자_'+uuid4().hex[:12])

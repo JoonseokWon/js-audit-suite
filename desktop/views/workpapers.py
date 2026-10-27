@@ -28,6 +28,8 @@ class WorkpapersView:
         self.save_workpaper_button = buttons.add(ttk.Button(buttons, text='조서 저장·개정',
             style='Primary.TButton', command=lambda: self.call(self.save_procedure)))
         buttons.add(ttk.Button(buttons, text='검토 요청', command=lambda: self.call(self.request_review)))
+        buttons.add(ttk.Button(buttons, text='왜곡표시 집계', command=lambda: self.call(self.open_misstatements)))
+        buttons.add(ttk.Button(buttons, text='위험·절차 연결', command=lambda: self.call(self.open_audit_links)))
         self.workpaper_export_button = buttons.add(ttk.Button(buttons, text='초안 Excel 내보내기',
             command=lambda: self.export_dialog(False)))
         self.workpaper_export_button.flow_secondary = True

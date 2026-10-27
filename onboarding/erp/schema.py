@@ -1,10 +1,12 @@
 """Explicit ERP conventions; labels are also used by the value-only Excel editor."""
 from common import AuditError, digest, num, text
 
-APPROVAL_FIELDS = ['context', 'config', 'source_rows', 'column_mapping', 'coa_mapping',
+APPROVAL_FIELDS = ['context', 'config', 'source_rows', 'column_mapping', 'company_mapping', 'coa_mapping',
                    'trial_balance', 'independent_controls', 'adjustments',
                    'adjustment_approvals', 'presentation_mapping', 'presentation_values']
 FIELD_LABELS = {
+    'company_mapping':'회사코드 연결','company_id':'원본 회사 열',
+    'source_company':'원본 회사코드','company_code':'업무 회사코드',
     'source_rows':'ERP 원본 행', 'column_mapping':'원본 열 매핑', 'coa_mapping':'계정 매핑',
     'trial_balance':'별도 시산표', 'independent_controls':'독립 추출 통제',
     'adjustments':'감사조정', 'adjustment_approvals':'감사조정 확인 기록',
@@ -34,6 +36,7 @@ FIELD_LABELS = {
     'source_rows_sha256':'가져온 원본 행 해시','source_filename':'가져온 파일명',
 }
 TABLE_FIELDS = {
+    'company_mapping':('source_company','company_code'),
     'source_rows':(),  # Original ERP headers are dynamic; use the actual row keys plus PROVENANCE.
     'column_mapping':('target','source'),
     'coa_mapping':('source_account','account_code','account_name','lead_code','lead_name','statement_type'),
@@ -48,7 +51,7 @@ TABLE_FIELDS = {
 }
 REQUIRED_TARGETS = {'journal_id', 'line_id', 'posting_date', 'source_account',
                     'description', 'author'}
-OPTIONAL_TARGETS = {'department', 'cancel_of'}
+OPTIONAL_TARGETS = {'department', 'cancel_of', 'company_id'}
 PROVENANCE = ('source_file', 'source_sha256', 'source_sheet', 'source_row')
 
 

@@ -11,20 +11,21 @@ def sample(context):
     payload={'schema':SCHEMA,'context':dict(context),
              'config':{'amount_mode':'two_columns','signed_debit_factor':1,'source_unit':1,
                        'currency':'KRW','tb_state':'unclosed','reporting_basis':'pre_adjustment'},
-             **{key:[] for key in ('source_rows','column_mapping','coa_mapping','trial_balance',
+             **{key:[] for key in ('source_rows','column_mapping','company_mapping','coa_mapping','trial_balance',
                   'independent_controls','adjustments','adjustment_approvals',
                   'presentation_mapping','presentation_values')},
              'approval':{}}
-    columns={'journal_id':'전표번호','line_id':'순번','posting_date':'전표일자','source_account':'ERP계정',
+    columns={'company_id':'법인코드','journal_id':'전표번호','line_id':'순번','posting_date':'전표일자','source_account':'ERP계정',
              'debit':'차변금액','credit':'대변금액','description':'거래내용','author':'입력담당',
              'department':'원가부문','cancel_of':'취소원행'}
     payload['column_mapping']=[{'target':target,'source':name} for target,name in columns.items()]
+    payload['company_mapping']=[{'source_company':context['회사코드'],'company_code':context['회사코드']}]
     for n,r in enumerate(source['총계정원장'],2):
         debit,credit=r['차변'],r['대변']; cancel=''
         if r['전표ID']=='J19':
             debit,credit=-credit,-debit
             cancel='J18/'+r['행ID']
-        values=dict(journal_id=r['전표ID'],line_id=r['행ID'],posting_date=r['전기일'],
+        values=dict(company_id=context['회사코드'],journal_id=r['전표ID'],line_id=r['행ID'],posting_date=r['전기일'],
                     source_account='ERP_'+r['계정코드'],debit=debit,credit=credit,
                     description=r['적요'],author=r['작성자'],
                     department='제조' if r['전표ID']=='J06' and r['계정코드']=='1200' else '본사',cancel_of=cancel)

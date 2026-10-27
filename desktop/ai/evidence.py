@@ -78,6 +78,10 @@ def open_current_evidence(host):
     win=host.ai_window('AI 생성 근거 · 원본과 대사');host.ai_evidence_win=win
     footer=FlowFrame(win);footer.pack(side='bottom',fill='x',padx=10,pady=10)
     footer.add(ttk.Button(footer,text='닫기',command=win.destroy))
-    body=build_evidence_frame(win,packet);body.pack(fill='both',expand=True)
+    from .inventory import build_inventory_frame
+    notebook=ttk.Notebook(win);notebook.pack(fill='both',expand=True)
+    body=build_evidence_frame(notebook,packet);notebook.add(body,text='원본·대사 근거')
+    inventory=build_inventory_frame(notebook,packet);notebook.add(inventory,text='계산표 포함·생략 범위')
+    win.inventory_body=inventory
     win.packet=packet;win.evidence_body=body
     return win

@@ -34,9 +34,9 @@ def synthetic_response(packet):
         citations['performed'] += [r['id'] for r in exceptions]
     context={'company_code':packet['engagement']['company_code'],
              'procedure_id':packet['procedure']['id'],'basis':packet['basis']}
-    return dict(fields=fields,citations=citations,provider='ollama',model='SYNTHETIC-ONLY-no-inference',
-        prompt_version=PROMPT_VERSION,packet_hash=digest(packet),**context,
-        raw_response=dumps(dict(fields=fields,citations=citations,context=context)))
+    from test_review_ai_helpers import response_from_fields
+    return response_from_fields(packet,fields,citations,model='SYNTHETIC-ONLY-no-inference')
+
 
 
 class WorkspaceFixture(GatewayFixture):

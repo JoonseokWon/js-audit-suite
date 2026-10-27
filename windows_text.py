@@ -54,8 +54,8 @@ def utf16_length(value):
 
 def validate_text(value):
     text = normalize_newlines(value)
-    if '\0' in text:
-        raise ValueError('본문에 NUL 문자를 저장할 수 없습니다.')
+    from export_support.text import require_xml_text
+    require_xml_text(text,'본문')
     try:
         size = utf16_length(text)
     except UnicodeEncodeError as exc:
@@ -242,7 +242,7 @@ class WindowsText(tk.Frame):
         return min(prefix + column, prefix + len(lines[line - 1]) - 1)
 
     def get(self, index1='1.0', index2=None):
-        body = self._body()
+        body = validate_text(self._body())
         doc = body + '\n'
         start = self._offset(index1, body)
         end = start + 1 if index2 is None else self._offset(index2, body)

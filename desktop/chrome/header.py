@@ -62,6 +62,8 @@ def build_header(host,parent):
         ('로우데이터 확인',lambda:host.call(host.open_raw_data)),
         ('입력양식·예제 복사',host.copy_templates),('계정별 증빙연습',host.case_dialog),
         ('검토완료 Excel 저장',lambda:host.export_dialog(True)),
+        ('왜곡표시 집계',lambda:host.call(host.open_misstatements)),
+        ('위험·절차 연결',lambda:host.call(host.open_audit_links)),
         ('AI 설정',lambda:host.call(host.open_ai_settings))):
         host.more_menu.add_command(label=label,command=fn)
     host.more_menu.add_separator()

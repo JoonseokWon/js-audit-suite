@@ -5,6 +5,7 @@ from decimal import Decimal,ROUND_HALF_UP
 from collections import defaultdict
 from common import *
 from estimate_controls import settings,keyed,population,CONTROL_HEADER
+from data_controls.attribution import review_invoice
 
 MODULE='미기록부채·비용이연'
 SCHEMA={'설정':['항목','값'],
@@ -57,6 +58,7 @@ def analyze(t,event=None):
     for r in t['독립통제']:
         if datetime.fromisoformat(str(r['추출일시']).lstrip("'")).date()<search_end:raise AuditError('독립통제 추출일시가 후속검색종료일보다 빠릅니다')
     payments=defaultdict(list);payment_rows=[];invoice_rows=[];seen_invoices=set();bank_refs=set();invoice_totals=defaultdict(int)
+    attribution_rows=[];invoice_periods=defaultdict(list)
     parsed={}
     for k,r in contracts.items():
         cancelled(event);a,b=period(r['용역시작'],r['용역종료'],r['배분방법']);amt=num(r['총공급가액'],False)
@@ -98,6 +100,7 @@ def analyze(t,event=None):
             if ident[0]!=contract['거래처ID'] or a<ca or b>cb:raise AuditError('송장 거래처·귀속기간과 계약 불일치')
             invoice_totals[k]+=v
             if invoice_totals[k]>total:issue(iss,'ACC_INVOICE_EXCESS','연결 송장 공급가액이 계약 총액을 초과합니다. 중복청구·범위 확인 필요',ref)
+            review_invoice(contract,r,parsed[k],a,b,cut,amount,earned,iss,attribution_rows,invoice_periods)
             state='기말전귀속' if amount else '후기귀속'
         invoice_rows.append({'증빙ID':r['증빙ID'],'비용ID':k,'거래처ID':ident[0],'증빙일':dt.isoformat(),'귀속시작':a.isoformat(),'귀속종료':b.isoformat(),'공급가액':v,'기말전귀속참고액':amount,'연결상태':state,'원본행':ref})
     summary=[];comparisons=[];proposals=[];metrics={m:0 for m in METRICS}
@@ -134,4 +137,4 @@ def analyze(t,event=None):
         summary.append({'비용ID':k,'거래처ID':r['거래처ID'],'구분':r['구분'],'용역시작':a.isoformat(),'용역종료':end.isoformat(),'총공급가액':total,'배분방법':method,'전기까지누적귀속':prior,'기말까지누적귀속':cum,**expected,'후속지급':afterpaid,'비용계정':r['비용계정'],'잔액계정':r['잔액계정'],'원본행':ref})
     for v in metrics.values():num(v)
     account_rows=[{'지표':m,'대상계정':';'.join(scopes[m]),'계산금액':v} for m,v in metrics.items()]
-    return result(MODULE,c,{'비용기간배분':summary,'비용원장대사':comparisons,'후속송장검색':invoice_rows,'지급귀속대사':payment_rows,'수정분개검토':proposals,'대상계정집계':account_rows,'원장통제':checks}|{'입력_'+k:v for k,v in t.items()},iss,metrics,{'계산정책':POLICY,'정책근거':c['회계정책근거'],'대상계정':scopes,'후속검색종료일':search_end.isoformat(),'허용오차':tol,'기준참조':'발생주의 및 기말 현재 조건에 대한 후속증거: IAS1 27–28, IAS10 3/8; 감사증거/IPE: ISA500 9. 한국 적용 판본·기간 및 인식판단은 실제 업무에서 확인','지원범위':'KRW 공급가액 기준 확정 용역. 부가세·외화·재고/자산취득·변경/환불·추정충당은 별도. 지급 원천은 계약 전체 이력과 미분류 후속지급, 송장은 전체 후속검색 범위의 독립 추출 필요'})
+    return result(MODULE,c,{'비용기간배분':summary,'비용원장대사':comparisons,'후속송장검색':invoice_rows,'후속송장귀속검토':attribution_rows,'지급귀속대사':payment_rows,'수정분개검토':proposals,'대상계정집계':account_rows,'원장통제':checks}|{'입력_'+k:v for k,v in t.items()},iss,metrics,{'계산정책':POLICY,'정책근거':c['회계정책근거'],'대상계정':scopes,'후속검색종료일':search_end.isoformat(),'허용오차':tol,'기준참조':'발생주의 및 기말 현재 조건에 대한 후속증거: IAS1 27–28, IAS10 3/8; 감사증거/IPE: ISA500 9. 한국 적용 판본·기간 및 인식판단은 실제 업무에서 확인','지원범위':'KRW 공급가액 기준 확정 용역. 계약·후속송장 귀속 상충은 추가검토이며 금액을 자동 확정하지 않습니다. 부가세·외화·재고/자산취득·변경/환불·추정충당은 별도. 지급 원천은 계약 전체 이력과 미분류 후속지급, 송장은 전체 후속검색 범위의 독립 추출 필요'})

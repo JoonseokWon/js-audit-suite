@@ -9,7 +9,9 @@ from pathlib import Path
 import json
 import re
 import uuid
-from common import AuditError, digest, dumps, day, now, text
+from common import AuditError, digest, dumps, day, now
+from human_input import text
+from export_support.text import validate_structure
 
 AUDIT_FRAMEWORKS = ('KSA_200_720', 'KSA_1200')
 FORM_FRAMEWORKS = ('KIFRS', '일반기업', '소규모기업')
@@ -35,6 +37,7 @@ def payload(value, allowed, required=()):
     try:
         if len(dumps(value)) > 200000: raise AuditError('계획 입력 크기 한도 초과')
     except (ValueError, TypeError, RecursionError) as exc: raise AuditError('계획 입력 JSON/유한 숫자 오류') from exc
+    validate_structure(value,'계획 원본 입력')
     return deepcopy(value)
 
 
@@ -278,6 +281,9 @@ def status(ws):
         for request in ws.requests.values():
             if request['state'] not in ('검토완료', '취소'): add('REQUEST_PENDING', '미완료 자료 요청: ' + request['title'], pending=True)
         if any(not n['resolved'] for n in ws.notes.values()): add('REVIEW_NOTE_PENDING', '미해결 검토의견이 있습니다.', pending=True)
+    from audit_extensions import workflow_rows
+    extension_rows=workflow_rows(ws)
+    rows.extend(extension_rows);blockers.extend(extension_rows);human_pending.extend(extension_rows)
     return {'active': active, 'locked': ws.workflow_locked, 'lock': deepcopy(ws.workflow_lock),
             'profile': deepcopy(ws.workflow_profile), 'risks': deepcopy(list(ws.workflow_risks.values())),
             'procedure_links': deepcopy(list(ws.workflow_procedure_links.values())), 'legacy_f01': legacy,

@@ -5,6 +5,7 @@ from tkinter import ttk, filedialog, messagebox
 from common import AuditError
 from onboarding.erp.input_io import read_original, stage_original
 from onboarding.erp.schema import FIELD_LABELS, REQUIRED_TARGETS, OPTIONAL_TARGETS
+from onboarding.erp.company import identifier
 from desktop.widgets.flow import FlowFrame
 from desktop_display import ScrollableFrame
 
@@ -41,12 +42,26 @@ class ErpMappingDialog:
         self.mode=tk.StringVar(value=MODE_LABELS.get(config.get('amount_mode','two_columns'),'금액 열 규칙을 선택하세요'))
         self.unit=tk.StringVar(value=str(config.get('source_unit',1)))
         self.factor=tk.StringVar(value=str(config.get('signed_debit_factor',1)))
+        preset_company=payload.get('company_mapping',[])
+        self.company_source=tk.StringVar(value=identifier(preset_company[0].get('source_company','')) if len(preset_company)==1 else '')
+        self.company_target=str(payload.get('context',{}).get('회사코드',''))
         for col,(label,var,values) in enumerate((('금액 열 규칙',self.mode,tuple(MODE_CODES)),
                       ('원본 단위',self.unit,('1','1000')),('단일금액 차변 부호',self.factor,('1','-1')))):
             box=choices.add(ttk.Frame(choices))
             ttk.Label(box,text=label).pack(anchor='w')
             combo=ttk.Combobox(box,textvariable=var,values=values,state='readonly',width=20)
             combo.pack(pady=(4,0));combo.bind('<<ComboboxSelected>>',lambda _:self.show_columns())
+        company_box=ttk.Frame(body);company_box.pack(fill='x',pady=(12,0))
+        company_label=ttk.Label(company_box,text='명시 회사코드 연결: 원본 코드 → 업무 회사 '+self.company_target)
+        company_label.pack(fill='x')
+        ttk.Entry(company_box,textvariable=self.company_source,width=30).pack(anchor='w',pady=4)
+        company_note=ttk.Label(company_box,text='원본 회사 열을 아래에서 선택하세요. 원본 코드가 업무 코드와 다를 때만 '
+            '위에 실제 원본 코드 하나를 명시하세요. 공란 회사·여러 회사 혼입은 자동 확정하지 않습니다.',
+            style='Muted.TLabel',wraplength=720,justify='left')
+        company_note.pack(fill='x')
+        for label in (company_label,company_note):
+            label.audit_managed_wrap=True
+            label.bind('<Configure>',lambda event,w=label:w.configure(wraplength=max(1,event.width)))
         self.map_area=ttk.Frame(body);self.map_area.pack(fill='both',expand=True,pady=14)
         self.note=tk.StringVar(value='차변·대변이 각각 있으면 두 열을 연결하세요. 한 금액열만 있으면 부호 규칙을 확인하세요. '
                               '원본 단위는 원이면 1, 천원이면 1000이에요.')
@@ -97,7 +112,7 @@ class ErpMappingDialog:
             self.variables[key]=var
         self.map_area.columnconfigure(1,weight=1)
         self.note.set(f'{len(source)}개 원본 행을 보존해요. 계정·기간·부호·통제·보고 설정을 별도로 확인하세요. '
-                      '매핑되지 않은 회사 계정은 계정 연결 양식에서 연결하세요. 승인자는 자동으로 입력되지 않아요.')
+                      '원본 회사 열 미연결은 회사 미확인으로 남고 원장 등록이 제한돼요. 계정은 계정 연결 양식에서 연결하세요.')
 
     def apply(self):
         try:
@@ -110,7 +125,10 @@ class ErpMappingDialog:
             if len(selected)!=len(set(selected)):raise AuditError('서로 다른 표준 필드에 같은 원본 열을 연결할 수 없어요.')
             config=dict(self.payload.get('config',{}),amount_mode=mode,source_unit=int(self.unit.get()),
                         signed_debit_factor=int(self.factor.get()))
-            staged=stage_original(self.payload,self.path,self.tables,self.metadata,self.sheet.get(),mapping,config)
+            payload=deepcopy(self.payload)
+            source=self.company_source.get().strip()
+            payload['company_mapping']=[{'source_company':source,'company_code':self.company_target}] if source else []
+            staged=stage_original(payload,self.path,self.tables,self.metadata,self.sheet.get(),mapping,config)
             self.on_ready(staged,self.path,dict(self.metadata));self.win.destroy()
         except (AuditError,OSError,ValueError) as exc:
             messagebox.showerror('열 매핑 확인',str(exc),parent=self.win)

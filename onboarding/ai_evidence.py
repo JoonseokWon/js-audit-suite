@@ -21,7 +21,8 @@ def reserve(ws,module,chosen,ref):
         name=names[0]
         rid=ref('calculation_row',{'table':name,'row':excerpt(tables[name][0]),
             'scope':'실제 계산표 첫 행 발췌. 표 전체 검사와 별도'},
-            run_id=selected['id'],result_hash=selected['result_hash'])
+            run_id=selected['id'],result_hash=selected['result_hash'],
+            table_row=1,row_hash=digest(tables[name][0]))
         if rid:protected.add(rid)
     source=ws.sources[selected['source_id']];path=ws.root/source['file']
     if path.suffix.lower()=='.json':

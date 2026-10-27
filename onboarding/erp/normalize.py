@@ -3,6 +3,7 @@ from collections import defaultdict
 import re
 from common import AuditError, cancelled, day, digest, issue, text
 from .schema import REQUIRED_TARGETS, OPTIONAL_TARGETS, PROVENANCE, integer, rows, rowref
+from .company import CompanyScope
 
 
 def normalize(payload, context, config, issues, event=None):
@@ -22,6 +23,7 @@ def normalize(payload, context, config, issues, event=None):
         columns[target] = source
     if not required <= columns.keys():
         raise AuditError('필수 원본 열 매핑이 없습니다: ' + ', '.join(sorted(required-columns.keys())))
+    company=CompanyScope(payload,columns,context,issues)
     coa = {}
     canonical = set()
     for r in rows(payload, 'coa_mapping'):
@@ -61,17 +63,20 @@ def normalize(payload, context, config, issues, event=None):
             d=integer(v['amount'])*integer(config['signed_debit_factor']); c=0
         unit=integer(config['source_unit'],False)
         debit=(max(d,0)+max(-c,0))*unit; credit=(max(c,0)+max(-d,0))*unit
-        item={'회사코드':context['회사코드'],'전표ID':jid,'행ID':lid,'전기일':dt,
+        source_company,mapped_company,company_state=company.resolve(raw,rowref(raw))
+        item={'회사코드':mapped_company,'전표ID':jid,'행ID':lid,'전기일':dt,
               '계정코드':code,'차변':debit,'대변':credit,'적요':str(v['description'] or ''),
               '작성자':text(v['author']),'_row':n,'_sheet':'총계정원장'}
         converted.append(item)
         record={'원장행ID':key,'원본행':rowref(raw),'원본SHA256':raw['source_sha256'],
+                '원본회사코드':source_company,'매핑회사코드':mapped_company,'회사식별상태':company_state,
                 '원본계정':v['source_account'],'계정코드':code,'전기일':dt,'부문':str(v.get('department') or '미지정'),
                 '원본차변':d,'원본대변':c,'원본단위':unit,'차변':debit,'대변':credit,
                 '순변동':debit-credit,'취소대상':str(v.get('cancel_of') or ''),
                 '변환규칙':'원본 부호 보존 · 음수 금액은 반대편으로 이동'}
         trace.append(record); original[key]=record
         t=totals[code];t[0]+=1;t[1]+=d;t[2]+=c;t[3]+=debit;t[4]+=credit
+    company.finish()
     cancellations=defaultdict(list)
     for r in trace:
         ref=r['취소대상']

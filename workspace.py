@@ -1,7 +1,9 @@
 """Local event-sourced engagement. Immutable source copies, pinned runs and review revisions."""
 import sqlite3,shutil,uuid
 from common import *
+from human_input import text
 import adapters
+from export_support.text import validate_structure
 
 def uid():return uuid.uuid4().hex
 SCHEMA="""CREATE TABLE meta(version TEXT NOT NULL);
@@ -15,6 +17,11 @@ def expected_schema():
     try:db.executescript(SCHEMA);return schema_digest(db)
     finally:db.close()
 EXPECTED_SCHEMA=expected_schema()
+HUMAN_EVENTS={'engagement','procedure','note','evidence_request','ai_apply','ai_content_approval',
+    'workflow_profile','workflow_risk','workflow_procedure','workflow_finalize','workflow_reopen',
+    'workflow_f01_classification','workflow_risk_retire','workflow_procedure_retire'}
+HUMAN_EVENTS.update({'misstatement_record','misstatement_group','misstatement_verification','misstatement_reconfirm',
+    'audit_link_assessment','audit_link_response','audit_link_performance','audit_link_workpaper','audit_link_retire'})
 
 class Workspace:
     def __init__(self,folder,create=None):
@@ -22,10 +29,11 @@ class Workspace:
         if not self.dbpath.exists():
             if not create:raise AuditError('업무.sqlite3가 있는 업무 폴더를 선택하세요.')
             if self.root.exists() and any(self.root.iterdir()):raise AuditError('새 업무는 비어 있는 폴더에 만드세요.')
-            self.root.mkdir(parents=True,exist_ok=True)
             c={k:text(create[k],k) for k in ('회사코드','회사명','시작일','기준일','회계체계','감사기준','작성자')}
+            validate_structure(c,'새 업무')
             if day(c['시작일'])>day(c['기준일']):raise AuditError('업무기간 오류')
             c['더미업무']=bool(create.get('더미업무',False))
+            self.root.mkdir(parents=True,exist_ok=True)
             db=sqlite3.connect(self.dbpath)
             try:db.executescript(SCHEMA);db.commit()
             finally:db.close()
@@ -45,6 +53,9 @@ class Workspace:
     def _connect(self):
         db=sqlite3.connect(self.dbpath,timeout=5);db.execute('PRAGMA trusted_schema=OFF');return db
     def _append(self,kind,data,expected_head=None):
+        # New human records must be exportable. Immutable source/run/model
+        # evidence is retained verbatim; legacy text is escaped only for display.
+        if kind in HUMAN_EVENTS:validate_structure(data,kind)
         db=self._connect()
         try:
             db.execute('BEGIN IMMEDIATE');events,last=self._read(db);seq=len(events)+1
@@ -80,6 +91,8 @@ class Workspace:
         if self.engagement is None:raise AuditError('업무 기본정보 없음')
         from audit_workflow import refresh_state
         refresh_state(self)
+        from audit_links import refresh
+        refresh(self)
         return self
     @property
     def context(self):return {k:self.engagement[k] for k in ('회사코드','시작일','기준일')}
@@ -87,7 +100,10 @@ class Workspace:
     def basis(self):
         from audit_workflow import workflow_basis
         plan=workflow_basis(self)
-        return digest({'data_basis':self.data_basis(),'workflow':plan}) if plan else self.data_basis()
+        base=digest({'data_basis':self.data_basis(),'workflow':plan}) if plan else self.data_basis()
+        from audit_extensions import basis_parts
+        parts=basis_parts(self)
+        return digest({'legacy_basis':base,'extensions':parts}) if parts else base
     def assert_writeable(self,expected_head=None):
         self.refresh()
         if expected_head is not None and self.head!=expected_head:raise AuditError('화면을 연 뒤 업무 이력이 변경되었습니다. 새 상태를 확인하고 다시 입력하세요.')
@@ -287,6 +303,8 @@ class Workspace:
                 if issue['severity']!='차단':required.add('X-'+r['id']+'-'+str(i))
         for r in self.cross_checks():
             if r['상태']=='차이':required.add('B-'+digest(r)[:16])
+        from audit_extensions import required_procedures
+        required.update(required_procedures(self))
         return required
     def snapshot(self,final=False):
         self.refresh()
@@ -307,7 +325,9 @@ class Workspace:
             if not required<=set(self.procedures) or any(self.procedures[p].get('excluded') for p in required):raise AuditError('필수 검사 관련 수동절차·예외 조서가 누락되었거나 제외되었습니다.')
             if any(not n['resolved'] for n in self.notes.values()):raise AuditError('미해결 검토의견이 있습니다.')
         from review_support import source_requirements
-        return {'version':VERSION,'engagement':self.engagement,'export_state':'선택조서 검토기록완료' if final else '검토중 초안','scope':'등록한 조서와 검사 범위. 전체 감사완료나 감사의견을 뜻하지 않음.','basis':self.basis(),'head':self.head,'sources':list(self.sources.values()),'latest':list(latest.values()),'all_runs':list(self.runs.values()),'cross':cross,'procedures':procedures,'notes':list(self.notes.values()),'requests':list(self.requests.values()),'events':self.events,'risk_register':self.risk_register(),'analytics_source_requirements':source_requirements(),'ai_drafts':list(self.ai_drafts.values()),'ai_applications':self.ai_applications,'ai_approvals':list(self.ai_approvals.values()),'workflow':workflow,'form_references':form_references,'legacy_f01_documents':self.legacy_f01_documents,'legacy_f01_approvals':self.legacy_f01_approvals}
+        from audit_extensions import snapshots
+        extensions=snapshots(self)
+        return {**extensions,'version':VERSION,'engagement':self.engagement,'export_state':'선택조서 검토기록완료' if final else '검토중 초안','scope':'등록한 조서와 검사 범위. 전체 감사완료나 감사의견을 뜻하지 않음.','basis':self.basis(),'head':self.head,'sources':list(self.sources.values()),'latest':list(latest.values()),'all_runs':list(self.runs.values()),'cross':cross,'procedures':procedures,'notes':list(self.notes.values()),'requests':list(self.requests.values()),'events':self.events,'risk_register':self.risk_register(),'analytics_source_requirements':source_requirements(),'ai_drafts':list(self.ai_drafts.values()),'ai_applications':self.ai_applications,'ai_approvals':list(self.ai_approvals.values()),'workflow':workflow,'form_references':form_references,'legacy_f01_documents':self.legacy_f01_documents,'legacy_f01_approvals':self.legacy_f01_approvals}
 
     def ai_packet(self,pid,catalog=None,limits=None,event=None):
         from ai_workpapers import build_packet

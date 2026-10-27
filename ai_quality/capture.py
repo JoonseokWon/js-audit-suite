@@ -1,5 +1,6 @@
 """Opt-in QA instrumentation around the real transport, never a fake response."""
 import json
+import time
 from common import atomic, digest
 
 
@@ -18,13 +19,17 @@ class ActualCapture:
             raise ValueError('Actual QA permits the dedicated local endpoint only.')
         index=len(self.requests)+1
         record={'index':index,'request_hash':digest(payload),'provider':'ollama',
-                'transport':'actual_loopback_http','timeout_seconds':timeout}
+                'transport':'actual_loopback_http','timeout_seconds':timeout,
+                'request_options':dict(payload.get('options',{}))}
         self.requests.append(record)
         atomic(self.folder/f'request-{index}.json',json.dumps(payload,ensure_ascii=False,indent=2).encode())
-        response=self.original(target,payload,headers,timeout,event)
+        started=time.monotonic()
+        try:response=self.original(target,payload,headers,timeout,event)
+        finally:record['transport_seconds']=round(time.monotonic()-started,3)
         record['response_hash']=digest(response)
         record['inference_counts']={key:response.get(key) for key in (
-            'prompt_eval_count','eval_count','total_duration','eval_duration')}
+            'prompt_eval_count','prompt_eval_cached_count','eval_count','total_duration',
+            'load_duration','prompt_eval_duration','eval_duration','done','done_reason')}
         atomic(self.folder/f'http-response-{index}.json',json.dumps(response,ensure_ascii=False,indent=2).encode())
         return response
 

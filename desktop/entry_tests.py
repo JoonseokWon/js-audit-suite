@@ -4,6 +4,13 @@ from pathlib import Path
 
 def dispatch(arguments):
     def report():return Path(arguments[arguments.index('--report')+1])
+    if '--self-test-ai-v25' in arguments:
+        from ai_quality.actual_v25 import self_test
+        return self_test(report(),Path(arguments[arguments.index('--ai-runtime')+1]),
+                         cpu_diagnostic='--cpu-diagnostic' in arguments,integrated='--integrated' in arguments)
+    if '--self-test-v25' in arguments:
+        from tools.verify_flow_v25 import self_test
+        return self_test(report())
     if '--self-test-large-ledger' in arguments:
         from tools.verify_large_ledger import self_test
         return self_test(report(),Path(arguments[arguments.index('--input')+1]),int(arguments[arguments.index('--rows')+1]),int(arguments[arguments.index('--total')+1]))

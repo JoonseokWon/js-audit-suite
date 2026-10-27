@@ -94,8 +94,14 @@ def load_input(module,path,context):
         group=groups.setdefault(key,{'sheet':sheet,'kind':kind,'columns':[]})
         if (sheet,kind)!=(group['sheet'],group['kind']):raise AuditError('입력 양식 시트 중복')
         group['columns'].append((field,row['표시'],row['자료형']))
-    if set(groups)!=set(allowed) or {x['sheet'] for x in groups.values()}!=set(tables):raise AuditError('입력 시트가 누락·추가됐습니다.')
+    # Pre-company-mapping ERP templates remain readable, but cannot establish
+    # company provenance. Never synthesize an identity mapping from context.
+    legacy_company=(module=='실무자료·원장' and 'company_mapping' in allowed
+        and 'company_mapping' not in groups and allowed['company_mapping']['sheet'] not in tables)
+    expected=set(allowed)-({'company_mapping'} if legacy_company else set())
+    if set(groups)!=expected or {x['sheet'] for x in groups.values()}!=set(tables):raise AuditError('입력 시트가 누락·추가됐습니다.')
     output={'schema':SCHEMA,'area':module,'approval':{}}
+    if legacy_company:output['company_mapping']=[]
     for key,group in groups.items():
         columns=group['columns'];labels=[c[1] for c in columns];fields=[c[0] for c in columns]
         if len(set(labels))!=len(labels) or len(set(fields))!=len(fields):raise AuditError('중복 입력 열')

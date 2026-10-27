@@ -7,8 +7,7 @@ from common import AuditError,Path,PROCEDURE_MODULES,cancelled,digest,dumps,json
 from copy import deepcopy
 import uuid
 
-PACKET_VERSION='ai-evidence-1'
-PROMPT_VERSION='ai-workpaper-1'
+from ai_contract.versions import PACKET_VERSION,PROMPT_VERSION,CONTRACT_VERSION
 FIELDS=('purpose','risk','scope','performed','conclusion')
 CONTENT_FIELDS=('id','title',*FIELDS,'preparer','performed_date','evidence_ids','excluded','excluded_reason')
 DEFAULT_LIMITS={'max_chars':24000,'max_references':70,'rows_per_table':5,'max_tables':10,'cell_chars':500}
@@ -27,6 +26,11 @@ SAFETY_RULES=[
 ]
 _SECRET=re.compile(r'(?i)(?:\bsk-[a-z0-9_-]{12,}|\bBearer\s+[a-z0-9._-]{12,}|(?:api[_ -]?key|access[_ -]?token|password|secret)\s*[=:]\s*[\"\']?[^\s\"\',}]{6,})')
 _ABS_PATH=re.compile(r'(?i)(?:\b[A-Z]:[\\/][^\s\"\'<>]*|\\\\[^\s\"\'<>]+|file:///[^\s\"\'<>]+|/(?:Users|home|tmp|mnt|root|private|var|opt)/[^\s\"\'<>]*)')
+
+def _human_text(value,label):
+    from export_support.text import require_xml_text
+    require_xml_text(value,label)
+    return text(value,label)
 
 def content_hash(procedure):
     fields={k:procedure.get(k,False if k=='excluded' else [] if k=='evidence_ids' else '') for k in CONTENT_FIELDS}
@@ -97,6 +101,8 @@ def build_packet(ws,pid,catalog=None,limits=None,event=None):
         'references':references,'limitations':['사람의 감사절차·전문적 판단·검토·최종내용 승인은 미수행. AI 초안은 실제 감사증거 또는 감사의견이 아니다.','프로그램 입력·모듈대사 범위의 한정된 검사이며 동일 생성기 더미는 독립 수령 자료가 아니다.','원문 행은 명시한 한도의 발췌이며 생략된 행은 AI가 검토하지 않았다.'],
         'safety_rules':SAFETY_RULES,'truncation':truncation,'limits':lim,'supported_modules':list(SUPPORTED_MODULES)}
 
+    from ai_contract import attach_contract
+    attach_contract(packet,task,ws.workflow_procedure_links.get(pid))
     if semantic:packet['procedure']['purpose_code']=semantic
     raw_chars=0
     def ref(kind,data,**links):
@@ -121,7 +127,8 @@ def build_packet(ws,pid,catalog=None,limits=None,event=None):
         from onboarding.ai_evidence import reserve
         protected=reserve(ws,module,chosen,ref)
     if ws.workflow_profile:
-        ref('human_workflow_profile', ws.workflow_profile)
+        from ai_contract.packet_scope import profile_excerpt
+        ref('human_workflow_profile', profile_excerpt(ws.workflow_profile,pid))
         linked=ws.workflow_procedure_links.get(pid)
         if linked:ref('human_workflow_procedure',linked)
         for risk in ws.workflow_risks.values():
@@ -140,14 +147,24 @@ def build_packet(ws,pid,catalog=None,limits=None,event=None):
         if row['모듈']==module or (module is None and row['상태']!='일치'):ref('ledger_reconciliation',row)
     tokens={'매출':('매출','출고','회수','invoice','deliver','order','ledger'),'금융상품':('금융','명세','이자','회신'),'감가상각':('자산','상각'),'종업원급여':('급여','인사','직원','연차','퇴직'),'재고평가':('재고','입고','출고','평가'),'대손충당금':('채권','손실','회수'),'리스':('리스',),'미기록부채·비용이연':('지급','매입','비용','선급'),'원장·리드':('시산표','총계정','독립통제','계정매핑')}.get(module,())
     def table_priority(name):return (name.startswith('_'),not any(t.lower() in name.lower() for t in tokens),name)
+    raw_cache={};reserved_raw=None
+    def reserve_raw():
+        nonlocal reserved_raw
+        from ai_contract.raw_anchor import reserve
+        rid,reserved_raw=reserve(ws,source_ids[:source_limit],ref,raw_cache,table_priority,event)
+        if rid:protected.add(rid)
+    from ai_contract.linked_records import add_references
+    if add_references(ws,pid,packet,ref,before_anchors=reserve_raw):
+        attach_contract(packet,task,ws.workflow_procedure_links.get(pid))
     for sid in source_ids[:source_limit]:
         cancelled(event);source=ws.sources.get(sid)
         if source is None:raise AuditError('조서의 등록 증거 ID가 현재 업무에 없습니다.')
         path=ws.root/source['file'];suffix=path.suffix.lower()
         ref('source_copy',{'name':source['name'],'role':source['role'],'bytes':source['bytes'],'authenticity':'등록된 사본 동일성만 확인; 실제 수령·진위·독립성 미확인'},source_id=sid,sha256=source['sha256'])
         if suffix=='.xlsx':
-            from common import read_xlsx
-            tables,_=read_xlsx(path,event=event)
+            from ai_contract.source_read import read_source_tables
+            if sid in raw_cache:tables=raw_cache[sid]
+            else:tables,_=read_source_tables(ws,sid,path,event)
             series=[{'name':name,'rows':rows,'sha256':source['sha256']} for name,rows in tables.items()]
         elif suffix=='.auditpack':
             from raw_sources import load_pack
@@ -156,33 +173,40 @@ def build_packet(ws,pid,catalog=None,limits=None,event=None):
             series=[{'name':table['sheet'],'book':table['source_file'],'sha256':hashes.get(table['source_file'],''),'dataset_id':table['dataset_id'],'rows':[dict(zip(table['headers'],r['values']))|{'_row':r['row'],'_sheet':table['sheet']} for r in table['rows']]} for table in pack['catalog']['tables']]
         elif suffix=='.json':
             data=json.loads(path.read_text(encoding='utf-8'))
-            ref('raw_json',data,source_id=sid,sha256=source['sha256'])
+            if reserved_raw!=(sid,'json',None):ref('raw_json',data,source_id=sid,sha256=source['sha256'])
             continue
         else:
             packet['limitations'].append('원문 행 읽기 미지원 자료 '+sid+': 메타정보와 해시만 포함. 실제 내용 검사는 미수행.')
             continue
         series.sort(key=lambda table:table_priority(table['name']))
         for table in series[:lim['max_tables']]:
-            included=0
+            included=int(bool(reserved_raw and reserved_raw[:2]==(sid,table['name'])))
             for row in table['rows'][:lim['rows_per_table']]:
+                if reserved_raw==(sid,table['name'],row.get('_row')):continue
                 rid=ref('raw_xlsx_row',{'sheet':table['name'],'row':row.get('_row'),'values':row,'book':table.get('book',''),'dataset_id':table.get('dataset_id','')},source_id=sid,sha256=source['sha256'],workbook_sha256=table['sha256'])
                 included+=bool(rid)
             if len(table['rows'])>included:truncation.append({'kind':'raw_xlsx_row','source_id':sid,'sheet':table['name'],'dataset_id':table.get('dataset_id',''),'available':len(table['rows']),'included':included,'omitted':len(table['rows'])-included,'content_hash':digest(table['rows'])})
         if len(series)>lim['max_tables']:truncation.append({'kind':'raw_xlsx_table','source_id':sid,'available':len(series),'included':lim['max_tables'],'omitted':len(series)-lim['max_tables'],'content_hash':digest(series)})
     if len(source_ids)>source_limit:truncation.append({'kind':'source_content','available':len(source_ids),'included':source_limit,'omitted':len(source_ids)-source_limit,'content_hash':digest(source_ids)})
+    selected_tables={}
     for run in chosen:
         tables=run['result']['tables']
         names=sorted((name for name in tables if not name.startswith('입력_')),key=lambda name:(not any(k in name for k in ('대사','예외','차이','미확인','통제')),name))
+        selected_tables[run['id']]=names[:lim['max_tables']]
         for name in names[:lim['max_tables']]:
             included=0
-            for row in tables[name][:lim['rows_per_table']]:included+=bool(ref('calculation_row',{'table':name,'row':row},run_id=run['id'],result_hash=run['result_hash']))
+            for index,row in enumerate(tables[name][:lim['rows_per_table']],1):
+                included+=bool(ref('calculation_row',{'table':name,'row':row},run_id=run['id'],result_hash=run['result_hash'],table_row=index,row_hash=digest(row)))
             if len(tables[name])>included:truncation.append({'kind':'calculation_row','run_id':run['id'],'table':name,'available':len(tables[name]),'included':included,'omitted':len(tables[name])-included,'content_hash':digest(tables[name])})
         if len(tables)>len(names):packet['limitations'].append(run['module']+'의 입력_표는 별도 원본 발췌를 참조하며 중복 전송하지 않음.')
     if not chosen:packet['limitations'].append('선택 조서에 연결된 자동검사 실행 없음. 원문·절차 설계만의 초안이며 수행 완료로 해석하면 안 됨.')
     if module and module not in latest:packet['limitations'].append('선택 모듈 '+module+'은 미실행. 원장 등 다른 실행을 해당 모듈의 수행 결과로 사용하면 안 됨.')
     if not ws.sources:packet['limitations'].append('등록 원문 없음. 자료 수령·검증·자동검사는 미수행.')
     # Summarize large omission lists without hiding the omitted item count.
-    if compact and truncation:
+    if not compact and packet.get('linked_human_records') and truncation:
+        from ai_contract.packet_scope import compact_attempts
+        truncation[:]=compact_attempts(truncation)
+    elif compact and truncation:
         groups=[]
         for kind in sorted({r['kind'] for r in truncation}):
             records=[r for r in truncation if r['kind']==kind]
@@ -208,38 +232,19 @@ def build_packet(ws,pid,catalog=None,limits=None,event=None):
     if budget_omissions:
         packet['truncation'].append({'kind':'final_packet_budget','omitted':len(budget_omissions),'reference_ids':[r['id'] for r in budget_omissions],'details_hash':digest(budget_omissions),'reason':'절단 메타정보 포함 전체 24,000자 한도'})
     if len(dumps(packet))>lim['max_chars']:raise AuditError('AI 근거 패킷이 한도를 초과했습니다. 더 작은 원문 범위를 선택하세요.')
+    from ai_evidence_inventory import finalize_packet
+    packet=finalize_packet(packet,chosen,protected_ids=protected,selected_tables=selected_tables)
     ws.refresh()
     if basis!=ws.basis() or ws.verify_sources():raise AuditError('AI 근거 생성 중 자료/실행 변경. 다시 생성하세요.')
     return packet
 
 def _validate_response(packet,response):
-    if not isinstance(response,dict):raise AuditError('실제 AI 응답 객체가 필요합니다.')
-    for key,expected in [('packet_hash',digest(packet)),('procedure_id',packet['procedure']['id']),('company_code',packet['engagement']['company_code']),('basis',packet['basis']),('prompt_version',PROMPT_VERSION)]:
-        if response.get(key)!=expected:raise AuditError('AI 응답의 근거·회사·절차 버전 불일치: '+key)
-    fields=response.get('fields');citations=response.get('citations')
-    if not isinstance(fields,dict) or set(fields)!=set(FIELDS) or any(not isinstance(v,str) or not v.strip() or len(v)>20000 for v in fields.values()):raise AuditError('AI 조서 5개 필드의 구조/내용 오류')
-    ids={ref['id'] for ref in packet['references']}
-    if not isinstance(citations,dict) or set(citations)!=set(FIELDS):raise AuditError('AI 필드별 근거 참조가 필요합니다.')
-    for key in FIELDS:
-        refs=citations[key]
-        if not isinstance(refs,list) or not refs or any(not isinstance(v,str) or v not in ids for v in refs) or len(set(refs))!=len(refs):raise AuditError('AI 참조 ID가 없거나 현재 근거 패킷에 없습니다: '+key)
-    raw=response.get('raw_response')
-    if not isinstance(raw,str) or not raw.strip() or len(raw)>200000:raise AuditError('실제 AI 원문 응답이 필요합니다.')
-    try:parsed=json.loads(raw)
-    except (ValueError,TypeError) as exc:raise AuditError('AI 원문 응답 JSON 오류') from exc
-    context={'company_code':packet['engagement']['company_code'],'procedure_id':packet['procedure']['id'],'basis':packet['basis']}
-    if not isinstance(parsed,dict) or set(parsed)!={'fields','citations','context'} or parsed.get('fields')!=fields or parsed.get('citations')!=citations or parsed.get('context')!=context:raise AuditError('AI 응답 원문과 적용 필드/회사/절차 불일치')
-    if _SECRET.search(raw) or _ABS_PATH.search(raw):raise AuditError('AI 응답에 인증값 또는 절대 원문 경로가 포함되어 저장하지 않았습니다.')
-    if response.get('provider') not in ('ollama','openai'):raise AuditError('실제 지원 AI 제공자만 저장할 수 있습니다.')
-    model=text(response.get('model'),'AI 모델명')
-    if _SECRET.search(model) or _ABS_PATH.search(model):raise AuditError('모델명에 비공개 값이 포함되어 있습니다.')
-    # Shared semantic and schema checks are also rerun at the event boundary.
-    from ai_provider import validate_draft_response
-    validate_draft_response(packet,fields,citations)
-    return {'fields':deepcopy(fields),'citations':deepcopy(citations),'raw_response':raw,'provider':response['provider'],'model':model,'prompt_version':PROMPT_VERSION,'packet_hash':digest(packet),'procedure_id':context['procedure_id'],'company_code':context['company_code'],'basis':packet['basis']}
+    from ai_contract.events import validate_event_response
+    return validate_event_response(packet,response)
+
 
 def record_draft(ws,packet,response,actor):
-    ws.assert_writeable();actor=text(actor,'AI 초안 요청자')
+    ws.assert_writeable();actor=_human_text(actor,'AI 초안 요청자')
     if not isinstance(packet,dict) or packet.get('packet_version')!=PACKET_VERSION:raise AuditError('AI 근거 패킷 버전 오류')
     current=build_packet(ws,packet.get('procedure',{}).get('id'),limits=packet.get('limits'))
     if digest(current)!=digest(packet):raise AuditError('AI 생성 중 자료/실행/조서 또는 근거 패킷 변경. 다시 생성하세요.')
@@ -248,17 +253,18 @@ def record_draft(ws,packet,response,actor):
     ws._append('ai_draft',draft);ws.refresh();return draft['id']
 
 def apply_draft(ws,draft_id,actor):
-    ws.assert_writeable();actor=text(actor,'AI 초안 적용자');draft=ws.ai_drafts.get(draft_id)
+    ws.assert_writeable();actor=_human_text(actor,'AI 초안 적용자');draft=ws.ai_drafts.get(draft_id)
     if draft is None:raise AuditError('저장된 실제 AI 초안을 선택하세요.')
+    if draft.get('contract_version')!=CONTRACT_VERSION:raise AuditError('구계약 AI 초안은 원문 조회만 가능합니다. 새 근거로 다시 생성하세요.')
     pid=draft['procedure_id']
     if pid in ('F01','FS01'):
         from audit_workflow import purpose_code
         if draft['packet']['procedure'].get('purpose_code')!=purpose_code(ws,pid):raise AuditError('구형 F01 AI 근거를 다른 목적 조서에 전용할 수 없습니다. 새 목적의 근거를 생성하세요.')
     if draft['basis']!=ws.basis() or draft['packet']['procedure']['fingerprint']!=procedure_fingerprint(ws,pid):raise AuditError('AI 초안 생성 후 자료/실행/조서 변경. 새 근거로 다시 생성하세요.')
     if ws.verify_sources():raise AuditError('AI 초안 증거 사본 변경/누락')
-    _validate_response(draft['packet'],draft)
+    validated=_validate_response(draft['packet'],draft)
     procedure=_task(ws,pid)
-    procedure.update(draft['fields']);procedure.update(id=pid,preparer=procedure.get('preparer') or actor)
+    procedure.update(validated['verified_fields']);procedure.update(id=pid,preparer=procedure.get('preparer') or actor)
     procedure.setdefault('performed_date','')
     procedure['evidence_ids']=list(dict.fromkeys(procedure.get('evidence_ids',[])+[r['source_id'] for r in draft['packet']['references'] if r.get('source_id') in ws.sources]))
     saved=ws.save_procedure(procedure,_ai_draft_id=draft_id)
@@ -270,23 +276,29 @@ def status(ws,pid):
     draft_id=procedure.get('ai_draft_id');draft=ws.ai_drafts.get(draft_id)
     if not draft_id:return {'state':'AI 미적용','required':False,'approved':False,'stale':False,'procedure_id':pid}
     actual=content_hash(procedure);approval=ws.ai_approvals.get(pid)
+    if draft and draft.get('contract_version')!=CONTRACT_VERSION:
+        return {'state':'구계약 AI 내용·재생성 필요','required':True,'approved':False,'stale':True,'legacy':True,
+            'procedure_id':pid,'draft_id':draft_id,'historical_approval':deepcopy(approval),
+            'scope':'기존 원문·과거 승인이력 보존. 현 구조화 계약의 승인으로 인정하지 않음.'}
     stale=bool(draft is None or draft.get('basis')!=ws.basis() or procedure.get('basis')!=ws.basis())
-    valid=bool(not stale and approval and approval.get('draft_id')==draft_id and approval.get('basis')==ws.basis() and approval.get('content_hash')==actual and approval.get('edit_revision')==procedure.get('edit_revision'))
+    valid=bool(not stale and approval and approval.get('contract_version')==CONTRACT_VERSION and approval.get('draft_id')==draft_id and approval.get('basis')==ws.basis() and approval.get('content_hash')==actual and approval.get('edit_revision')==procedure.get('edit_revision'))
     if approval and not valid:stale=True
     return {'state':'AI 최종내용 승인' if valid else 'AI 승인 변경·재승인 필요' if stale else 'AI 최종내용 미승인','required':True,'approved':valid,'stale':stale,'procedure_id':pid,'draft_id':draft_id,'content_hash':actual,'basis':ws.basis(),'model':draft.get('model','') if draft else '', 'provider':draft.get('provider','') if draft else '', 'approval':deepcopy(approval) if approval else None}
 
 def approve_content(ws,pid,actor,note):
-    ws.assert_writeable();actor=text(actor,'최종내용 승인자');note=text(note,'최종내용 승인 범위·수정·판단 기록')
+    ws.assert_writeable();actor=_human_text(actor,'최종내용 승인자');note=_human_text(note,'최종내용 승인 범위·수정·판단 기록')
     if pid in ('F01','FS01'):
         from audit_workflow import purpose_code
         expected=purpose_code(ws,pid)
         if ws.procedures.get(pid,{}).get('purpose_code')!=expected:raise AuditError('F01/FS01 조서 목적 확인 필요')
     current=status(ws,pid)
     if not current['required']:raise AuditError('AI 적용 조서를 저장한 후 최종내용을 승인하세요.')
+    if current.get('legacy'):raise AuditError('구계약 AI 내용은 새 승인을 할 수 없습니다. 원문을 보존하고 다시 생성하세요.')
     draft=ws.ai_drafts.get(current['draft_id']);p=ws.procedures[pid]
     if not draft or draft['basis']!=ws.basis() or p.get('basis')!=ws.basis() or ws.verify_sources():raise AuditError('근거 자료/실행 변경 또는 무결성 오류. 새 AI 초안과 사람 검토가 필요합니다.')
     if not any(e['kind']=='ai_apply' and e['data'].get('draft_id')==draft['id'] for e in ws.events):raise AuditError('AI 초안 적용 이력이 없습니다.')
     if any(not str(p.get(key,'')).strip() for key in FIELDS):raise AuditError('AI 조서의 목적·위험·범위·수행·결론을 사람이 확인·수정해 저장하세요.')
-    approval={'id':uuid.uuid4().hex,'at':now(),'procedure_id':pid,'draft_id':draft['id'],'actor':actor,'note':note,'content_hash':content_hash(p),'edit_revision':p.get('edit_revision'),'basis':ws.basis(),'provider':draft['provider'],'model':draft['model'],'prompt_version':draft['prompt_version'],'packet_hash':draft['packet_hash'],'citations':deepcopy(draft['citations']),'scope':'AI가 제안하고 사람이 저장한 최종 내용 승인. 본인인증·전체 감사완료·감사의견·별도 검토완료를 뜻하지 않음.'}
+    approval={'id':uuid.uuid4().hex,'at':now(),'procedure_id':pid,'draft_id':draft['id'],'actor':actor,'note':note,'content_hash':content_hash(p),'edit_revision':p.get('edit_revision'),'basis':ws.basis(),'provider':draft['provider'],'model':draft['model'],'prompt_version':draft['prompt_version'],'packet_hash':draft['packet_hash'],'citations':deepcopy(draft['verified_citations']),'proposal_citations':deepcopy(draft['proposal_citations']),
+        'contract_version':CONTRACT_VERSION,'model_proposals_automatically_applied':False,'scope':'프로그램 근거 기록과 사람이 저장한 현재 본문 승인. 미검증 모델 제안은 자동 적용하지 않음. 본인인증·전체 감사완료·감사의견·별도 검토완료를 뜻하지 않음.'}
     if p.get('purpose_code'):approval['purpose_code']=p['purpose_code']
     ws._append('ai_content_approval',approval);ws.refresh();return approval

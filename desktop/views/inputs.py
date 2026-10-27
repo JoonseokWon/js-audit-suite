@@ -7,6 +7,7 @@ from desktop.widgets.cards import BentoCard
 
 class InputsView:
     def build_inputs(self, parent):
+        from input_limits import module_limit_text
         from desktop.onboarding.manager import open_workbench
         from desktop.onboarding.examples import open_example
         LIMITS.update(ONBOARDING_LIMITS)
@@ -32,13 +33,13 @@ class InputsView:
         self.file = tk.StringVar()
         line.add(ttk.Combobox(line, textvariable=self.module, values=MODULES,
                              state='readonly', width=24))
-        self.module.trace_add('write', lambda *_: self.scope_text.set(LIMITS[self.module.get()]))
+        self.module.trace_add('write', lambda *_: self.scope_text.set(LIMITS[self.module.get()]+'\n'+module_limit_text(self.module.get())))
         line.add(ttk.Entry(line, textvariable=self.file, width=34))
         line.add(ttk.Button(line, text='파일 선택', command=self.choose_input))
         line.add(ttk.Button(line, text='등록하고 검사하기', style='Primary.TButton',
                             command=lambda: self.call(self.run_selected)))
         line.add(ttk.Button(line, text='검사 중단', command=self.cancel.set))
-        self.scope_text = tk.StringVar(value=LIMITS[MODULES[0]])
+        self.scope_text = tk.StringVar(value=LIMITS[MODULES[0]]+'\n'+module_limit_text(MODULES[0]))
         ttk.Label(upload.body, textvariable=self.scope_text, wraplength=1000,
                   style='Muted.TLabel').pack(anchor='w', pady=(10, 0))
         runs = BentoCard(parent, '검사 실행 현황',

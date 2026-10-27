@@ -21,6 +21,8 @@ class RisksView:
         actions = FlowFrame(detail.body)
         actions.pack(fill='x')
         for label, action in [('관련 조서 열기', self.risk_workpaper),
+                              ('왜곡표시 집계', self.open_misstatements),
+                              ('위험·절차 연결', self.open_audit_links),
                               ('자료요청 초안 만들기', self.risk_request),
                               ('검토맥락 저장하기', self.export_context)]:
             actions.add(ttk.Button(actions, text=label, command=lambda fn=action: self.call(fn)))

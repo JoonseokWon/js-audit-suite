@@ -24,18 +24,11 @@ class ExecutionActions:
         self.cancel.clear()
         self.status.set('자료 등록·검사 중…')
         ws = self.ws
+        selected=list(items)
 
         def worker():
-            try:
-                for m, p in items:
-                    if self.cancel.is_set():
-                        break
-                    self.queue.put(('status', m + ' 검사 중'))
-                    r = ws.execute(m, p, self.cancel)
-                    self.queue.put(('run', r))
-                self.queue.put(('done', None))
-            except Exception as e:
-                self.queue.put(('error', str(e)))
+            from desktop.actions.execution_status import run_batch
+            run_batch(ws,selected,self.cancel,lambda kind,data:self.queue.put((kind,data)))
         threading.Thread(target=worker, daemon=False).start()
 
     def poll(self):
@@ -47,6 +40,12 @@ class ExecutionActions:
                     self.status.set(data)
                 elif kind == 'run':
                     pass
+                elif kind == 'batch_done':
+                    from desktop.actions.execution_status import batch_message
+                    self.set_busy(False);self.last_batch_result=data
+                    self.status.set(batch_message(data));self.call(self.refresh)
+                    if self.closing:
+                        self.shutdown_ai();self.root.destroy();return
                 elif kind in ('ai_ok', 'ai_error'):
                     self.finish_ai_job(kind, data)
                     if self.closing:
@@ -85,7 +84,7 @@ class ExecutionActions:
                     if kind == 'error':
                         self.status.set('실행 오류: ' + data)
                     else:
-                        self.status.set('검사 완료. 수동 증거 확인과 조서 검토를 진행하세요.')
+                        self.status.set('검사 종료 알림을 받았어요. 실행 건수가 없어 완료 여부는 검사 실행 현황에서 확인하세요.')
                     self.call(self.refresh)
                     if self.closing:
                         self.shutdown_ai()

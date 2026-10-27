@@ -1,12 +1,13 @@
 """Opt-in deterministic walkthrough test; no provider, network, or actual model."""
 from pathlib import Path
 from openpyxl import load_workbook
-from common import AuditError, digest, dumps
+from common import AuditError
 from . import create_demo, case_status
 
 
 def _mock(packet):
-    from ai_workpapers import FIELDS, PROMPT_VERSION
+    from ai_workpapers import FIELDS
+    from test_review_ai_helpers import response_from_fields
     ref = next(r['id'] for r in packet['references'] if r['kind']=='run_summary')
     fields = {key:'SYNTHETIC ONLY 모의 초안입니다. 원문·자동검사 범위를 사람이 확인해야 합니다. ['+ref+']'
               for key in FIELDS}
@@ -19,12 +20,11 @@ def _mock(packet):
         fields['performed'] += ' 선택된 예외코드: '+', '.join(str(r['data']['code']) for r in exceptions)+'. '
         fields['performed'] += ''.join('['+r['id']+']' for r in exceptions)
         citations['performed'] += [r['id'] for r in exceptions]
-    context = dict(company_code=packet['engagement']['company_code'],
-        procedure_id=packet['procedure']['id'], basis=packet['basis'])
-    return dict(fields=fields, citations=citations, provider='ollama',
-        model='SYNTHETIC-ONLY-NO-MODEL-CALL', prompt_version=PROMPT_VERSION,
-        packet_hash=digest(packet), **context,
-        raw_response=dumps(dict(fields=fields,citations=citations,context=context)))
+    # The fixture follows today's typed contract; legacy draft imports remain
+    # read-only. This helper derives program facts and quarantines these exact
+    # mock proposal strings without provider/model calls or production fallback.
+    return response_from_fields(packet, fields, citations,
+                                model='SYNTHETIC-ONLY-NO-MODEL-CALL')
 
 
 def verify(directory):

@@ -53,5 +53,5 @@ class AIJobs:
             def complete(response):
                 if self.ws is not ws:raise AuditError('업무가 변경되어 초안을 반영하지 않았습니다.')
                 did=ws.record_ai_draft(packet,response,actor);self.refresh()
-                self.status.set('실제 AI 초안 저장. 근거를 확인한 뒤 적용·수정·승인하세요.');self.open_ai_preview(did)
+                self.status.set('프로그램 근거 기록과 미검증 모델 제안을 따로 저장했어요. 구분해 확인하고 필요한 내용을 직접 작성하세요.');self.open_ai_preview(did)
             self.launch_ai_job(work,complete)

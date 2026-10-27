@@ -7,6 +7,7 @@ from .schema import APPROVAL_FIELDS, FIELD_LABELS, TABLE_FIELDS, configuration
 from .normalize import normalize
 from .controls import make_ledger, validate_current, compare_current
 from .presentation import present
+from .company import verified as company_verified
 
 
 def _prepare(payload, context, event=None):
@@ -21,6 +22,8 @@ def _prepare(payload, context, event=None):
 def prepare_ledger(payload, context, event=None):
     """Initial registration only. Never infer independent controls or a person's approval."""
     tables,_,_,issues=_prepare(payload,context,event)
+    if not company_verified(tables['총계정원장'],context,issues):
+        raise AuditError('원장 등록 전 원본 회사 열·회사코드·모집단 범위를 확인하세요. 미확인 회사는 업무 회사로 자동 확정하지 않습니다.')
     verified=ledger.analyze(tables,event)
     issues.extend(verified['issues'])
     blocking=[i for i in issues if i['severity']=='차단']
@@ -56,8 +59,10 @@ def analyze(payload, context, ledger_result, event=None):
     try:
         canonical,trace,checks,issues=_prepare(payload,context,event)
         cancelled(event)
-        prepared=ledger.analyze(canonical,event);issues.extend(prepared['issues'])
-        fresh=validate_current(ledger_result,context,issues)
+        identity_ok=company_verified(canonical['총계정원장'],context,issues)
+        prepared=ledger.analyze(canonical,event) if identity_ok else None
+        if prepared:issues.extend(prepared['issues'])
+        fresh=validate_current(ledger_result,context,issues) if identity_ok else None
         if fresh:
             compare_current(canonical['총계정원장'],fresh,checks,issues)
             fields={'시산표':('계정코드','기초잔액','당기차변','당기대변','기말잔액'),
@@ -69,14 +74,15 @@ def analyze(payload, context, ledger_result, event=None):
                 if left!=right:issue(issues,'ERP_LEDGER_BASIS','별도 TB·확인 조정과 현재 원장의 기준이 다릅니다.',name)
         pivot,explore=_exploration(trace,canonical['총계정원장'])
         tables={'원본부호변환':trace,'독립통제대사':checks,'계정월부문분석':pivot,
-                '전표전체탐색':explore,'조정전후리드':prepared['tables']['리드스케줄']}
+                '전표전체탐색':explore,'조정전후리드':prepared['tables']['리드스케줄'] if prepared else []}
         if fresh:tables.update(present(payload,prepared,issues))
         linked=bool(fresh) and not any(i['severity']=='차단' for i in issues)
-        detail.update(입력확인대상해시=digest({k:payload.get(k) for k in APPROVAL_FIELDS}),
+        detail.update(회사식별확인=identity_ok,회사식별범위='원본의 명시 회사열·코드 매핑 대조. 실제 소속·추출 신뢰성 인증 아님.',
+                      입력확인대상해시=digest({k:payload.get(k) for k in APPROVAL_FIELDS}),
                       원장결과해시=ledger_basis(ledger_result) if ledger_result else '',
                       원본자료해시=digest(payload.get('source_rows',[])),
                       원본해시안내='행별 원본 SHA는 선언값입니다. 원본 Excel 가져오기는 실제 파일 SHA와 행을 함께 보존합니다.',
-                      매핑정책해시=digest({k:payload.get(k) for k in ('column_mapping','coa_mapping','config','presentation_mapping')}))
+                      매핑정책해시=digest({k:payload.get(k) for k in ('column_mapping','company_mapping','coa_mapping','config','presentation_mapping')}))
     except (AuditError,KeyError,TypeError,ValueError) as exc:
         issue(issues,'ERP_INPUT',str(exc));tables={}
     detail['현재원장연결']=linked

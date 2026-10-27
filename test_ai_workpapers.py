@@ -29,11 +29,14 @@ def mock_response(packet):
         citations['performed']=list(dict.fromkeys([ref]+[item['id'] for item in exceptions]))
         fields['conclusion']+=' 선택된 예외는 사람이 추가조사·추가확인하여 판단해야 한다.'
     context={'company_code':packet['engagement']['company_code'],'procedure_id':packet['procedure']['id'],'basis':packet['basis']}
-    return {'fields':fields,'citations':citations,'provider':'ollama','model':'unit-fixture-no-model-call','prompt_version':PROMPT_VERSION,'packet_hash':digest(packet),**context,'raw_response':dumps({'fields':fields,'citations':citations,'context':context})}
+    from test_review_ai_helpers import response_from_fields
+    return response_from_fields(packet,fields,citations)
+
 
 def sync_raw(response):
-    response['raw_response']=dumps({'fields':response['fields'],'citations':response['citations'],'context':{k:response[k] for k in ('company_code','procedure_id','basis')}})
-    return response
+    from test_review_ai_helpers import sync_response
+    return sync_response(response)
+
 
 class AiWorkpaperTests(unittest.TestCase):
     def setUp(self):
@@ -80,7 +83,8 @@ class AiWorkpaperTests(unittest.TestCase):
         packet=self.packet(limits={'rows_per_table':1,'max_tables':2})
         self.assertLessEqual(len(dumps(packet)),24000)
         self.assertTrue(packet['truncation'])
-        self.assertTrue(any(t.get('omitted',0)>0 and t.get('content_hash') for t in packet['truncation']))
+        self.assertTrue(any(t.get('initial_omitted',0)>0 and t.get('content_hash') for t in packet['truncation']))
+        self.assertGreater(packet['calculation_inventory']['omitted'],0)
 
     def test_compact_packet_excludes_unselected_history_but_pins_full_basis(self):
         path=Path(self.temp.name)/'extra.json';path.write_text('{"synthetic":true}',encoding='utf-8')
@@ -94,7 +98,7 @@ class AiWorkpaperTests(unittest.TestCase):
         self.assertEqual(len(packet['unselected_sources']['manifest_hash']),64)
         self.assertTrue(any(r['kind']=='raw_xlsx_row' for r in packet['references']))
         self.assertTrue(any(r['kind']=='ledger_reconciliation' for r in packet['references']))
-        self.assertTrue(all('content_hash' in item or 'details_hash' in item for item in packet['truncation']))
+        self.assertTrue(all(any(key in item for key in ('content_hash','details_hash','manifest_hash')) for item in packet['truncation']))
 
     def test_packet_deterministic_despite_unrelated_note_event(self):
         first=self.packet();self.ws.add_note('합성','근거를 변경하지 않는 로컬 의견','검토자')
@@ -245,6 +249,8 @@ class AiWorkpaperTests(unittest.TestCase):
         packet=self.packet();response=mock_response(packet)
         response['fields']['purpose']='=SUM(A:A) [REF001]';response['citations']['purpose']=['REF001']
         did=self.ws.record_ai_draft(packet,sync_raw(response),'합성요청자');self.ws.apply_ai_draft(did,'합성작성자')
+        self.assertNotEqual(self.ws.procedures['A04']['purpose'],'=SUM(A:A) [REF001]')
+        changed=dict(self.ws.procedures['A04']);changed['purpose']='=SUM(A:A) [REF001]';self.ws.save_procedure(changed)
         from openpyxl import load_workbook
         book=load_workbook(io.BytesIO(exporter.workbook_bytes(self.ws.snapshot(),CATALOG)),data_only=False)
         try:

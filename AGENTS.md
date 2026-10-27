@@ -1,3 +1,40 @@
+# v2.5.0 AI 인용·왜곡표시·위험대응 연결 및 배포 (이 절 우선)
+
+- 사용자의 2026-10-27 직접 요청: 워커 분담, AI 인용 누락 수정, 왜곡표시 통합 집계 및 위험평가·감사절차·조서 연결, JS전자 더미 검증, 새 EXE·GitHub 공개 릴리스 업데이트. 이번 요청은 아래 과거의 배포금지보다 우선한다.
+- 최종 v2.4.0 manifest 2033파일을 검증해 복사한 독립 버전. 다른 버전·실사용 업무·원본 리뷰 증거·기존 릴리스는 보존.
+- PM 소유: common.py, workspace.py, exporter.py, procedures.py, display_schema.py, 공통 desktop 연결·entry_tests, v25 demo/e2e/빌드/배포/문서/CI.
+- AI worker 소유: ai_provider.py, ai_workpapers.py, ai_contract/*, ai_quality/*, 관련 AI tests·tools. 누락이 생성단계에서 방지되게 개선하되 검증기 완화·원문 수정·실패 은폐 금지. 실제 추론은 PM 조정, 워커 0회. 새 위험·왜곡표시 packet hooks 협의.
+- misstatement worker 소유: 새 misstatements/*, desktop/misstatements/*, test_misstatements*.py. 수동분류·회사확인·판단을 남기고 자동후보와 수정/미수정·전기/당기·중복후보·정성·세효과·독립GL수정검증을 구분. PM에게 workspace hook 요청.
+- risk worker 소유: 새 audit_links/*, desktop/audit_links/*, test_audit_links*.py. 기존 위험등록과 계획을 활용해 경영진주장/위험/절차/근거/조서의 연결·범위·버전·미수행을 점검. 고유위험/통제위험·결론·승인은 사람 입력. PM에게 workspace hook 요청.
+- 다른 소유파일 수정 전 PM과 협의. 다른 사용자 채팅에 명시 권한 없이 메시지 금지.
+- 합성 회사 JS전자와 SYNTHETIC ONLY 가상 승인 상태전이만 테스트. 사용자용 시연은 실제 수행/판단/승인/검토 비워 둠. 실제 사람 승인으로 세지 않음.
+- 25만 행 원장 경로·명시 모듈 한도·구버전 조회·append-only 이력·자료/본문 변경 후 재확인과 별도 검토를 보존. 새 코드는 작게 모듈화(가능하면240줄이내).
+- UI 물리조작은 이전 Escape 이후 재개하지 않음. 숨김 창/Unicode/OOXML와 실제 IME·혼합DPI·실제Office를 구분.
+- 실제 AI 모델·실제 고객자료·교육원본/모범답안·DB·API키·개인메일·모델 원응답·사설검증로그는 공개에서 제외. 정확한 공개 파일 allowlist로만 패키징.
+- 기존 사용자/타작업 서버·프로그램 강제종료/글로벌 설정 변경/컴퓨터 종료 금지. 실제 로컬 AI는 전용loopback만. 유료OpenAI 호출은 이번검증에사용않음.
+- 현재source와EXE에서 실제AI/더미/승인무효화/Excel 및 필수회귀를 검증한뒤정확한 결과로새릴리스. 실패를성공으로표시하거나과거검증을이번검증으로재사용하지않음.
+
+# 과거 기록
+
+# v2.4.0 독립 리뷰 지적사항 수정 (이 절 우선)
+
+- 사용자의 2026-10-26 새 요청을 원본 리뷰 채팅의 userMessage로 확인했다: 리뷰보고서를 이 개발 채팅에 복사하고 코드 수정·검증을 진행한다. 리뷰 단계의 수정금지는 해제됐으며 이번 작업은 코드·회귀 검증이다. 새 EXE·공개 릴리스는 이번 단계의 요청이 아니다.
+- v2.3.0의 이미 고정된 build/stage manifest를 검증해 복사한 독립 수정본이다. 다른 채팅의 v2.3.0 큰 원장 작업·소스·EXE·릴리스·업무는 읽기만 하고 수정하지 않는다. v2.2.0와 독립 리뷰 근거도 보존한다.
+- PM 소유: AI 패킷 포함/생략 집계 새 ai_evidence_inventory/*, 공통 통합·버전·문서·최종 회귀. ai_workpapers.py는 AI 워커가 소유하므로 hook 변경을 요청한다.
+- data_controls_v24 소유: onboarding/erp/*, onboarding/fixtures.py(필요 시), input_limits.py, adapters.py, accruals.py, 새 data_controls/*, test_review_data*.py. ACC-01/02 및 계약/후속송장 귀속액 상충을 담당. desktop/onboarding/erp_form.py만 UI 중 소유한다.
+- ai_contract_v24 소유: ai_provider.py, ai_workpapers.py, ai_quality/*, 새 ai_contract/*, 관련 AI 테스트 및 test_review_ai*.py. AI-01/02를 정규식 추가만이 아닌 검증된 식별·증거 종류/상태·수행 상태·typed claims와 불검증 제안 분리로 개선. PM의 AI-03 inventory hook은 협의한다.
+- export_ui_v24 소유: windows_text.py, exporter.py, export_streaming.py, 새 export_support/*, desktop/* (desktop/onboarding/erp_form.py 제외), test_review_export*.py. UI-01/02/03, AI/ERP UI 협의사항을 담당한다.
+- 파일 소유권 밖 변경은 PM에게 요청하고 다른 워커 수정·기존 버전·리뷰 증거를 덮어쓰지 않는다. 타 채팅에 메시지는 사용자 별도 권한 없이 보내지 않는다.
+- 새 QA·더미·보고서는 검증/v2.4.0 아래에 두고 실사용 업무를 테스트하지 않는다. 검증 스크립트·모델·응답·DB·키·원본 교육자료는 공개 대상으로 만들지 않는다.
+- 기존 사람 판단·실제 수행·내용 승인·별도 검토·변경 무효화·append-only 이력은 보존한다. 가상 상태전이는 SYNTHETIC ONLY로 표시하고 실제 사람 승인으로 세지 않는다.
+- 새로운 typed 구조/모델 제약에 맞춰 테스트 fixture를 바꿀 수 있으나 정상 방어를 약화하거나 실제 거절을 성공으로 꾸미지 않는다. 숫자100000의 인용선택 실패는 금액오답이 아니다.
+- 물리 IME·혼합DPI·실제Office 렌더링과 자동 Unicode/OOXML 검증은 구분한다. 이전 물리Escape 이후 이 사용자 화면을 자동 조작하지 않는다. 필요한 검증은 별도 합성·숨김 테스트로 한정한다.
+- OpenAI/유료호출·실고객자료 외부전송 금지. 로컬 실제추론은 PM 조정하에 최소 사례만 수행하고 기존서버/사용자프로그램 강제종료·글로벌설정 변경 금지.
+- 코드 모듈화(새 파일 가능하면240줄 이내), 정확한 모듈별 실제 한도, 대용량 원장 streaming 경로를 유지한다. 한도 무조건 확대 금지. 자동 감사완료·회계 정답·최종분류를 만들어내지 않는다.
+- 이번 단계에서 GitHub·릴리스·EXE를 수정하거나 컴퓨터를 종료하지 않는다.
+
+# 과거 기록
+
 # v2.3.0 큰 원장 입력
 
 - 이번 요청은 원장 1만 행 제한 해제, 큰 모집단의 계산·저장·재열기, 새 EXE와 공개 릴리스다. 이 절이 과거 버전의 파일 소유권 지침보다 우선한다.

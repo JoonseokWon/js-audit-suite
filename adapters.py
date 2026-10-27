@@ -4,6 +4,7 @@ from engines.finance import practice_engine as finance
 from engines.sales import ledger_engine as sales
 from engines.sales.data_io import IMPORT_FIELDS
 from engines.assets import engine as assets
+from data_controls.reader import read_module_xlsx
 
 MODULES=('원장·리드','금융상품','매출','감가상각','확장검사','리스','대손충당금','재고평가','종업원급여','미기록부채·비용이연','원천증빙','재무제표·주석','계정별증빙연습')
 MODULES=MODULES+('GLA','FIA','현금분석')
@@ -32,9 +33,8 @@ def run(module,path,context,event=None,ledger_result=None):
         return plain(out)
     if module=='원장·리드':
         import ledger
-        from input_limits import LEDGER_LIMITS
-        tables,source=read_xlsx(path,ledger.SCHEMA,event,row_limits=LEDGER_LIMITS)
-    else:tables,source=read_xlsx(path,event=event,max_rows=10000 if module in ('리스','대손충당금','재고평가','종업원급여','미기록부채·비용이연') else 1000)
+        tables,source=read_module_xlsx(module,path,ledger.SCHEMA,event)
+    else:tables,source=read_module_xlsx(module,path,event=event)
     cancelled(event)
     if module=='원장·리드':
         import ledger
@@ -76,21 +76,21 @@ def run(module,path,context,event=None,ledger_result=None):
         out=result(module,r['config'],{'자산비교':r['findings'],'자산결과':r['groups'],'월별계산':r['monthly'],'원장통제':r['controls'],'차이집계':r['difference_summary']}|{'입력_'+k:v for k,v in tables.items()},iss,metrics,{'summary':r['summary']})
     elif module=='미기록부채·비용이연':
         import accruals
-        tables,source=read_xlsx(path,accruals.SCHEMA,event,max_rows=10000)
+        tables,source=read_module_xlsx(module,path,accruals.SCHEMA,event)
         out=accruals.analyze(tables,event)
     elif module in ('재고평가','종업원급여'):
         import inventory,payroll
         engine=inventory if module=='재고평가' else payroll
-        tables,source=read_xlsx(path,engine.SCHEMA,event,max_rows=10000)
+        tables,source=read_module_xlsx(module,path,engine.SCHEMA,event)
         out=engine.analyze(tables,event)
     elif module in ('리스','대손충당금'):
         import leases,ecl
         engine=leases if module=='리스' else ecl
-        tables,source=read_xlsx(path,engine.SCHEMA,event,max_rows=10000)
+        tables,source=read_module_xlsx(module,path,engine.SCHEMA,event)
         out=engine.analyze(tables,event)
     elif module=='확장검사':
         import extensions
-        tables,source=read_xlsx(path,extensions.SCHEMA,event);out=extensions.analyze(tables,event)
+        tables,source=read_module_xlsx(module,path,extensions.SCHEMA,event);out=extensions.analyze(tables,event)
     else:raise AuditError('지원하지 않는 모듈')
     for k in ('회사코드','시작일','기준일'):
         v=out['context'].get(k)

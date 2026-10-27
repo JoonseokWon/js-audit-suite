@@ -15,6 +15,7 @@ class WorkflowView:
             for label,action in [('감사계획·중요성',self.open_workflow_profile),('감사위험 추가',lambda:self.open_workflow_risk(new=True)),
                                  ('선택 위험 수정',self.open_workflow_risk),('새 절차 연결',lambda:self.open_workflow_procedure(new=True)),
                                  ('선택 절차 연결 수정',self.open_workflow_procedure),('이전 조서번호 확인',self.open_legacy_f01),
+                                 ('위험·절차 연결',self.open_audit_links),('왜곡표시 집계',self.open_misstatements),
                                  ('상태 새로고침',self.refresh_workflow)]:
                 bar.add(ttk.Button(bar,text=label,command=lambda f=action:self.call(f)))
             ttk.Label(parent,text='검토완료본 수정 제한 및 감사파일 보관').pack(anchor='w',pady=(10,2))

@@ -24,27 +24,9 @@ from workspace import Workspace
 
 
 def mock_response(packet):
-    """Explicit fixed unit fixture; never used as a production fallback."""
-    ref = packet['references'][0]['id']
-    fields = {
-        'purpose': f'고정 모의 응답이며 모델 호출은 없다. 합성 자료 검토 초안이다. [{ref}]',
-        'risk': f'입력 누락과 추출 신뢰성에 대한 사람의 판단이 필요하다. [{ref}]',
-        'scope': f'현재 회사와 기간의 발췌 자료이며 생략된 범위는 미확인이다. [{ref}]',
-        'performed': f'자동검사 자료를 기록할 초안이다. 실사·조회·수령 확인은 미수행이다. [{ref}]',
-        'conclusion': f'사람 검토 전 초안이며 예외·미수행 범위의 추가 확인과 판단이 필요하다. [{ref}]',
-    }
-    citations = {field: [ref] for field in fields}
-    exceptions = [item for item in packet['references'] if item['kind'] == 'exception']
-    if exceptions:
-        fields['performed'] += ' 선택 예외 코드: ' + ', '.join(dict.fromkeys(item['data']['code'] for item in exceptions)) + '.'
-        citations['performed'] = list(dict.fromkeys([ref] + [item['id'] for item in exceptions]))
-        fields['conclusion'] += ' 선택된 예외·누락은 사람이 추가조사와 추가확인을 해야 한다.'
-    context = {'company_code': packet['engagement']['company_code'],
-               'procedure_id': packet['procedure']['id'], 'basis': packet['basis']}
-    return {'fields': fields, 'citations': citations, **context,
-            'provider': 'ollama', 'model': 'unit-fixture-no-inference',
-            'prompt_version': ai_provider.PROMPT_VERSION, 'packet_hash': digest(packet),
-            'raw_response': dumps({'fields': fields, 'citations': citations, 'context': context})}
+    """SYNTHETIC ONLY v2 structured fixture; never actual inference."""
+    from test_ai_workpapers import mock_response as structured_fixture
+    return structured_fixture(packet)
 
 
 class MockRuntime:

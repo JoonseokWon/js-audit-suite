@@ -19,7 +19,9 @@ def fixture(packet):
         if item['kind']=='exception':
             fields['performed']+=' '+str(item['data'].get('code',''))+' ['+item['id']+']'
             if item['id'] not in citations['performed']:citations['performed'].append(item['id'])
-    return {'fields':fields,'citations':citations,'provider':'ollama','model':'native-ui-mock-no-model-call','prompt_version':packet['prompt_version'],'packet_hash':digest(packet),**context,'raw_response':dumps({'fields':fields,'citations':citations,'context':context})}
+    from test_review_ai_helpers import response_from_fields
+    return response_from_fields(packet,fields,citations,model='native-ui-mock-no-model-call')
+
 
 def self_test(report_path):
     out=Path(report_path).parent;out.mkdir(parents=True,exist_ok=True);checks=[];root=None

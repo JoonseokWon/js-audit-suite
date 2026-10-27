@@ -2,6 +2,7 @@
 from ai_desktop import AIDesktopMixin
 from workflow_desktop import WorkflowDesktopMixin
 from desktop.actions.display import DisplayActions
+from desktop.actions.audit_extensions import AuditExtensionActions
 from desktop.actions.navigation import NavigationActions
 from desktop.actions.company import CompanyActions
 from desktop.actions.workspaces import WorkspacesActions
@@ -25,6 +26,7 @@ from desktop.views.risks import RisksView
 
 
 class BaseAuditApp(
+    AuditExtensionActions,
     DisplayActions,
     NavigationActions,
     CompanyActions,
