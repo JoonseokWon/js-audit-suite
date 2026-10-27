@@ -34,9 +34,25 @@ def self_test(report_path,runtime_root,cpu_diagnostic=False,integrated=False):
             from v25_demo import actual_case
             ws,manifest=actual_case(out,check)
         else:ws,manifest=create_case(out,check)
-        packet=ws.ai_packet('A04',limits={'max_chars':24000 if integrated else 12000,
-            'max_references':70 if integrated else 40,
-            'rows_per_table':3,'max_tables':8,'cell_chars':300})
+        if integrated:
+            from .gui_policy_v25 import build_request
+            packet,config=build_request(ws,'A04',manager.base_url)
+        else:
+            packet=ws.ai_packet('A04',limits={'max_chars':12000,'max_references':40,
+                'rows_per_table':3,'max_tables':8,'cell_chars':300})
+            config={'provider':'ollama','model':MODEL,'endpoint':manager.base_url,
+                    'num_ctx':16384,'timeout_seconds':300}
+        if cpu_diagnostic:config['num_gpu']=0
+        if integrated:
+            from .gui_policy_v25 import describe_request
+            base['ui_request_policy']=describe_request(packet,config,manager.base_url,cpu_diagnostic)
+            check(base['ui_request_policy']['matches_requested_policy'],
+                  'actual_request_matches_shared_GUI_policy_or_explicit_CPU_diagnostic')
+            if not cpu_diagnostic:
+                check(base['ui_request_policy']['matches_gui_default'],
+                      'actual_default_request_equals_GUI_default_packet_and_model_options')
+            check(config.get('provider')=='ollama' and config.get('model')==MODEL,
+                  'shared_GUI_default_uses_the_pinned_local_model')
         check(packet['contract']['version']==CONTRACT_VERSION,'typed_contract_is_explicit')
         check('calculation_inventory' in packet,'final_calculation_inclusion_inventory_is_present')
         kinds={ref['kind'] for ref in packet['references']}
@@ -49,11 +65,13 @@ def self_test(report_path,runtime_root,cpu_diagnostic=False,integrated=False):
         state=manager.ensure_server()
         check(state['ready'] and state['runtime_verified'] and state['model_digest']==MODEL_DIGEST,
               'pinned_local_runtime_and_model_are_ready')
-        config={'provider':'ollama','model':MODEL,'endpoint':manager.base_url,
-                'num_ctx':32768 if integrated else 16384,'timeout_seconds':300}
-        if cpu_diagnostic:config['num_gpu']=0
         with capture:response=generate_draft(packet,config)
         check(len(capture.requests)==1,'exactly_one_real_chat_call_without_retry')
+        if integrated:
+            from .gui_policy_v25 import transport_matches_request
+            matches=transport_matches_request(config,capture.requests[0]['request_options'])
+            base['ui_request_policy']['captured_options_match']=matches
+            check(matches,'captured_real_transport_preserves_GUI_context_and_hardware_defaults')
         parsed=json.loads(response['raw_response']);derived=validate_response(packet,parsed)
         plan=generation_plan(packet)
         check(all(parsed['proposals'][key].startswith(value) for key,value in plan['prefixes'].items()),

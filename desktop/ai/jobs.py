@@ -1,5 +1,6 @@
 """AIJobs; method bodies preserved from the original UI contract."""
 from .shared import *
+from .request_policy import build_packet, default_config
 
 
 class AIJobs:
@@ -32,8 +33,8 @@ class AIJobs:
             if not self.ai_clean_form():return
             ws=self.ws;pid=self.current_pid;actor=self.ai_actor()
             if not actor:raise AuditError('초안을 요청하는 작성자를 입력하세요.')
-            packet=ws.ai_packet(pid,self.ai_catalog,limits={'max_chars':12000,'max_references':40,'rows_per_table':3,'max_tables':8,'cell_chars':300})
-            config=dict(self.ai_config)
+            packet=build_packet(ws,pid,self.ai_catalog)
+            config=default_config(self.ai_runtime.base_url,self.ai_config)
             if config['provider']=='openai':
                 config.pop('endpoint',None)
                 if not self.ai_api_key.strip() or not self.ai_openai_model.strip():raise AuditError('AI 설정에서 OpenAI 모델과 API 키를 입력하세요. 키는 메모리에서만 사용합니다.')

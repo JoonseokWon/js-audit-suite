@@ -24,8 +24,12 @@ class PublicationBoundaryTests(unittest.TestCase):
     def test_actual_gate_rejects_mock_wrong_scope_and_unfinished_transport(self):
         from copy import deepcopy
         from tools.release_v25.package import check_actual
+        from desktop.ai.request_policy import POLICY_VERSION,packet_options
         valid={'ok':True,'version':'2.5.0','actual_model_calls':1,'actual_human_approvals':0,
             'status':'passed','case_mode':'integrated_risk_misstatement','frozen':False,
+            'ui_request_policy':{'origin':'desktop.ai.request_policy','version':POLICY_VERSION,
+                'packet_limits':packet_options(),'num_ctx':32768,'hardware_selection':'automatic_default',
+                'matches_gui_default':True,'matches_requested_policy':True,'captured_options_match':True},
             'transport':[{'inference_counts':{'prompt_eval_count':100,'prompt_eval_cached_count':0,
                 'eval_count':50,'total_duration':1000,'done':True,'done_reason':'stop'}}]}
         check_actual(valid,False)
@@ -35,6 +39,11 @@ class PublicationBoundaryTests(unittest.TestCase):
             with self.subTest(key=key),self.assertRaises(RuntimeError):check_actual(bad,False)
         for key,value in (('eval_count',0),('done',False),('done_reason','length')):
             bad=deepcopy(valid);bad['transport'][0]['inference_counts'][key]=value
+            with self.subTest(key=key),self.assertRaises(RuntimeError):check_actual(bad,False)
+        for key,value in (('num_ctx',16384),('hardware_selection','explicit_cpu_diagnostic'),
+                          ('matches_gui_default',False),('captured_options_match',False),
+                          ('packet_limits',{'max_chars':12000})):
+            bad=deepcopy(valid);bad['ui_request_policy'][key]=value
             with self.subTest(key=key),self.assertRaises(RuntimeError):check_actual(bad,False)
 
     def test_public_summary_excludes_raw_response_paths_and_transport(self):
@@ -46,7 +55,8 @@ class PublicationBoundaryTests(unittest.TestCase):
     def test_new_code_packages_and_documents_are_allowed(self):
         for path in ('audit_links/status.py','misstatements/records.py','v25_demo/case.py',
                      'desktop/misstatements/dialog.py','ai_contract/generation.py',
-                     'tools/release_v25/build.py','test_ai_links_v25.py','문서/v2.5_사용안내.md'):
+                     'tools/release_v25/build.py','desktop/ai/request_policy.py',
+                     'test_ai_links_v25.py','문서/v2.5_사용안내.md'):
             with self.subTest(path=path):self.assertTrue(new_path(path))
 
     def test_user_data_models_logs_and_reference_sources_are_not_new_public_files(self):

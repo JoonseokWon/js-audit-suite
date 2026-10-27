@@ -1,5 +1,6 @@
 """AISettings; method bodies preserved from the original UI contract."""
 from .shared import *
+from .request_policy import configuration_summary
 
 
 class AISettings:
@@ -9,7 +10,7 @@ class AISettings:
             footer=ttk.Frame(win,padding=10);footer.pack(side='bottom',fill='x');scroll=ScrollableFrame(win);scroll.pack(fill='both',expand=True);p=scroll.inner
             win.provider=tk.StringVar(value='로컬 AI (기본)' if self.ai_config['provider']=='ollama' else 'OpenAI API')
             ttk.Label(p,text='조서 생성 방식').pack(anchor='w');ttk.Combobox(p,textvariable=win.provider,values=['로컬 AI (기본)','OpenAI API'],state='readonly').pack(fill='x',pady=5)
-            ttk.Label(p,text='로컬 모델: '+DEFAULT_MODEL+'\nCPU 기본 · 16,384 토큰 문맥 · 요청 제한 300초. 설치·모델은 EXE와 별도로 최초 준비합니다.',wraplength=730).pack(anchor='w',pady=8)
+            ttk.Label(p,text='로컬 모델: '+DEFAULT_MODEL+'\n'+configuration_summary(self.ai_config),wraplength=730).pack(anchor='w',pady=8)
             win.runtime_root=tk.StringVar(value=str(self.ai_runtime.root));ttk.Label(p,text='전용 로컬 AI 폴더').pack(anchor='w');ttk.Entry(p,textvariable=win.runtime_root).pack(fill='x')
             def browse():
                 selected=filedialog.askdirectory(parent=win,title='전용 로컬 AI 폴더')

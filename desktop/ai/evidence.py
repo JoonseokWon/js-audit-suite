@@ -4,6 +4,7 @@ from tkinter import ttk
 from desktop_display import create_scrolled_text
 from desktop.widgets.flow import FlowFrame
 from desktop.widgets.tables import tree
+from .request_policy import build_packet
 
 KIND_LABELS={
     'raw_xlsx_row':'원본 Excel 행','raw_json':'원본 입력 행',
@@ -73,8 +74,7 @@ def open_current_evidence(host):
     if host.dirty():
         from common import AuditError
         raise AuditError('수정 중인 조서를 먼저 저장한 뒤 생성 근거를 확인하세요.')
-    packet=host.ws.ai_packet(host.current_pid,host.ai_catalog,
-        limits={'max_chars':12000,'max_references':40,'rows_per_table':3,'max_tables':8,'cell_chars':300})
+    packet=build_packet(host.ws,host.current_pid,host.ai_catalog)
     win=host.ai_window('AI 생성 근거 · 원본과 대사');host.ai_evidence_win=win
     footer=FlowFrame(win);footer.pack(side='bottom',fill='x',padx=10,pady=10)
     footer.add(ttk.Button(footer,text='닫기',command=win.destroy))

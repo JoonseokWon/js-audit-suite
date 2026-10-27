@@ -41,7 +41,8 @@ test_onboarding_workspace.py verify_v18.py windows_text.py workspace.py
 app.py procedures.py display_schema.py desktop/entry_tests.py AuditSuite.spec demo_case/verification.py'''.split())
 PACKAGES=('ai_contract','ai_quality','audit_links','misstatements','v25_demo',
           'desktop/audit_links','desktop/misstatements','tools/release_v25')
-FIXED={'audit_extensions.py','desktop/actions/audit_extensions.py','export_support/audit_registers.py',
+FIXED={'audit_extensions.py','desktop/actions/audit_extensions.py','desktop/ai/request_policy.py',
+       'export_support/audit_registers.py',
        'tools/verify_ai_v25.py','tools/verify_flow_v25.py','tools/verify_headless_v25.py',
        'tools/release_v25.py','tools/test_release_v25.py','tools/test_release_v25_publish.py',
        'ci/audit-suite-v25.yml','문서/v2.5_사용안내.md'}

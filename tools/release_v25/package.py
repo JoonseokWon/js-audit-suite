@@ -10,17 +10,25 @@ def clean(report):
     keys=('version','frozen','ok','status','checks','actual_model_calls','actual_local_inference',
           'actual_human_approvals','actual_openai_calls','synthetic_approval_events','human_approval_scope',
           'execution_mode','case_mode','integrated','model','model_digest','packet_hash','response_hash',
-          'seconds','independent_expected','integration_checks','gates')
+          'seconds','independent_expected','integration_checks','gates','ui_request_policy')
     result={k:report[k] for k in keys if k in report}
     require(not re.search(r'(?i)[A-Z]:[\\/]|/Users/|/home/',str(result)),'공개 검증 요약에 로컬 경로 포함')
     return result
 
 
 def check_actual(r,frozen):
+    from desktop.ai.request_policy import POLICY_VERSION,packet_options
     require(r.get('ok') and r.get('version')==VERSION and r['actual_model_calls']==1
             and r['actual_human_approvals']==0 and r['status']=='passed'
             and r.get('case_mode')=='integrated_risk_misstatement','실제 통합 AI 검증 필요')
     require(bool(r['frozen'])==frozen,'소스/EXE 실제 추론 구분 실패')
+    policy=r.get('ui_request_policy',{})
+    require(policy.get('origin')=='desktop.ai.request_policy' and policy.get('version')==POLICY_VERSION
+            and policy.get('packet_limits')==packet_options() and policy.get('num_ctx')==32768
+            and policy.get('hardware_selection')=='automatic_default'
+            and policy.get('matches_gui_default') is True and policy.get('matches_requested_policy') is True
+            and policy.get('captured_options_match') is True,
+            '실제 화면과 동일한 패킷·문맥·기본 실행정책 검증 필요')
     require(len(r['transport'])==1 and all(
         all(type(call['inference_counts'].get(k)) is int and call['inference_counts'][k]>0
             for k in ('prompt_eval_count','eval_count','total_duration'))
@@ -62,6 +70,7 @@ def validation(expected):
         require(count and re.search(r'\bOK\s*$',log),'출판 경계 모의검사 미통과')
         policy_counts.append(int(count[1]))
     initial=read(QA/'ai-initial-feedback/report.json')
+    previous={name:read(QA/'attempt3-before-GUI'/name/'report.json') for name in ('source-ai','frozen-ai')}
     return {'schema':'js-audit-suite-v25-validation-1','version':VERSION,
         'checked_at_kst':datetime.now(timezone(timedelta(hours=9))).isoformat(),
         'scope':'AI 예외 인용·왜곡표시 집계·위험/주장/절차/수행/조서 연결 및 가상 상태전이',
@@ -74,7 +83,10 @@ def validation(expected):
         'source_integration':clean(reports['source-flow']),'frozen_integration':clean(reports['frozen-flow']),
         'source_actual_ai':clean(reports['source-ai']),'frozen_actual_ai':clean(reports['frozen-ai']),
         'initial_preintegration_feedback':clean(initial),
-        'current_actual_model_calls':initial['actual_model_calls']+sum(reports[n]['actual_model_calls'] for n in ('source-ai','frozen-ai')),
+        'prior_integrated_before_ui_alignment':{name:clean(r) for name,r in previous.items()},
+        'actual_call_history_note':'초기 생성 1회, 화면 설정 정렬 전 통합 소스·EXE 각 1회, 최종 화면 공용정책 통합 소스·EXE 각 1회. 이전 원응답·검증은 보존했습니다.',
+        'current_actual_model_calls':initial['actual_model_calls']+sum(r['actual_model_calls'] for r in previous.values())
+            +sum(reports[n]['actual_model_calls'] for n in ('source-ai','frozen-ai')),
         'actual_openai_calls':0,'actual_human_approvals':0,
         'large_ledger_current_version':{name:reports[name] for name in ('source-large','frozen-large')},
         'large_ledger_note':'현재 버전은 10,002행 경계를 검증했습니다. 이전 버전의 25만 행 검증을 이번 검증으로 재사용하지 않았습니다.',
@@ -100,8 +112,8 @@ def package():
             if name.startswith('sector_resources/'):
                 archive.writestr(prefix+'데이터/업종별_합성원천자료/'+name[len('sector_resources/'):],value)
         archive.writestr(prefix+'데이터/회사별업무/','')
-    (out/'SHA256SUMS.txt').write_text(''.join(sha((out/name).read_bytes())+'  '+name+'\n'
-        for name in ASSETS if name!='SHA256SUMS.txt'),encoding='utf-8')
+    (out/'SHA256SUMS.txt').write_bytes(''.join(sha((out/name).read_bytes())+'  '+name+'\n'
+        for name in ASSETS if name!='SHA256SUMS.txt').encode('utf-8'))
     assets={name:{'bytes':(out/name).stat().st_size,'sha256':sha((out/name).read_bytes())} for name in ASSETS}
     (QA/'packaged-assets.json').write_bytes(json_bytes(assets))
     pinned();return {'folder':str(out),'source_files':len(files),'assets':assets}

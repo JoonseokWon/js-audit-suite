@@ -1,11 +1,12 @@
 """AIState; method bodies preserved from the original UI contract."""
 from .shared import *
+from .request_policy import default_config
 
 
 class AIState:
     def init_ai(self,catalog):
             self.ai_catalog=catalog; self.ai_runtime=LocalAIRuntime()
-            self.ai_config={'provider':'ollama','model':DEFAULT_MODEL,'endpoint':self.ai_runtime.base_url,'num_gpu':0,'num_ctx':16384,'timeout_seconds':300}
+            self.ai_config=default_config(self.ai_runtime.base_url,getattr(self,'ai_config',None))
             self.ai_api_key=''; self.ai_openai_model=''; self.ai_job_complete=None
             self.ai_state=tk.StringVar(value='AI 초안 → 근거 확인 → 사람 수정·저장 → 최종 내용 승인')
             self.ai_elapsed=tk.StringVar(value='');self._ai_elapsed_timer=None;self._ai_job_started=None
